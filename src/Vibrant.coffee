@@ -1,6 +1,6 @@
 ###
-  Vibrant.js
-  by Jari Zwarts
+  From Vibrant.js by Jari Zwarts
+  Ported to node.js by AKFish
 
   Color algorithm class that finds variations on colors in an image.
 
@@ -9,44 +9,11 @@
   Lokesh Dhakar (http://www.lokeshdhakar.com) - Created ColorThief
   Google - Palette support library in Android
 ###
+Swatch = require('./swatch')
+Image = require('./node-image')
 
-window.Swatch = class Swatch
-  hsl: undefined
-  rgb: undefined
-  population: 1
-  @yiq: 0
-
-  constructor: (rgb, population) ->
-    @rgb = rgb
-    @population = population
-
-  getHsl: ->
-    if not @hsl
-      @hsl = Vibrant.rgbToHsl @rgb[0], @rgb[1], @rgb[2]
-    else @hsl
-
-  getPopulation: ->
-    @population
-
-  getRgb: ->
-    @rgb
-
-  getHex: ->
-    "#" + ((1 << 24) + (@rgb[0] << 16) + (@rgb[1] << 8) + @rgb[2]).toString(16).slice(1, 7);
-
-  getTitleTextColor: ->
-    @_ensureTextColors()
-    if @yiq < 200 then "#fff" else "#000"
-
-  getBodyTextColor: ->
-    @_ensureTextColors()
-    if @yiq < 150 then "#fff" else "#000"
-
-  _ensureTextColors: ->
-    if not @yiq then @yiq = (@rgb[0] * 299 + @rgb[1] * 587 + @rgb[2] * 114) / 1000
-
-window.Vibrant = class Vibrant
-
+module.exports =
+class Vibrant
   quantize: require('quantize')
 
   _swatches: []
@@ -85,7 +52,7 @@ window.Vibrant = class Vibrant
     if typeof quality == 'undefined'
       quality = 5
 
-    image = new CanvasImage(sourceImage)
+    image = new Image(sourceImage)
     imageData = image.getImageData()
     pixels = imageData.data
     pixelCount = image.getPixelCount()
@@ -270,36 +237,3 @@ window.Vibrant = class Vibrant
       g * 255
       b * 255
     ]
-
-
-###
-  CanvasImage Class
-  Class that wraps the html image element and canvas.
-  It also simplifies some of the canvas context manipulation
-  with a set of helper functions.
-  Stolen from https://github.com/lokesh/color-thief
-###
-
-window.CanvasImage = class CanvasImage
-  constructor: (image) ->
-    @canvas = document.createElement('canvas')
-    @context = @canvas.getContext('2d')
-    document.body.appendChild @canvas
-    @width = @canvas.width = image.width
-    @height = @canvas.height = image.height
-    @context.drawImage image, 0, 0, @width, @height
-
-  clear: ->
-    @context.clearRect 0, 0, @width, @height
-
-  update: (imageData) ->
-    @context.putImageData imageData, 0, 0
-
-  getPixelCount: ->
-    @width * @height
-
-  getImageData: ->
-    @context.getImageData 0, 0, @width, @height
-
-  removeCanvas: ->
-    @canvas.parentNode.removeChild @canvas
