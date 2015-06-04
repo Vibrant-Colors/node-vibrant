@@ -48,7 +48,7 @@ window.Swatch = class Swatch
 window.Vibrant = class Vibrant
 
   quantize: require('quantize')
-  
+
   _swatches: []
 
   TARGET_DARK_LUMA: 0.26
@@ -78,7 +78,7 @@ window.Vibrant = class Vibrant
   LightMutedSwatch: undefined
 
   HighestPopulation: 0
-  
+
   constructor: (sourceImage, colorCount, quality) ->
     if typeof colorCount == 'undefined'
       colorCount = 64
@@ -160,7 +160,7 @@ window.Vibrant = class Vibrant
   findColorVariation: (targetLuma, minLuma, maxLuma, targetSaturation, minSaturation, maxSaturation) ->
     max = undefined
     maxValue = 0
-    
+
     for swatch in @_swatches
       sat = swatch.getHsl()[1];
       luma = swatch.getHsl()[2]
@@ -183,7 +183,7 @@ window.Vibrant = class Vibrant
       @invertDiff(luma, targetLuma), @WEIGHT_LUMA,
       population / maxPopulation, @WEIGHT_POPULATION
     )
-        
+
   invertDiff: (value, targetValue) ->
     1 - Math.abs value - targetValue
 
