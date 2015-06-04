@@ -1,3 +1,4 @@
+util = require('./util')
 ###
   From Vibrant.js by Jari Zwarts
   Ported to node.js by AKFish
@@ -17,7 +18,7 @@ class Swatch
 
   getHsl: ->
     if not @hsl
-      @hsl = Vibrant.rgbToHsl @rgb[0], @rgb[1], @rgb[2]
+      @hsl = util.rgbToHsl @rgb[0], @rgb[1], @rgb[2]
     else @hsl
 
   getPopulation: ->

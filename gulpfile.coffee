@@ -3,8 +3,15 @@ heap = require 'gulp-heap'
 coffee = heap.require('gulp-coffee')
 mocha = heap.require('gulp-mocha')
 
-gulp.task 'coffee', coffee('./src/**/*.coffee', './lib/', {bare: true})
+coffeeSource = './src/**/*.coffee'
+testSource = './test/**/*.spec.coffee'
+dst = './lib/'
 
-gulp.task 'test', mocha('./test/**/*.spec.coffee', null)
+gulp.task 'coffee', coffee(coffeeSource, dst, {bare: true})
+
+gulp.task 'test', mocha(testSource, null)
+
+gulp.task 'watch-and-test', ->
+  gulp.watch [coffeeSource, testSource], ['test']
 
 gulp.task 'default', ['coffee']

@@ -46,19 +46,29 @@ class Vibrant
 
   HighestPopulation: 0
 
-  constructor: (sourceImage, colorCount, quality) ->
-    if typeof colorCount == 'undefined'
+  constructor: (sourceImage, colorCount, quality, cb) ->
+    if not colorCount?
       colorCount = 64
-    if typeof quality == 'undefined'
+    if not quality?
       quality = 5
 
-    image = new Image(sourceImage)
+    image = new Image sourceImage, (err, image) =>
+      if err? then return cb?(err)
+      try
+        @_process image, colorCount, quality
+        cb? null, @swatches()
+      catch error
+        return cb?(error)
+
+
+  _process: (image, colorCount, quality) ->
     imageData = image.getImageData()
     pixels = imageData.data
     pixelCount = image.getPixelCount()
 
     allPixels = []
     i = 0
+
     while i < pixelCount
       offset = i * 4
       r = pixels[offset + 0]
@@ -70,6 +80,7 @@ class Vibrant
         if not (r > 250 and g > 250 and b > 250)
           allPixels.push [r, g, b]
       i = i + quality
+
 
     cmap = @quantize allPixels, colorCount
     @_swatches = cmap.vboxes.map (vbox) =>
@@ -179,61 +190,3 @@ class Vibrant
     @VibrantSwatch is swatch or @DarkVibrantSwatch is swatch or
       @LightVibrantSwatch is swatch or @MutedSwatch is swatch or
       @DarkMutedSwatch is swatch or @LightMutedSwatch is swatch
-
-  @rgbToHsl: (r, g, b) ->
-    r /= 255
-    g /= 255
-    b /= 255
-    max = Math.max(r, g, b)
-    min = Math.min(r, g, b)
-    h = undefined
-    s = undefined
-    l = (max + min) / 2
-    if max == min
-      h = s = 0
-      # achromatic
-    else
-      d = max - min
-      s = if l > 0.5 then d / (2 - max - min) else d / (max + min)
-      switch max
-        when r
-          h = (g - b) / d + (if g < b then 6 else 0)
-        when g
-          h = (b - r) / d + 2
-        when b
-          h = (r - g) / d + 4
-      h /= 6
-    [h, s, l]
-
-  @hslToRgb: (h, s, l) ->
-    r = undefined
-    g = undefined
-    b = undefined
-
-    hue2rgb = (p, q, t) ->
-      if t < 0
-        t += 1
-      if t > 1
-        t -= 1
-      if t < 1 / 6
-        return p + (q - p) * 6 * t
-      if t < 1 / 2
-        return q
-      if t < 2 / 3
-        return p + (q - p) * (2 / 3 - t) * 6
-      p
-
-    if s == 0
-      r = g = b = l
-      # achromatic
-    else
-      q = if l < 0.5 then l * (1 + s) else l + s - (l * s)
-      p = 2 * l - q
-      r = hue2rgb(p, q, h + 1 / 3)
-      g = hue2rgb(p, q, h)
-      b = hue2rgb(p, q, h - (1 / 3))
-    [
-      r * 255
-      g * 255
-      b * 255
-    ]
