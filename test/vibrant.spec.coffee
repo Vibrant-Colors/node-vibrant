@@ -70,7 +70,8 @@ Vibrant = require('../src/vibrant')
 
 testVibrant = (i, done) ->
   p = path.join __dirname, "../examples/#{i}.jpg"
-  v = new Vibrant p, (err, actual) ->
+  v = new Vibrant p
+  v.getSwatches (err, actual) ->
     if (err?) then throw err
     for name, value of expectedSwatches[i]
       expect(actual).to.have.property name

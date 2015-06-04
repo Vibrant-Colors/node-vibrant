@@ -47,17 +47,13 @@ class Vibrant
 
   HighestPopulation: 0
 
-  constructor: (sourceImage, opts, cb) ->
-    if _.isFunction opts
-      cb = opts
-      opts = {}
+  constructor: (@sourceImage, @opts = {colorCount: 64, quality: 5}) ->
 
-    opts = _.defaults {colorCount: 64, quality: 5}, opts
-
-    image = new Image sourceImage, (err, image) =>
+  getSwatches: (cb) ->
+    image = new Image @sourceImage, (err, image) =>
       if err? then return cb(err)
       try
-        @_process image, opts
+        @_process image, @opts
         cb null, @swatches()
       catch error
         return cb(error)
@@ -186,7 +182,6 @@ class Vibrant
       DarkMuted: @DarkMutedSwatch
       LightVibrant: @LightVibrantSwatch
       LightMuted: @LightMuted
-
 
   isAlreadySelected: (swatch) ->
     @VibrantSwatch is swatch or @DarkVibrantSwatch is swatch or
