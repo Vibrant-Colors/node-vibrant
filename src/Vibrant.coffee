@@ -11,6 +11,7 @@
 ###
 Swatch = require('./swatch')
 Image = require('./node-image')
+_ = require('underscore')
 
 module.exports =
 class Vibrant
@@ -46,22 +47,23 @@ class Vibrant
 
   HighestPopulation: 0
 
-  constructor: (sourceImage, colorCount, quality, cb) ->
-    if not colorCount?
-      colorCount = 64
-    if not quality?
-      quality = 5
+  constructor: (sourceImage, opts, cb) ->
+    if _.isFunction opts
+      cb = opts
+      opts = {}
+
+    opts = _.defaults {colorCount: 64, quality: 5}, opts
 
     image = new Image sourceImage, (err, image) =>
-      if err? then return cb?(err)
+      if err? then return cb(err)
       try
-        @_process image, colorCount, quality
-        cb? null, @swatches()
+        @_process image, opts
+        cb null, @swatches()
       catch error
-        return cb?(error)
+        return cb(error)
 
 
-  _process: (image, colorCount, quality) ->
+  _process: (image, opts) ->
     imageData = image.getImageData()
     pixels = imageData.data
     pixelCount = image.getPixelCount()
@@ -79,10 +81,10 @@ class Vibrant
       if a >= 125
         if not (r > 250 and g > 250 and b > 250)
           allPixels.push [r, g, b]
-      i = i + quality
+      i = i + opts.quality
 
 
-    cmap = @quantize allPixels, colorCount
+    cmap = @quantize allPixels, opts.colorCount
     @_swatches = cmap.vboxes.map (vbox) =>
       new Swatch vbox.color, vbox.vbox.count()
 

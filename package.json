@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "jimp": "^0.2.4",
-    "quantize": "^1.0.1"
+    "quantize": "^1.0.1",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "chai": "^3.0.0",
