@@ -11,9 +11,9 @@ dst = './lib/'
 
 gulp.task 'coffee', coffee(coffeeSource, dst, {bare: true})
 
-gulp.task 'test', mocha(testSource, null)
+gulp.task 'test', mocha().source(testSource, {read: false})
 
-gulp.task 'benchmark', benchmark(benchmarkSource, null)
+gulp.task 'benchmark', benchmark().source(benchmarkSource, {read: false})
 
 gulp.task 'watch-and-test', ->
   gulp.watch [coffeeSource, testSource], ['test']
