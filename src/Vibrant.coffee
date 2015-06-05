@@ -12,6 +12,7 @@
 Swatch = require('./swatch')
 Image = require('./node-image')
 _ = require('underscore')
+util = require('./util')
 
 module.exports =
 class Vibrant
@@ -119,7 +120,7 @@ class Vibrant
         # ...but we do have a dark vibrant, generate the value by modifying the luma
         hsl = @DarkVibrantSwatch.getHsl()
         hsl[2] = @TARGET_NORMAL_LUMA
-        @VibrantSwatch = new Swatch Vibrant.hslToRgb(hsl[0], hsl[1], hsl[2]), 0
+        @VibrantSwatch = new Swatch util.hslToRgb(hsl[0], hsl[1], hsl[2]), 0
 
     if @DarkVibrantSwatch is undefined
       # If we do not have a vibrant color...
@@ -127,7 +128,7 @@ class Vibrant
         # ...but we do have a dark vibrant, generate the value by modifying the luma
         hsl = @VibrantSwatch.getHsl()
         hsl[2] = @TARGET_DARK_LUMA
-        @DarkVibrantSwatch = new Swatch Vibrant.hslToRgb(hsl[0], hsl[1], hsl[2]), 0
+        @DarkVibrantSwatch = new Swatch util.hslToRgb(hsl[0], hsl[1], hsl[2]), 0
 
   findMaxPopulation: ->
     population = 0
