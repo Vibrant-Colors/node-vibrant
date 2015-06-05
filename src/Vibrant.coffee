@@ -47,7 +47,8 @@ class Vibrant
 
   HighestPopulation: 0
 
-  constructor: (@sourceImage, @opts = {colorCount: 64, quality: 5}) ->
+  constructor: (@sourceImage, opts = {}) ->
+    @opts = _.defaults(opts, {colorCount: 64, quality: 5})
 
   getSwatches: (cb) ->
     image = new Image @sourceImage, (err, image) =>
