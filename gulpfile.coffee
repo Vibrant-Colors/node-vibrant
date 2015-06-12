@@ -29,9 +29,9 @@ gulp.task 'browser', ['coffee'],
     .rename('vibrant.min.js')
     .write(dist)
 
-gulp.task 'test', mocha().source(testSource, {read: false})
+gulp.task 'test', ['coffee'], mocha().source(testSource, {read: false})
 
-gulp.task 'benchmark', benchmark().source(benchmarkSource, {read: false})
+gulp.task 'benchmark', ['coffee'], benchmark().source(benchmarkSource, {read: false})
 
 gulp.task 'watch-and-test', ->
   gulp.watch [coffeeSource, testSource], ['test']

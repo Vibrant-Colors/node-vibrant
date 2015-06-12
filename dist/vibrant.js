@@ -73,9 +73,9 @@ module.exports = Vibrant;
 },{"./browser-image":1,"./vibrant":7}],3:[function(require,module,exports){
 var Vibrant;
 
-window.Vibrant = Vibrant = require('./browser');
+window.Vibrant = Vibrant = require('../');
 
-},{"./browser":2}],4:[function(require,module,exports){
+},{"../":2}],4:[function(require,module,exports){
 var Image;
 
 module.exports = Image = (function() {

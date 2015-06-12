@@ -1,4 +1,4 @@
-Vibrant = require('../src/index')
+Vibrant = require('../')
 suits =
   name: 'node-vibrant quality benchmark (colorCount = 64)'
   tests: {}
