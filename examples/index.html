@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+  <script src='/dist/vibrant.js'>
+  </script>
+  <script type="text/javascript">
+    var v = new Vibrant('/examples/4.jpg');
+
+    function addColorBlock(hex) {
+      var div = document.createElement('div');
+      div.style.background = hex,
+      div.style.position = "relative",
+      div.style.width = "64px",
+      div.style.height = "64px",
+      document.body.appendChild(div);
+    }
+
+    v.getSwatches(function(err, swatches) {
+      if (err) throw err;
+      console.log(swatches);
+      for (var key in swatches) {
+        var swatch = swatches[key];
+        if (swatch) {
+          var hex = swatch.getHex();
+          console.log(key + ": " + hex);
+          addColorBlock(hex);
+        }
+      }
+    });
+  </script>
+</body>

@@ -3,16 +3,50 @@ Extract prominent colors from an image.
 
 `node-vibrant` is a node.js port of [Vibrant.js](https://github.com/jariz/vibrant.js), which is a javascript port of the [awesome Palette class](https://developer.android.com/reference/android/support/v7/graphics/Palette.html) in the Android support library.
 
+## Features
+
+* Identical (asynchronous) API for both node.js and browser environment
+* Support browserify
+* Consistent results (*)
+
+_* The results is consistent within each user's browser instance regardelss of visible region or display size of the image, unlike the original `vibrant.js` implementation._
+
+_However, due to the very nature of HTML5 canvas element, image rendering is platform/machine-dependent. Thus the resulting swatches in browser environment varies and may not be the same as in node.js nor in another machine. See [Canvas Fingerprinting](https://en.wikipedia.org/wiki/Canvas_fingerprinting)._
+
 ## Install
+
+### node.js
 
 ```bash
 $ npm install node-vibrant
 ```
 
+### Browser
+
+```html
+<!-- Debug version -->
+<script src="/path/to/dist/vibrant.js"></script>
+<!-- Uglified version -->
+<script src="/path/to/dist/vibrant.min.js"></script>
+
+<script>
+  // Use in script
+</script>
+```
+
+### Bundle with browserify
+
+(TODO: Add doc)
+
 ## Usage
 
 ```coffee
+# Use in node.js
 Vibrant = require('node-vibrant')
+# Bundle with browserify
+Vibrant = require('node-vibrant/browser')
+# Use directly with built bundle in browser
+# Already exported to global. window.Vibrant === Vibrant
 
 v = new Vibrant('path/to/image', opts)
 v.getSwatches (err, swatches) ->
@@ -49,6 +83,13 @@ Name | Type | Description
 ---- | ---- | --------------
 `err` | object | Error (if thrown)
 `swatches` | object | Resulting swatches
+
+## Intentional Deviation From `vibrant.js`
+
+* `node-vibrant` takes image path, not the image object as parameter for the obvious reason that node.js environment has no access to HTML DOM object.
+* `node-vibrant` provides asynchronous API since most node.js image processing library is asynchronous. And the original `vibrant.js` workflow is asynchronous any way (though you will have to handle the image loading yourself, while `node-vibrant` does it for you).
+* `node-vibrant` uses one single `opts` object to hold all options for future expansions. And it feels more node.js-like.
+* `node-vibrant` uses method call to initiate image processing instead of constructor so that developers can use it with `Promise`.
 
 ## Benchmark
 

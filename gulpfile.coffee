@@ -9,7 +9,7 @@ uglify = heap.require('gulp-uglify')
 browserify = heap.convert((opts) -> require('browserify')(opts).bundle()).toTask()
 
 coffeeSource = './src/**/*.coffee'
-browserifyEntry = './lib/browser.js'
+browserifyEntry = './lib/bundle.js'
 testSource = './test/**/*.spec.coffee'
 benchmarkSource = './test/**/*.benchmark.coffee'
 dst = './lib/'
@@ -36,4 +36,4 @@ gulp.task 'benchmark', benchmark().source(benchmarkSource, {read: false})
 gulp.task 'watch-and-test', ->
   gulp.watch [coffeeSource, testSource], ['test']
 
-gulp.task 'default', ['coffee']
+gulp.task 'default', ['browser']
