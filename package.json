@@ -2,7 +2,8 @@
   "name": "node-vibrant",
   "version": "1.0.4",
   "description": "Node.js port of vibrant.js. Get color variations from an image. Basically a JS port of Android's Palette",
-  "main": "lib/vibrant.js",
+  "main": "lib/index.js",
+  "browser": "lib/browser.js",
   "directories": {
     "example": "examples"
   },
@@ -12,13 +13,17 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "browserify": "^10.2.4",
     "chai": "^3.0.0",
     "coffee-script": "^1.9.3",
     "gulp": "^3.9.0",
     "gulp-bench": "^1.1.0",
     "gulp-coffee": "^2.3.1",
-    "gulp-heap": "^1.1.0",
-    "gulp-mocha": "^2.1.0"
+    "gulp-heap": "^1.1.2",
+    "gulp-mocha": "^2.1.0",
+    "gulp-uglify": "^1.2.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
     "test": "gulp test"

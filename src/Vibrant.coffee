@@ -10,7 +10,6 @@
   Google - Palette support library in Android
 ###
 Swatch = require('./swatch')
-Image = require('./node-image')
 _ = require('underscore')
 util = require('./util')
 
@@ -52,7 +51,7 @@ class Vibrant
     @opts = _.defaults(opts, {colorCount: 64, quality: 5})
 
   getSwatches: (cb) ->
-    image = new Image @sourceImage, (err, image) =>
+    image = new @constructor.Image @sourceImage, (err, image) =>
       if err? then return cb(err)
       try
         @_process image, @opts

@@ -66,7 +66,7 @@ expectedSwatches =
 
 expect = require('chai').expect
 path = require('path')
-Vibrant = require('../src/vibrant')
+Vibrant = require('../src/index')
 
 testVibrant = (i, done) ->
   p = path.join __dirname, "../examples/#{i}.jpg"
