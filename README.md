@@ -15,8 +15,6 @@ _However, due to the very nature of HTML5 canvas element, image rendering is pla
 
 ## Install
 
-### node.js
-
 ```bash
 $ npm install node-vibrant
 ```
