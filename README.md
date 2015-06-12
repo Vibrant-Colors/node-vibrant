@@ -21,6 +21,19 @@ _However, due to the very nature of HTML5 canvas element, image rendering is pla
 $ npm install node-vibrant
 ```
 
+## Usage
+
+### node.js / browserify
+
+```coffee
+# Use in node.js or bunddle with browserify
+Vibrant = require('node-vibrant')
+
+v = new Vibrant('path/to/image', opts)
+v.getSwatches (err, swatches) ->
+  console.log(swatches)
+```
+
 ### Browser
 
 ```html
@@ -30,28 +43,13 @@ $ npm install node-vibrant
 <script src="/path/to/dist/vibrant.min.js"></script>
 
 <script>
-  // Use in script
+  // Use `Vibrant` in script
+  // Vibrant is exported to global. window.Vibrant === Vibrant
+  var v = new Vibrant('/path/to/image', opts);
+  // ... same as in node.js
 </script>
 ```
 
-### Bundle with browserify
-
-(TODO: Add doc)
-
-## Usage
-
-```coffee
-# Use in node.js
-Vibrant = require('node-vibrant')
-# Bundle with browserify
-Vibrant = require('node-vibrant/browser')
-# Use directly with built bundle in browser
-# Already exported to global. window.Vibrant === Vibrant
-
-v = new Vibrant('path/to/image', opts)
-v.getSwatches (err, swatches) ->
-  console.log(swatches)
-```
 
 ## References
 
