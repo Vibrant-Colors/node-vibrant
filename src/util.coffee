@@ -1,4 +1,12 @@
 module.exports =
+  defaults: () ->
+    o = {}
+    for _o in arguments
+      for key, value of _o
+        if not o[key]? then o[key] = value
+
+    o
+
   rgbToHsl: (r, g, b) ->
     r /= 255
     g /= 255

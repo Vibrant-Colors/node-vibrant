@@ -1,6 +1,6 @@
 {
   "name": "node-vibrant",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Node.js port of vibrant.js. Get color variations from an image. Basically a JS port of Android's Palette",
   "main": "lib/index.js",
   "browser": "lib/browser.js",
@@ -9,8 +9,7 @@
   },
   "dependencies": {
     "jimp": "^0.2.4",
-    "quantize": "^1.0.1",
-    "underscore": "^1.8.3"
+    "quantize": "^1.0.1"
   },
   "devDependencies": {
     "browserify": "^10.2.4",
