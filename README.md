@@ -64,8 +64,20 @@ Field | Default | Description
 ----- | ------- | -----------
 `colorCount` | `64` | amount of colors in initial palette from which the swatches will be generated
 `quality` | `5` | 1 is highest, but takes way more processing
-
-
+'targetDarkLuma' | 0.26 | target luma value for generating the dark swatches, values should be in the range [0 1]
+'maxDarkLuma' | 0.45 | maximal luma threshold for generating the dark swatches, values should be in the range [0 1]
+'minLightLuma' | 0.55 | minimal luma threshold for generating the light swatches, values should be in the range [0 1]
+'targetLightLuma' | 0.74 | target luma value for generating the light swatches, values should be in the range [0 1]
+'minNormalLuma' | 0.3 | minimal luma threshold for generating the Vibrant and Muted swatches, values should be in the range [0 1]
+'targetNormalLuma' | 0.5 | target luma value for generating the Vibrant and Muted swatches, values should be in the range [0 1]
+'maxNormalLuma' | 0.7 | maximal luma threshold for generating the Vibrant and Muted swatches, values should be in the range [0 1]
+'targetMutedSaturation' | 0.3 | target saturation for generating the Muted swatch, values should be in the range [0 1]
+'maxMutesSaturation' | 0.4 | maximal saturation threshold for generating the Muted swatches, values should be in the range [0 1]
+'targetVibrantSaturation' | 1.0 | target saturation value for generating the Vibrant swatches, values should be in the range [0 1]
+'minVibrantSaturation' | 0.35 | minimal saturation threshold for generating the Vibrant swatches, values should be in the range [0 1]
+'weightSaturation' | 3 | saturation weight coefficient for determining each swatch, actual impact depends on other weights
+'weightLuma' | 6 | luma weight coefficient for determining each swatch, actual impact depends on other weights
+'weightPopulation' | 1 | population weight coefficient for determining each swatch, actual impact depends on other weights
 
 ### `Vibrant.getSwatches(cb)`
 

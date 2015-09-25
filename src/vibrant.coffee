@@ -18,24 +18,23 @@ class Vibrant
 
   _swatches: []
 
-  TARGET_DARK_LUMA: 0.26
-  MAX_DARK_LUMA: 0.45
-  MIN_LIGHT_LUMA: 0.55
-  TARGET_LIGHT_LUMA: 0.74
-
-  MIN_NORMAL_LUMA: 0.3
-  TARGET_NORMAL_LUMA: 0.5
-  MAX_NORMAL_LUMA: 0.7
-
-  TARGET_MUTED_SATURATION: 0.3
-  MAX_MUTED_SATURATION: 0.4
-
-  TARGET_VIBRANT_SATURATION: 1
-  MIN_VIBRANT_SATURATION: 0.35
-
-  WEIGHT_SATURATION: 3
-  WEIGHT_LUMA: 6
-  WEIGHT_POPULATION: 1
+  DefaultOpts =
+    colorCount: 64
+    quality: 5
+    targetDarkLuma: 0.26
+    maxDarkLuma: 0.45
+    minLightLuma: 0.55
+    targetLightLuma: 0.74
+    minNormalLuma: 0.3
+    targetNormalLuma: 0.5
+    maxNormalLuma: 0.7
+    targetMutesSaturation: 0.3
+    maxMutesSaturation: 0.4
+    targetVibrantSaturation: 1.0
+    minVibrantSaturation: 0.35
+    weightSaturation: 3
+    weightLuma: 6
+    weightPopulation: 1
 
   VibrantSwatch: undefined
   MutedSwatch: undefined
@@ -47,7 +46,7 @@ class Vibrant
   HighestPopulation: 0
 
   constructor: (@sourceImage, opts = {}) ->
-    @opts = util.defaults(opts, {colorCount: 64, quality: 5})
+    @opts = util.defaults(opts, DefaultOpts)
 
   getSwatches: (cb) ->
     image = new @constructor.Image @sourceImage, (err, image) =>
@@ -77,10 +76,10 @@ class Vibrant
       if a >= 125
         if not (r > 250 and g > 250 and b > 250)
           allPixels.push [r, g, b]
-      i = i + opts.quality
+      i = i + @opts.quality
 
 
-    cmap = @quantize allPixels, opts.colorCount
+    cmap = @quantize allPixels, @opts.colorCount
     @_swatches = cmap.vboxes.map (vbox) =>
       new Swatch vbox.color, vbox.vbox.count()
 
@@ -93,23 +92,23 @@ class Vibrant
     image.removeCanvas()
 
   generateVarationColors: ->
-    @VibrantSwatch = @findColorVariation(@TARGET_NORMAL_LUMA, @MIN_NORMAL_LUMA, @MAX_NORMAL_LUMA,
-      @TARGET_VIBRANT_SATURATION, @MIN_VIBRANT_SATURATION, 1);
+    @VibrantSwatch = @findColorVariation(@opts.targetNormalLuma, @opts.minNormalLuma, @opts.maxNormalLuma,
+      @opts.targetVibrantSaturation, @opts.minVibrantSaturation, 1);
 
-    @LightVibrantSwatch = @findColorVariation(@TARGET_LIGHT_LUMA, @MIN_LIGHT_LUMA, 1,
-      @TARGET_VIBRANT_SATURATION, @MIN_VIBRANT_SATURATION, 1);
+    @LightVibrantSwatch = @findColorVariation(@opts.targetLightLuma, @opts.minLightLuma, 1,
+      @opts.targetVibrantSaturation, @opts.minVibrantSaturation, 1);
 
-    @DarkVibrantSwatch = @findColorVariation(@TARGET_DARK_LUMA, 0, @MAX_DARK_LUMA,
-      @TARGET_VIBRANT_SATURATION, @MIN_VIBRANT_SATURATION, 1);
+    @DarkVibrantSwatch = @findColorVariation(@opts.targetDarkLuma, 0, @opts.maxDarkLuma,
+      @opts.targetVibrantSaturation, @opts.minVibrantSaturation, 1);
 
-    @MutedSwatch = @findColorVariation(@TARGET_NORMAL_LUMA, @MIN_NORMAL_LUMA, @MAX_NORMAL_LUMA,
-      @TARGET_MUTED_SATURATION, 0, @MAX_MUTED_SATURATION);
+    @MutedSwatch = @findColorVariation(@opts.targetNormalLuma, @opts.minNormalLuma, @opts.maxNormalLuma,
+      @opts.targetMutesSaturation, 0, @opts.maxMutesSaturation);
 
-    @LightMutedSwatch = @findColorVariation(@TARGET_LIGHT_LUMA, @MIN_LIGHT_LUMA, 1,
-      @TARGET_MUTED_SATURATION, 0, @MAX_MUTED_SATURATION);
+    @LightMutedSwatch = @findColorVariation(@opts.targetLightLuma, @opts.minLightLuma, 1,
+      @opts.targetMutesSaturation, 0, @opts.maxMutesSaturation);
 
-    @DarkMutedSwatch = @findColorVariation(@TARGET_DARK_LUMA, 0, @MAX_DARK_LUMA,
-      @TARGET_MUTED_SATURATION, 0, @MAX_MUTED_SATURATION);
+    @DarkMutedSwatch = @findColorVariation(@opts.targetDarkLuma, 0, @opts.maxDarkLuma,
+      @opts.targetMutesSaturation, 0, @opts.maxMutesSaturation);
 
   generateEmptySwatches: ->
     if @VibrantSwatch is undefined
@@ -117,7 +116,7 @@ class Vibrant
       if @DarkVibrantSwatch isnt undefined
         # ...but we do have a dark vibrant, generate the value by modifying the luma
         hsl = @DarkVibrantSwatch.getHsl()
-        hsl[2] = @TARGET_NORMAL_LUMA
+        hsl[2] = @opts.targetNormalLuma
         @VibrantSwatch = new Swatch util.hslToRgb(hsl[0], hsl[1], hsl[2]), 0
 
     if @DarkVibrantSwatch is undefined
@@ -125,7 +124,7 @@ class Vibrant
       if @VibrantSwatch isnt undefined
         # ...but we do have a dark vibrant, generate the value by modifying the luma
         hsl = @VibrantSwatch.getHsl()
-        hsl[2] = @TARGET_DARK_LUMA
+        hsl[2] = @opts.targetDarkLuma
         @DarkVibrantSwatch = new Swatch util.hslToRgb(hsl[0], hsl[1], hsl[2]), 0
 
   findMaxPopulation: ->
@@ -155,9 +154,9 @@ class Vibrant
   createComparisonValue: (saturation, targetSaturation,
       luma, targetLuma, population, maxPopulation) ->
     @weightedMean(
-      @invertDiff(saturation, targetSaturation), @WEIGHT_SATURATION,
-      @invertDiff(luma, targetLuma), @WEIGHT_LUMA,
-      population / maxPopulation, @WEIGHT_POPULATION
+      @invertDiff(saturation, targetSaturation), @opts.weightSaturation,
+      @invertDiff(luma, targetLuma), @opts.weightLuma,
+      population / maxPopulation, @opts.weightPopulation
     )
 
   invertDiff: (value, targetValue) ->
