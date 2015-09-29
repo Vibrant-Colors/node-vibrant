@@ -43,9 +43,5 @@
     "colour"
   ],
   "author": "akfish",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/akfish/node-vibrant/issues"
-  },
-  "homepage": "https://github.com/akfish/node-vibrant"
+  "license": "MIT"
 }
