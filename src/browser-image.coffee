@@ -22,7 +22,6 @@ class BrowserImage extends Image
     @width = @canvas.width = @img.width
     @height = @canvas.height = @img.height
     @context.drawImage @img, 0, 0, @width, @height
-    console.log @width, @height
 
   clear: ->
     @context.clearRect 0, 0, @width, @height
