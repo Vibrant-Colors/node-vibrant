@@ -78,3 +78,6 @@ build/Release
 node_modules
 
 bower_components
+
+# Mac OSX
+.DS_Store
