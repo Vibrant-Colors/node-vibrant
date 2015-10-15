@@ -64,6 +64,14 @@ expectedSwatches =
     LightVibrant: "#d07ec8"
     LightMuted:   null
 
+urlSwatch =
+  Vibrant: "#9b603b"
+  Muted: "#725147"
+  DarkVibrant: "#763a14"
+  DarkMuted: "#373745"
+  LightVibrant: "#bd8764"
+
+
 expect = require('chai').expect
 path = require('path')
 Vibrant = require('../')
@@ -86,3 +94,13 @@ describe "node-vibrant", ->
 
     for i in [1..4]
       makeTest i
+  describe "usinng url", ->
+    url = 'http://i.imgur.com/xIPgZNM.jpg'
+    it url, (done) ->
+      v = new Vibrant url
+      v.getSwatches (err, actual) ->
+        if (err?) then throw err
+        for name, value of urlSwatch
+          expect(actual).to.have.property name
+          expect(actual[name]?.getHex()).to.equal value?.toLowerCase(), "wrong #{name} color"
+        done()
