@@ -1,13 +1,14 @@
 # node-vibrant
+[![Build Status](https://travis-ci.org/akfish/node-vibrant.svg?branch=master)](https://travis-ci.org/akfish/node-vibrant)
+
 Extract prominent colors from an image.
 
 `node-vibrant` is a node.js port of [Vibrant.js](https://github.com/jariz/vibrant.js), which is a javascript port of the [awesome Palette class](https://developer.android.com/reference/android/support/v7/graphics/Palette.html) in the Android support library.
 
 ## Features
-
-* Identical (asynchronous) API for both node.js and browser environment
-* Support browserify
-* Consistent results (*)
+- Identical (asynchronous) API for both node.js and browser environment
+- Support browserify
+- Consistent results (*)
 
 _* The results is consistent within each user's browser instance regardelss of visible region or display size of the image, unlike the original `vibrant.js` implementation._
 
@@ -20,7 +21,6 @@ $ npm install node-vibrant
 ```
 
 ## Usage
-
 ### node.js / browserify
 
 ```coffee
@@ -48,59 +48,63 @@ v.getSwatches (err, swatches) ->
 </script>
 ```
 
+## Contribution Guidelines
+1. Make changes
+2. Write test specs if necessary
+3. Pass tests
+4. Commit **source files only** (without compiled files)
 
 ## References
-
 ### `Vibrant.constructor(imagePath, opts)`
 
-Name | Type | Description
----- | ---- | --------------
-`imagePath` | string | Path to image file
-`opts` | object | Options (optional)
+Name        | Type                  | Description
+----------- | --------------------- | ----------------------------------------
+`imagePath` | `string` or `Buffer`* | Path to image file (support HTTP/HTTPs*)
+`opts`      | object                | Options (optional)
+
+- node.js only
 
 #### `opts`
 
-Field | Default | Description
------ | ------- | -----------
-`colorCount` | 64 | amount of colors in initial palette from which the swatches will be generated
-`quality` | 5 | 1 is highest, but takes way more processing
-`targetDarkLuma` | 0.26 | target luma value for generating the dark swatches, values should be in the range [0 1]
-`maxDarkLuma` | 0.45 | maximal luma threshold for generating the dark swatches, values should be in the range [0 1]
-`minLightLuma` | 0.55 | minimal luma threshold for generating the light swatches, values should be in the range [0 1]
-`targetLightLuma` | 0.74 | target luma value for generating the light swatches, values should be in the range [0 1]
-`minNormalLuma` | 0.3 | minimal luma threshold for generating the Vibrant and Muted swatches, values should be in the range [0 1]
-`targetNormalLuma` | 0.5 | target luma value for generating the Vibrant and Muted swatches, values should be in the range [0 1]
-`maxNormalLuma` | 0.7 | maximal luma threshold for generating the Vibrant and Muted swatches, values should be in the range [0 1]
-`targetMutedSaturation` | 0.3 | target saturation for generating the Muted swatch, values should be in the range [0 1]
-`maxMutesSaturation` | 0.4 | maximal saturation threshold for generating the Muted swatches, values should be in the range [0 1]
-`targetVibrantSaturation` | 1.0 | target saturation value for generating the Vibrant swatches, values should be in the range [0 1]
-`minVibrantSaturation` | 0.35 | minimal saturation threshold for generating the Vibrant swatches, values should be in the range [0 1]
-`weightSaturation` | 3 | saturation weight coefficient for determining each swatch, actual impact depends on other weights
-`weightLuma` | 6 | luma weight coefficient for determining each swatch, actual impact depends on other weights
-`weightPopulation` | 1 | population weight coefficient for determining each swatch, actual impact depends on other weights
+Field                     | Default | Description
+------------------------- | ------- | ---------------------------------------------------------------------------------------------------------
+`colorCount`              | 64      | amount of colors in initial palette from which the swatches will be generated
+`quality`                 | 5       | 1 is highest, but takes way more processing
+`targetDarkLuma`          | 0.26    | target luma value for generating the dark swatches, values should be in the range [0 1]
+`maxDarkLuma`             | 0.45    | maximal luma threshold for generating the dark swatches, values should be in the range [0 1]
+`minLightLuma`            | 0.55    | minimal luma threshold for generating the light swatches, values should be in the range [0 1]
+`targetLightLuma`         | 0.74    | target luma value for generating the light swatches, values should be in the range [0 1]
+`minNormalLuma`           | 0.3     | minimal luma threshold for generating the Vibrant and Muted swatches, values should be in the range [0 1]
+`targetNormalLuma`        | 0.5     | target luma value for generating the Vibrant and Muted swatches, values should be in the range [0 1]
+`maxNormalLuma`           | 0.7     | maximal luma threshold for generating the Vibrant and Muted swatches, values should be in the range [0 1]
+`targetMutedSaturation`   | 0.3     | target saturation for generating the Muted swatch, values should be in the range [0 1]
+`maxMutesSaturation`      | 0.4     | maximal saturation threshold for generating the Muted swatches, values should be in the range [0 1]
+`targetVibrantSaturation` | 1.0     | target saturation value for generating the Vibrant swatches, values should be in the range [0 1]
+`minVibrantSaturation`    | 0.35    | minimal saturation threshold for generating the Vibrant swatches, values should be in the range [0 1]
+`weightSaturation`        | 3       | saturation weight coefficient for determining each swatch, actual impact depends on other weights
+`weightLuma`              | 6       | luma weight coefficient for determining each swatch, actual impact depends on other weights
+`weightPopulation`        | 1       | population weight coefficient for determining each swatch, actual impact depends on other weights
 
 ### `Vibrant.getSwatches(cb)`
 
-Name | Type | Description
----- | ---- | --------------
+Name | Type     | Description
+---- | -------- | -----------------
 `cb` | function | callback function
 
 #### `cb(err, swatches)`
 
-Name | Type | Description
----- | ---- | --------------
-`err` | object | Error (if thrown)
+Name       | Type   | Description
+---------- | ------ | ------------------
+`err`      | object | Error (if thrown)
 `swatches` | object | Resulting swatches
 
 ## Intentional Deviation From `vibrant.js`
-
-* `node-vibrant` takes image path, not the image object as parameter for the obvious reason that node.js environment has no access to HTML DOM object.
-* `node-vibrant` provides asynchronous API since most node.js image processing library is asynchronous. And the original `vibrant.js` workflow is asynchronous any way (though you will have to handle the image loading yourself, while `node-vibrant` does it for you).
-* `node-vibrant` uses one single `opts` object to hold all options for future expansions. And it feels more node.js-like.
-* `node-vibrant` uses method call to initiate image processing instead of constructor so that developers can use it with `Promise`.
+- `node-vibrant` takes image path, not the image object as parameter for the obvious reason that node.js environment has no access to HTML DOM object.
+- `node-vibrant` provides asynchronous API since most node.js image processing library is asynchronous. And the original `vibrant.js` workflow is asynchronous any way (though you will have to handle the image loading yourself, while `node-vibrant` does it for you).
+- `node-vibrant` uses one single `opts` object to hold all options for future expansions. And it feels more node.js-like.
+- `node-vibrant` uses method call to initiate image processing instead of constructor so that developers can use it with `Promise`.
 
 ## Benchmark
-
 Run `gulp benchmark` to see how `opts` value affects performance.
 
 ```
