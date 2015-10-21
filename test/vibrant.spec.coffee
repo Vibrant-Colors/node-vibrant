@@ -66,10 +66,15 @@ expectedSwatches =
 
 expect = require('chai').expect
 path = require('path')
+http = require('http')
+finalhandler = require('finalhandler')
+serveStatic = require('serve-static')
+Promise = require('bluebird')
 Vibrant = require('../')
 
-testVibrant = (i, done) ->
-  p = path.join __dirname, "../examples/#{i}.jpg"
+TEST_PORT = 3444
+
+testVibrant = (p, i, done) ->
   v = new Vibrant p
   v.getSwatches (err, actual) ->
     if (err?) then throw err
@@ -80,9 +85,31 @@ testVibrant = (i, done) ->
 
 describe "node-vibrant", ->
   describe "process examples/", ->
-    makeTest = (i) ->
-      it "#{i}.jpg", (done) ->
-        testVibrant i, done
+    [1..4].map (i) -> path.join __dirname, "../examples/#{i}.jpg"
+      .forEach (p, i) ->
+        i++
+        it "#{i}.jpg", (done) ->
+          testVibrant p, i, done
 
-    for i in [1..4]
-      makeTest i
+  describe "process remote images (http)", ->
+    server = null
+
+    before ->
+      staticFiles = serveStatic "./examples"
+      server = http.createServer (req, res) ->
+        done = finalhandler(req, res)
+        staticFiles(req, res, done)
+
+      Promise.promisify server.listen
+      Promise.promisify server.close
+
+      server.listen(TEST_PORT)
+
+    after ->
+      server.close()
+
+    [1..4].map (i) -> "http://localhost:#{TEST_PORT}/#{i}.jpg"
+      .forEach (p, i) ->
+        i++
+        it p, (done) ->
+          testVibrant p, i, done
