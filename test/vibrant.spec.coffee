@@ -83,6 +83,11 @@ testVibrant = (p, i, done) ->
       expect(actual[name]?.getHex()).to.equal value?.toLowerCase(), "wrong #{name} color"
     done()
 
+staticFiles = serveStatic "./examples"
+serverHandler = (req, res) ->
+  done = finalhandler(req, res)
+  staticFiles(req, res, done)
+
 describe "node-vibrant", ->
   describe "process examples/", ->
     [1..4].map (i) -> path.join __dirname, "../examples/#{i}.jpg"
@@ -95,10 +100,7 @@ describe "node-vibrant", ->
     server = null
 
     before ->
-      staticFiles = serveStatic "./examples"
-      server = http.createServer (req, res) ->
-        done = finalhandler(req, res)
-        staticFiles(req, res, done)
+      server = http.createServer serverHandler
 
       Promise.promisify server.listen
       Promise.promisify server.close
