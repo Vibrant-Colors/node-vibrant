@@ -57,12 +57,10 @@ v.getSwatches (err, swatches) ->
 ## References
 ### `Vibrant.constructor(imagePath, opts)`
 
-Name        | Type                  | Description
------------ | --------------------- | ----------------------------------------
-`imagePath` | `string` or `Buffer`* | Path to image file (support HTTP/HTTPs*)
-`opts`      | object                | Options (optional)
-
-- node.js only
+Name        | Type                               | Description
+----------- | ---------------------------------- | ---------------------------------------
+`imagePath` | `string` or `Buffer`(node.js only) | Path to image file (support HTTP/HTTPs)
+`opts`      | object                             | Options (optional)
 
 #### `opts`
 
