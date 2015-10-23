@@ -41,21 +41,21 @@ expectedSwatches =
     DarkVibrant:  "#423d8d"
     DarkMuted:    "#11141e"
     LightVibrant: "#6873cf"
-    LightMuted:   null
+    LightMuted:   "#c9cbce"
   2:
     Vibrant:      "#dbae13"
     Muted:        "#7d8b9a"
     DarkVibrant:  "#2b3ea5"
     DarkMuted:    "#65625c"
     LightVibrant: null
-    LightMuted:   null
+    LightMuted:   "#e2e3e3"
   3:
     Vibrant:      "#cd5050"
     Muted:        "#6b7f6e"
     DarkVibrant:  "#5d3322"
     DarkMuted:    "#254d40"
     LightVibrant: "#faf2ea"
-    LightMuted:   null
+    LightMuted:   "#a4967d"
   4:
     Vibrant:      "#bc9a47"
     Muted:        "#543e5c"

@@ -17,7 +17,7 @@ dist = './dist/'
 
 browserifyOpts =
   entries: [browserifyEntry]
-  debug: heap.cli.opts.debug
+  debug: true#heap.cli.opts.debug
 
 gulp.task 'coffee', coffee(coffeeSource, dst, {bare: true})
 

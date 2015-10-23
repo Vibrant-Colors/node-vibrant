@@ -10,8 +10,5 @@ class Image
 
   removeCanvas: ->
 
-[
-  'Node'
-  'Browser'
-].forEach (n) ->
-  module.exports[n] = require("./#{n.toLowerCase()}")
+module.exports.Node = require('./node')
+module.exports.Browser = require('./browser')
