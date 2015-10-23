@@ -1,81 +1,18 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var BrowserImage, Image,
-  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-  hasProp = {}.hasOwnProperty;
-
-Image = require('./image');
-
-module.exports = BrowserImage = (function(superClass) {
-  extend(BrowserImage, superClass);
-
-  function BrowserImage(path, cb) {
-    this.img = document.createElement('img');
-    this.img.crossOrigin = 'anonymous';
-    this.img.src = path;
-    this.img.onload = (function(_this) {
-      return function() {
-        _this._initCanvas();
-        return typeof cb === "function" ? cb(null, _this) : void 0;
-      };
-    })(this);
-    this.img.onerror = (function(_this) {
-      return function(e) {
-        var err;
-        err = new Error("Fail to load image: " + path);
-        err.raw = e;
-        return typeof cb === "function" ? cb(err) : void 0;
-      };
-    })(this);
-  }
-
-  BrowserImage.prototype._initCanvas = function() {
-    this.canvas = document.createElement('canvas');
-    this.context = this.canvas.getContext('2d');
-    document.body.appendChild(this.canvas);
-    this.width = this.canvas.width = this.img.width;
-    this.height = this.canvas.height = this.img.height;
-    return this.context.drawImage(this.img, 0, 0, this.width, this.height);
-  };
-
-  BrowserImage.prototype.clear = function() {
-    return this.context.clearRect(0, 0, this.width, this.height);
-  };
-
-  BrowserImage.prototype.update = function(imageData) {
-    return this.context.putImageData(imageData, 0, 0);
-  };
-
-  BrowserImage.prototype.getPixelCount = function() {
-    return this.width * this.height;
-  };
-
-  BrowserImage.prototype.getImageData = function() {
-    return this.context.getImageData(0, 0, this.width, this.height);
-  };
-
-  BrowserImage.prototype.removeCanvas = function() {
-    return this.canvas.parentNode.removeChild(this.canvas);
-  };
-
-  return BrowserImage;
-
-})(Image);
-
-},{"./image":4}],2:[function(require,module,exports){
 var Vibrant;
 
 Vibrant = require('./vibrant');
 
-Vibrant.Image = require('./browser-image');
+Vibrant.Image = require('./image').Browser;
 
 module.exports = Vibrant;
 
-},{"./browser-image":1,"./vibrant":7}],3:[function(require,module,exports){
+},{"./image":3,"./vibrant":6}],2:[function(require,module,exports){
 var Vibrant;
 
 window.Vibrant = Vibrant = require('../');
 
-},{"../":2}],4:[function(require,module,exports){
+},{"../":1}],3:[function(require,module,exports){
 var Image;
 
 module.exports = Image = (function() {
@@ -95,7 +32,11 @@ module.exports = Image = (function() {
 
 })();
 
-},{}],5:[function(require,module,exports){
+['Node', 'Browser'].forEach(function(n) {
+  return module.exports[n] = require("./" + (n.toLowerCase()));
+});
+
+},{}],4:[function(require,module,exports){
 var Swatch, util;
 
 util = require('./util');
@@ -170,7 +111,7 @@ module.exports = Swatch = (function() {
 
 })();
 
-},{"./util":6}],6:[function(require,module,exports){
+},{"./util":5}],5:[function(require,module,exports){
 module.exports = {
   defaults: function() {
     var _o, i, key, len, o, value;
@@ -251,7 +192,7 @@ module.exports = {
   }
 };
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 
 /*
   From Vibrant.js by Jari Zwarts
@@ -473,7 +414,7 @@ module.exports = Vibrant = (function() {
 
 })();
 
-},{"./swatch":5,"./util":6,"quantize":8}],8:[function(require,module,exports){
+},{"./swatch":4,"./util":5,"quantize":7}],7:[function(require,module,exports){
 /*
  * quantize.js Copyright 2008 Nick Rabinowitz
  * Ported to node.js by Olivier Lesnicki
@@ -965,4 +906,4 @@ var MMCQ = (function() {
 
 module.exports = MMCQ.quantize
 
-},{}]},{},[3]);
+},{}]},{},[2]);

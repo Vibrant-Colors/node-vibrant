@@ -1,4 +1,4 @@
 Vibrant = require('./vibrant')
-Vibrant.Image = require('./node-image')
+Vibrant.Image = require('./image').Node
 
 module.exports = Vibrant

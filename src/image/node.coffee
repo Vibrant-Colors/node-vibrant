@@ -1,4 +1,4 @@
-Image = require('./image')
+Image = require('./index')
 Jimp = require('jimp')
 
 URL_REGEX = /^(\w+):\/\/.*/i
@@ -25,7 +25,7 @@ class JimpImage extends Image
             if err? then return cb?(err)
             @img = image
             cb?(null, @)
-            
+
     else
       new Jimp path, (err, image) =>
         if err? then return cb?(err)

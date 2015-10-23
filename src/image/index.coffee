@@ -9,3 +9,9 @@ class Image
   getImageData: ->
 
   removeCanvas: ->
+
+[
+  'Node'
+  'Browser'
+].forEach (n) ->
+  module.exports[n] = require("./#{n.toLowerCase()}")

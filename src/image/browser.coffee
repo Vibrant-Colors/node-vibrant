@@ -1,4 +1,4 @@
-Image = require('./image')
+Image = require('./index')
 module.exports =
 class BrowserImage extends Image
   constructor: (path, cb) ->
