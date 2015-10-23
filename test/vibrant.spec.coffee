@@ -105,12 +105,14 @@ describe "node-vibrant", ->
         .quality 7
         .useImage "NOT_AN_IMAGE"
         .useGenerator "NOT_A_GENERATOR"
+        .useQuantizer "NOT_A_QUANTIZER"
         .build()
 
       expected =
         colorCount: 23
         quality: 7
         Image: "NOT_AN_IMAGE"
+        Quantizer: "NOT_A_QUANTIZER"
         generator: "NOT_A_GENERATOR"
 
       expect(v.opts).to.deep.equal(expected)

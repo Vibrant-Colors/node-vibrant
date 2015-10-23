@@ -21,6 +21,7 @@ class Vibrant
     quality: 5
     generator: new DefaultGenerator()
     Image: null
+    Quantizer: require('./quantizer').Baseline
   @from: (src) ->
     new Builder(src)
 
@@ -47,28 +48,11 @@ class Vibrant
 
   _process: (image, opts) ->
     imageData = image.getImageData()
-    pixels = imageData.data
-    pixelCount = image.getPixelCount()
 
-    allPixels = []
-    i = 0
+    quantizer = new @opts.Quantizer()
+    quantizer.initialize(imageData.data, @opts)
 
-    while i < pixelCount
-      offset = i * 4
-      r = pixels[offset + 0]
-      g = pixels[offset + 1]
-      b = pixels[offset + 2]
-      a = pixels[offset + 3]
-      # If pixel is mostly opaque and not white
-      if a >= 125
-        if not (r > 250 and g > 250 and b > 250)
-          allPixels.push [r, g, b]
-      i = i + @opts.quality
-
-
-    cmap = @quantize allPixels, @opts.colorCount
-    swatches = cmap.vboxes.map (vbox) =>
-      new Swatch vbox.color, vbox.vbox.count()
+    swatches = quantizer.getQuantizedColors()
 
     @generator.generate(swatches)
     # Clean up
@@ -100,6 +84,10 @@ class Builder
 
   useGenerator: (generator) ->
     @opts.generator = generator
+    @
+
+  useQuantizer: (quantizer) ->
+    @opts.Quantizer = quantizer
     @
 
   build: ->
