@@ -5,7 +5,7 @@ quantize = require('quantize')
 module.exports =
 class BaselineQuantizer extends Quantizer
   initialize: (pixels, @opts) ->
-    pixelCount = pixels.length * 4
+    pixelCount = pixels.length / 4
 
     allPixels = []
     i = 0

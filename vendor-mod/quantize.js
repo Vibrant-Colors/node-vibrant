@@ -273,13 +273,19 @@ var MMCQ = (function() {
         var histosize = 1 << (3 * sigbits),
             histo = new Array(histosize),
             index, rval, gval, bval;
-        pixels.forEach(function(pixel) {
-            rval = pixel[0] >> rshift;
-            gval = pixel[1] >> rshift;
-            bval = pixel[2] >> rshift;
+
+        var pixelCount = pixels.length / 4,
+            i = 0;
+
+        while (i < pixelCount) {
+            rval = pixels[i + 0] >> rshift;
+            gval = pixels[i + 1] >> rshift;
+            bval = pixels[i + 2] >> rshift;
             index = getColorIndex(rval, gval, bval);
             histo[index] = (histo[index] || 0) + 1;
-        });
+            i += 4;
+        }
+
         return histo;
     }
 
@@ -292,17 +298,21 @@ var MMCQ = (function() {
             bmax = 0,
             rval, gval, bval;
         // find min/max
-        pixels.forEach(function(pixel) {
-            rval = pixel[0] >> rshift;
-            gval = pixel[1] >> rshift;
-            bval = pixel[2] >> rshift;
+        var pixelCount = pixels.length / 4,
+            i = 0;
+
+        while (i < pixelCount) {
+            rval = pixels[i + 0] >> rshift;
+            gval = pixels[i + 1] >> rshift;
+            bval = pixels[i + 2] >> rshift;
             if (rval < rmin) rmin = rval;
             else if (rval > rmax) rmax = rval;
             if (gval < gmin) gmin = gval;
             else if (gval > gmax) gmax = gval;
             if (bval < bmin) bmin = bval;
             else if (bval > bmax) bmax = bval;
-        });
+            i += 4;
+        }
         return new VBox(rmin, rmax, gmin, gmax, bmin, bmax, histo);
     }
 
