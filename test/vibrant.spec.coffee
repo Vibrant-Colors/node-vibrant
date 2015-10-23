@@ -74,14 +74,23 @@ Vibrant = require('../')
 
 TEST_PORT = 3444
 
-testVibrant = (p, i, done) ->
-  v = new Vibrant p
-  v.getSwatches (err, actual) ->
+paletteCallback = (expected, done) ->
+  (err, actual) ->
     if (err?) then throw err
-    for name, value of expectedSwatches[i]
+    for name, value of expected
       expect(actual).to.have.property name
       expect(actual[name]?.getHex()).to.equal value?.toLowerCase(), "wrong #{name} color"
     done()
+
+testVibrant = (p, i, done) ->
+  v = new Vibrant p
+  v.getSwatches paletteCallback(expectedSwatches[i], done)
+  # (err, actual) ->
+  #   if (err?) then throw err
+  #   for name, value of expectedSwatches[i]
+  #     expect(actual).to.have.property name
+  #     expect(actual[name]?.getHex()).to.equal value?.toLowerCase(), "wrong #{name} color"
+  #   done()
 
 staticFiles = serveStatic "./examples"
 serverHandler = (req, res) ->
@@ -89,6 +98,26 @@ serverHandler = (req, res) ->
   staticFiles(req, res, done)
 
 describe "node-vibrant", ->
+  describe "Builder", ->
+    it "modifies Vibrant options", ->
+      v = Vibrant.from path.join __dirname, "../examples/1.jpg"
+        .maxColorCount 23
+        .quality 7
+        .useImage "NOT_AN_IMAGE"
+        .useGenerator "NOT_A_GENERATOR"
+        .build()
+
+      expected =
+        colorCount: 23
+        quality: 7
+        Image: "NOT_AN_IMAGE"
+        generator: "NOT_A_GENERATOR"
+
+      expect(v.opts).to.deep.equal(expected)
+
+    it "creates instance from Builder", (done) ->
+      Vibrant.from path.join __dirname, "../examples/1.jpg"
+        .getPalette paletteCallback(expectedSwatches[1], done)
   describe "process examples/", ->
     [1..4].map (i) -> path.join __dirname, "../examples/#{i}.jpg"
       .forEach (p, i) ->

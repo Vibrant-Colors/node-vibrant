@@ -13,29 +13,36 @@ Swatch = require('./swatch')
 util = require('./util')
 DefaultGenerator = require('./generator').Default
 
+
 module.exports =
 class Vibrant
+  @DefaultOpts:
+    colorCount: 64
+    quality: 5
+    generator: new DefaultGenerator()
+    Image: null
+  @from: (src) ->
+    new Builder(src)
+
   quantize: require('quantize')
 
   _swatches: []
 
-  DefaultOpts =
-    colorCount: 64
-    quality: 5
-    generator: new DefaultGenerator()
-
   constructor: (@sourceImage, opts = {}) ->
-    @opts = util.defaults(opts, DefaultOpts)
+    @opts = util.defaults(opts, @constructor.DefaultOpts)
     @generator = @opts.generator
 
-  getSwatches: (cb) ->
-    image = new @constructor.Image @sourceImage, (err, image) =>
+  getPalette: (cb) ->
+    image = new @opts.Image @sourceImage, (err, image) =>
       if err? then return cb(err)
       try
         @_process image, @opts
         cb null, @swatches()
       catch error
         return cb(error)
+
+  getSwatches: (cb) ->
+    @getPalette cb
 
 
   _process: (image, opts) ->
@@ -74,3 +81,34 @@ class Vibrant
       DarkMuted:    @generator.getDarkMutedSwatch()
       LightVibrant: @generator.getLightVibrantSwatch()
       LightMuted:   @generator.getLightMutedSwatch()
+
+module.exports.Builder =
+class Builder
+  constructor: (@src, @opts = {}) ->
+
+  maxColorCount: (n) ->
+    @opts.colorCount = n
+    @
+
+  quality: (q) ->
+    @opts.quality = q
+    @
+
+  useImage: (image) ->
+    @opts.Image = image
+    @
+
+  useGenerator: (generator) ->
+    @opts.generator = generator
+    @
+
+  build: ->
+    if not @v?
+      @v = new Vibrant(@src, @opts)
+    @v
+
+  getPalette: (cb) ->
+    @build().getPalette cb
+
+  from: (src) ->
+    new Vibrant(src, @opts)
