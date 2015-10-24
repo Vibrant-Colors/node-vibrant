@@ -21,7 +21,7 @@ class Vibrant
     quality: 5
     generator: new DefaultGenerator()
     Image: null
-    Quantizer: require('./quantizer').Baseline
+    Quantizer: require('./quantizer').ColorCut
   @from: (src) ->
     new Builder(src)
 

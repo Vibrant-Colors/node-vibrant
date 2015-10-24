@@ -20,7 +20,7 @@ makeTest = (Q) ->
 
   test
 
-['Baseline', 'NoCopy'].forEach (n) ->
+['Baseline', 'ColorCut'].forEach (n) ->
   suits.tests["Quantizer: #{n}"] = makeTest require('../lib/quantizer')[n]
 
 module.exports = suits
