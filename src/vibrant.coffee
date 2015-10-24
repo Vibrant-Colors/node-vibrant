@@ -74,6 +74,10 @@ class Builder
     @opts.colorCount = n
     @
 
+  maxDimension: (d) ->
+    @opts.maxDimension = d
+    @
+
   quality: (q) ->
     @opts.quality = q
     @

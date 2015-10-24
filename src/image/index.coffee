@@ -21,9 +21,9 @@ class Image
       ratio = 1 / opts.quality
 
     if ratio < 1
-      @resize width * ratio, height * ratio
+      @resize width * ratio, height * ratio, ratio
 
-  resize: (w, h) ->
+  resize: (w, h, r) ->
 
 
   getPixelCount: ->
