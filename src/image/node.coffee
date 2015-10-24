@@ -36,6 +36,15 @@ class JimpImage extends Image
 
   update: (imageData) ->
 
+  getWidth: ->
+    @img.bitmap.width
+
+  getHeight: ->
+    @img.bitmap.height
+
+  resize: (w, h) ->
+    @img.resize(w, h)
+
   getPixelCount: ->
     @img.bitmap.width * @img.bitmap.height
 

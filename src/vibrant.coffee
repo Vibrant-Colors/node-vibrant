@@ -21,7 +21,7 @@ class Vibrant
     quality: 5
     generator: new DefaultGenerator()
     Image: null
-    Quantizer: require('./quantizer').ColorCut
+    Quantizer: require('./quantizer').NoCopy
   @from: (src) ->
     new Builder(src)
 
@@ -45,8 +45,8 @@ class Vibrant
   getSwatches: (cb) ->
     @getPalette cb
 
-
   _process: (image, opts) ->
+    image.scaleDown(@opts)
     imageData = image.getImageData()
 
     quantizer = new @opts.Quantizer()
