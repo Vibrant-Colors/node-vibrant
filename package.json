@@ -16,6 +16,7 @@
     "browserify": "^10.2.4",
     "chai": "^3.0.0",
     "coffee-script": "^1.9.3",
+    "coffeeify": "^1.1.0",
     "finalhandler": "^0.4.0",
     "gulp": "^3.9.0",
     "gulp-bench": "^1.1.0",

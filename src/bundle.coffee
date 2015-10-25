@@ -1,1 +1,1 @@
-window.Vibrant = Vibrant = require('../')
+window.Vibrant = Vibrant = require('./browser')
