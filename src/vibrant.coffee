@@ -12,7 +12,7 @@
 Swatch = require('./swatch')
 util = require('./util')
 DefaultGenerator = require('./generator').Default
-
+Filter = require('./filter')
 
 module.exports =
 class Vibrant
@@ -69,6 +69,7 @@ class Vibrant
 module.exports.Builder =
 class Builder
   constructor: (@src, @opts = {}) ->
+    @opts.filters = [Filter.Default]
 
   maxColorCount: (n) ->
     @opts.colorCount = n
@@ -77,6 +78,19 @@ class Builder
   maxDimension: (d) ->
     @opts.maxDimension = d
     @
+
+  addFilter: (f) ->
+    if typeof f == 'function'
+      @opts.filters.push f
+    @
+
+  removeFilter: (f) ->
+    if (i = @opts.filters.indexOf(f)) > 0
+      @opts.filters.splice(i)
+    @
+
+  clearFilters: ->
+    @opts.filter = []
 
   quality: (q) ->
     @opts.quality = q
