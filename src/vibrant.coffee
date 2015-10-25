@@ -69,6 +69,8 @@ class Vibrant
 module.exports.Builder =
 class Builder
   constructor: (@src, @opts = {}) ->
+    # TODO: should clone
+    # TODO: should move to default opts
     @opts.filters = [Filter.Default]
 
   maxColorCount: (n) ->
@@ -91,6 +93,7 @@ class Builder
 
   clearFilters: ->
     @opts.filter = []
+    @
 
   quality: (q) ->
     @opts.quality = q

@@ -269,7 +269,7 @@ var MMCQ = (function() {
     // histo (1-d array, giving the number of pixels in
     // each quantized region of color space), or null on error
 
-    function getHisto(pixels) {
+    function getHisto(pixels, shouldIgnore) {
         var histosize = 1 << (3 * sigbits),
             histo = new Array(histosize),
             index, rval, gval, bval;
@@ -284,6 +284,7 @@ var MMCQ = (function() {
             g = pixels[offset + 1];
             b = pixels[offset + 2];
             a = pixels[offset + 3];
+            if (shouldIgnore(r, g, b, a)) continue;
             // if (a < 125 || (r > 250 && g > 250 && b > 250)) continue;
             rval = r >> rshift;
             gval = g >> rshift;
@@ -295,7 +296,7 @@ var MMCQ = (function() {
         return histo;
     }
 
-    function vboxFromPixels(pixels, histo) {
+    function vboxFromPixels(pixels, histo, shouldIgnore) {
         var rmin = 1000000,
             rmax = 0,
             gmin = 1000000,
@@ -314,6 +315,7 @@ var MMCQ = (function() {
             g = pixels[offset + 1];
             b = pixels[offset + 2];
             a = pixels[offset + 3];
+            if (shouldIgnore(r, g, b, a)) continue;
             // if (a < 125 || (r > 250 && g > 250 && b > 250)) continue;
             rval = r >> rshift;
             gval = g >> rshift;
@@ -417,16 +419,26 @@ var MMCQ = (function() {
             doCut('b');
     }
 
-    function quantize(pixels, maxcolors) {
+    function quantize(pixels, opts) {
+        var maxcolors = opts.colorCount;
         // short-circuit
         if (!pixels.length || maxcolors < 2 || maxcolors > 256) {
             // console.log('wrong number of maxcolors');
             return false;
         }
 
+        function shouldIgnore(r, g, b, a) {
+          if (Array.isArray(opts.filters)) {
+            opts.filters.forEach(function(f) {
+              if (!f(r, g, b, a)) return true;
+            })
+          }
+          return false;
+        }
+
         // XXX: check color content and convert to grayscale if insufficient
 
-        var histo = getHisto(pixels),
+        var histo = getHisto(pixels, shouldIgnore),
             histosize = 1 << (3 * sigbits);
 
         // check that we aren't below maxcolors already
@@ -439,7 +451,7 @@ var MMCQ = (function() {
         }
 
         // get the beginning vbox from the colors
-        var vbox = vboxFromPixels(pixels, histo),
+        var vbox = vboxFromPixels(pixels, histo, shouldIgnore),
             pq = new PQueue(function(a, b) {
                 return pv.naturalOrder(a.count(), b.count())
             });
@@ -497,7 +509,11 @@ var MMCQ = (function() {
         // calculate the actual colors
         var cmap = new CMap();
         while (pq2.size()) {
-            cmap.push(pq2.pop());
+            var v = pq2.pop(),
+              c = vbox.avg();
+            if (!shouldIgnore(c[0], c[1], c[2], 255)) {
+              cmap.push(v);
+            }
         }
 
         return cmap;
