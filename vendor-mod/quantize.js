@@ -426,10 +426,8 @@ var MMCQ = (function() {
 
         // XXX: check color content and convert to grayscale if insufficient
 
-        console.time("hist")
         var histo = getHisto(pixels),
             histosize = 1 << (3 * sigbits);
-        console.timeEnd("hist")
 
         // check that we aren't below maxcolors already
         var nColors = 0;
@@ -441,13 +439,11 @@ var MMCQ = (function() {
         }
 
         // get the beginning vbox from the colors
-        console.time("init vbox")
         var vbox = vboxFromPixels(pixels, histo),
             pq = new PQueue(function(a, b) {
                 return pv.naturalOrder(a.count(), b.count())
             });
         pq.push(vbox);
-        console.timeEnd("init vbox")
 
         // inner function to do the iteration
 
@@ -483,11 +479,9 @@ var MMCQ = (function() {
             }
         }
 
-        console.time("first iter")
         // first set of colors, sorted by population
         iter(pq, fractByPopulations * maxcolors);
         // console.log(pq.size(), pq.debug().length, pq.debug().slice());
-        console.timeEnd("first iter")
 
         // Re-sort by the product of pixel occupancy times the size in color space.
         var pq2 = new PQueue(function(a, b) {
@@ -498,9 +492,7 @@ var MMCQ = (function() {
         }
 
         // next set - generate the median cuts using the (npix * vol) sorting.
-        console.time("second iter")
         iter(pq2, maxcolors - pq2.size());
-        console.timeEnd("second iter")
 
         // calculate the actual colors
         var cmap = new CMap();

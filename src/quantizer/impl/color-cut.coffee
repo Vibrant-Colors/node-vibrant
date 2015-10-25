@@ -1,4 +1,4 @@
-PriorityQueue = require('js-priority-queue')
+# PriorityQueue = require('js-priority-queue')
 Swatch = require('../../swatch')
 
 sort = (arr, lower, upper) ->
