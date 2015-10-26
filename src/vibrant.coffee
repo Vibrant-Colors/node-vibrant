@@ -22,6 +22,8 @@ class Vibrant
     generator: new DefaultGenerator()
     Image: null
     Quantizer: require('./quantizer').NoCopy
+    filters: [Filter.Default]
+
   @from: (src) ->
     new Builder(src)
 
@@ -69,9 +71,7 @@ class Vibrant
 module.exports.Builder =
 class Builder
   constructor: (@src, @opts = {}) ->
-    # TODO: should clone
-    # TODO: should move to default opts
-    @opts.filters = [Filter.Default]
+    @opts.filters = util.clone Vibrant.DefaultOpts.filters
 
   maxColorCount: (n) ->
     @opts.colorCount = n
@@ -92,7 +92,7 @@ class Builder
     @
 
   clearFilters: ->
-    @opts.filter = []
+    @opts.filters = []
     @
 
   quality: (q) ->

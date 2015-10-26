@@ -1,9 +1,20 @@
 module.exports =
+  clone: (o) ->
+    if typeof o == 'object'
+      if Array.isArray o
+        return o.map (v) => this.clone v
+      else
+        _o = {}
+        for key, value of o
+          _o[key] = this.clone value
+        return _o
+    o
+
   defaults: () ->
     o = {}
     for _o in arguments
       for key, value of _o
-        if not o[key]? then o[key] = value
+        if not o[key]? then o[key] = this.clone value
 
     o
 
