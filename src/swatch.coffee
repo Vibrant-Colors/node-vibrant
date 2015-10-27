@@ -10,7 +10,7 @@ class Swatch
   hsl: undefined
   rgb: undefined
   population: 1
-  @yiq: 0
+  yiq: 0
 
   constructor: (rgb, population) ->
     @rgb = rgb
@@ -28,7 +28,7 @@ class Swatch
     @rgb
 
   getHex: ->
-    "#" + ((1 << 24) + (@rgb[0] << 16) + (@rgb[1] << 8) + @rgb[2]).toString(16).slice(1, 7);
+    util.rgbToHex(@rgb[0], @rgb[1], @rgb[2])
 
   getTitleTextColor: ->
     @_ensureTextColors()
