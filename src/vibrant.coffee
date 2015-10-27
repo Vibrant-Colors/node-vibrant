@@ -121,3 +121,9 @@ class Builder
 
   from: (src) ->
     new Vibrant(src, @opts)
+
+module.exports.Util = util
+module.exports.Swatch = Swatch
+module.exports.Quantizer = require('./quantizer/')
+module.exports.Generator = require('./generator/')
+module.exports.Filter = require('./filter/')

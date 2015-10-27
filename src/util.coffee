@@ -1,3 +1,11 @@
+DELTAE94 =
+  NA: 0
+  PERFECT: 1
+  CLOSE: 2
+  GOOD: 10
+  SIMILAR: 50
+
+
 module.exports =
   clone: (o) ->
     if typeof o == 'object'
@@ -171,3 +179,22 @@ module.exports =
     # console.log rgb1
     # console.log rgb2
     @rgbDiff rgb1, rgb2
+
+  DELTAE94_DIFF_STATUS: DELTAE94
+
+  getColorDiffStatus: (d) ->
+    if d < DELTAE94.NA
+      return "N/A"
+    # Not perceptible by human eyes
+    if d <= DELTAE94.PERFECT
+      return "Perfect"
+    # Perceptible through close observation
+    if d <= DELTAE94.CLOSE
+      return "Close"
+    # Perceptible at a glance
+    if d <= DELTAE94.GOOD
+      return "Good"
+    # Colors are more similar than opposite
+    if d < DELTAE94.SIMILAR
+      return "Similar"
+    return "Wrong"

@@ -125,7 +125,6 @@ paletteCallback = (p, i, done) ->
     done()
 
 testVibrant = (p, i, done) ->
-  v = new Vibrant p
   Vibrant.from p
     .quality(1)
     .clearFilters()
@@ -136,35 +135,7 @@ serverHandler = (req, res) ->
   done = finalhandler(req, res)
   staticFiles(req, res, done)
 
-describe "node-vibrant", ->
-  describe "Builder", ->
-    it "modifies Vibrant options", ->
-      NOT_A_FILTER = ->
-      v = Vibrant.from examples[0].filePath
-        .maxColorCount 23
-        .quality 7
-        .useImage "NOT_AN_IMAGE"
-        .useGenerator "NOT_A_GENERATOR"
-        .useQuantizer "NOT_A_QUANTIZER"
-        .clearFilters()
-        .addFilter(NOT_A_FILTER)
-        .build()
-      expected =
-        colorCount: 23
-        quality: 7
-        Image: "NOT_AN_IMAGE"
-        Quantizer: "NOT_A_QUANTIZER"
-        generator: "NOT_A_GENERATOR"
-        filters: [NOT_A_FILTER]
-
-      expect(v.opts).to.deep.equal(expected)
-
-    it "creates instance from Builder", (done) ->
-      p = examples[0].filePath
-      Vibrant.from p
-        .clearFilters()
-        .quality(1)
-        .getPalette paletteCallback(p, 1, done)
+describe "Palette Extraction", ->
   describe "process examples/", ->
     examples.forEach (example) ->
       it "#{example.fileName}", (done) ->
