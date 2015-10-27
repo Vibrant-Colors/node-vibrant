@@ -18,7 +18,8 @@ module.exports = (config) ->
       'dist/vibrant.js',
       'test/**/*.api.spec.coffee'
       'test/**/*.browser-spec.coffee'
-      pattern: "examples/**/*.jpg", served: true, watched: false, included: false
+      "test/data/*.json"
+      {pattern: "examples/**/*.jpg", served: true, watched: false, included: false}
     ]
 
 
@@ -30,8 +31,13 @@ module.exports = (config) ->
     # preprocess matching files before serving them to the browser
     # available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*.coffee': ['coffee']
+      '**/*.coffee' : ['coffee']
+      '**/*.json'   : ['json_fixtures']
     }
+
+    jsonFixturesPreprocessor:
+      variableName: '__json__'
+      transformPath: (path) -> path + '.js'
 
 
     # test results reporter to use

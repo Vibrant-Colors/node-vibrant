@@ -4,14 +4,65 @@ examples = [1..4].map (i) ->
     fileName: "#{i}.jpg"
     fileUrl: "base/examples/#{i}.jpg"
 
+expectedSwatches = {}
+TARGETS = ['chrome', 'firefox', 'ie']
+
+paletteCallback = (example, done) ->
+  (err, palette) ->
+    if err? then throw err
+
+    failCount = 0
+    testWithTarget = (name, actual, target) ->
+      key = example.i.toString()
+      expected = expectedSwatches[target][key][name]
+      result =
+        target: target
+        expected: expected ? "null"
+        status: "N/A"
+        diff: -1
+
+      if actual == null
+        expect(expected, "#{name} color from '#{target}' was expected").to.be.null
+      if expected == null
+        expect(actual, "#{name} color form '#{target}' was not expected").to.be.null
+      else
+        actualHex = actual.getHex()
+        diff = Vibrant.Util.hexDiff(actualHex, expected)
+        result.diff = diff
+        result.status = Vibrant.Util.getColorDiffStatus(diff)
+        if diff > Vibrant.Util.DELTAE94_DIFF_STATUS.SIMILAR then failCount++
+
+      result
+
+    expect(palette, "Palette should not be null").not.to.be.null
+
+    colorSummary = {}
+    for name, actual of palette
+      for target in TARGETS
+        if not colorSummary[target]?
+          colorSummary[target] = {}
+        r = testWithTarget(name, actual, target)
+        if not colorSummary[target][r.status]?
+          colorSummary[target][r.status] = 0
+        colorSummary[target][r.status] += 1
+
+    console.log "File #{example.fileName} palette color score"
+    for target, summary of colorSummary
+      s = "#{target}>\t\t"
+      for status, count of summary
+        s += "#{status}: #{count}\t\t"
+      console.log s
+      console.log ""
+
+    expect(failCount, "#{failCount} colors are too diffrent from reference palettes")
+      .to.equal(0)
+    done()
+
 testVibrant = (example, done) ->
   Vibrant.from example.fileUrl
     .quality(1)
     .clearFilters()
-    .getPalette (err, palette) ->
-      if err? then throw err
-      expect(palette, "Palette should not be null").not.to.be.null
-      done()
+    .getPalette paletteCallback(example, done)
 
 describe "Vibrant", ->
   it "exports to window", ->
@@ -21,6 +72,12 @@ describe "Vibrant", ->
     expect(Vibrant.Generator).not.to.be.null
     expect(Vibrant.Filter).not.to.be.null
   describe "Palette Extraction", ->
+
+    before ->
+      expectedSwatches['chrome'] = __json__['test/data/chrome-exec-ref']
+      expectedSwatches['firefox'] = __json__['test/data/firefox-exec-ref']
+      expectedSwatches['ie'] = __json__['test/data/ie11-exec-ref']
+
     examples.forEach (example) ->
       it example.fileName, (done) ->
         testVibrant example, done
