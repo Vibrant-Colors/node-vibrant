@@ -1,5 +1,5 @@
 gulp = require 'gulp'
-heap = require 'gulp-heap'
+heap = {cli} = require 'gulp-heap'
 coffee = heap.require('gulp-coffee')
 mocha = heap.require('gulp-mocha')
 benchmark = heap.require('gulp-bench')
@@ -22,6 +22,9 @@ browserifyOpts =
   extensions: ['.js', '.coffee']
   debug: true#heap.cli.opts.debug
 
+mochaOpts =
+  grep: cli.opts['only']
+
 gulp.task 'coffee', coffee(coffeeSource, dst, {bare: true})
 
 gulp.task 'browser',
@@ -32,11 +35,11 @@ gulp.task 'browser',
     .rename('vibrant.min.js')
     .write(dist)
 
-gulp.task 'test', ['coffee'], mocha().source(testSource, {read: false})
+gulp.task 'test', ['coffee'], mocha(mochaOpts).source(testSource, {read: false})
 
 gulp.task 'benchmark', ['coffee'], benchmark().source(benchmarkSource, {read: false})
 
 gulp.task 'watch-and-test', ->
   gulp.watch [coffeeSource, testSource], ['test']
 
-gulp.task 'default', ['browser']
+gulp.task 'default', ['coffee', 'browser']

@@ -1,0 +1,34 @@
+{
+  "1": {
+    "Vibrant": "#c7b060",
+    "Muted": "#6c5758",
+    "DarkVibrant": "#423d8d",
+    "DarkMuted": "#11141d",
+    "LightVibrant": "#6471cd",
+    "LightMuted": "#cbcacd"
+  },
+  "2": {
+    "Vibrant": "#dbaf13",
+    "Muted": "#7d8b9a",
+    "DarkVibrant": "#2b3fa6",
+    "DarkMuted": "#65635c",
+    "LightVibrant": null,
+    "LightMuted": "#e3e3e3"
+  },
+  "3": {
+    "Vibrant": "#e34c4a",
+    "Muted": "#64826f",
+    "DarkVibrant": "#2a6858",
+    "DarkMuted": "#6c6a4f",
+    "LightVibrant": "#d3b698",
+    "LightMuted": "#b3957a"
+  },
+  "4": {
+    "Vibrant": "#a1111c",
+    "Muted": "#605268",
+    "DarkVibrant": "#3c1e19",
+    "DarkMuted": "#080604",
+    "LightVibrant": "#e0aad9",
+    "LightMuted": null
+  }
+}

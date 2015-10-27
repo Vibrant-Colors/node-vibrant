@@ -23,6 +23,12 @@ class DefaultGenerator extends Generator
   HighestPopulation: 0
   constructor: (opts) ->
     @opts = util.defaults(opts, DefaultOpts)
+    @VibrantSwatch = null
+    @LightVibrantSwatch = null
+    @DarkVibrantSwatch = null
+    @MutedSwatch = null
+    @LightMutedSwatch = null
+    @DarkMutedSwatch = null
 
   generate: (@swatches) ->
     @maxPopulation = @findMaxPopulation
@@ -68,17 +74,17 @@ class DefaultGenerator extends Generator
       @opts.targetMutesSaturation, 0, @opts.maxMutesSaturation);
 
   generateEmptySwatches: ->
-    if @VibrantSwatch is undefined
+    if @VibrantSwatch is null
       # If we do not have a vibrant color...
-      if @DarkVibrantSwatch isnt undefined
+      if @DarkVibrantSwatch isnt null
         # ...but we do have a dark vibrant, generate the value by modifying the luma
         hsl = @DarkVibrantSwatch.getHsl()
         hsl[2] = @opts.targetNormalLuma
         @VibrantSwatch = new Swatch util.hslToRgb(hsl[0], hsl[1], hsl[2]), 0
 
-    if @DarkVibrantSwatch is undefined
+    if @DarkVibrantSwatch is null
       # If we do not have a vibrant color...
-      if @VibrantSwatch isnt undefined
+      if @VibrantSwatch isnt null
         # ...but we do have a dark vibrant, generate the value by modifying the luma
         hsl = @VibrantSwatch.getHsl()
         hsl[2] = @opts.targetDarkLuma
@@ -90,7 +96,7 @@ class DefaultGenerator extends Generator
     population
 
   findColorVariation: (targetLuma, minLuma, maxLuma, targetSaturation, minSaturation, maxSaturation) ->
-    max = undefined
+    max = null
     maxValue = 0
 
     for swatch in @swatches
@@ -102,7 +108,7 @@ class DefaultGenerator extends Generator
         not @isAlreadySelected(swatch)
           value = @createComparisonValue sat, targetSaturation, luma, targetLuma,
             swatch.getPopulation(), @HighestPopulation
-          if max is undefined or value > maxValue
+          if max is null or value > maxValue
             max = swatch
             maxValue = value
 

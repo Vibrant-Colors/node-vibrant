@@ -61,12 +61,12 @@ class Vibrant
     image.removeCanvas()
 
   swatches: =>
-      Vibrant:      @generator.getVibrantSwatch()
-      Muted:        @generator.getMutedSwatch()
-      DarkVibrant:  @generator.getDarkVibrantSwatch()
-      DarkMuted:    @generator.getDarkMutedSwatch()
-      LightVibrant: @generator.getLightVibrantSwatch()
-      LightMuted:   @generator.getLightMutedSwatch()
+    Vibrant:      @generator.getVibrantSwatch()
+    Muted:        @generator.getMutedSwatch()
+    DarkVibrant:  @generator.getDarkVibrantSwatch()
+    DarkMuted:    @generator.getDarkMutedSwatch()
+    LightVibrant: @generator.getLightVibrantSwatch()
+    LightMuted:   @generator.getLightMutedSwatch()
 
 module.exports.Builder =
 class Builder
