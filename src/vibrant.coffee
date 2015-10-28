@@ -22,7 +22,7 @@ class Vibrant
     generator: new DefaultGenerator()
     Image: null
     Quantizer: require('./quantizer').NoCopy
-    filters: [Filter.Default]
+    filters: []
 
   @from: (src) ->
     new Builder(src)
@@ -115,6 +115,9 @@ class Builder
     if not @v?
       @v = new Vibrant(@src, @opts)
     @v
+
+  getSwatches: (cb) ->
+    @build().getPalette cb
 
   getPalette: (cb) ->
     @build().getPalette cb

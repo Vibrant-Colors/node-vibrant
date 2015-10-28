@@ -14,7 +14,7 @@ browserify = heap.convert((opts) -> require('browserify')(opts).transform(coffee
 coffeeSource = './src/**/*.coffee'
 browserifyEntry = './src/bundle.coffee'
 testSource = './test/**/*.spec.coffee'
-benchmarkSource = './test/**/*quantizer.benchmark.coffee'
+benchmarkSource = './test/**/*.benchmark.coffee'
 dst = './lib/'
 dist = './dist/'
 
