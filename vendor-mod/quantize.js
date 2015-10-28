@@ -277,20 +277,36 @@ var MMCQ = (function() {
         var pixelCount = pixels.length / 4,
             i = 0;
 
-        while (i < pixelCount) {
-            offset = i * 4;
-            i++;
-            r = pixels[offset + 0];
-            g = pixels[offset + 1];
-            b = pixels[offset + 2];
-            a = pixels[offset + 3];
-            if (shouldIgnore(r, g, b, a)) continue;
-            // if (a < 125 || (r > 250 && g > 250 && b > 250)) continue;
-            rval = r >> rshift;
-            gval = g >> rshift;
-            bval = b >> rshift;
-            index = getColorIndex(rval, gval, bval);
-            histo[index] = (histo[index] || 0) + 1;
+        // Yes, it matters
+        if (typeof shouldIgnore === 'function') {
+          while (i < pixelCount) {
+              offset = i * 4;
+              i++;
+              r = pixels[offset + 0];
+              g = pixels[offset + 1];
+              b = pixels[offset + 2];
+              a = pixels[offset + 3];
+              if (shouldIgnore(r, g, b, a)) continue;
+              rval = r >> rshift;
+              gval = g >> rshift;
+              bval = b >> rshift;
+              index = getColorIndex(rval, gval, bval);
+              histo[index] = (histo[index] || 0) + 1;
+          }
+        } else {
+          while (i < pixelCount) {
+              offset = i * 4;
+              i++;
+              r = pixels[offset + 0];
+              g = pixels[offset + 1];
+              b = pixels[offset + 2];
+              a = pixels[offset + 3];
+              rval = r >> rshift;
+              gval = g >> rshift;
+              bval = b >> rshift;
+              index = getColorIndex(rval, gval, bval);
+              histo[index] = (histo[index] || 0) + 1;
+          }
         }
 
         return histo;
@@ -308,24 +324,44 @@ var MMCQ = (function() {
         var pixelCount = pixels.length / 4,
             i = 0;
 
-        while (i < pixelCount) {
-            offset = i * 4;
-            i++;
-            r = pixels[offset + 0];
-            g = pixels[offset + 1];
-            b = pixels[offset + 2];
-            a = pixels[offset + 3];
-            if (shouldIgnore(r, g, b, a)) continue;
-            // if (a < 125 || (r > 250 && g > 250 && b > 250)) continue;
-            rval = r >> rshift;
-            gval = g >> rshift;
-            bval = b >> rshift;
-            if (rval < rmin) rmin = rval;
-            else if (rval > rmax) rmax = rval;
-            if (gval < gmin) gmin = gval;
-            else if (gval > gmax) gmax = gval;
-            if (bval < bmin) bmin = bval;
-            else if (bval > bmax) bmax = bval;
+        // Yes, it matters
+        if (typeof shouldIgnore === 'function') {
+          while (i < pixelCount) {
+              offset = i * 4;
+              i++;
+              r = pixels[offset + 0];
+              g = pixels[offset + 1];
+              b = pixels[offset + 2];
+              a = pixels[offset + 3];
+              if (shouldIgnore(r, g, b, a)) continue;
+              rval = r >> rshift;
+              gval = g >> rshift;
+              bval = b >> rshift;
+              if (rval < rmin) rmin = rval;
+              else if (rval > rmax) rmax = rval;
+              if (gval < gmin) gmin = gval;
+              else if (gval > gmax) gmax = gval;
+              if (bval < bmin) bmin = bval;
+              else if (bval > bmax) bmax = bval;
+          }
+        } else {
+            while (i < pixelCount) {
+              offset = i * 4;
+              i++;
+              r = pixels[offset + 0];
+              g = pixels[offset + 1];
+              b = pixels[offset + 2];
+              a = pixels[offset + 3];
+              rval = r >> rshift;
+              gval = g >> rshift;
+              bval = b >> rshift;
+              if (rval < rmin) rmin = rval;
+              else if (rval > rmax) rmax = rval;
+              if (gval < gmin) gmin = gval;
+              else if (gval > gmax) gmax = gval;
+              if (bval < bmin) bmin = bval;
+              else if (bval > bmax) bmax = bval;
+          }
         }
         return new VBox(rmin, rmax, gmin, gmax, bmin, bmax, histo);
     }
@@ -427,18 +463,20 @@ var MMCQ = (function() {
             return false;
         }
 
+        var hasFilters = Array.isArray(opts.filters) && opts.filters.length > 0;
         function shouldIgnore(r, g, b, a) {
-          if (Array.isArray(opts.filters)) {
-            opts.filters.forEach(function(f) {
-              if (!f(r, g, b, a)) return true;
-            })
+          for (var i = 0; i < opts.filters.length; i++) {
+            var f = opts.filters[i];
+            if (!f(r, g, b, a)) {
+              return true;
+            }
           }
           return false;
         }
 
         // XXX: check color content and convert to grayscale if insufficient
 
-        var histo = getHisto(pixels, shouldIgnore),
+        var histo = getHisto(pixels, hasFilters ? shouldIgnore : null),
             histosize = 1 << (3 * sigbits);
 
         // check that we aren't below maxcolors already
@@ -451,7 +489,7 @@ var MMCQ = (function() {
         }
 
         // get the beginning vbox from the colors
-        var vbox = vboxFromPixels(pixels, histo, shouldIgnore),
+        var vbox = vboxFromPixels(pixels, histo, hasFilters ? shouldIgnore : null),
             pq = new PQueue(function(a, b) {
                 return pv.naturalOrder(a.count(), b.count())
             });

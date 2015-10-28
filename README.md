@@ -270,6 +270,7 @@ Task           | Description
 `detaul`       | [`coffee`, `browser`]
 `coffee`       | Compile node.js target
 `browser`      | Compile broser target (browserify)
+`benchmark`    | Runs benchmarks
 `test`         | Runs node.js test specs
 `browser-test` | Runs browser test specs (with `karma`)
 
@@ -285,6 +286,6 @@ The results is consistent within each user's browser instance regardelss of visi
 
 However, due to the very nature of HTML5 canvas element, image rendering is platform/machine-dependent. Thus the resulting swatches in browser environment varies and may not be the same as in node.js nor in another machine. See [Canvas Fingerprinting](https://en.wikipedia.org/wiki/Canvas_fingerprinting).
 
-The test specs use CIE delta E 1994 color difference to measure inconsistencies across platforms. It compares the generated color on node.js, Chrome, Firefox and IE11. At `quality` == 1 (no downsampling) and no filters, the results are rather consistent. Color diffs between browsers are mostly not perceptible by human eyes.
+The test specs use CIE delta E 1994 color difference to measure inconsistencies across platforms. It compares the generated color on node.js, Chrome, Firefox and IE11. At `quality` == 1 (no downsampling) and no filters, the results are rather consistent. Color diffs between browsers are mostly not perceptible by human eyes. Downsampling _will_ cause perceptible inconsistent results across browsers due to differences in canvas implementations.
 
 ![Color Diff](snapshot/color-diff.png)
