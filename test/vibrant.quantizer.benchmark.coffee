@@ -13,6 +13,7 @@ makeTest = (Q) ->
         # Make sure it's a fair game
         .quality(1)
         .useQuantizer(Q)
+        # .addFilter(Vibrant.Filter.Default)
         .getPalette (err, s) ->
           if err? then return d.reject(err)
           d.resolve()
@@ -20,7 +21,7 @@ makeTest = (Q) ->
 
   test
 
-['Baseline', 'NoCopy'].forEach (n) ->
+['Baseline', 'MMCQ'].forEach (n) ->
   suits.tests["Quantizer: #{n}"] = makeTest require('../lib/quantizer')[n]
 
 module.exports = suits

@@ -21,7 +21,7 @@ class Vibrant
     quality: 5
     generator: new DefaultGenerator()
     Image: null
-    Quantizer: require('./quantizer').NoCopy
+    Quantizer: require('./quantizer').MMCQ
     filters: []
 
   @from: (src) ->
