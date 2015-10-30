@@ -6,7 +6,7 @@ Extract prominent colors from an image.
 ## Update Notes
 - Some major refactor/rewriting comes with `node-vibrant@2.0.0`:
   - Closely matches latest Android M `Palette` API with new features such as `Builder` and `Filter`
-  - Optimization: **~2.5x speed-up** over original implementation
+  - Optimization: **~4x speed-up** over original implementation
   - Implement image downsampling for both node.js and browsers
   - More stream-lined design
   - Better test coverage for both node.js and browser environment
@@ -231,8 +231,11 @@ Keeps the original `vibrant.js`'s filtering behavior as reference.
 ### `Vibrant.Quantizer`
 Base class of a `Quantizer`.
 
+#### `Quantizer.MMCQ`
+Default quantizer. ~4x faster than baseline quantizer. (Rewritten version of `NoCopy`)
+
 #### `Quantizer.NoCopy`
-Default quantizer. ~2.5x faster than baseline quantizer without filters.
+Optimized quantizer. ~4x faster than baseline quantizer.
 
 #### `Quantizer.Baseline`
 Original `vibrant.js` quantizer. Used for tests and benchmarks only. It does not support downsampling nor filters.
