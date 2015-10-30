@@ -5,6 +5,10 @@ DELTAE94 =
   GOOD: 10
   SIMILAR: 50
 
+SIGBITS = 5
+RSHIFT = 8 - SIGBITS
+
+
 
 module.exports =
   clone: (o) ->
@@ -198,3 +202,8 @@ module.exports =
     if d < DELTAE94.SIMILAR
       return "Similar"
     return "Wrong"
+
+  SIGBITS: SIGBITS
+  RSHIFT: RSHIFT
+  getColorIndex: (r, g, b) ->
+    (r<<(2*SIGBITS)) + (g << SIGBITS) + b

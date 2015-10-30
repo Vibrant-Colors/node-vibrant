@@ -539,11 +539,11 @@ var MMCQ = (function() {
             right = vbox[dim2] - i;
             if (left <= right) {
                 d2 = Math.min(vbox[dim2] - 1, ~~ (i + right / 2));
+                d2 = Math.max(0, d2);
             } else {
                 d2 = Math.max(vbox[dim1], ~~ (i - 1 - left / 2));
                 d2 = Math.min(vbox[dim2], d2);
             }
-            // console.log(d2)
             // console.log(partialsum[d2])
             // avoid 0-count boxes
             while (!partialsum[d2]) d2++;
@@ -658,7 +658,7 @@ var MMCQ = (function() {
         while (pq2.size()) {
             var v = pq2.pop(),
               c = vbox.avg();
-            if (!shouldIgnore(c[0], c[1], c[2], 255)) {
+            if (!hasFilters || !shouldIgnore(c[0], c[1], c[2], 255)) {
               cmap.push(v);
             }
         }
