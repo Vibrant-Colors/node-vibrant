@@ -4,7 +4,7 @@ Swatch = require('../lib/swatch')
 MMCQ = require('../lib/quantizer/impl/mmcq')
 VBox = require('../lib/quantizer/impl/vbox')
 PQueue = require('../lib/quantizer/impl/pqueue')
-{Node} = Image = require('../lib/image')
+Node = require('../lib/image/node')
 {getAll, splitBox} = quantize = require('../vendor-mod/quantize')
 
 compareVBoxes = (expected, actual) ->

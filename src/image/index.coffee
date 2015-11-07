@@ -31,6 +31,3 @@ class Image
   getImageData: ->
 
   removeCanvas: ->
-
-module.exports.Node = require('./node')
-module.exports.Browser = require('./browser')

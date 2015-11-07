@@ -1,4 +1,4 @@
 Vibrant = require('./vibrant')
-Vibrant.DefaultOpts.Image = require('./image').Browser
+Vibrant.DefaultOpts.Image = require('./image/browser')
 
 module.exports = Vibrant
