@@ -24,7 +24,7 @@
     "gulp-bench": "^1.1.0",
     "gulp-coffee": "^2.3.1",
     "gulp-heap": "^2.0.0-alpha.1",
-    "gulp-mocha": "^2.1.0",
+    "gulp-mocha": "^2.2.0",
     "gulp-uglify": "^1.2.0",
     "karma": "^0.13.14",
     "karma-chai": "^0.1.0",
