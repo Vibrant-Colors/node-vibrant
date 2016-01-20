@@ -1,9 +1,25 @@
 Image = require('./index')
+Url = require('url')
+
+isRelativeUrl = (url) ->
+  u = Url.parse(url)
+
+  u.protocol == null && u.host == null && u.port == null
+
+isSameOrigin = (a, b) ->
+  ua = Url.parse(a)
+  ub = Url.parse(b)
+
+  # https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
+  ua.protocol == ub.protocol && ua.hostname == ub.hostname && ua.port == ub.port
+
 module.exports =
 class BrowserImage extends Image
+
   constructor: (path, cb) ->
     @img = document.createElement('img')
-    @img.crossOrigin = 'anonymous'
+    if not isRelativeUrl(path) && not isSameOrigin(window.location.href, path)
+      @img.crossOrigin = 'anonymous'
     @img.src = path
 
     @img.onload = =>
