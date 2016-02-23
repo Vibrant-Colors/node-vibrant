@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "jimp": "^0.2.4",
-    "quantize": "^1.0.1"
+    "quantize": "^1.0.1",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "bluebird": "^2.10.2",
