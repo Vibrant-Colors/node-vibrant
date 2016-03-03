@@ -17,19 +17,29 @@ module.exports =
 class BrowserImage extends Image
 
   constructor: (path, cb) ->
-    @img = document.createElement('img')
+    if typeof path == 'object' and path instanceof HTMLImageElement
+      @img = path
+      path = @img.src
+    else
+      @img = document.createElement('img')
+      @img.src = path
+
     if not isRelativeUrl(path) && not isSameOrigin(window.location.href, path)
       @img.crossOrigin = 'anonymous'
-    @img.src = path
 
     @img.onload = =>
       @_initCanvas()
       cb?(null, @)
 
+    # Alreayd loaded
+    if @img.complete
+      @img.onload()
+
     @img.onerror = (e) =>
       err = new Error("Fail to load image: " + path);
       err.raw = e;
       cb?(err)
+
 
   _initCanvas: ->
     @canvas = document.createElement('canvas')

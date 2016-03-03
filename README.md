@@ -74,7 +74,7 @@ Make a `Builder` for an image. Returns a `Builder` instance.
 
 Name    | Type                               | Description
 ------- | ---------------------------------- | ---------------------------------------
-`image` | `string` or `Buffer`(node.js only) | Path to image file (support HTTP/HTTPs)
+`image` | `string`, `HTMLImageElement`(browser only), or `Buffer`(node.js only) | Path to image file (support HTTP/HTTPs)
 
 #### `constructor(image, opts)`
 

@@ -84,20 +84,37 @@ describe "Vibrant", ->
 
   describe "Browser Image", ->
     loc = window.location
-    Image = Vibrant.DefaultOpts.Image
+    BrowserImage = Vibrant.DefaultOpts.Image
     CROS_URL = "http://example.com/foo.jpg"
     RELATIVE_URL = "foo/bar.jpg"
     SAME_ORIGIN_URL = "#{loc.protocol}//#{loc.host}/foo/bar.jpg"
     it "should set crossOrigin flag for images form foreign origin", ->
-      m = new Image(CROS_URL)
+      m = new BrowserImage(CROS_URL)
       expect(m.img.crossOrigin, "#{CROS_URL} should have crossOrigin === 'anonymous'")
         .to.equal("anonymous")
 
 
     it "should not set crossOrigin flag for images from same origin", ->
-      m1 = new Image(RELATIVE_URL)
+      m1 = new BrowserImage(RELATIVE_URL)
       expect(m1.img.crossOrigin, "#{RELATIVE_URL} should not have crossOrigin set")
         .not.to.equal("anonymous")
-      m2 = new Image(SAME_ORIGIN_URL)
+      m2 = new BrowserImage(SAME_ORIGIN_URL)
       expect(m1.img.crossOrigin, "#{SAME_ORIGIN_URL} should not have crossOrigin set")
         .not.to.equal("anonymous")
+
+    it "should accept HTMLImageElement as input", (done) ->
+      img = document.createElement('img')
+      img.src = examples[0].fileUrl
+
+      m1 = new BrowserImage img, (err, m) =>
+        if err then throw err
+        done()
+
+    it "should accept HTMLImageElement that is already loaded as input", (done) ->
+      img = document.createElement('img')
+      img.src = examples[0].fileUrl
+
+      img.onload = =>
+        m1 = new BrowserImage img, (err, m) =>
+          if err then throw err
+          done()
