@@ -93,7 +93,7 @@ Field          | Default                         | Description
 `maxDimension` | `undefined`                     | The max size of the image's longer side used in downsampling stage. This field will override `quality`.
 `filters`      | `[]`                            | An array of filters
 `Image`        | `Image.Node` or `Image.Browser` | An `Image` implementation class
-`Quantizer`    | `Vibrant.Quantizer.NoCopy`      | A `Quantizer` implementation class
+`Quantizer`    | `Vibrant.Quantizer.MMCQ`      | A `Quantizer` implementation class
 
 #### `getPalette(cb)`
 
@@ -232,13 +232,7 @@ Keeps the original `vibrant.js`'s filtering behavior as reference.
 Base class of a `Quantizer`.
 
 #### `Quantizer.MMCQ`
-Default quantizer. ~4x faster than baseline quantizer. (Rewritten version of `NoCopy`)
-
-#### `Quantizer.NoCopy`
-Optimized quantizer. ~4x faster than baseline quantizer.
-
-#### `Quantizer.Baseline`
-Original `vibrant.js` quantizer. Used for tests and benchmarks only. It does not support downsampling nor filters.
+Default quantizer. ~4x faster than baseline quantizer.
 
 ### `Vibrant.Generator`
 Base class for `Generator`.

@@ -21,7 +21,7 @@ makeTest = (Q) ->
 
   test
 
-['Baseline', 'MMCQ'].forEach (n) ->
-  suits.tests["Quantizer: #{n}"] = makeTest require('../lib/quantizer')[n]
+suits.tests["Quantizer: Baseline"] = makeTest require('../lib/quantizer/baseline')
+suits.tests["Quantizer: MMCQ"] = makeTest require('../lib/quantizer/mmcq')
 
 module.exports = suits
