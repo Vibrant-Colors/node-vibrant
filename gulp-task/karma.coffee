@@ -1,4 +1,4 @@
 {Server} = require('karma')
 
-gulp.task 'browser-test', (done) ->
+gulp.task 'test:browser', (done) ->
   new Server(config.karma.opts, done).start()

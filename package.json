@@ -20,6 +20,7 @@
     "coffee-script": "^1.9.3",
     "coffeeify": "^1.1.0",
     "colors": "^1.1.2",
+    "del": "^2.2.0",
     "finalhandler": "^0.4.0",
     "gulp": "^3.9.0",
     "gulp-bench": "^1.1.0",
@@ -41,6 +42,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
+    "prepublish": "gulp clean && gulp clean:browser && gulp coffee && gulp browser",
     "test": "gulp test"
   },
   "repository": {

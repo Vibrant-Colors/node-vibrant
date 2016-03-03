@@ -8,6 +8,7 @@ require('./gulp-task/mocha')
 require('./gulp-task/benchmark')
 require('./gulp-task/browserify')
 require('./gulp-task/karma')
+require('./gulp-task/clean')
 
 gulp.task 'watch-and-test', ->
   gulp.watch [coffeeSource, testSource], ['test']

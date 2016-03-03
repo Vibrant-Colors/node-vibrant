@@ -27,3 +27,6 @@ module.exports =
     opts:
       configFile: __dirname + '/karma.conf.coffee'
       singleRun: true
+  clean:
+    node: ["./lib/"]
+    browser: ["./dist/"]
