@@ -115,7 +115,7 @@ Alias of `getPalette`.
 Helper class for change configurations and create a `Vibrant` instance. Methods of a `Builder` instance can be chained like:
 
 ```coffee
-Vibrant.form(src)
+Vibrant.from(src)
   .quality(1)
   .clearFilters()
   # ...
