@@ -20,7 +20,6 @@ DefaultOpts =
 
 module.exports =
 class DefaultGenerator extends Generator
-  HighestPopulation: 0
   constructor: (opts) ->
     @opts = util.defaults(opts, DefaultOpts)
     @VibrantSwatch = null
@@ -31,7 +30,7 @@ class DefaultGenerator extends Generator
     @DarkMutedSwatch = null
 
   generate: (@swatches) ->
-    @maxPopulation = @findMaxPopulation
+    @maxPopulation = @findMaxPopulation()
 
     @generateVarationColors()
     @generateEmptySwatches()
@@ -107,7 +106,7 @@ class DefaultGenerator extends Generator
         luma >= minLuma and luma <= maxLuma and
         not @isAlreadySelected(swatch)
           value = @createComparisonValue sat, targetSaturation, luma, targetLuma,
-            swatch.getPopulation(), @HighestPopulation
+            swatch.getPopulation(), @maxPopulation
           if max is null or value > maxValue
             max = swatch
             maxValue = value
