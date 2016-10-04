@@ -89,7 +89,7 @@ Field          | Default                         | Description
 -------------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------
 `colorCount`   | 64                              | amount of colors in initial palette from which the swatches will be generated
 `quality`      | 5                               | Scale down factor used in downsampling stage. `1` means no downsampling. If `maxDimension` is set, this value will not be used.
-`generator`    | `Vibrant.Generator.Default`     | An `Generator` instance
+`useGenerator`    | `Vibrant.Generator.Default`     | An `Generator` instance
 `maxDimension` | `undefined`                     | The max size of the image's longer side used in downsampling stage. This field will override `quality`.
 `filters`      | `[]`                            | An array of filters
 `Image`        | `Image.Node` or `Image.Browser` | An `Image` implementation class
