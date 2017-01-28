@@ -27,6 +27,8 @@ $ npm install node-vibrant
 ## Usage
 ### node.js / browserify
 
+CoffeeScript/ES5:
+
 ```coffee
 # Use in node.js or bundle with browserify
 Vibrant = require('node-vibrant')
@@ -39,6 +41,18 @@ Vibrant.from('path/to/image').getPalette (err, palette) ->
 v = new Vibrant('path/to/image', opts)
 v.getPalette (err, palette) ->
   console.log(swatches)
+```
+
+ES6:
+```js
+import * as Vibrant from 'node-vibrant'
+
+// Using builder
+Vibrant.from('path/to/image').getPalette((err, palette) => console.log(palette))
+
+// Using constructor
+let v = new Vibrant('path/to/image', opts)
+v.getPalette((err, palette) => console.log(palette))
 ```
 
 ### Browser
