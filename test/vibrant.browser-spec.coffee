@@ -85,14 +85,16 @@ describe "Vibrant", ->
   describe "Browser Image", ->
     loc = window.location
     BrowserImage = Vibrant.DefaultOpts.Image
-    CROS_URL = "http://example.com/foo.jpg"
+    CORS_URL = "https://httpbin.org/image/png"
     RELATIVE_URL = "foo/bar.jpg"
     SAME_ORIGIN_URL = "#{loc.protocol}//#{loc.host}/foo/bar.jpg"
-    it "should set crossOrigin flag for images form foreign origin", ->
-      m = new BrowserImage(CROS_URL)
-      expect(m.img.crossOrigin, "#{CROS_URL} should have crossOrigin === 'anonymous'")
-        .to.equal("anonymous")
-
+    it "should set crossOrigin flag for images form foreign origin", (done) ->
+      m = new BrowserImage CORS_URL, (err) =>
+        if err then throw err
+        expect(m.img.crossOrigin, "#{CORS_URL} should have crossOrigin === 'anonymous'")
+          .to.equal("anonymous")
+        expect(m.getImageData()).to.be.an.instanceof(ImageData)
+        done()
 
     it "should not set crossOrigin flag for images from same origin", ->
       m1 = new BrowserImage(RELATIVE_URL)
