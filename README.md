@@ -3,19 +3,9 @@
 
 Extract prominent colors from an image.
 
-## Update Notes
-- Some major refactor/rewriting comes with `node-vibrant@2.0.0`:
-  - Closely matches latest Android M `Palette` API with new features such as `Builder` and `Filter`
-  - Optimization: **~4x speed-up** over original implementation
-  - Implement image downsampling for both node.js and browsers
-  - More stream-lined design
-  - Better test coverage for both node.js and browser environment
-
-- `node-vibrant@1.x` is a node.js port of [Vibrant.js](https://github.com/jariz/vibrant.js), which is a javascript port of the [awesome Palette class](https://developer.android.com/reference/android/support/v7/graphics/Palette.html) in the Android support library.
-
 ## Features
-- Identical (asynchronous) API for both node.js and browser environment
-- Support browserify
+- Identical API for both node.js and browser environment
+- Support browserify/webpack
 - Consistent results (*See [Result Consistency](#result-consistency))
 
 ## Install
@@ -27,35 +17,31 @@ $ npm install node-vibrant
 ## Usage
 ### node.js / browserify
 
-CoffeeScript/ES5:
-
-```coffee
-# Use in node.js or bundle with browserify
-Vibrant = require('node-vibrant')
-
-# Using builder
-Vibrant.from('path/to/image').getPalette (err, palette) ->
-    console.log palette
-
-# Using constructor
-v = new Vibrant('path/to/image', opts)
-v.getPalette (err, palette) ->
-  console.log(swatches)
-```
-
-ES6:
 ```js
+// ES5
+var Vibrant = require('node-vibrant')
+// ES6
 import * as Vibrant from 'node-vibrant'
+// TypeScript
+import Vibrant = require('node-vibrant')
 
 // Using builder
 Vibrant.from('path/to/image').getPalette((err, palette) => console.log(palette))
+// Promise
+Vibrant.from('path/to/image').getPalette()
+  .then((palette) => console.log(palette))
 
 // Using constructor
 let v = new Vibrant('path/to/image', opts)
 v.getPalette((err, palette) => console.log(palette))
+// Promise
+v.getPalette().then((palette) => console.log(palette))
 ```
 
 ### Browser
+
+If you installed node-vibrant with `npm`, compiled bundles are available under `node_modules/node-vibrant/dist`.
+Or you can download bundles from [Relases](https://github.com/akfish/node-vibrant/releases).
 
 ```html
 <!-- Debug version -->
@@ -67,6 +53,8 @@ v.getPalette((err, palette) => console.log(palette))
   // Use `Vibrant` in script
   // Vibrant is exported to global. window.Vibrant === Vibrant
   Vibrant.from('path/to/image').getPalette(function(err, palette) {});
+  // Promise
+  Vibrant.from('path/to/image').getPalette().then(function(palette) {});
   // Or
   var v = new Vibrant('/path/to/image', opts);
   // ... same as in node.js
@@ -80,149 +68,203 @@ v.getPalette((err, palette) => console.log(palette))
 4. Commit **source files only** (without compiled files)
 
 ## References
+
 ### `Vibrant`
 Main class of `node-vibrant`.
 
-#### `Vibrant.from(image)`
+#### `Vibrant.from(src: ImageSource): Builder`
 Make a `Builder` for an image. Returns a `Builder` instance.
 
-Name    | Type                               | Description
-------- | ---------------------------------- | ---------------------------------------
-`image` | `string`, `HTMLImageElement`(browser only), or `Buffer`(node.js only) | Path to image file (support HTTP/HTTPs)
+#### `constructor(src: ImageSource, opts: Partial<Options>)`
 
-#### `constructor(image, opts)`
+Name    |  Description
+------- |  ---------------------------------------
+`image` |  Path to image file (support HTTP/HTTPs)
+`opts`  |  Options (optional)
 
-Name    | Type                               | Description
-------- | ---------------------------------- | ---------------------------------------
-`image` | `string` or `Buffer`(node.js only) | Path to image file (support HTTP/HTTPs)
-`opts`  | object                             | Options (optional)
+##### `ImageSource`
 
-##### `opts`
+```ts
+export type ImageSource = string 
+  | HTMLImageElement  // Browser only 
+  | Buffer            // Node.js only
+```
+
+##### `Options`
+
+```ts
+export interface Options {
+    colorCount: number
+    quality: number
+    maxDimension: number
+    filters: Array<Filter>
+    ImageClass: ImageClass
+    quantizer: Quantizer
+    generator?: Generator
+}
+```
 
 Field          | Default                         | Description
 -------------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------
 `colorCount`   | 64                              | amount of colors in initial palette from which the swatches will be generated
 `quality`      | 5                               | Scale down factor used in downsampling stage. `1` means no downsampling. If `maxDimension` is set, this value will not be used.
-`generator`    | `Vibrant.Generator.Default`     | An `Generator` instance
 `maxDimension` | `undefined`                     | The max size of the image's longer side used in downsampling stage. This field will override `quality`.
 `filters`      | `[]`                            | An array of filters
-`Image`        | `Image.Node` or `Image.Browser` | An `Image` implementation class
-`Quantizer`    | `Vibrant.Quantizer.MMCQ`      | A `Quantizer` implementation class
+`ImageClass`   | `Image.Node` or `Image.Browser` | An `Image` implementation class
+`quantizer`    | `Vibrant.Quantizer.MMCQ`        | A `Quantizer` implementation class
+`generator`    | `Vibrant.Generator.Default`     | An `Generator` instance
 
-#### `getPalette(cb)`
+##### `Resolvable<T>`
 
-Name | Type       | Description
----- | ---------- | -----------------
-`cb` | `function` | callback function
+```ts
+export type Resolvable<T> = T | Bluebird<T>
+```
 
-##### `cb(err, palette)`
+##### `Quantizer`
 
-Name      | Type            | Description
---------- | --------------- | ------------------
-`err`     | `object`        | Error (if thrown)
-`palette` | `Array<Swatch>` | Resulting swatches
+```ts
+export interface Quantizer {
+    (pixels: Pixels, opts: Options): Resolvable<Array<Swatch>>
+}
+```
 
-#### `getSwatches(cb)`
+##### `Generator`
+
+```ts
+export interface Generator {
+    (swatches: Array<Swatch>, opts?: Object): Resolvable<Palette>
+}
+```
+
+
+##### `Filter`
+
+```ts
+export interface Filter {
+    (red: number, green: number, blue: number, alpha: number): boolean
+}
+```
+
+#### `getPalette(cb?: Callback<Palette>): Bluebird<Palette>`
+
+Name | Description
+---- | -----------------
+`cb` | (Optional) callback function. Can be omitted when using `Promise`.
+
+##### `Callback<T>`
+
+```ts
+export interface Callback<T> {
+    (err?: Error, result?: T): void
+}
+```
+
+#### `getSwatches(cb?: Callback<Palette>): Bluebird<Palette>`
 Alias of `getPalette`.
 
 ### `Vibrant.Builder`
 Helper class for change configurations and create a `Vibrant` instance. Methods of a `Builder` instance can be chained like:
 
-```coffee
+```ts
 Vibrant.from(src)
   .quality(1)
   .clearFilters()
-  # ...
-  getPalette (err, palette) ->
+  // ...
+  .getPalette()
+  .then((palette) => {})
 ```
 
-#### `constructor(src, opts)`
+#### `constructor(src: ImageSource, opts: Partial<Options>)`
 Arguments are the same as `Vibrant.constructor`.
 
-#### `quality(q)`
+#### `quality(q: number): Builder`
 Sets `opts.quality` to `q`. Returns this `Builder` instance.
 
-#### `maxColorCount(n)`
+#### `maxColorCount(n: number): Builder`
 Sets `opts.colorCount` to `n`. Returns this `Builder` instance.
 
-#### `maxDimension(d)`
+#### `maxDimension(d: number): Builder`
 Sets `opts.maxDimension` to `d`. Returns this `Builder` instance.
 
-#### `addFilter(f)`
+#### `addFilter(f: Filter): Builder`
 Adds a filter function. Returns this `Builder` instance.
 
-#### `removeFilter(f)`
+#### `removeFilter(f: Filter): Builder`
 Removes a filter function. Returns this `Builder` instance.
 
-#### `clearFilters()`
+#### `clearFilters(): Builder`
 Clear all filters. Returns this `Builder` instance.
 
-#### `useImage(image)`
+#### `useImageClass(imageClass: ImageClass): Builder`
 Specifies which `Image` implementation class to use. Returns this `Builder` instance.
 
-#### `useQuantizer(quantizer)`
+#### `useQuantizer(quantizer: Quantizer): Builder`
 Specifies which `Quantizer` implementation class to use. Returns this `Builder` instance.
 
-#### `useGenerator(generator)`
+#### `useGenerator(generator: Generator): Builder`
 Sets `opts.generator` to `generator`. Returns this `Builder` instance.
 
-#### `build()`
+#### `build(): Vibrant`
 Builds and returns a `Vibrant` instance as configured.
 
-#### `getPalette(cb)`
+#### `getPalette(cb?: Callback<Palette>): Bluebird<Palette>`
 Builds a `Vibrant` instance as configured and calls its `getPalette` method.
 
-#### `getSwatches(cb)`
+#### `getSwatches(cb? Callback<Palette>): Bluebird<Palette>`
 Alias of `getPalette`.
 
 ### `Vibrant.Swatch`
 Represents a color swatch generated from an image's palette.
 
-#### `constructor(rgb, population)`
+#### `Vec3`
+
+```ts
+export interface Vec3 extends Array<number> {
+    0: number,
+    1: number,
+    2: number
+}
+```
+
+#### `constructor(rgb: Vec3, population: number)`
 Internal use.
 
-Name         | Type            | Description
------------- | --------------- | -----------------------------------
-`rgb`        | `Array<Number>` | `[r, g, b]`
-`population` | `Number`        | Population of the color in an image
+Name         | Description
+------------ | -----------------------------------
+`rgb`        | `[r, g, b]`
+`population` | Population of the color in an image
 
-#### `getHsl()`
-#### `getPopulation()`
-#### `getRgb()`
-#### `getHex()`
-#### `getTitleTextColor()`
+#### `getHsl(): Vec3`
+#### `getPopulation(): number`
+#### `getRgb(): Vec3`
+#### `getHex(): string`
+#### `getTitleTextColor(): string`
 Returns an appropriate color to use for any 'body' text which is displayed over this `Swatch`'s color.
 
-#### `getBodyTextColor()`
+#### `getBodyTextColor(): string`
 Returns an appropriate color to use for any 'title' text which is displayed over this `Swatch`'s color.
 
 ### `Vibrant.Util`
 Utility methods. Internal usage.
 
-#### `clone(o)`
-Make a deep copy of `o`.
-
-#### `defaults()`
-Same as underscore.js's `defaults`. Re-implemented to reduce browserify package size.
-
-#### `hexToRgb(hex)`
-#### `rgbToHex(r, g, b)`
-#### `hslToRgb(h, s, l)`
-#### `rgbToHsl(r, g, b)`
-#### `xyzToRgb(x, y, z)`
-#### `rgbToXyz(r, g, b)`
-#### `xyzToCIELab(x, y, z)`
-#### `rgbToCIELab(l, a, b)`
-#### `deltaE94(lab1, lab2)`
+#### `hexToRgb(hex: string): Vec3`
+#### `rgbToHex(r: number, g: number, b: number): string`
+#### `hslToRgb(h: number, s: number, l: number): Vec3`
+#### `rgbToHsl(r: number, g: number, b: number): Vec3`
+#### `xyzToRgb(x: number, y: number, z: number): Vec3`
+#### `rgbToXyz(r: number, g: number, b: number): Vec3`
+#### `xyzToCIELab(x: number, y: number, z: number): Vec3`
+#### `rgbToCIELab(l: number, a: number, b: number): Vec3`
+#### `deltaE94(lab1: number, lab2: number): number`
 Computes CIE delta E 1994 diff between `lab1` and `lab2`. The 2 colors are in CIE-Lab color space. Used in tests to compare 2 colors' perceptual similarity.
 
-#### `rgbDiff(rgb1, rgb2)`
+#### `rgbDiff(rgb1: Vec3, rgb2: Vec3): number`
 Compute CIE delta E 1994 diff between `rgb1` and `rgb2`.
 
-#### `hexDiff(hex1, hex2)`
+#### `hexDiff(hex1: string, hex2: string): number`
 Compute CIE delta E 1994 diff between `hex1` and `hex2`.
 
-#### `getColorDiffStatus(d)`
+#### `getColorDiffStatus(d: number): string`
 Gets a string to describe the meaning of the color diff. Used in tests.
 
 Delta E  | Perception                             | Returns
@@ -233,57 +275,19 @@ Delta E  | Perception                             | Returns
 11 - 49  | Colors are more similar than opposite  | `"Similar"`
 50 - 100 | Colors are exact opposite              | `Wrong`
 
-### `Vibrant.Filter`
-A collection of built-in filters.
+## NPM Tasks
 
-#### `Filter(r, g, b, a): function<boolean>`
-A `Filter` provides a mechanism for exercising fine-grained control over which colors are valid within a resulting. It takes color's rgba value and returns `true` if the color is allowed.
-
-#### `Filter.Default`
-Keeps the original `vibrant.js`'s filtering behavior as reference.
-
-### `Vibrant.Quantizer`
-Base class of a `Quantizer`.
-
-#### `Quantizer.MMCQ`
-Default quantizer. ~4x faster than baseline quantizer.
-
-### `Vibrant.Generator`
-Base class for `Generator`.
-
-#### `Generator.Default`
-Default `Generator` implementation.
-
-##### `constructor(opts)`
-##### `opts`
-
-Field                     | Default | Description
-------------------------- | ------- | ---------------------------------------------------------------------------------------------------------
-`targetDarkLuma`          | 0.26    | target luma value for generating the dark swatches, values should be in the range [0 1]
-`maxDarkLuma`             | 0.45    | maximal luma threshold for generating the dark swatches, values should be in the range [0 1]
-`minLightLuma`            | 0.55    | minimal luma threshold for generating the light swatches, values should be in the range [0 1]
-`targetLightLuma`         | 0.74    | target luma value for generating the light swatches, values should be in the range [0 1]
-`minNormalLuma`           | 0.3     | minimal luma threshold for generating the Vibrant and Muted swatches, values should be in the range [0 1]
-`targetNormalLuma`        | 0.5     | target luma value for generating the Vibrant and Muted swatches, values should be in the range [0 1]
-`maxNormalLuma`           | 0.7     | maximal luma threshold for generating the Vibrant and Muted swatches, values should be in the range [0 1]
-`targetMutedSaturation`   | 0.3     | target saturation for generating the Muted swatch, values should be in the range [0 1]
-`maxMutesSaturation`      | 0.4     | maximal saturation threshold for generating the Muted swatches, values should be in the range [0 1]
-`targetVibrantSaturation` | 1.0     | target saturation value for generating the Vibrant swatches, values should be in the range [0 1]
-`minVibrantSaturation`    | 0.35    | minimal saturation threshold for generating the Vibrant swatches, values should be in the range [0 1]
-`weightSaturation`        | 3       | saturation weight coefficient for determining each swatch, actual impact depends on other weights
-`weightLuma`              | 6       | luma weight coefficient for determining each swatch, actual impact depends on other weights
-`weightPopulation`        | 1       | population weight coefficient for determining each swatch, actual impact depends on other weights
-
-## Gulp Tasks
-
-Task           | Description
--------------- | --------------------------------------
-`detaul`       | [`coffee`, `browser`]
-`coffee`       | Compile node.js target
-`browser`      | Compile broser target (browserify)
-`benchmark`    | Runs benchmarks
-`test`         | Runs node.js test specs
-`browser-test` | Runs browser test specs (with `karma`)
+Task            | Description
+--------------- | --------------------------------------
+`build:browser` | Build browser target
+`build:node`    | Build node.js target
+`build`         | Build all targets
+`clean:browser` | Clean browser build
+`clean:node`    | Clean node.js build
+`clean`         | Clean all builds
+`test:browser`  | Run browser specs (karma)
+`test:node`     | Run node.js specs (mocha)
+`test`          | Run all specs
 
 ## Notes
 ### Intentional Deviation From `vibrant.js`
@@ -298,5 +302,3 @@ The results is consistent within each user's browser instance regardelss of visi
 However, due to the very nature of HTML5 canvas element, image rendering is platform/machine-dependent. Thus the resulting swatches in browser environment varies and may not be the same as in node.js nor in another machine. See [Canvas Fingerprinting](https://en.wikipedia.org/wiki/Canvas_fingerprinting).
 
 The test specs use CIE delta E 1994 color difference to measure inconsistencies across platforms. It compares the generated color on node.js, Chrome, Firefox and IE11. At `quality` == 1 (no downsampling) and no filters, the results are rather consistent. Color diffs between browsers are mostly not perceptible by human eyes. Downsampling _will_ cause perceptible inconsistent results across browsers due to differences in canvas implementations.
-
-![Color Diff](snapshot/color-diff.png)
