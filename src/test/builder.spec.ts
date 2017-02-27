@@ -16,7 +16,7 @@ describe('builder', () => {
         let v = Vibrant.from('NOT_A_PATH')
             .maxColorCount(23)
             .quality(7)
-            .useImage(<any>'NOT_AN_IMAGE')
+            .useImageClass(<any>'NOT_AN_IMAGE')
             .useGenerator(<any>'NOT_A_GENERATOR')
             .useQuantizer(<any>'NOT_A_QUANTIZER')
             .clearFilters()

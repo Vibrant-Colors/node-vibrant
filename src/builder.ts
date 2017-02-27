@@ -54,8 +54,8 @@ export default class Builder {
         return this
     }
 
-    useImage(image: ImageClass): Builder {
-        this._opts.ImageClass = image
+    useImageClass(imageClass: ImageClass): Builder {
+        this._opts.ImageClass = imageClass
         return this
     }
 
