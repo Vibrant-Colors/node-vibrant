@@ -32,7 +32,7 @@ class Vibrant {
         generator: Generator.Default,
         ImageClass: null,
         quantizer: Quantizer.MMCQ,
-        filters: []
+        filters: [Filter.Default]
     }
 
     static from(src: ImageSource): Builder {
