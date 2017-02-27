@@ -1,6 +1,7 @@
 import { Swatch, Palette } from '../color'
 import { Generator } from '../typing'
-import { defaults, hslToRgb } from '../util'
+import { hslToRgb } from '../util'
+import defaults = require('lodash/defaults')
 
 interface DefaultGeneratorOptions {
     targetDarkLuma: number,

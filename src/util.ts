@@ -32,36 +32,6 @@ export function defer<R>(): DeferredBluebird<R> {
     return { resolve, reject, promise }
 }
 
-export function clone(o: any): any {
-    if (typeof o === 'object') {
-        if (Array.isArray(o)) {
-            return o.map((v: any) => clone(v))
-        } else {
-            let _o: IndexedObject= {}
-
-            for (let key in o) {
-                _o[key] = clone(o[key])
-            }
-
-            return _o
-        }
-
-    }
-    return o
-}
-
-export function defaults(...args: any[]): IndexedObject{
-    let o: IndexedObject = {}
-
-    for (let _o of args) {
-        for (let key in _o) {
-            if (!o[key]) o[key] = clone(_o[key])
-        }
-    }
-
-    return o
-}
-
 export function hexToRgb(hex: string): Vec3 {
     let m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
 
