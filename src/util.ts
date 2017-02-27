@@ -226,20 +226,20 @@ export function hexDiff(hex1: string, hex2: string): number {
 
 export function getColorDiffStatus(d: number): string {
     if (d < DELTAE94_DIFF_STATUS.NA)
-        return "N/A"
+        return 'N/A'
     // Not perceptible by human eyes
     if (d <= DELTAE94_DIFF_STATUS.PERFECT)
-        return "Perfect"
+        return 'Perfect'
     // Perceptible through close observation
     if (d <= DELTAE94_DIFF_STATUS.CLOSE)
-        return "Close"
+        return 'Close'
     // Perceptible at a glance
     if (d <= DELTAE94_DIFF_STATUS.GOOD)
-        return "Good"
+        return 'Good'
     // Colors are more similar than opposite
     if (d < DELTAE94_DIFF_STATUS.SIMILAR)
-        return "Similar"
-    return "Wrong"
+        return 'Similar'
+    return 'Wrong'
 
 }
 

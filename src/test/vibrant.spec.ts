@@ -15,15 +15,15 @@ import {
 
 import Vibrant = require('../')
 
-describe("Palette Extraction", () => {
-    describe("process samples", () =>
+describe('Palette Extraction', () => {
+    describe('process samples', () =>
         SAMPLES.forEach((sample) => {
             it(`${sample.fileName} (callback)`, done => testVibrant(Vibrant, sample, done))
             it(`${sample.fileName} (Promise)`, () => testVibrantAsPromised(Vibrant, sample))
         })
     )
 
-    describe("process remote images (http)", function () {
+    describe('process remote images (http)', function () {
         let server: http.Server = null
 
         before(() => {

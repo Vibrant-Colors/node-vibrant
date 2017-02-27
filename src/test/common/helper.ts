@@ -34,7 +34,7 @@ const displayColorDiffTable = (p: string, diff: string[][]) => {
 const paletteCallback = (sample: Sample, done?: MochaDone) =>
     (err: Error, palette?: Palette) => {
         if (err != null) { throw err }
-        expect(palette, "palette should be returned").not.to.be.null
+        expect(palette, 'palette should be returned').not.to.be.null
 
         let failCount = 0
         let testWithTarget = (name: string, actual: Swatch, target: string) => {
@@ -42,8 +42,8 @@ const paletteCallback = (sample: Sample, done?: MochaDone) =>
             let expected = REFERENCE_PALETTE[target][key][name]
             let result = {
                 target,
-                expected: expected != null ? expected : "null",
-                status: "N/A",
+                expected: expected != null ? expected : 'null',
+                status: 'N/A',
                 diff: -1
             }
 
@@ -67,7 +67,7 @@ const paletteCallback = (sample: Sample, done?: MochaDone) =>
         for (let name in palette) {
             var left
             let actual = palette[name]
-            let colorDiff = [name, (left = (actual != null ? actual.getHex() : undefined)) != null ? left : "null"]
+            let colorDiff = [name, (left = (actual != null ? actual.getHex() : undefined)) != null ? left : 'null']
             for (let target of TARGETS) {
                 let r = testWithTarget(name, actual, target)
                 colorDiff.push(r.expected)

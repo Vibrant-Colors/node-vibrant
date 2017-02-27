@@ -51,8 +51,8 @@
     "pretest": "npm run clean && npm run build",
     "test": "npm run test:node && npm run test:browser",
     "test:node": "./node_modules/.bin/mocha lib/test/**/*.spec.js",
-    "test:browser": "./node_modules/.bin/karma start karma.conf.js --single-run",
-    "prepublish": "npm run test"
+    "test:browser": "./node_modules/.bin/karma start karma.conf.js",
+    "prepublish": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",

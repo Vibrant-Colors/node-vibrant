@@ -12,11 +12,19 @@ import defaults = require('lodash/defaults')
 
 import Builder from './builder'
 
+import * as Util from './util'
+
 import * as Quantizer from './quantizer'
 import * as Generator from './generator'
+import * as Filter from './filter'
+
 
 class Vibrant {
-    static Builder: Builder
+    static Builder = Builder 
+    static Quantizer = Quantizer
+    static Generator = Generator
+    static Filter = Filter
+    static Util = Util
 
     static DefaultOpts: Partial<Options> = {
         colorCount: 64,

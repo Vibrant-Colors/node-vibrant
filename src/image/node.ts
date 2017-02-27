@@ -65,7 +65,7 @@ export default class NodeImage extends ImageBase {
         } else if (image instanceof Buffer) {
             return this._loadByJimp(image)
         } else {
-            return Bluebird.reject(new Error("Cannot load image from HTMLImageElement in node environment"))
+            return Bluebird.reject(new Error('Cannot load image from HTMLImageElement in node environment'))
         }
     }
     clear(): void {
