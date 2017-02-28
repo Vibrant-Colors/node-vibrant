@@ -1,5 +1,6 @@
 const expect: Chai.ExpectStatic = (<any>window).chai.expect
 const Vibrant: any = (<any>window).Vibrant
+declare var System: any;
 
 import {
   ImageClass
@@ -17,6 +18,15 @@ import {
 } from './common/helper'
 
 describe('Vibrant', () => {
+  it('Async import', () =>
+    System.import('../browser').then((v: any) => {
+      expect(v, 'Vibrant').not.to.be.undefined
+      expect(v.Util, 'Vibrant.Util').not.to.be.undefined
+      expect(v.Quantizer, 'Vibrant.Quantizer').not.to.be.undefined
+      expect(v.Generator, 'Vibrant.Generator').not.to.be.undefined
+      expect(v.Filter, 'Vibrant.Filter').not.to.be.undefined
+    })
+  )
   it('exports to window', () => {
     expect(Vibrant, 'Vibrant').not.to.be.undefined
     expect(Vibrant.Util, 'Vibrant.Util').not.to.be.undefined
@@ -56,7 +66,7 @@ describe('Vibrant', () => {
     )
 
 
-    it('should not set crossOrigin flag for images from same origin (absolute URL)', () => 
+    it('should not set crossOrigin flag for images from same origin (absolute URL)', () =>
       new BrowserImage().load(SAME_ORIGIN_URL)
         .then((m) => {
           expect((<any>m).image.crossOrigin, `${SAME_ORIGIN_URL} should not have crossOrigin set`)

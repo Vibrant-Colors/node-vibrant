@@ -1,7 +1,7 @@
 var path = require('path')
 var webpack = require("webpack")
 
-var entry = './src/browser.ts'
+var entry = './src/bundle.ts'
 module.exports = {
     entry: {
         'vibrant': entry,
