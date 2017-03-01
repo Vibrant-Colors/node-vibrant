@@ -55,16 +55,11 @@ const MMCQ: Quantizer = (pixels: Pixels, opts: ComputedOptions): Array<Swatch> =
 
     // calculate the actual colors
     let swatches: Swatch[] = []
-    let applyFilter = typeof opts.combinedFilter === 'function'
-    // let vboxes = []
     while (pq2.size()) {
-
         let v = pq2.pop()
         let color = v.avg()
         let [r, g, b] = color
-        if (!applyFilter || opts.combinedFilter(r, g, b, 255)) {
-            swatches.push(new Swatch(color, v.count()))
-        }
+        swatches.push(new Swatch(color, v.count()))
     }
     return swatches
 }

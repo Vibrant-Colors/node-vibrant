@@ -7,7 +7,7 @@ import {
     Filter
 } from './typing'
 
-import { Palette } from './color'
+import { Palette, Swatch } from './color'
 
 import Bluebird = require('bluebird')
 import defaults = require('lodash/defaults')
@@ -47,17 +47,15 @@ class Vibrant {
         this.opts = <ComputedOptions>defaults({}, opts, Vibrant.DefaultOpts)
         this.opts.combinedFilter = Filters.combineFilters(this.opts.filters)
     }
-    private _process(image: Image): Bluebird<Palette> {
-        let { opts } = this
+    private _process(image: Image, opts: ComputedOptions): Bluebird<Palette> {
         let { quantizer, generator} = opts
 
         image.scaleDown(opts)
 
-        return image.applyFilter(this.opts.combinedFilter)
+        return image.applyFilter(opts.combinedFilter)
             .then((imageData) => quantizer(imageData.data, opts))
+            .then((colors) => Swatch.applyFilter(colors, opts.combinedFilter))
             .then((colors) => Bluebird.resolve(generator(colors)))
-            .tap((palette) => this._palette = palette)
-            .finally(() => image.remove())
     }
 
     palette(): Palette {
@@ -70,7 +68,9 @@ class Vibrant {
     getPalette(cb?: Callback<Palette>): Bluebird<Palette> {
         let image = new this.opts.ImageClass()
         return image.load(this._src)
-            .then((image) => this._process(image))
+            .then((image) => this._process(image, this.opts))
+            .tap((palette) => this._palette = palette)
+            .finally(() => image.remove())
             .asCallback(cb)
     }
 }

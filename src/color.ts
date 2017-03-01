@@ -1,4 +1,6 @@
+import { Filter } from './typing'
 import { rgbToHsl, rgbToHex } from './util'
+import filter = require('lodash/filter')
 
 export interface Vec3 extends Array<number> {
     0: number,
@@ -18,11 +20,19 @@ export interface Palette {
 
 
 export class Swatch {
+    static applyFilter(colors: Swatch[], f: Filter): Swatch[] {
+        return typeof f === 'function'
+            ? filter(colors, ({r, g, b}) => f(r, g, b, 255))
+            : colors
+    }
     private _hsl: Vec3
     private _rgb: Vec3
     private _yiq: number
     private _population: number
     private _hex: string
+    get r() { return this._rgb[0] }
+    get g() { return this._rgb[1] }
+    get b() { return this._rgb[2] }
     getRgb(): Vec3 { return this._rgb }
     getHsl(): Vec3 {
         if (!this._hsl) {
