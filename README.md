@@ -139,6 +139,8 @@ export interface Generator {
 
 ##### `Filter`
 
+Returns `true` if the color is to be kept.
+
 ```ts
 export interface Filter {
     (red: number, green: number, blue: number, alpha: number): boolean

@@ -2,7 +2,7 @@ import {
     Quantizer,
     Filter,
     Pixels,
-    Options
+    ComputedOptions
 } from '../typing'
 import { Swatch } from '../color'
 import VBox from './vbox'
@@ -31,23 +31,12 @@ function _splitBoxes(pq: PQueue<VBox>, target: number): void {
     }
 }
 
-const MMCQ: Quantizer = (pixels: Pixels, opts: Options): Array<Swatch> => {
+const MMCQ: Quantizer = (pixels: Pixels, opts: ComputedOptions): Array<Swatch> => {
     if (pixels.length === 0 || opts.colorCount < 2 || opts.colorCount > 256) {
         throw new Error('Wrong MMCQ parameters')
     }
 
-    let shouldIgnore: Filter = null
-
-    if (Array.isArray(opts.filters) && opts.filters.length > 0) {
-        shouldIgnore = (r, g, b, a) => {
-            for (let f of opts.filters) {
-                if (!f(r, g, b, a)) return true
-            }
-            return false
-        }
-    }
-
-    let vbox = VBox.build(pixels, shouldIgnore)
+    let vbox = VBox.build(pixels)
     let hist = vbox.hist
     let colorCount = Object.keys(hist).length
     let pq = new PQueue<VBox>((a, b) => a.count() - b.count())
@@ -66,17 +55,16 @@ const MMCQ: Quantizer = (pixels: Pixels, opts: Options): Array<Swatch> => {
 
     // calculate the actual colors
     let swatches: Swatch[] = []
+    let applyFilter = typeof opts.combinedFilter === 'function'
     // let vboxes = []
     while (pq2.size()) {
 
         let v = pq2.pop()
         let color = v.avg()
         let [r, g, b] = color
-        if (shouldIgnore === null || !shouldIgnore(r, g, b, 255)) {
-            // @vboxes.push v
+        if (!applyFilter || opts.combinedFilter(r, g, b, 255)) {
             swatches.push(new Swatch(color, v.count()))
         }
-
     }
     return swatches
 }

@@ -40,7 +40,8 @@ export default class VBox {
             b = pixels[offset + 2]
             a = pixels[offset + 3]
 
-            if (typeof shouldIgnore === 'function' && shouldIgnore(r, g, b, a)) continue
+            // Ignored pixels' alpha is marked as 0 in filtering stage
+            if (a === 0) continue
 
             r = r >> RSHIFT
             g = g >> RSHIFT

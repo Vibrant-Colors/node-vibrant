@@ -30,6 +30,7 @@ export interface Image {
     resize(targetWidth: number, targetHeight: number, ratio: number): void
     getPixelCount(): number
     getImageData(): ImageData
+    applyFilter(filter: Filter): Bluebird<ImageData>
     remove(): void
     scaleDown(opts: Options): void
 }
@@ -45,7 +46,7 @@ export interface Filter {
 }
 
 export interface Quantizer {
-    (pixels: Pixels, opts: Options): Resolvable<Array<Swatch>>
+    (pixels: Pixels, opts: ComputedOptions): Resolvable<Array<Swatch>>
 }
 
 export interface Generator {
@@ -61,4 +62,8 @@ export interface Options {
     ImageClass: ImageClass
     quantizer: Quantizer
     generator?: Generator
+}
+
+export interface ComputedOptions extends Options {
+    combinedFilter: Filter
 }

@@ -47,12 +47,10 @@ const paletteCallback = (sample: Sample, done?: MochaDone) =>
                 diff: -1
             }
 
-            if (actual === null) {
-                expect(expected, `${name} color from '${target}' was expected`).to.be.null
-            }
             if (expected === null) {
                 expect(actual, `${name} color form '${target}' was not expected`).to.be.null
             } else {
+                expect(actual, `${name} color from '${target}' was expected`).not.to.be.null
                 let actualHex = actual.getHex()
                 let diff = util.hexDiff(actualHex, expected)
                 result.diff = diff

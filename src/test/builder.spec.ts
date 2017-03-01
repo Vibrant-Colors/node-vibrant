@@ -2,13 +2,7 @@ import { expect } from 'chai'
 
 import Vibrant = require('../index')
 
-// if (typeof Window !== undefined && this instanceof Window) {
-//     Vibrant = this.Vibrant
-// } else {
-//     Vibrant = require('../index')
-// }
-//   Vibrant = require('../')
-//   expect = require('chai').expect
+import omit = require('lodash/omit')
 
 describe('builder', () => {
     it('modifies Vibrant options', () => {
@@ -31,8 +25,9 @@ describe('builder', () => {
             filters: [NOT_A_FILTER]
         }
 
+        expect(v.opts.combinedFilter, 'should have combined filter').to.be.a('function')
 
-        expect(v.opts).to.deep.equal(expected)
+        expect(omit(v.opts, 'combinedFilter')).to.deep.equal(expected)
     })
 
 })

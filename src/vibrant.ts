@@ -2,7 +2,9 @@ import {
     Image,
     ImageSource,
     Options,
-    Callback
+    ComputedOptions,
+    Callback,
+    Filter
 } from './typing'
 
 import { Palette } from './color'
@@ -16,14 +18,14 @@ import * as Util from './util'
 
 import * as Quantizer from './quantizer'
 import * as Generator from './generator'
-import * as Filter from './filter'
+import * as Filters from './filter'
 
 
 class Vibrant {
-    static Builder = Builder 
+    static Builder = Builder
     static Quantizer = Quantizer
     static Generator = Generator
-    static Filter = Filter
+    static Filter = Filters
     static Util = Util
 
     static DefaultOpts: Partial<Options> = {
@@ -32,17 +34,18 @@ class Vibrant {
         generator: Generator.Default,
         ImageClass: null,
         quantizer: Quantizer.MMCQ,
-        filters: [Filter.Default]
+        filters: [Filters.Default]
     }
 
     static from(src: ImageSource): Builder {
         return new Builder(src)
     }
 
-    opts: Options
+    opts: ComputedOptions
     private _palette: Palette
     constructor(private _src: ImageSource, opts?: Partial<Options>) {
-        this.opts = <Options>defaults({}, opts, Vibrant.DefaultOpts)
+        this.opts = <ComputedOptions>defaults({}, opts, Vibrant.DefaultOpts)
+        this.opts.combinedFilter = Filters.combineFilters(this.opts.filters)
     }
     private _process(image: Image): Bluebird<Palette> {
         let { opts } = this
@@ -50,9 +53,8 @@ class Vibrant {
 
         image.scaleDown(opts)
 
-        let imageData = image.getImageData()
-
-        return Bluebird.resolve(quantizer(imageData.data, opts))
+        return image.applyFilter(this.opts.combinedFilter)
+            .then((imageData) => quantizer(imageData.data, opts))
             .then((colors) => Bluebird.resolve(generator(colors)))
             .tap((palette) => this._palette = palette)
             .finally(() => image.remove())
