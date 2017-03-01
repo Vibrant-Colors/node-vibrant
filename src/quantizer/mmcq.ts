@@ -31,7 +31,7 @@ function _splitBoxes(pq: PQueue<VBox>, target: number): void {
     }
 }
 
-const MMCQ: Quantizer = (pixels: Pixels, opts: ComputedOptions): Array<Swatch> => {
+const MMCQ = (pixels: Pixels, opts: ComputedOptions): Array<Swatch> => {
     if (pixels.length === 0 || opts.colorCount < 2 || opts.colorCount > 256) {
         throw new Error('Wrong MMCQ parameters')
     }

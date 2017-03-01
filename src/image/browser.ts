@@ -32,7 +32,7 @@ export default class BroswerImage extends ImageBase {
         let context = this._context = canvas.getContext('2d')
 
         canvas.className = 'vibrant-canvas'
-        canvas.style.visibility = 'hidden' 
+        canvas.style.display = 'none' 
 
         this._width = canvas.width = img.width
         this._height = canvas.height = img.height

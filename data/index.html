@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
   <style media="screen">
     .color-block {
@@ -7,14 +8,16 @@
       height: 64px;
       display: inline-block;
     }
-
   </style>
 
 </head>
+
 <body>
-  <script src='/dist/vibrant.js'>
+  <script src='/dist/vibrant.worker.js'>
+
   </script>
-  <h1>node-vibrant tests</h1><hr>
+  <h1>node-vibrant tests</h1>
+  <hr>
   <script type="text/javascript">
     window.result = {}
     function test(src) {
@@ -43,7 +46,11 @@
         palette.appendChild(div);
       }
 
-      var v = Vibrant.from(src).quality(1).clearFilters().build()
+      var v = Vibrant.from(src)
+        .useQuantizer(Vibrant.Quantizer.WebWorker)
+        .quality(1)
+        .clearFilters()
+        .build()
       v.getPalette()
         .then(function (swatches) {
           console.log(src)

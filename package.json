@@ -39,7 +39,8 @@
     "table": "^4.0.1",
     "ts-loader": "^2.0.1",
     "typescript": "^2.2.1",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "worker-loader": "^0.8.0"
   },
   "scripts": {
     "clean": "npm run clean:browser && npm run clean:node",

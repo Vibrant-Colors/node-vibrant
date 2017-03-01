@@ -2,10 +2,13 @@ var path = require('path')
 var webpack = require("webpack")
 
 var entry = './src/bundle.ts'
+var entryWithWorker = './src/bundle.worker.ts'
 module.exports = {
     entry: {
         'vibrant': entry,
-        'vibrant.min': entry
+        'vibrant.min': entry,
+        'vibrant.worker': entryWithWorker,
+        'vibrant.worker.min': entryWithWorker
     },
     devtool: "source-map",
     resolve: {
