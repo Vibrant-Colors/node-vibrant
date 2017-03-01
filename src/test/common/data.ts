@@ -7,11 +7,7 @@ export const TEST_PORT = 3444
 // Qualiy is set to 1 and not filters are used since downsampling are inconsistent
 // across browsers.
 // Comfirmed visually and established as baseline for future versions
-export const REFERENCE_PALETTE: any = {
-    chrome: require('../../../data/chrome-exec-ref.json'),
-    firefox: require('../../../data/firefox-exec-ref.json'),
-    ie: require('../../../data/ie11-exec-ref.json')
-}
+export const REFERENCE_PALETTE: any = require('../../../data/browser-palette-ref.json')
 
 export const TARGETS = Object.keys(REFERENCE_PALETTE)
 
