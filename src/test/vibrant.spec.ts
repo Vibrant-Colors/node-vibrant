@@ -1,4 +1,7 @@
 import {
+    REFERENCE_PALETTE,
+} from './common/data'
+import {
     testVibrant,
     testVibrantAsPromised,
 } from './common/helper'
@@ -14,6 +17,7 @@ import {
 } from './common/data'
 
 import Vibrant = require('../')
+import Builder from '../builder'
 
 describe('Palette Extraction', () => {
     describe('process samples', () =>
@@ -22,6 +26,17 @@ describe('Palette Extraction', () => {
             it(`${sample.fileName} (Promise)`, () => testVibrantAsPromised(Vibrant, sample))
         })
     )
+
+    describe('process samples (no filters)', () =>
+        SAMPLES.forEach((sample) => {
+            const builderCallback = (builder: Builder) => builder.clearFilters()
+            
+            it(`${sample.fileName} (callback)`, done => testVibrant(Vibrant, sample, done, 'filePath', builderCallback, REFERENCE_PALETTE))
+            it(`${sample.fileName} (Promise)`, () => testVibrantAsPromised(Vibrant, sample, 'filePath', builderCallback, REFERENCE_PALETTE))
+        })
+    )
+
+
 
     describe('process remote images (http)', function () {
         let server: http.Server = null

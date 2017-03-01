@@ -16,6 +16,7 @@
   </script>
   <h1>node-vibrant tests</h1><hr>
   <script type="text/javascript">
+    window.result = {}
     function test(src) {
 
       // var v = new Vibrant(src);
@@ -42,17 +43,22 @@
         palette.appendChild(div);
       }
 
-      Vibrant.from(src).getPalette()
+      var v = Vibrant.from(src).quality(1).clearFilters().build()
+      v.getPalette()
         .then(function (swatches) {
-          console.log(swatches);
+          console.log(src)
+          let readable = {}
           for (var key in swatches) {
             var swatch = swatches[key];
             if (swatch) {
               var hex = swatch.getHex();
-              console.log(key + ": " + hex);
+              readable[key] = hex
               addColorBlock(hex);
+            } else {
+              readable[key] = null
             }
           }
+          result[src] = readable
         })
         .catch(console.error.bind(console))
     }

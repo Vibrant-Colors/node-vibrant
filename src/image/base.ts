@@ -31,7 +31,6 @@ export abstract class ImageBase implements Image {
     applyFilter(filter: Filter): Bluebird<ImageData> {
         let imageData = this.getImageData()
 
-        let c = 0
         if (typeof filter === 'function') {
             let pixels = imageData.data
             let n = pixels.length / 4
@@ -43,10 +42,7 @@ export abstract class ImageBase implements Image {
                 b = pixels[offset + 2]
                 a = pixels[offset + 3]
                 // Mark ignored color
-                if (!filter(r, g, b, a)) {
-                    pixels[offset + 3] = 0
-                    c++
-                }
+                if (!filter(r, g, b, a)) pixels[offset + 3] = 0
             }
         }
 

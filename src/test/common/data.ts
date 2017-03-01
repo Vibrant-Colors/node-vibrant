@@ -8,6 +8,7 @@ export const TEST_PORT = 3444
 // across browsers.
 // Comfirmed visually and established as baseline for future versions
 export const REFERENCE_PALETTE: any = require('../../../data/browser-palette-ref.json')
+export const REFERENCE_PALETTE_WITH_FILTER: any = require('../../../data/browser-palette-with-filter-ref.json')
 
 export const TARGETS = Object.keys(REFERENCE_PALETTE)
 

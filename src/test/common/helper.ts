@@ -1,5 +1,6 @@
 import { expect } from 'chai'
 import { VibrantStatic } from '../../typing'
+import Builder from '../../builder'
 import path = require('path')
 import Promise = require('bluebird')
 import { Palette, Swatch } from '../../color'
@@ -7,6 +8,7 @@ import util = require('../../util')
 import _ = require('lodash')
 import {
     REFERENCE_PALETTE,
+    REFERENCE_PALETTE_WITH_FILTER,
     TARGETS,
     TEST_PORT,
     SAMPLES,
@@ -31,7 +33,7 @@ const displayColorDiffTable = (p: string, diff: string[][]) => {
     console.log(table(diff, TABLE_OPTS))
 }
 
-const paletteCallback = (sample: Sample, done?: MochaDone) =>
+const paletteCallback = (references: any, sample: Sample, done?: MochaDone) =>
     (err: Error, palette?: Palette) => {
         if (err != null) { throw err }
         expect(palette, 'palette should be returned').not.to.be.null
@@ -39,7 +41,7 @@ const paletteCallback = (sample: Sample, done?: MochaDone) =>
         let failCount = 0
         let testWithTarget = (name: string, actual: Swatch, target: string) => {
             let key = sample.i.toString()
-            let expected = REFERENCE_PALETTE[target][key][name]
+            let expected = references[target][key][name]
             let result = {
                 target,
                 expected: expected != null ? expected : 'null',
@@ -48,7 +50,10 @@ const paletteCallback = (sample: Sample, done?: MochaDone) =>
             }
 
             if (expected === null) {
-                expect(actual, `${name} color form '${target}' was not expected`).to.be.null
+                if (actual !== null) {
+                    console.warn(`WARN: ${name} color form '${target}' was not expected. Got ${actual.getHex()}`)
+                }
+                // expect(actual, `${name} color form '${target}' was not expected`).to.be.null
             } else {
                 expect(actual, `${name} color from '${target}' was expected`).not.to.be.null
                 let actualHex = actual.getHex()
@@ -82,20 +87,24 @@ const paletteCallback = (sample: Sample, done?: MochaDone) =>
         if (typeof done === 'function') done()
     }
 
-export const testVibrant = (Vibrant: VibrantStatic, sample: Sample, done: MochaDone, pathKey: SamplePathKey = 'filePath') => {
-    Vibrant.from(sample[pathKey])
+export const testVibrant = (Vibrant: VibrantStatic, sample: Sample, done: MochaDone, pathKey: SamplePathKey = 'filePath', builderCallback: (b: Builder) => Builder = null, references: any = REFERENCE_PALETTE_WITH_FILTER) => {
+    let builder = Vibrant.from(sample[pathKey])
         .quality(1)
-        .clearFilters()
-        .getPalette(paletteCallback(sample, done))
+
+    if (typeof builderCallback === 'function') builder = builderCallback(builder)
+
+    builder.getPalette(paletteCallback(references, sample, done))
 }
 
 
-export const testVibrantAsPromised = (Vibrant: VibrantStatic, sample: Sample, pathKey: SamplePathKey = 'filePath') => {
-    let cb = paletteCallback(sample)
-    return Vibrant.from(sample[pathKey])
+export const testVibrantAsPromised = (Vibrant: VibrantStatic, sample: Sample, pathKey: SamplePathKey = 'filePath', builderCallback: (b: Builder) => Builder = null, references: any = REFERENCE_PALETTE_WITH_FILTER) => {
+    let cb = paletteCallback(references, sample)
+    let builder = Vibrant.from(sample[pathKey])
         .quality(1)
-        .clearFilters()
-        .getPalette()
+
+    if (typeof builderCallback === 'function') builder = builderCallback(builder)
+
+    builder.getPalette()
         .then(palette => cb(null, palette))
         .catch(e => cb(e))
 }
