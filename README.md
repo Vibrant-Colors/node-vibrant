@@ -14,7 +14,7 @@ $ npm install node-vibrant
 
 Install 3.0.0 pre-release version:
 ```bash
-$ npm install node-vibrant@3.0.0-alpha
+$ npm install node-vibrant@3.0.0-alpha.2
 ```
 
 ## Update Notes
