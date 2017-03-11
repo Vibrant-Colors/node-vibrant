@@ -3,6 +3,20 @@
 
 Extract prominent colors from an image.
 
+* [v3.0 Dev Branch](https://github.com/akfish/node-vibrant/tree/develop)
+
+## Install
+
+Install 2.x.x version:
+```bash
+$ npm install node-vibrant
+```
+
+Install 3.0.0 pre-release version:
+```bash
+$ npm install node-vibrant@3.0.0-alpha
+```
+
 ## Update Notes
 - Some major refactor/rewriting comes with `node-vibrant@2.0.0`:
   - Closely matches latest Android M `Palette` API with new features such as `Builder` and `Filter`
@@ -17,12 +31,6 @@ Extract prominent colors from an image.
 - Identical (asynchronous) API for both node.js and browser environment
 - Support browserify
 - Consistent results (*See [Result Consistency](#result-consistency))
-
-## Install
-
-```bash
-$ npm install node-vibrant
-```
 
 ## Usage
 ### node.js / browserify
