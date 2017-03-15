@@ -22,16 +22,16 @@ class BrowserImage extends Image
       path = @img.src
     else
       @img = document.createElement('img')
+      if not isRelativeUrl(path) && not isSameOrigin(window.location.href, path)
+        # must be set before src
+        @img.crossOrigin = 'anonymous'
       @img.src = path
-
-    if not isRelativeUrl(path) && not isSameOrigin(window.location.href, path)
-      @img.crossOrigin = 'anonymous'
 
     @img.onload = =>
       @_initCanvas()
       cb?(null, @)
 
-    # Alreayd loaded
+    # Already loaded
     if @img.complete
       @img.onload()
 
