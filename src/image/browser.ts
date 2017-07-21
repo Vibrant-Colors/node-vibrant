@@ -69,12 +69,13 @@ export default class BroswerImage extends ImageBase {
                 resolve(this)
             }
 
-            img.onload = onImageLoad
-
-            // Already loaded
-            if (img.complete) onImageLoad()
-
-            img.onerror = (e) => reject(new Error(`Fail to load image: ${src}`))
+            if (img.complete) {
+                // Already loaded
+                onImageLoad()
+            } else {
+                img.onload = onImageLoad
+                img.onerror = (e) => reject(new Error(`Fail to load image: ${src}`))
+            }
         })
     }
     clear(): void {
