@@ -102,7 +102,7 @@ class DefaultGenerator extends Generator
       sat = swatch.getHsl()[1];
       luma = swatch.getHsl()[2]
 
-      if sat >= minSaturation and sat <= maxSaturation and
+      if max is null or sat >= minSaturation and sat <= maxSaturation and
         luma >= minLuma and luma <= maxLuma and
         not @isAlreadySelected(swatch)
           value = @createComparisonValue sat, targetSaturation, luma, targetLuma,
