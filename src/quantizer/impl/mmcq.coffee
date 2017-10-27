@@ -66,7 +66,7 @@ class MMCQ
     while iteration < maxIterations
       iteration++
       vbox = pq.pop()
-      if !vbox.count()
+      if !vbox || !vbox.count()
         continue
 
       [vbox1, vbox2] = vbox.split()
