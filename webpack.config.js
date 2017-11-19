@@ -20,7 +20,7 @@ module.exports = {
                 test: /\.tsx?$/,
                 loader: 'ts-loader',
                 options: {
-                    configFileName: 'tsconfig.browser.json'
+                    configFile: 'tsconfig.browser.json'
                 }
             }
         ]

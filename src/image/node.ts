@@ -6,9 +6,9 @@ import * as http from 'http'
 import * as https from 'https'
 
 interface ProtocalHandler {
-    get(url: string, cb: (res: any) => void): void
-
+    get(url: string | any, cb?: (res: any) => void): any
 }
+
 interface ProtocalHandlerMap {
     [protocolName: string]: ProtocalHandler
 }

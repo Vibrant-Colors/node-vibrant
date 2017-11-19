@@ -86,3 +86,5 @@ lib/
 
 dist/
 .vscode/
+
+yarn\.lock
