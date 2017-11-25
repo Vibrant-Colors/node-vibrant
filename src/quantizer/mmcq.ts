@@ -8,26 +8,28 @@ import { Swatch } from '../color'
 import VBox from './vbox'
 import PQueue from './pqueue'
 
-const maxIterations = 1000
 const fractByPopulations = 0.75
+
 function _splitBoxes(pq: PQueue<VBox>, target: number): void {
-    let colorCount = 1
-    let iteration = 0
-    while (iteration < maxIterations) {
-
-        iteration++
+    let lastSize = pq.size()
+    while (pq.size() < target) {
         let vbox = pq.pop()
-        if (!vbox.count()) continue
 
-        let [vbox1, vbox2] = vbox.split()
+        if (vbox && vbox.count() > 0) {
+            let [vbox1, vbox2] = vbox.split()
 
-        pq.push(vbox1)
-        if (vbox2) {
+            pq.push(vbox1)
+            if (vbox2 && vbox2.count() > 0) pq.push(vbox2)
 
-            pq.push(vbox2)
-            colorCount++
+            // No more new boxes, converged
+            if (pq.size() === lastSize) {
+                break
+            } else {
+                lastSize = pq.size()
+            }
+        } else {
+            break
         }
-        if (colorCount >= target || iteration > maxIterations) return
     }
 }
 
@@ -54,9 +56,13 @@ const MMCQ = (pixels: Pixels, opts: ComputedOptions): Array<Swatch> => {
     _splitBoxes(pq2, opts.colorCount - pq2.size())
 
     // calculate the actual colors
+    return generateSwatches(pq2)
+}
+
+function generateSwatches(pq: PQueue<VBox>) {
     let swatches: Swatch[] = []
-    while (pq2.size()) {
-        let v = pq2.pop()
+    while (pq.size()) {
+        let v = pq.pop()
         let color = v.avg()
         let [r, g, b] = color
         swatches.push(new Swatch(color, v.count()))
