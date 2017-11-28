@@ -3,6 +3,19 @@
 
 Extract prominent colors from an image.
 
+## New WebWorker support in v3.0
+
+Quantization is the most time-consuming stage in `node-vibrant`. In v3.0, the quantization can be run in the WebWorker to avoid freezing the UI thread. 
+
+Here's how to use this feature:
+1. Use WebWorker build `dist/vibrant.worker.js` or `dist/vibrant.worker.min.js`. Or if you are re-bundling with webpack, use `lib/bundle.worker.js` as entry
+2. Use WebWorker quantizer:
+   ```ts
+   let v = Vibrant.from(src)
+     .useQuantizer(Vibrant.Quantizer.WebWorker)
+     // Other configurations
+   ```
+
 ## Features
 - Identical API for both node.js and browser environment
 - Support browserify/webpack
