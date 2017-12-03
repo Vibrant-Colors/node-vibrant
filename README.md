@@ -254,10 +254,10 @@ Name         | Description
 #### `getRgb(): Vec3`
 #### `getHex(): string`
 #### `getTitleTextColor(): string`
-Returns an appropriate color to use for any 'body' text which is displayed over this `Swatch`'s color.
+Returns an appropriate color to use for any 'title' text which is displayed over this `Swatch`'s color.
 
 #### `getBodyTextColor(): string`
-Returns an appropriate color to use for any 'title' text which is displayed over this `Swatch`'s color.
+Returns an appropriate color to use for any 'body' text which is displayed over this `Swatch`'s color.
 
 ### `Vibrant.Util`
 Utility methods. Internal usage.
