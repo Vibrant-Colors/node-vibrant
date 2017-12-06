@@ -1,0 +1,20 @@
+{
+  "name": "vibrant-types",
+  "version": "3.0.0",
+  "description": "",
+  "scripts": {
+    "build:module": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.18",
+    "typescript": "latest"
+  }
+}
