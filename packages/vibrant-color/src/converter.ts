@@ -8,9 +8,6 @@ export const DELTAE94_DIFF_STATUS = {
     SIMILAR: 50
 }
 
-export const SIGBITS = 5
-export const RSHIFT = 8 - SIGBITS
-
 export function hexToRgb(hex: string): Vec3 {
     let m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
 
@@ -190,8 +187,4 @@ export function getColorDiffStatus(d: number): string {
         return 'Similar'
     return 'Wrong'
 
-}
-
-export function getColorIndex(r: number, g: number, b: number): number {
-    return (r << (2 * SIGBITS)) + (g << SIGBITS) + b
 }

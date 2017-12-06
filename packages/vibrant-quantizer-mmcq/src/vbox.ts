@@ -1,7 +1,6 @@
 import { Vec3, Filter } from 'vibrant-color'
 import { Pixels } from 'vibrant-image'
-import { getColorIndex, SIGBITS, RSHIFT } from 'vibrant-color/lib/converter'
-
+import Histogram from 'vibrant-image/lib/histogram'
 export interface Dimension {
     r1: number
     r2: number
@@ -12,58 +11,17 @@ export interface Dimension {
     [d: string]: number
 }
 
+const SIGBITS = 5
+const RSHIFT = 8 - SIGBITS
+
 export default class VBox {
-    static build(pixels: Pixels, shouldIgnore?: Filter): VBox {
-        let hn = 1 << (3 * SIGBITS)
-        let hist = new Uint32Array(hn)
-        let rmax: number
-        let rmin: number
-        let gmax: number
-        let gmin: number
-        let bmax: number
-        let bmin: number
-        let r: number
-        let g: number
-        let b: number
-        let a: number
-        rmax = gmax = bmax = 0
-        rmin = gmin = bmin = Number.MAX_VALUE
-        let n = pixels.length / 4
-        let i = 0
-
-        while (i < n) {
-
-            let offset = i * 4
-            i++
-            r = pixels[offset + 0]
-            g = pixels[offset + 1]
-            b = pixels[offset + 2]
-            a = pixels[offset + 3]
-
-            // Ignored pixels' alpha is marked as 0 in filtering stage
-            if (a === 0) continue
-
-            r = r >> RSHIFT
-            g = g >> RSHIFT
-            b = b >> RSHIFT
-
-
-            let index = getColorIndex(r, g, b)
-            hist[index] += 1
-
-            if (r > rmax) rmax = r
-            if (r < rmin) rmin = r
-            if (g > gmax) gmax = g
-            if (g < gmin) gmin = g
-            if (b > bmax) bmax = b
-            if (b < bmin) bmin = b
-
-        }
-        return new VBox(rmin, rmax, gmin, gmax, bmin, bmax, hist)
+   static build(pixels: Pixels): VBox {
+        let h = new Histogram(pixels, { sigBits: SIGBITS })
+        let { rmin, rmax, gmin, gmax, bmin, bmax } = h
+        return new VBox(rmin, rmax, gmin, gmax, bmin, bmax, h)
     }
 
     dimension: Dimension
-    hist: Uint32Array
 
     private _volume = -1
     private _avg: Vec3
@@ -73,11 +31,11 @@ export default class VBox {
         r1: number, r2: number,
         g1: number, g2: number,
         b1: number, b2: number,
-        hist: Uint32Array
+        public histogram: Histogram
     ) {
+        // NOTE: dimension will be mutated by split operation.
+        //       It must be specified explicitly, not from histogram
         this.dimension = { r1, r2, g1, g2, b1, b2 }
-
-        this.hist = hist
     }
 
     invalidate(): void {
@@ -95,7 +53,7 @@ export default class VBox {
 
     count(): number {
         if (this._count < 0) {
-            let { hist } = this
+            let { hist, getColorIndex } = this.histogram
             let { r1, r2, g1, g2, b1, b2 } = this.dimension
             let c = 0
 
@@ -113,14 +71,14 @@ export default class VBox {
     }
 
     clone(): VBox {
-        let { hist } = this
+        let { histogram } = this
         let { r1, r2, g1, g2, b1, b2 } = this.dimension
-        return new VBox(r1, r2, g1, g2, b1, b2, hist)
+        return new VBox(r1, r2, g1, g2, b1, b2, histogram)
     }
 
     avg(): Vec3 {
         if (!this._avg) {
-            let { hist } = this
+            let { hist, getColorIndex } = this.histogram
             let { r1, r2, g1, g2, b1, b2 } = this.dimension
             let ntot = 0
             let mult = 1 << (8 - SIGBITS)
@@ -172,7 +130,7 @@ export default class VBox {
     }
 
     split(): VBox[] {
-        let { hist } = this
+        let { hist, getColorIndex } = this.histogram
         let { r1, r2, g1, g2, b1, b2 } = this.dimension
         let count = this.count()
         if (!count) return []

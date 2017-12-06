@@ -37,8 +37,7 @@ const MMCQ = (pixels: Pixels, opts: QuantizerOptions): Array<Swatch> => {
     }
 
     let vbox = VBox.build(pixels)
-    let hist = vbox.hist
-    let colorCount = Object.keys(hist).length
+    let colorCount = vbox.histogram.colorCount
     let pq = new PQueue<VBox>((a, b) => a.count() - b.count())
 
     pq.push(vbox)

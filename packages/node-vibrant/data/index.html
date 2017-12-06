@@ -20,7 +20,7 @@
 </head>
 
 <body>
-  <script src='/dist/vibrant.worker.js?v=4'>
+  <script src='/dist/vibrant.worker.js'>
 
   </script>
   <h1>node-vibrant tests</h1>
@@ -69,10 +69,10 @@
         .build()
       v.getPalettes()
         .then((palettes) => {
-          console.log(palettes)
-          return palettes['default']
+          for (let key in palettes) {
+            addPalette(key, palettes[key])
+          }
         })
-        .then((palette) => addPalette('default', palette))
         .catch(console.error.bind(console))
     }
     test('/data/1.jpg')
