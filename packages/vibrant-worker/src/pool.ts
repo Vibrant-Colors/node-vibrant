@@ -4,7 +4,7 @@ import find = require('lodash/find')
 import {
     DeferredBluebird,
     defer
-} from 'vibrant-types'
+} from '@vibrant/types'
 import { TaskWorker, TaskWorkerClass } from './'
 
 import {

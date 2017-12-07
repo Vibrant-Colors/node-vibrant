@@ -1,7 +1,7 @@
 import Bluebird = require('bluebird')
 import { Pipeline, ProcessOptions, ProcessResult } from "../index"
-import WorkerManager, { TaskWorkerClass } from 'vibrant-worker'
-import { Swatch } from 'vibrant-color'
+import WorkerManager, { TaskWorkerClass } from '@vibrant/worker'
+import { Swatch } from '@vibrant/color'
 import mapValues = require('lodash/mapValues')
 
 /**

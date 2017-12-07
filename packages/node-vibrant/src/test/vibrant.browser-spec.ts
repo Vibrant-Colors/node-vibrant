@@ -4,7 +4,7 @@ declare var System: any;
 
 import {
   ImageClass
-} from 'vibrant-image'
+} from '@vibrant/image'
 
 import {
   SAMPLES,

@@ -3,8 +3,8 @@ import { VibrantStatic } from '../../typing'
 import Builder from '../../builder'
 import path = require('path')
 import Promise = require('bluebird')
-import { Palette, Swatch } from 'vibrant-color'
-import { hexDiff, getColorDiffStatus, DELTAE94_DIFF_STATUS } from 'vibrant-color/lib/converter'
+import { Palette, Swatch } from '@vibrant/color'
+import { hexDiff, getColorDiffStatus, DELTAE94_DIFF_STATUS } from '@vibrant/color/lib/converter'
 import _ = require('lodash')
 import {
     REFERENCE_PALETTE,

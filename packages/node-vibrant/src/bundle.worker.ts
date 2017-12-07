@@ -1,5 +1,5 @@
 import Vibrant = require('./browser')
-import { WorkerPipeline } from 'vibrant-core/lib/pipeline/worker/client'
+import { WorkerPipeline } from '@vibrant/core/lib/pipeline/worker/client'
 
 // const MMCQWorker = require('worker-loader?inline=true!vibrant-quantizer-mmcq/lib/index.worker.js')
 const PipelineWorker = require('worker-loader?publicPath=/dist/!./pipeline/index.worker.js')

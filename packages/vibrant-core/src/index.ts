@@ -4,13 +4,13 @@ import {
 } from './options'
 import {
     Callback,
-} from 'vibrant-types'
+} from '@vibrant/types'
 import {
     Image,
     ImageSource,
-} from 'vibrant-image'
+} from '@vibrant/image'
 
-import { Filter, Palette, Swatch } from 'vibrant-color'
+import { Filter, Palette, Swatch } from '@vibrant/color'
 
 import Bluebird = require('bluebird')
 import defaults = require('lodash/defaults')

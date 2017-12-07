@@ -1,8 +1,8 @@
-import { Quantizer, QuantizerOptions } from 'vibrant-quantizer'
+import { Quantizer, QuantizerOptions } from '@vibrant/quantizer'
 import {
     Pixels
-} from 'vibrant-image'
-import { Filter, Swatch } from 'vibrant-color'
+} from '@vibrant/image'
+import { Filter, Swatch } from '@vibrant/color'
 import VBox from './vbox'
 import PQueue from './pqueue'
 

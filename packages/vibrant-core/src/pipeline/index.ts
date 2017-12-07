@@ -1,7 +1,7 @@
-import { ImageData, applyFilters } from 'vibrant-image'
-import { Quantizer } from 'vibrant-quantizer'
-import { Generator } from 'vibrant-generator'
-import { Palette, Swatch, Filter } from 'vibrant-color'
+import { ImageData, applyFilters } from '@vibrant/image'
+import { Quantizer } from '@vibrant/quantizer'
+import { Generator } from '@vibrant/generator'
+import { Palette, Swatch, Filter } from '@vibrant/color'
 import Bluebird = require('bluebird')
 
 export class Stage<T> {

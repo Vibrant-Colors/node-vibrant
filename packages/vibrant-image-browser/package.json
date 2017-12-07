@@ -1,7 +1,7 @@
 {
-  "name": "vibrant-image-browser",
+  "name": "@vibrant/image-browser",
   "version": "3.0.0",
-  "description": "",
+  "description": "Browser vibrant ImageClass implementation",
   "scripts": {
     "build:module": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,12 +11,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vibrant-image": "^3.0.0",
+    "@vibrant/image": "^3.0.0",
     "bluebird": "^3.5.1"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.18",
     "@types/node": "^8.0.53",
     "typescript": "latest"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

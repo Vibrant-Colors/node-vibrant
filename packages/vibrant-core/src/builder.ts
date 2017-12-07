@@ -6,16 +6,16 @@ import {
 } from './options'
 import {
     Callback
-} from 'vibrant-types'
+} from '@vibrant/types'
 import {
     ImageClass,
     ImageSource,
-} from 'vibrant-image'
+} from '@vibrant/image'
 
 import {
     Filter,
     Palette
-} from 'vibrant-color'
+} from '@vibrant/color'
 import Vibrant from './'
 
 export default class Builder {

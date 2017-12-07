@@ -1,7 +1,7 @@
 {
-  "name": "vibrant-worker",
+  "name": "@vibrant/worker",
   "version": "3.0.0",
-  "description": "",
+  "description": "Web worker utilities",
   "scripts": {
     "build:module": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vibrant-types": "^3.0.0",
+    "@vibrant/types": "^3.0.0",
     "bluebird": "^3.5.1",
     "lodash": "^4.17.4"
   },
@@ -19,5 +19,8 @@
     "@types/bluebird": "^3.5.18",
     "@types/lodash": "^4.14.86",
     "typescript": "latest"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

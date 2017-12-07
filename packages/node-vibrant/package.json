@@ -12,6 +12,11 @@
     "@types/bluebird": "^3.5.18",
     "@types/lodash": "^4.14.53",
     "@types/node": "^8.0.53",
+    "@vibrant/core": "^3.0.0",
+    "@vibrant/image-node": "^3.0.0",
+    "@vibrant/image-browser": "^3.0.0",
+    "@vibrant/quantizer-mmcq": "^3.0.0",
+    "@vibrant/generator-default": "^3.0.0",
     "bluebird": "^3.5.1",
     "lodash": "^4.17.4",
     "url": "^0.11.0"

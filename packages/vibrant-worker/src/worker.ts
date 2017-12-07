@@ -1,5 +1,5 @@
 import Bluebird = require('bluebird')
-import { Resolvable } from 'vibrant-types'
+import { Resolvable } from '@vibrant/types'
 import {
     WorkerRequest,
     WorkerResponse,

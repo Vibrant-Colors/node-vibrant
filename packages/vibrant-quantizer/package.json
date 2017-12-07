@@ -1,7 +1,7 @@
 {
-  "name": "vibrant-quantizer",
+  "name": "@vibrant/quantizer",
   "version": "3.0.0",
-  "description": "",
+  "description": "Helper and typings for writing a vibrant quantizer",
   "scripts": {
     "build:module": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,11 +11,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vibrant-types": "^3.0.0",
-    "vibrant-color": "^3.0.0",
-    "vibrant-image": "^3.0.0"
+    "@vibrant/types": "^3.0.0",
+    "@vibrant/color": "^3.0.0",
+    "@vibrant/image": "^3.0.0"
   },
   "devDependencies": {
     "typescript": "latest"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

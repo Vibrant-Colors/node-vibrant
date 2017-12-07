@@ -1,5 +1,5 @@
 import * as Bluebird from 'bluebird'
-import { ImageOptions, ImageData as VibrantImageData, ImageSource, ImageCallback, ImageBase } from 'vibrant-image'
+import { ImageOptions, ImageData as VibrantImageData, ImageSource, ImageCallback, ImageBase } from '@vibrant/image'
 import * as Url from 'url'
 
 function isRelativeUrl(url: string): boolean {
@@ -30,7 +30,7 @@ export default class BroswerImage extends ImageBase {
         let canvas = this._canvas = document.createElement('canvas')
         let context = this._context = canvas.getContext('2d')
 
-        canvas.className = 'vibrant-canvas'
+        canvas.className = '@vibrant/canvas'
         canvas.style.display = 'none' 
 
         this._width = canvas.width = img.width

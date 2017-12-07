@@ -1,4 +1,7 @@
 {
+	"scripts": {
+		"build:module": "lerna run build:module"
+	},
 	"devDependencies": {
 		"lerna": "^2.5.1"
 	}

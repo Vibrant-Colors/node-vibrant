@@ -1,6 +1,6 @@
-import { Swatch, Palette } from 'vibrant-color'
-import { Generator } from 'vibrant-generator'
-import { hslToRgb } from 'vibrant-color/lib/converter'
+import { Swatch, Palette } from '@vibrant/color'
+import { Generator } from '@vibrant/generator'
+import { hslToRgb } from '@vibrant/color/lib/converter'
 import defaults = require('lodash/defaults')
 
 interface DefaultGeneratorOptions {

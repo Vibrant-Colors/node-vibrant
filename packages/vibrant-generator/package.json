@@ -1,7 +1,7 @@
 {
-  "name": "vibrant-generator",
+  "name": "@vibrant/generator",
   "version": "3.0.0",
-  "description": "",
+  "description": "Helpers and typings for writing a vibrant generator",
   "scripts": {
     "build:module": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,10 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vibrant-color": "^3.0.0",
-    "vibrant-types": "^3.0.0"
+    "@vibrant/color": "^3.0.0",
+    "@vibrant/types": "^3.0.0"
   },
   "devDependencies": {
     "typescript": "latest"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

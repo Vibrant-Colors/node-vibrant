@@ -1,7 +1,7 @@
 import * as Bluebird from 'bluebird'
 
-import { Callback } from 'vibrant-types'
-import { Filter } from 'vibrant-color'
+import { Callback } from '@vibrant/types'
+import { Filter } from '@vibrant/color'
 
 export type ImageCallback = Callback<Image>
 

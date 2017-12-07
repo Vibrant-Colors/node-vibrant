@@ -1,5 +1,5 @@
 import * as Bluebird from 'bluebird'
-import { ImageOptions, ImageData, ImageSource, ImageCallback, ImageBase } from 'vibrant-image'
+import { ImageOptions, ImageData, ImageSource, ImageCallback, ImageBase } from '@vibrant/image'
 import Jimp = require('jimp')
 import * as http from 'http'
 import * as https from 'https'

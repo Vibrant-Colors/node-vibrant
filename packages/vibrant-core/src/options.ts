@@ -1,7 +1,7 @@
-import { Palette, Swatch, Filter } from 'vibrant-color'
-import { Image, ImageClass, ImageSource, ImageOptions } from 'vibrant-image'
-import { Quantizer, QuantizerOptions } from 'vibrant-quantizer'
-import { Generator } from 'vibrant-generator'
+import { Palette, Swatch, Filter } from '@vibrant/color'
+import { Image, ImageClass, ImageSource, ImageOptions } from '@vibrant/image'
+import { Quantizer, QuantizerOptions } from '@vibrant/quantizer'
+import { Generator } from '@vibrant/generator'
 import { StageOptions, ProcessOptions } from './pipeline'
 import defaultsDeep = require('lodash/defaultsDeep')
 

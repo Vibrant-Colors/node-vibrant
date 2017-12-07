@@ -1,7 +1,7 @@
 {
-  "name": "vibrant-image",
+  "name": "@vibrant/image",
   "version": "3.0.0",
-  "description": "",
+  "description": "Helpers and typings for writing a vibrant ImageClass",
   "scripts": {
     "build:module": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,13 +11,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vibrant-types": "^3.0.0",
-    "vibrant-color": "^3.0.0",
+    "@vibrant/types": "^3.0.0",
+    "@vibrant/color": "^3.0.0",
     "bluebird": "^3.5.1"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.18",
     "@types/node": "^8.0.53",
     "typescript": "latest"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

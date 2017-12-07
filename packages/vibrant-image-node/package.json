@@ -1,7 +1,7 @@
 {
-  "name": "vibrant-image-node",
+  "name": "@vibrant/image-node",
   "version": "3.0.0",
-  "description": "",
+  "description": "Node.js vibrant ImageClass implementation",
   "scripts": {
     "build:module": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vibrant-image": "^3.0.0",
+    "@vibrant/image": "^3.0.0",
     "bluebird": "^3.5.1",
     "jimp": "^0.2.28"
   },
@@ -20,5 +20,8 @@
     "@types/jimp": "^0.2.1",
     "@types/node": "^8.0.53",
     "typescript": "latest"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
