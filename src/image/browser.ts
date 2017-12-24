@@ -102,6 +102,8 @@ export default class BroswerImage extends ImageBase {
         return this._context.getImageData(0, 0, this._width, this._height)
     }
     remove(): void {
-        this._canvas.parentNode.removeChild(this._canvas)
+        if (this._canvas && this._canvas.parentNode) {
+            this._canvas.parentNode.removeChild(this._canvas)
+        }
     }
 }
