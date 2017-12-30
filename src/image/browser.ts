@@ -20,7 +20,7 @@ function isSameOrigin(a: string, b: string): boolean {
         && ua.port === ub.port
 }
 
-export default class BroswerImage extends ImageBase {
+export default class BrowserImage extends ImageBase {
     image: HTMLImageElement
     private _canvas: HTMLCanvasElement
     private _context: CanvasRenderingContext2D
