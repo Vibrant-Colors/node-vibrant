@@ -2,7 +2,6 @@ import { expect } from 'chai'
 import { VibrantStatic } from '../../typing'
 import Builder from '../../builder'
 import path = require('path')
-import Promise = require('bluebird')
 import { Palette, Swatch } from '../../color'
 import util = require('../../util')
 import _ = require('lodash')
@@ -108,4 +107,3 @@ export const testVibrantAsPromised = (Vibrant: VibrantStatic, sample: Sample, pa
         .then(palette => cb(null, palette))
         .catch(e => cb(e))
 }
-

@@ -1,4 +1,3 @@
-import * as Bluebird from 'bluebird'
 import { Vec3 } from './color'
 
 export const DELTAE94_DIFF_STATUS = {
@@ -16,16 +15,16 @@ export interface IndexedObject {
     [key: string]: any
 }
 
-export interface DeferredBluebird<R> {
-    resolve: (thenableOrResult: R | Bluebird.Thenable<R>) => void
+export interface DeferredPromise<R> {
+    resolve: (thenableOrResult: R | PromiseLike<R>) => void
     reject: (error: any) => void
-    promise: Bluebird<R>
+    promise: Promise<R>
 }
 
-export function defer<R>(): DeferredBluebird<R> {
-    let resolve: (thenableOrResult: R | Bluebird.Thenable<R>) => void
+export function defer<R>(): DeferredPromise<R> {
+    let resolve: (thenableOrResult: R | PromiseLike<R>) => void
     let reject: (error: any) => void
-    let promise = new Bluebird<R>((_resolve, _reject) => {
+    let promise = new Promise<R>((_resolve, _reject) => {
         resolve = _resolve
         reject = _reject
     })

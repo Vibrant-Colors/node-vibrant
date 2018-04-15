@@ -5,7 +5,7 @@ Extract prominent colors from an image.
 
 ## New WebWorker support in v3.0
 
-Quantization is the most time-consuming stage in `node-vibrant`. In v3.0, the quantization can be run in the WebWorker to avoid freezing the UI thread. 
+Quantization is the most time-consuming stage in `node-vibrant`. In v3.0, the quantization can be run in the WebWorker to avoid freezing the UI thread.
 
 Here's how to use this feature:
 1. Use WebWorker build `dist/vibrant.worker.js` or `dist/vibrant.worker.min.js`. Or if you are re-bundling with webpack, use `lib/bundle.worker.js` as entry
@@ -98,8 +98,8 @@ Name    |  Description
 ##### `ImageSource`
 
 ```ts
-export type ImageSource = string 
-  | HTMLImageElement  // Browser only 
+export type ImageSource = string
+  | HTMLImageElement  // Browser only
   | Buffer            // Node.js only
 ```
 
@@ -130,7 +130,7 @@ Field          | Default                         | Description
 ##### `Resolvable<T>`
 
 ```ts
-export type Resolvable<T> = T | Bluebird<T>
+export type Resolvable<T> = T | Promise<T>
 ```
 
 ##### `Quantizer`
@@ -160,7 +160,7 @@ export interface Filter {
 }
 ```
 
-#### `getPalette(cb?: Callback<Palette>): Bluebird<Palette>`
+#### `getPalette(cb?: Callback<Palette>): Promise<Palette>`
 
 Name | Description
 ---- | -----------------
@@ -174,7 +174,7 @@ export interface Callback<T> {
 }
 ```
 
-#### `getSwatches(cb?: Callback<Palette>): Bluebird<Palette>`
+#### `getSwatches(cb?: Callback<Palette>): Promise<Palette>`
 Alias of `getPalette`.
 
 ### `Vibrant.Builder`
@@ -222,10 +222,10 @@ Sets `opts.generator` to `generator`. Returns this `Builder` instance.
 #### `build(): Vibrant`
 Builds and returns a `Vibrant` instance as configured.
 
-#### `getPalette(cb?: Callback<Palette>): Bluebird<Palette>`
+#### `getPalette(cb?: Callback<Palette>): Promise<Palette>`
 Builds a `Vibrant` instance as configured and calls its `getPalette` method.
 
-#### `getSwatches(cb? Callback<Palette>): Bluebird<Palette>`
+#### `getSwatches(cb? Callback<Palette>): Promise<Palette>`
 Alias of `getPalette`.
 
 ### `Vibrant.Swatch`

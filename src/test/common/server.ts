@@ -1,6 +1,6 @@
-import Promise = require('bluebird')
 import path = require('path')
 import http = require('http')
+import util = require('util')
 import finalhandler = require('finalhandler')
 import serveStatic = require('serve-static')
 
@@ -11,10 +11,9 @@ const serverHandler = (req: http.ServerRequest, res: http.ServerResponse) => {
 }
 
 export const createSampleServer = () => {
-    let server = http.createServer(serverHandler)
+    let server = http.createServer(serverHandler) as any
 
-    Promise.promisify(server.listen)
-    Promise.promisify(server.close)
-    return server
+    server.listen = util.promisify(server.listen)
+    server.close = util.promisify(server.close)
+    return server as http.Server;
 }
-

@@ -1,4 +1,3 @@
-import * as Bluebird from 'bluebird'
 import { Options, ImageData, ImageSource, ImageCallback } from '../typing'
 import { ImageBase } from './base'
 import Jimp = require('jimp')
@@ -23,8 +22,8 @@ type NodeImageSource = string | Buffer
 
 export default class NodeImage extends ImageBase {
     private _image: Jimp
-    private _loadByProtocolHandler(handler: ProtocalHandler, src: string): Bluebird<Buffer> {
-        return new Bluebird<Buffer>((resolve, reject) => {
+    private _loadByProtocolHandler(handler: ProtocalHandler, src: string): Promise<Buffer> {
+        return new Promise<Buffer>((resolve, reject) => {
             handler.get(src, (r: any) => {
                 let buf = new Buffer('')
                 r.on('data', (data: any) => buf = Buffer.concat([buf, data]))
@@ -33,13 +32,13 @@ export default class NodeImage extends ImageBase {
             })
         })
     }
-    private _loadFromPath(src: string): Bluebird<ImageBase> {
+    private _loadFromPath(src: string): Promise<ImageBase> {
         let m = URL_REGEX.exec(src)
         if (m) {
             let protocol = m[1].toLocaleLowerCase()
             let handler = PROTOCOL_HANDLERS[protocol]
             if (!handler) {
-                return Bluebird.reject(new Error(`Unsupported protocol: ${protocol}`))
+                return Promise.reject(new Error(`Unsupported protocol: ${protocol}`))
             }
             return this._loadByProtocolHandler(handler, src)
                 .then((buf) => this._loadByJimp(buf))
@@ -48,10 +47,10 @@ export default class NodeImage extends ImageBase {
         }
 
     }
-    private _loadByJimp(src: NodeImageSource): Bluebird<ImageBase> {
+    private _loadByJimp(src: NodeImageSource): Promise<ImageBase> {
         // NOTE: TypeScript doesn't support union type to overloads yet
         //       Use type assertion to bypass compiler error
-        return new Bluebird<ImageBase>((resolve, reject) => {
+        return new Promise<ImageBase>((resolve, reject) => {
             Jimp.read(src, (err, result) => {
                 if (err) return reject(err)
                 this._image = result
@@ -59,13 +58,13 @@ export default class NodeImage extends ImageBase {
             })
         })
     }
-    load(image: ImageSource): Bluebird<ImageBase> {
+    load(image: ImageSource): Promise<ImageBase> {
         if (typeof image === 'string') {
             return this._loadFromPath(image)
         } else if (image instanceof Buffer) {
             return this._loadByJimp(image)
         } else {
-            return Bluebird.reject(new Error('Cannot load image from HTMLImageElement in node environment'))
+            return Promise.reject(new Error('Cannot load image from HTMLImageElement in node environment'))
         }
     }
     clear(): void {

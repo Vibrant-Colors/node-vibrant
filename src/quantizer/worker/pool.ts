@@ -1,4 +1,3 @@
-import Bluebird = require('bluebird')
 import { Swatch } from '../../color'
 import omit = require('lodash/omit')
 import find = require('lodash/find')
@@ -9,7 +8,7 @@ import {
     ComputedOptions
 } from '../../typing'
 import {
-    DeferredBluebird,
+    DeferredPromise,
     defer
 } from '../../util'
 
@@ -20,7 +19,7 @@ import {
 } from './common'
 
 interface Task extends WorkerRequest{
-    deferred: DeferredBluebird<Swatch[]>
+    deferred: DeferredPromise<Swatch[]>
 }
 
 interface TaskWorker extends Worker {
@@ -63,7 +62,7 @@ export default class WorkerPool {
         return worker
     }
 
-    private _enqueue(pixels: Pixels, opts: ComputedOptions): Bluebird<Swatch[]> {
+    private _enqueue(pixels: Pixels, opts: ComputedOptions): Promise<Swatch[]> {
         let d = defer<Swatch[]>()
 
         // make task item
@@ -133,7 +132,7 @@ export default class WorkerPool {
         // Try dequeue next task
         this._tryDequeue()
     }
-    quantize(pixels: Pixels, opts: ComputedOptions): Bluebird<Swatch[]> {
+    quantize(pixels: Pixels, opts: ComputedOptions): Promise<Swatch[]> {
         return this._enqueue(pixels, opts)
     }
 }

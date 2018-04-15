@@ -1,4 +1,3 @@
-import * as Bluebird from 'bluebird'
 import { Palette, Swatch } from './color'
 import Builder from './builder'
 
@@ -22,7 +21,7 @@ export interface ImageData {
 }
 
 export interface Image {
-    load(image: ImageSource): Bluebird<Image>
+    load(image: ImageSource): Promise<Image>
     clear(): void
     update(imageData: ImageData): void
     getWidth(): number
@@ -30,12 +29,12 @@ export interface Image {
     resize(targetWidth: number, targetHeight: number, ratio: number): void
     getPixelCount(): number
     getImageData(): ImageData
-    applyFilter(filter: Filter): Bluebird<ImageData>
+    applyFilter(filter: Filter): Promise<ImageData>
     remove(): void
     scaleDown(opts: Options): void
 }
 
-export type Resolvable<T> = T | Bluebird<T>
+export type Resolvable<T> = T | Promise<T>
 
 export interface ImageClass {
     new (): Image

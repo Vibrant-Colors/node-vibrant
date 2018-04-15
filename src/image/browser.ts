@@ -1,4 +1,3 @@
-import * as Bluebird from 'bluebird'
 import { Options, ImageData, ImageSource, ImageCallback } from '../typing'
 import { ImageBase } from './base'
 import * as Url from 'url'
@@ -32,7 +31,7 @@ export default class BroswerImage extends ImageBase {
         let context = this._context = canvas.getContext('2d')
 
         canvas.className = 'vibrant-canvas'
-        canvas.style.display = 'none' 
+        canvas.style.display = 'none'
 
         this._width = canvas.width = img.width
         this._height = canvas.height = img.height
@@ -41,7 +40,7 @@ export default class BroswerImage extends ImageBase {
 
         document.body.appendChild(canvas)
     }
-    load(image: ImageSource): Bluebird<ImageBase> {
+    load(image: ImageSource): Promise<ImageBase> {
         let img: HTMLImageElement = null
         let src: string = null
         if (typeof image === 'string') {
@@ -51,7 +50,7 @@ export default class BroswerImage extends ImageBase {
             img = image
             src = image.src
         } else {
-            return Bluebird.reject(new Error(`Cannot load buffer as an image in browser`))
+            return Promise.reject(new Error(`Cannot load buffer as an image in browser`))
         }
         this.image = img
 
@@ -63,7 +62,7 @@ export default class BroswerImage extends ImageBase {
             img.src = src
         }
 
-        return new Bluebird<ImageBase>((resolve, reject) => {
+        return new Promise<ImageBase>((resolve, reject) => {
             let onImageLoad = () => {
                 this._initCanvas()
                 resolve(this)

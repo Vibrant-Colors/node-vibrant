@@ -9,11 +9,8 @@
     "example": "examples"
   },
   "dependencies": {
-    "@types/bluebird": "^3.0.37",
-    "@types/jimp": "^0.2.0",
     "@types/lodash": "^4.14.53",
     "@types/node": "^8.0.53",
-    "bluebird": "^3.4.7",
     "jimp": "^0.2.27",
     "lodash": "^4.17.4",
     "url": "^0.11.0"
