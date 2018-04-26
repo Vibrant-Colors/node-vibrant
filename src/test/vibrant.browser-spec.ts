@@ -19,7 +19,7 @@ import {
 
 describe('Vibrant', () => {
   it('Async import', () =>
-    System.import('../browser').then((v: any) => {
+    import('../browser').then((v: any) => {
       expect(v, 'Vibrant').not.to.be.undefined
       expect(v.Util, 'Vibrant.Util').not.to.be.undefined
       expect(v.Quantizer, 'Vibrant.Quantizer').not.to.be.undefined
