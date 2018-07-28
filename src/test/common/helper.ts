@@ -80,10 +80,12 @@ const paletteCallback = (references: any, sample: Sample, done?: MochaDone) =>
 
         displayColorDiffTable(sample.filePath, diffTable)
 
-        expect(failCount, `${failCount} colors are too diffrent from reference palettes`)
-            .to.equal(0)
+        setTimeout(() => {
+            expect(failCount, `${failCount} colors are too diffrent from reference palettes`)
+                .to.equal(0)
 
-        if (typeof done === 'function') done()
+            if (typeof done === 'function') done()
+        })
     }
 
 export const testVibrant = (Vibrant: VibrantStatic, sample: Sample, done: MochaDone, pathKey: SamplePathKey = 'filePath', builderCallback: (b: Builder) => Builder = null, references: any = REFERENCE_PALETTE_WITH_FILTER) => {
