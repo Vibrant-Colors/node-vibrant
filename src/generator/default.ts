@@ -200,6 +200,31 @@ function _generateEmptySwatches(palette: Palette, maxPopulation: number, opts: D
         l = opts.targetDarkLuma
         palette.DarkVibrant = new Swatch(hslToRgb(h, s, l), 0)
     }
+    if (palette.LightVibrant === null && palette.Vibrant !== null) {
+      let [h, s, l] = palette.Vibrant.getHsl()
+      l = opts.targetLightLuma
+      palette.LightVibrant = new Swatch(hslToRgb(h, s, l), 0)
+    }
+    if (palette.LightVibrant === null && palette.Vibrant !== null) {
+      let [h, s, l] = palette.Vibrant.getHsl()
+      l = opts.targetLightLuma
+      palette.LightVibrant = new Swatch(hslToRgb(h, s, l), 0)
+    }
+    if (palette.Muted === null && palette.Vibrant !== null) {
+      let [h, s, l] = palette.Vibrant.getHsl()
+      l = opts.targetMutesSaturation
+      palette.LightVibrant = new Swatch(hslToRgb(h, s, l), 0)
+    }
+    if (palette.DarkMuted === null && palette.DarkVibrant !== null) {
+      let [h, s, l] = palette.DarkVibrant.getHsl()
+      l = opts.targetMutesSaturation
+      palette.DarkMuted = new Swatch(hslToRgb(h, s, l), 0)
+    }
+    if (palette.LightMuted === null && palette.LightVibrant !== null) {
+      let [h, s, l] = palette.LightVibrant.getHsl()
+      l = opts.targetMutesSaturation
+      palette.DarkMuted = new Swatch(hslToRgb(h, s, l), 0)
+    }
 }
 
 const DefaultGenerator: Generator = (swatches: Array<Swatch>, opts?: DefaultGeneratorOptions): Palette => {
