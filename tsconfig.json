@@ -4,5 +4,6 @@
         "outDir": "lib",
         "declaration": true,
         "declarationDir": "lib"
-    }
+    },
+    "exclude": ["./src/test"]
 }
