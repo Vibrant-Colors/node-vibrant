@@ -190,6 +190,18 @@ function _generateVariationColors(swatches: Array<Swatch>, maxPopulation: number
 }
 
 function _generateEmptySwatches(palette: Palette, maxPopulation: number, opts: DefaultGeneratorOptions): void {
+    if (palette.Vibrant === null && palette.DarkVibrant === null && palette.LightVibrant === null) {
+        if (palette.DarkVibrant === null && palette.DarkMuted !== null) {
+            let [h, s, l] = palette.DarkMuted.getHsl()
+            l = opts.targetDarkLuma
+            palette.DarkVibrant = new Swatch(hslToRgb(h, s, l), 0)
+        }
+        if (palette.LightVibrant === null && palette.LightMuted !== null) {
+            let [h, s, l] = palette.LightMuted.getHsl()
+            l = opts.targetDarkLuma
+            palette.DarkVibrant = new Swatch(hslToRgb(h, s, l), 0)
+        }
+    }
     if (palette.Vibrant === null && palette.DarkVibrant !== null) {
         let [h, s, l] = palette.DarkVibrant.getHsl()
         l = opts.targetNormalLuma
