@@ -1,4 +1,3 @@
-import Promise = require('bluebird')
 import path = require('path')
 import http = require('http')
 import finalhandler = require('finalhandler')
@@ -10,11 +9,4 @@ const serverHandler = (req: http.IncomingMessage, res: http.ServerResponse) => {
     return staticFiles(<any>req, <any>res, done)
 }
 
-export const createSampleServer = () => {
-    let server = http.createServer(serverHandler)
-
-    Promise.promisify(server.listen)
-    Promise.promisify(server.close)
-    return server
-}
-
+export const createSampleServer = () => http.createServer(serverHandler)

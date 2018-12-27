@@ -9,7 +9,6 @@ import {
 
 import { Palette, Swatch } from './color'
 
-import Bluebird = require('bluebird')
 import defaults = require('lodash/defaults')
 
 import Builder from './builder'
@@ -47,7 +46,7 @@ class Vibrant {
         this.opts = <ComputedOptions>defaults({}, opts, Vibrant.DefaultOpts)
         this.opts.combinedFilter = Filters.combineFilters(this.opts.filters)
     }
-    private _process(image: Image, opts: ComputedOptions): Bluebird<Palette> {
+    private _process(image: Image, opts: ComputedOptions): Promise<Palette> {
         let { quantizer, generator} = opts
 
         image.scaleDown(opts)
@@ -55,7 +54,7 @@ class Vibrant {
         return image.applyFilter(opts.combinedFilter)
             .then((imageData) => quantizer(imageData.data, opts))
             .then((colors) => Swatch.applyFilter(colors, opts.combinedFilter))
-            .then((colors) => Bluebird.resolve(generator(colors)))
+            .then((colors) => Promise.resolve(generator(colors)))
     }
 
     palette(): Palette {
@@ -65,13 +64,20 @@ class Vibrant {
         return this._palette
     }
 
-    getPalette(cb?: Callback<Palette>): Bluebird<Palette> {
+    getPalette(cb?: Callback<Palette>): Promise<Palette> {
         let image = new this.opts.ImageClass()
-        return image.load(this._src)
+        const result = image.load(this._src)
             .then((image) => this._process(image, this.opts))
-            .tap((palette) => this._palette = palette)
-            .finally(() => image.remove())
-            .asCallback(cb)
+            .then((palette) => {
+                this._palette = palette
+                image.remove()
+                return palette
+            }, (err) => {
+                image.remove()
+                throw err
+            })
+        if (cb) result.then((palette) => cb(null, palette), (err) => cb(err))
+        return result;
     }
 }
 

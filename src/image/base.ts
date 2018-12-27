@@ -1,8 +1,7 @@
-import * as Bluebird from 'bluebird'
 import { Filter, Image, Options, ImageData, ImageSource } from '../typing'
 
 export abstract class ImageBase implements Image {
-    abstract load(image: ImageSource): Bluebird<ImageBase>
+    abstract load(image: ImageSource): Promise<ImageBase>
     abstract clear(): void
     abstract update(imageData: ImageData): void
     abstract getWidth(): number
@@ -28,7 +27,7 @@ export abstract class ImageBase implements Image {
         if (ratio < 1) this.resize(width * ratio, height * ratio, ratio)
     }
 
-    applyFilter(filter: Filter): Bluebird<ImageData> {
+    applyFilter(filter: Filter): Promise<ImageData> {
         let imageData = this.getImageData()
 
         if (typeof filter === 'function') {
@@ -46,7 +45,6 @@ export abstract class ImageBase implements Image {
             }
         }
 
-
-        return Bluebird.resolve(imageData)
+        return Promise.resolve(imageData)
     }
-} 
+}

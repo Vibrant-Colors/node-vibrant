@@ -1,4 +1,3 @@
-import Bluebird = require('bluebird')
 import clone = require('lodash/clone')
 
 import {
@@ -73,10 +72,10 @@ export default class Builder {
         return new Vibrant(this._src, this._opts)
     }
 
-    getPalette(cb?: Callback<Palette>): Bluebird<Palette> {
+    getPalette(cb?: Callback<Palette>): Promise<Palette> {
         return this.build().getPalette(cb)
     }
-    getSwatches(cb?: Callback<Palette>): Bluebird<Palette> {
+    getSwatches(cb?: Callback<Palette>): Promise<Palette> {
         return this.build().getPalette(cb)
     }
 }
