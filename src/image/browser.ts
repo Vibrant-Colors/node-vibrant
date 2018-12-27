@@ -19,7 +19,7 @@ function isSameOrigin(a: string, b: string): boolean {
         && ua.port === ub.port
 }
 
-export default class BroswerImage extends ImageBase {
+export default class BrowserImage extends ImageBase {
     image: HTMLImageElement
     private _canvas: HTMLCanvasElement
     private _context: CanvasRenderingContext2D
@@ -45,7 +45,11 @@ export default class BroswerImage extends ImageBase {
         let src: string = null
         if (typeof image === 'string') {
             img = document.createElement('img')
-            src = image
+            src = img.src = image
+
+            if (!isRelativeUrl(src) && !isSameOrigin(window.location.href, src)) {
+                img.crossOrigin = 'anonymous'
+            }    
         } else if (image instanceof HTMLImageElement) {
             img = image
             src = image.src
@@ -53,14 +57,6 @@ export default class BroswerImage extends ImageBase {
             return Promise.reject(new Error(`Cannot load buffer as an image in browser`))
         }
         this.image = img
-
-        if (!isRelativeUrl(src) && !isSameOrigin(window.location.href, src)) {
-            img.crossOrigin = 'anonymous'
-        }
-
-        if (typeof image === 'string') {
-            img.src = src
-        }
 
         return new Promise<ImageBase>((resolve, reject) => {
             let onImageLoad = () => {
@@ -105,6 +101,8 @@ export default class BroswerImage extends ImageBase {
         return this._context.getImageData(0, 0, this._width, this._height)
     }
     remove(): void {
-        this._canvas.parentNode.removeChild(this._canvas)
+        if (this._canvas && this._canvas.parentNode) {
+            this._canvas.parentNode.removeChild(this._canvas)
+        }
     }
 }
