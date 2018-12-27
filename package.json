@@ -52,7 +52,8 @@
     "test": "npm run test:node && npm run test:browser",
     "test:node": "mocha lib/test/**/*.spec.js",
     "test:browser": "karma start karma.conf.js",
-    "prepublish": "npm run clean && npm run build"
+    "prepublishOnly": "npm run clean && npm run build",
+    "postinstall": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
