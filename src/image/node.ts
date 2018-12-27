@@ -52,11 +52,12 @@ export default class NodeImage extends ImageBase {
         // NOTE: TypeScript doesn't support union type to overloads yet
         //       Use type assertion to bypass compiler error
         return new Bluebird<ImageBase>((resolve, reject) => {
-            Jimp.read(src, (err, result) => {
-                if (err) return reject(err)
-                this._image = result
-                resolve(this)
+          Jimp.read(src as Buffer)
+            .then((result) => {
+              this._image = result
+              resolve(this)
             })
+            .catch((err) => reject(err))
         })
     }
     load(image: ImageSource): Bluebird<ImageBase> {

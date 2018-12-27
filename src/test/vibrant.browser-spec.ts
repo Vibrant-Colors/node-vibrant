@@ -1,6 +1,5 @@
 const expect: Chai.ExpectStatic = (<any>window).chai.expect
 const Vibrant: any = (<any>window).Vibrant
-declare var System: any;
 
 import {
   ImageClass
@@ -8,9 +7,6 @@ import {
 
 import {
   SAMPLES,
-  Sample,
-  TARGETS,
-  REFERENCE_PALETTE
 } from './common/data'
 import {
   testVibrant,
@@ -19,7 +15,7 @@ import {
 
 describe('Vibrant', () => {
   it('Async import', () =>
-    System.import('../browser').then((v: any) => {
+    import('../browser').then((v: any) => {
       expect(v, 'Vibrant').not.to.be.undefined
       expect(v.Util, 'Vibrant.Util').not.to.be.undefined
       expect(v.Quantizer, 'Vibrant.Quantizer').not.to.be.undefined
