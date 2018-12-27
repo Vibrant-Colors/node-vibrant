@@ -34,7 +34,7 @@ export interface Image {
     scaleDown(opts: Options): void
 }
 
-export type Resolvable<T> = T | Promise<T>
+export type Resolvable < T > = T | Promise<T>
 
 export interface ImageClass {
     new (): Image
