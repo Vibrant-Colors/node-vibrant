@@ -22,6 +22,7 @@
     "@types/serve-static": "^1.7.31",
     "@types/table": "^4.0.1",
     "chai": "^4.1.2",
+    "eslint-plugin-typescript": "^0.14.0",
     "finalhandler": "^1.0.0",
     "karma": "^3.0.0",
     "karma-chai": "^0.1.0",
@@ -33,9 +34,11 @@
     "mocha": "^5.2.0",
     "rimraf": "^2.6.1",
     "serve-static": "^1.11.2",
+    "standardx": "^3.0.1",
     "table": "^5.1.0",
     "ts-loader": "^5.2.1",
     "typescript": "^3.2.2",
+    "typescript-eslint-parser": "^21.0.2",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
@@ -45,6 +48,7 @@
     "clean": "npm run clean:browser && npm run clean:node",
     "clean:browser": "rimraf dist",
     "clean:node": "rimraf lib",
+    "lint": "standardx src/*.ts",
     "build": "npm run build:browser && npm run build:node",
     "build:browser": "webpack --config webpack.config.js",
     "build:node": "tsc",
@@ -52,8 +56,14 @@
     "test": "npm run test:node && npm run test:browser",
     "test:node": "mocha lib/test/**/*.spec.js",
     "test:browser": "karma start karma.conf.js",
-    "prepublishOnly": "npm run clean && npm run build",
+    "prepublishOnly": "npm run lint && npm run clean && npm run build",
     "postinstall": "npm run clean && npm run build"
+  },
+  "standardx": {
+    "parser": "typescript-eslint-parser",
+    "plugins": [
+      "typescript"
+    ]
   },
   "repository": {
     "type": "git",
