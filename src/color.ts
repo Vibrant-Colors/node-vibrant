@@ -22,7 +22,7 @@ export interface Palette {
 export class Swatch {
     static applyFilter(colors: Swatch[], f: Filter): Swatch[] {
         return typeof f === 'function'
-            ? filter(colors, ({r, g, b}) => f(r, g, b, 255))
+            ? filter(colors, ({ r, g, b }) => f(r, g, b, 255))
             : colors
     }
     private _hsl: Vec3
@@ -33,23 +33,31 @@ export class Swatch {
     get r() { return this._rgb[0] }
     get g() { return this._rgb[1] }
     get b() { return this._rgb[2] }
-    getRgb(): Vec3 { return this._rgb }
-    getHsl(): Vec3 {
+    get rgb() { return this._rgb }
+    get hsl() {
         if (!this._hsl) {
             let [r, g, b] = this._rgb
             this._hsl = rgbToHsl(r, g, b)
         }
         return this._hsl
     }
-    getPopulation(): number { return this._population }
-
-    getHex(): string {
+    get hex() {
         if (!this._hex) {
             let [r, g, b] = this._rgb
             this._hex = rgbToHex(r, g, b)
         }
         return this._hex
     }
+    get population() { return this._population }
+
+    // TODO: deprecate internally, use property instead
+    getRgb(): Vec3 { return this._rgb }
+    // TODO: deprecate internally, use property instead
+    getHsl(): Vec3 { return this.hsl }
+    // TODO: deprecate internally, use property instead
+    getPopulation(): number { return this._population }
+    // TODO: deprecate internally, use property instead
+    getHex(): string { return this.hex }
 
     private getYiq(): number {
         if (!this._yiq) {
@@ -58,13 +66,30 @@ export class Swatch {
         }
         return this._yiq
     }
+    private _titleTextColor: string
+    private _bodyTextColor: string
 
+
+
+    get titleTextColor() {
+        if (this._titleTextColor) {
+            this._titleTextColor = this.getYiq() < 200 ? '#fff' : '#000'
+        }
+        return this._titleTextColor
+    }
+    get bodyTextColor() {
+        if (this._bodyTextColor) {
+            this._bodyTextColor = this.getYiq() < 150 ? '#fff' : '#000'
+        }
+        return this._bodyTextColor
+    }
     getTitleTextColor(): string {
-        return this.getYiq() < 200 ? '#fff' : '#000'
+        return this.titleTextColor
     }
 
+
     getBodyTextColor(): string {
-        return this.getYiq() < 150 ? '#fff' : '#000'
+        return this.bodyTextColor
     }
 
     constructor(rgb: Vec3, population: number) {
