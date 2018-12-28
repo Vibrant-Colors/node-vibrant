@@ -17,7 +17,7 @@ export interface Palette {
     DarkMuted?: Swatch,
     LightVibrant?: Swatch,
     LightMuted?: Swatch
-    [name: string]: Swatch
+    [name: string]: Swatch | undefined
 }
 
 export class Swatch {
