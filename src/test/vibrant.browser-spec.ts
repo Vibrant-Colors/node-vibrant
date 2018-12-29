@@ -1,17 +1,20 @@
-const expect: Chai.ExpectStatic = (<any>window).chai.expect
-const Vibrant: any = (<any>window).Vibrant
+/* eslint-env mocha, browser */
+/* eslint-disable no-unused-expressions */
 
 import {
   ImageClass
 } from '../typing'
 
 import {
-  SAMPLES,
+  SAMPLES
 } from './common/data'
 import {
   testVibrant,
   testVibrantAsPromised
 } from './common/helper'
+
+const expect: Chai.ExpectStatic = (<any>window).chai.expect
+const Vibrant: any = (<any>window).Vibrant
 
 describe('Vibrant', () => {
   it('Async import', () =>
@@ -32,8 +35,8 @@ describe('Vibrant', () => {
   })
   describe('Palette Extraction', () => {
     SAMPLES.forEach((example) => {
-      it(`${example.fileName} (callback)`, done => testVibrant(Vibrant, example, done, 'relativeUrl'))
-      it(`${example.fileName} (Promise)`, () => testVibrantAsPromised(Vibrant, example, 'relativeUrl'))
+      it(`${example.fileName} (callback)`, testVibrant(Vibrant, example, 'relativeUrl'))
+      it(`${example.fileName} (Promise)`, testVibrantAsPromised(Vibrant, example, 'relativeUrl'))
     })
   })
 
@@ -60,7 +63,6 @@ describe('Vibrant', () => {
             .not.to.equal('anonymous')
         })
     )
-
 
     it('should not set crossOrigin flag for images from same origin (absolute URL)', () =>
       new BrowserImage().load(SAME_ORIGIN_URL)
