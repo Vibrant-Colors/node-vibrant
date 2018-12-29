@@ -1,9 +1,20 @@
 {
 	"scripts": {
 		"build:module": "lerna run build:module",
-		"setup-dev": "npx lerna bootstrap --ignore-scripts"
+		"setup-dev": "npx lerna bootstrap --ignore-scripts",
+		"lint": "standardx packages/*/src/**/*.ts"
 	},
 	"devDependencies": {
-		"lerna": "^3.8.0"
+		"lerna": "^3.8.0",
+		"standardx": "^3.0.1",
+		"typescript-eslint-parser": "^21.0.2",
+		"eslint-plugin-typescript": "^0.14.0",
+		"typescript": "^3.2.2"
+	},
+	"standardx": {
+		"parser": "typescript-eslint-parser",
+		"plugins": [
+			"typescript"
+		]
 	}
 }
