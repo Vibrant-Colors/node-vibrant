@@ -14,20 +14,20 @@ export const TARGETS = Object.keys(REFERENCE_PALETTE)
 
 
 export interface Sample {
-    i: number
-    fileName: string
-    filePath: string
-    url: string
-    relativeUrl: string
+  i: number
+  fileName: string
+  filePath: string
+  url: string
+  relativeUrl: string
 }
 
 export type SamplePathKey = 'filePath' | 'url' | 'relativeUrl'
 
 export const SAMPLES: Sample[] = _.range(1, 5).map((i) => ({
-    i,
-    fileName: `${i}.jpg`,
-    filePath: path.join(__dirname, `../../../data/${i}.jpg`),
-    url: `http://localhost:${TEST_PORT}/${i}.jpg`,
-    relativeUrl: `base/data/${i}.jpg`
+  i,
+  fileName: `${i}.jpg`,
+  filePath: path.join(__dirname, `../../../data/${i}.jpg`),
+  url: `http://localhost:${TEST_PORT}/${i}.jpg`,
+  relativeUrl: `base/data/${i}.jpg`
 }))
 
