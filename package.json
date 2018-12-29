@@ -1,8 +1,9 @@
 {
 	"scripts": {
-		"build:module": "lerna run build:module"
+		"build:module": "lerna run build:module",
+		"setup-dev": "npx lerna bootstrap --ignore-scripts"
 	},
 	"devDependencies": {
-		"lerna": "^2.5.1"
+		"lerna": "^3.8.0"
 	}
 }

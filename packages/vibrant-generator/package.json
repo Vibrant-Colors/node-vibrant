@@ -15,7 +15,7 @@
     "@vibrant/types": "^3.0.0"
   },
   "devDependencies": {
-    "typescript": "latest"
+    "typescript": "^3.2.2"
   },
   "publishConfig": {
     "access": "public"

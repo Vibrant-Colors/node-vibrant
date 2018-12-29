@@ -1,16 +1,12 @@
 const expect: Chai.ExpectStatic = (<any>window).chai.expect
 const Vibrant: any = (<any>window).Vibrant
-declare var System: any
 
 import {
   ImageClass
 } from '@vibrant/image'
 
 import {
-  SAMPLES,
-  Sample,
-  TARGETS,
-  REFERENCE_PALETTE
+  SAMPLES
 } from './common/data'
 import {
   testVibrant,

@@ -59,7 +59,8 @@ export default class NodeImage extends ImageBase {
   private _loadByJimp(src: NodeImageSource): Promise<ImageBase> {
     // NOTE: TypeScript doesn't support union type to overloads yet
     //       Use type assertion to bypass compiler error
-    return Jimp.read(src).then((result: any) => {
+    return Jimp.read(src as Buffer)
+    .then((result) => {
       this._image = result
       return this
     })
