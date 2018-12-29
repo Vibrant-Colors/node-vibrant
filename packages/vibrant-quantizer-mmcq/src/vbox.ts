@@ -90,12 +90,12 @@ export default class VBox {
             for (let r = r1; r <= r2; r++) {
                 for (let g = g1; g <= g2; g++) {
                     for (let b = b1; b <= b2; b++) {
-                        var index = getColorIndex(r, g, b);
-                        var h = hist[index];
-                        ntot += h;
-                        rsum += (h * (r + 0.5) * mult);
-                        gsum += (h * (g + 0.5) * mult);
-                        bsum += (h * (b + 0.5) * mult);
+                        var index = getColorIndex(r, g, b)
+                        var h = hist[index]
+                        ntot += h
+                        rsum += (h * (r + 0.5) * mult)
+                        gsum += (h * (g + 0.5) * mult)
+                        bsum += (h * (b + 0.5) * mult)
                     }
                 }
             }
@@ -154,12 +154,12 @@ export default class VBox {
                 sum = 0
                 for (let g = g1; g <= g2; g++) {
                     for (let b = b1; b <= b2; b++) {
-                        let index = getColorIndex(r, g, b);
-                        sum += hist[index];
+                        let index = getColorIndex(r, g, b)
+                        sum += hist[index]
                     }
                 }
-                total += sum;
-                accSum[r] = total;
+                total += sum
+                accSum[r] = total
             }
         } else if (maxw === gw) {
             maxd = 'g'
@@ -168,12 +168,12 @@ export default class VBox {
                 sum = 0
                 for (let r = r1; r <= r2; r++) {
                     for (let b = b1; b <= b2; b++) {
-                        let index = getColorIndex(r, g, b);
-                        sum += hist[index];
+                        let index = getColorIndex(r, g, b)
+                        sum += hist[index]
                     }
                 }
-                total += sum;
-                accSum[g] = total;
+                total += sum
+                accSum[g] = total
             }
         } else {
             maxd = 'b'
@@ -182,19 +182,19 @@ export default class VBox {
                 sum = 0
                 for (let r = r1; r <= r2; r++) {
                     for (let g = g1; g <= g2; g++) {
-                        let index = getColorIndex(r, g, b);
-                        sum += hist[index];
+                        let index = getColorIndex(r, g, b)
+                        sum += hist[index]
                     }
                 }
-                total += sum;
-                accSum[b] = total;
+                total += sum
+                accSum[b] = total
             }
         }
 
         let splitPoint = -1
         let reverseSum = new Uint32Array(accSum.length)
         for (let i = 0; i < accSum.length; i++) {
-            let d = accSum[i];
+            let d = accSum[i]
             if (splitPoint < 0 && d > total / 2) splitPoint = i
             reverseSum[i] = total - d
         }

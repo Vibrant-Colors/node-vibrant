@@ -1,5 +1,3 @@
-import * as Bluebird from 'bluebird'
-
 import { Callback } from '@vibrant/types'
 import { Filter } from '@vibrant/color'
 
@@ -20,7 +18,7 @@ export interface ImageOptions {
 }
 
 export interface Image {
-    load(image: ImageSource): Bluebird<Image>
+    load(image: ImageSource): Promise<Image>
     clear(): void
     update(imageData: ImageData): void
     getWidth(): number
@@ -37,7 +35,7 @@ export interface ImageClass {
 }
 
 export abstract class ImageBase implements Image {
-    abstract load(image: ImageSource): Bluebird<ImageBase>
+    abstract load(image: ImageSource): Promise<ImageBase>
     abstract clear(): void
     abstract update(imageData: ImageData): void
     abstract getWidth(): number

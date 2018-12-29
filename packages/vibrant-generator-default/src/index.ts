@@ -121,7 +121,7 @@ function _findColorVariation(palette: Palette, swatches: Array<Swatch>, maxPopul
 function _generateVariationColors(swatches: Array<Swatch>, maxPopulation: number, opts: DefaultGeneratorOptions): Palette {
     let palette: Palette = {}
     // mVibrantSwatch = findColor(TARGET_NORMAL_LUMA, MIN_NORMAL_LUMA, MAX_NORMAL_LUMA,
-    //     TARGET_VIBRANT_SATURATION, MIN_VIBRANT_SATURATION, 1f);
+    //     TARGET_VIBRANT_SATURATION, MIN_VIBRANT_SATURATION, 1f)
     palette.Vibrant = _findColorVariation(palette, swatches, maxPopulation,
         opts.targetNormalLuma,
         opts.minNormalLuma,
@@ -132,7 +132,7 @@ function _generateVariationColors(swatches: Array<Swatch>, maxPopulation: number
         opts
     )
     // mLightVibrantSwatch = findColor(TARGET_LIGHT_LUMA, MIN_LIGHT_LUMA, 1f,
-    //     TARGET_VIBRANT_SATURATION, MIN_VIBRANT_SATURATION, 1f);
+    //     TARGET_VIBRANT_SATURATION, MIN_VIBRANT_SATURATION, 1f)
     palette.LightVibrant = _findColorVariation(palette, swatches, maxPopulation,
         opts.targetLightLuma,
         opts.minLightLuma,
@@ -143,7 +143,7 @@ function _generateVariationColors(swatches: Array<Swatch>, maxPopulation: number
         opts
     )
     // mDarkVibrantSwatch = findColor(TARGET_DARK_LUMA, 0f, MAX_DARK_LUMA,
-    //     TARGET_VIBRANT_SATURATION, MIN_VIBRANT_SATURATION, 1f);
+    //     TARGET_VIBRANT_SATURATION, MIN_VIBRANT_SATURATION, 1f)
     palette.DarkVibrant = _findColorVariation(palette, swatches, maxPopulation,
         opts.targetDarkLuma,
         0,
@@ -154,7 +154,7 @@ function _generateVariationColors(swatches: Array<Swatch>, maxPopulation: number
         opts
     )
     // mMutedSwatch = findColor(TARGET_NORMAL_LUMA, MIN_NORMAL_LUMA, MAX_NORMAL_LUMA,
-    //     TARGET_MUTED_SATURATION, 0f, MAX_MUTED_SATURATION);
+    //     TARGET_MUTED_SATURATION, 0f, MAX_MUTED_SATURATION)
     palette.Muted = _findColorVariation(palette, swatches, maxPopulation,
         opts.targetNormalLuma,
         opts.minNormalLuma,
@@ -165,7 +165,7 @@ function _generateVariationColors(swatches: Array<Swatch>, maxPopulation: number
         opts
     )
     // mLightMutedColor = findColor(TARGET_LIGHT_LUMA, MIN_LIGHT_LUMA, 1f,
-    //     TARGET_MUTED_SATURATION, 0f, MAX_MUTED_SATURATION);
+    //     TARGET_MUTED_SATURATION, 0f, MAX_MUTED_SATURATION)
     palette.LightMuted = _findColorVariation(palette, swatches, maxPopulation,
         opts.targetLightLuma,
         opts.minLightLuma,
@@ -176,7 +176,7 @@ function _generateVariationColors(swatches: Array<Swatch>, maxPopulation: number
         opts
     )
     // mDarkMutedSwatch = findColor(TARGET_DARK_LUMA, 0f, MAX_DARK_LUMA,
-    //     TARGET_MUTED_SATURATION, 0f, MAX_MUTED_SATURATION);
+    //     TARGET_MUTED_SATURATION, 0f, MAX_MUTED_SATURATION)
     palette.DarkMuted = _findColorVariation(palette, swatches, maxPopulation,
         opts.targetDarkLuma,
         0,

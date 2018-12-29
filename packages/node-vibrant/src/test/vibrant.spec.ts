@@ -41,12 +41,12 @@ describe('Palette Extraction', () => {
     describe('process remote images (http)', function () {
         let server: http.Server = null
 
-        before(() => {
+        before((done) => {
             server = createSampleServer()
-            return server.listen(TEST_PORT)
+            return server.listen(TEST_PORT, done)
         })
 
-        after(() => server.close())
+        after((done) => server.close(done))
 
         SAMPLES.forEach((sample) => {
             it(`${sample.url} (callback)`, done => testVibrant(Vibrant, sample, done))

@@ -18,11 +18,9 @@
     "@vibrant/image": "^3.0.0",
     "@vibrant/quantizer": "^3.0.0",
     "@vibrant/generator": "^3.0.0",
-    "bluebird": "^3.5.1",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.18",
     "@types/lodash": "^4.14.86",
     "typescript": "latest"
   },

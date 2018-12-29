@@ -10,11 +10,7 @@
   "types": "lib/index.d.ts",
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "bluebird": "^3.5.1"
-  },
   "devDependencies": {
-    "@types/bluebird": "^3.5.18",
     "typescript": "latest"
   },
   "publishConfig": {

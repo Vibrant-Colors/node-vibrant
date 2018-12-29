@@ -1,4 +1,3 @@
-import Bluebird = require('bluebird')
 import { Pipeline, ProcessOptions, ProcessResult } from "../index"
 import WorkerManager, { TaskWorkerClass } from '@vibrant/worker'
 import { Swatch } from '@vibrant/color'
@@ -24,7 +23,7 @@ export class WorkerPipeline implements Pipeline {
                 : null
         }
     }
-    process(imageData: ImageData, opts: ProcessOptions): Bluebird<ProcessResult> {
+    process(imageData: ImageData, opts: ProcessOptions): Promise<ProcessResult> {
         return this._manager.invokeWorker('pipeline', [imageData, opts], [imageData.data.buffer])
             .then((result) => this._rehydrate(<ProcessResult>result))
     }

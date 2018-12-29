@@ -2,7 +2,6 @@ import { expect } from 'chai'
 import { VibrantStatic } from '../../typing'
 import Builder from '../../builder'
 import path = require('path')
-import Promise = require('bluebird')
 import { Palette, Swatch } from '@vibrant/color'
 import { hexDiff, getColorDiffStatus, DELTAE94_DIFF_STATUS } from '@vibrant/color/lib/converter'
 import _ = require('lodash')
@@ -81,10 +80,11 @@ const paletteCallback = (references: any, sample: Sample, done?: MochaDone) =>
 
         displayColorDiffTable(sample.filePath, diffTable)
 
-        expect(failCount, `${failCount} colors are too diffrent from reference palettes`)
-            .to.equal(0)
+        setTimeout(() => {
+          expect(failCount, `${failCount} colors are too diffrent from reference palettes`).to.equal(0);
 
-        if (typeof done === 'function') done()
+          if (typeof done === "function") done();
+        });
     }
 
 export const testVibrant = (Vibrant: VibrantStatic, sample: Sample, done: MochaDone, pathKey: SamplePathKey = 'filePath', builderCallback: (b: Builder) => Builder = null, references: any = REFERENCE_PALETTE_WITH_FILTER) => {

@@ -1,4 +1,3 @@
-import * as Bluebird from 'bluebird'
 import WorkerPool from './pool'
 
 export interface TaskWorker extends Worker {
@@ -24,6 +23,6 @@ export default class WorkerManager {
     invokeWorker<R>(name: string, args: any[], transferList?: any[]) {
         return this.hasWorker(name)
             ? this.getWorker(name).invoke<R>(args, transferList)
-            : Bluebird.reject(`Worker '${name}' does not exist`)
+            : Promise.reject(`Worker '${name}' does not exist`)
     }
 }

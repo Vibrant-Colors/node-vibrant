@@ -1,4 +1,3 @@
-import Bluebird = require('bluebird')
 import { Resolvable } from '@vibrant/types'
 import {
     WorkerRequest,
@@ -14,7 +13,7 @@ export default function runInWorker<R>(self: Window, fn: (...args: any[]) => Res
 
         let response: WorkerResponse<R> | WorkerErrorResponse
 
-        Bluebird.resolve(fn(...payload))
+        Promise.resolve(fn(...payload))
             .then((ret) => {
                 (<any>self).postMessage({
                     id,

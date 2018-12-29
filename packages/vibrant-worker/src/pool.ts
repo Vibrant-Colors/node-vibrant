@@ -1,8 +1,7 @@
-import Bluebird = require('bluebird')
 import omit = require('lodash/omit')
 import find = require('lodash/find')
 import {
-    DeferredBluebird,
+    DeferredPromise,
     defer
 } from '@vibrant/types'
 import { TaskWorker, TaskWorkerClass } from './'
@@ -14,7 +13,7 @@ import {
 } from './common'
 
 interface Task<R> extends WorkerRequest {
-    deferred: DeferredBluebird<R>
+    deferred: DeferredPromise<R>
 }
 
 // const WorkerClass: TaskWorkerClass = require('worker-loader?inline=true!./worker')
@@ -47,7 +46,7 @@ export default class WorkerPool {
         return worker
     }
 
-    private _enqueue<R>(payload: any[], transferList: any[]): Bluebird<R> {
+    private _enqueue<R>(payload: any[], transferList: any[]): Promise<R> {
         let d = defer<R>()
 
         // make task item
@@ -109,7 +108,7 @@ export default class WorkerPool {
         // Try dequeue next task
         this._tryDequeue()
     }
-    invoke<R>(args: any[], transferList: any[]): Bluebird<R> {
+    invoke<R>(args: any[], transferList: any[]): Promise<R> {
         return this._enqueue(args, transferList)
     }
 }

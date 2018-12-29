@@ -2,7 +2,7 @@ import Vibrant = require('./browser')
 import pipeline from './pipeline'
 
 Vibrant.use(pipeline)
-;
+
 
 ((ns: any) => {
     ns.Vibrant = Vibrant
