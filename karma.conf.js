@@ -10,33 +10,59 @@ module.exports = function (config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['detectBrowsers', 'mocha', 'chai'],
 
+    plugins: [
+      'karma-mocha',
+      'karma-chai',
+      'karma-webpack',
+      'karma-chrome-launcher',
+      'karma-firefox-launcher',
+      'karma-detect-browsers',
+      'karma-mocha-reporter'
+    ],
+
+    detectBrowsers: {
+      usePhantomJS: false,
+      postDetection: function (browserList) {
+        let results = [];
+
+        if (browserList.indexOf('Chrome') > -1) {
+          results.push('Chrome');
+        }
+
+        if (browserList.indexOf('Firefox') > -1) {
+          results.push('Firefox');
+        }
+
+        return results;
+      }
+    },
 
     // list of files / patterns to load in the browser
     files: [
-      'dist/vibrant.js',
-      'lib/test/**/*.browser-spec.js',
+      // 'dist/vibrant.js',
+      // 'src/test/**/*.browser-spec.ts',
+      'src/test/browser.ts',
       { pattern: 'data/**/*.jpg', watched: false, included: false, served: true }
     ],
-
 
     // list of files to exclude
     exclude: [
     ],
 
-
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'lib/**/*.js': ['webpack']
+      // 'src/test/**/*.browser-spec.ts': ['webpack']
+      'src/test/browser.ts': ['webpack']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['mocha'],
 
 
     // web server port
@@ -56,10 +82,6 @@ module.exports = function (config) {
     autoWatch: false,
 
 
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox'],
-
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
@@ -67,11 +89,32 @@ module.exports = function (config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity,
-  }
+    concurrency: 1,
 
-  if (process.env.TRAVIS) {
-    configuration.browsers = ['Firefox'];
+    webpack: {
+      devtool: 'none',
+      mode: 'none',
+      optimization: {
+        splitChunks: false,
+        runtimeChunk: false,
+        minimize: false
+      },
+      module: {
+        rules: [
+          {
+            test: /\.(js|jsx|tsx|ts)$/,
+            loader: 'ts-loader',
+            options: {
+              configFile: 'tsconfig.browser.json'
+            },
+            exclude: /node_modules/
+          }
+        ]
+      },
+      resolve: {
+        extensions: ['.js', '.jsx', '.tsx', '.ts']
+      },
+    }
   }
 
   config.set(configuration)
