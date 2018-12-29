@@ -49,7 +49,7 @@
     "clean": "npm run clean:browser && npm run clean:node",
     "clean:browser": "rimraf dist",
     "clean:node": "rimraf lib",
-    "lint": "standardx src/*.ts",
+    "lint": "standardx src/**/*.ts",
     "build": "npm run build:browser && npm run build:node",
     "build:browser": "webpack --config webpack.config.js",
     "build:node": "tsc",
