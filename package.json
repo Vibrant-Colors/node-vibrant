@@ -37,6 +37,7 @@
     "standardx": "^3.0.1",
     "table": "^5.1.0",
     "ts-loader": "^5.2.1",
+    "ts-node": "^7.0.1",
     "typescript": "^3.2.2",
     "typescript-eslint-parser": "^21.0.2",
     "uglifyjs-webpack-plugin": "^2.0.1",
@@ -54,7 +55,7 @@
     "build:node": "tsc",
     "pretest": "npm run clean && npm run build",
     "test": "npm run test:node && npm run test:browser",
-    "test:node": "mocha lib/test/**/*.spec.js",
+    "test:node": "mocha --require ts-node/register src/test/**/*.spec.ts",
     "test:browser": "karma start karma.conf.js",
     "prepublishOnly": "npm run lint && npm run clean && npm run build",
     "postinstall": "npm run clean && npm run build"
