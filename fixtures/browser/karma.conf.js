@@ -1,11 +1,10 @@
-// Karma configuration
-// Generated on Sat Feb 25 2017 00:53:49 GMT+0800 (China Standard Time)
+const path = require('path');
 
 module.exports = function (config) {
   var configuration = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '../../',
 
 
     // frameworks to use
@@ -41,9 +40,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      // 'dist/vibrant.js',
-      // 'src/test/**/*.browser-spec.ts',
-      'src/test/browser.ts',
+      'src/test/index.browser-spec.ts',
       { pattern: 'data/**/*.jpg', watched: false, included: false, served: true }
     ],
 
@@ -54,8 +51,7 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      // 'src/test/**/*.browser-spec.ts': ['webpack']
-      'src/test/browser.ts': ['webpack']
+      '**/index.browser-spec.ts': ['webpack']
     },
 
 
@@ -91,6 +87,8 @@ module.exports = function (config) {
     // how many browser should be started simultaneous
     concurrency: 1,
 
+    webpackMiddleware: {
+    },
     webpack: {
       devtool: 'none',
       mode: 'none',
@@ -105,14 +103,14 @@ module.exports = function (config) {
             test: /\.(js|jsx|tsx|ts)$/,
             loader: 'ts-loader',
             options: {
-              configFile: 'tsconfig.browser.json'
+              configFile: path.join(__dirname, '../../tsconfig.browser.json')
             },
             exclude: /node_modules/
           }
         ]
       },
       resolve: {
-        extensions: ['.js', '.jsx', '.tsx', '.ts']
+        extensions: ['.js', '.ts']
       },
     }
   }
