@@ -49,6 +49,8 @@
     "test": "npm run test:node && npm run test:browser",
     "test:node": "mocha --require ts-node/register src/test/**/*.spec.ts",
     "test:browser": "npm run --prefix fixtures/browser test",
+    "sample:inspect": "npm run --prefix fixtures/sample start",
+    "sample:update": "echo \"Error: not implemented\" && exit 1",
     "prepublishOnly": "npm run lint && npm run clean && npm run build",
     "postinstall": "npm run clean && npm run build"
   },
