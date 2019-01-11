@@ -49,6 +49,13 @@ export class Swatch {
   }
   get population() { return this._population }
 
+  toJSON() {
+    return {
+      rgb: this.rgb,
+      population: this.population
+    }
+  }
+
   // TODO: deprecate internally, use property instead
   getRgb(): Vec3 { return this._rgb }
   // TODO: deprecate internally, use property instead

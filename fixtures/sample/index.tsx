@@ -1,14 +1,11 @@
 import Vibrant = require('node-vibrant')
 import * as React from 'react'
 import { render } from 'react-dom'
-import { Palette, Swatch } from 'node-vibrant/lib/color';
+import { Palette, Swatch } from 'node-vibrant/lib/color'
+import { SampleContext } from './types'
+import { Sample } from "./types";
 
-declare var CONTEXT: {
-  samples: {
-    name: string
-    nodePalette: Palette
-  }[]
-}
+declare var CONTEXT: SampleContext
 
 interface SwatchProps {
   name: string
@@ -27,8 +24,8 @@ class SwatchView extends React.Component<SwatchProps, SwatchState> {
     // Is plain JSON injected by webpack.DefinePlugin?
     if (color && !(this.props.color instanceof Swatch)) {
       // Re-hydrate
-      let { _rgb, _population } = color as any
-      color = new Swatch(_rgb, _population)
+      let { rgb, population } = color
+      color = new Swatch(rgb, population)
     }
 
     this.state = {
@@ -80,9 +77,7 @@ class PaletteView extends React.Component<PaletteProps> {
   }
 }
 
-interface SampleProps {
-  name: string
-  nodePalette: Palette
+interface SampleProps extends Sample {
 }
 
 interface SampleState {
@@ -93,25 +88,43 @@ interface SampleState {
 function getSampleUrl(name: string) {
   return name
 }
-class Sample extends React.Component<SampleProps, SampleState> {
+
+class SampleView extends React.Component<SampleProps, SampleState> {
   constructor(props: SampleProps) {
     super(props)
     this.state = {
       url: getSampleUrl(this.props.name)
     }
   }
+  private _onPalette(palette: Palette) {
+    this.setState({ palette })
+
+    fetch('/palettes', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: this.props.name,
+        palette
+      })
+    })
+      .then(() => console.log(`Palette for '${this.props.name}' sent`))
+      .catch((e) => console.error(`Failed to send palette for '${this.props.name}': ${e}`))
+  }
   componentDidMount() {
     Vibrant.from(this.state.url)
       .quality(1)
       .getPalette()
-      .then(palette => this.setState({ palette }))
+      .then(palette => this._onPalette(palette))
   }
   render() {
+    const { name, palettes } = this.props
     return (
       <div>
-        <p>{this.props.name}</p>
+        <p>{name}</p>
         <img src={this.state.url} />
-        <PaletteView palette={this.props.nodePalette} source="node" />
+        {Object.keys(palettes).map(source => <PaletteView key={source} palette={palettes[source]} {...{ source }} />)}
         {this.state.palette && <PaletteView palette={this.state.palette} source="browser" />}
       </div>
     )
@@ -122,7 +135,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {CONTEXT && CONTEXT.samples.map((sample) => <Sample key={sample.name} {...sample} />)}
+        {CONTEXT && CONTEXT.current.map((sample) => <SampleView key={sample.name} {...sample} />)}
       </div>
     )
   }

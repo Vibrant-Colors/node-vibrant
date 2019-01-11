@@ -2,30 +2,15 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
-import { promisify, map } from 'bluebird'
 
-import { readdir } from 'fs'
+import { SampleManager } from './manager'
 
-import Vibrant = require('../../src')
+const SAMPLE_FOLDER = path.join(__dirname, './images')
 
-const readdirAsync = promisify(readdir)
+const manager = new SampleManager(SAMPLE_FOLDER)
 
-async function listSampleFiles() {
-  return (<string[]>await readdirAsync('./images'))
-    .filter(f => /.jpg/i.test(f))
-}
-
-function prepareSamples() {
-  return map(listSampleFiles(), (name: string) =>
-    Vibrant.from(path.join(__dirname, 'images', name))
-      .quality(1)
-      .getPalette()
-      .then(nodePalette => ({ name, nodePalette }))
-  )
-}
-
-module.exports = prepareSamples()
-  .then(samples => {
+module.exports = manager.getContext() 
+  .then(context => {
     return {
       entry: {
         main: './index.tsx'
@@ -62,13 +47,12 @@ module.exports = prepareSamples()
           title: 'node-vibrant sample viewer'
         }),
         new webpack.DefinePlugin({
-          CONTEXT: JSON.stringify({
-            samples
-          })
+          CONTEXT: JSON.stringify(context)
         })
       ],
       devServer: {
-        contentBase: path.resolve('images')
+        contentBase: path.resolve('images'),
+        after: manager.buildMiddleware() 
       }
     }
   })
