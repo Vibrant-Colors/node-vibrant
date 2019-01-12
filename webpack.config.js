@@ -1,38 +1,42 @@
-var path = require('path')
-var webpack = require("webpack")
+const path = require('path')
+const webpack = require("webpack")
 
-var entry = './src/bundle.ts'
-var entryWithWorker = './src/bundle.worker.ts'
+const entry = './src/bundle.ts'
+const entryWithWorker = './src/bundle.worker.ts'
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
-    entry: {
-        'vibrant': entry,
-        'vibrant.min': entry,
-        'vibrant.worker': entryWithWorker,
-        'vibrant.worker.min': entryWithWorker
-    },
-    devtool: "source-map",
-    resolve: {
-        extensions: ['.ts', '.js']
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.tsx?$/,
-                loader: 'ts-loader',
-                options: {
-                    configFile: 'tsconfig.browser.json'
-                }
-            }
-        ]
-    },
-    output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, 'dist')
-    },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            include: /\.min\.js$/,
-            minimize: true
-        })
+  entry: {
+    'vibrant': entry,
+    'vibrant.min': entry,
+    'vibrant.worker': entryWithWorker,
+    'vibrant.worker.min': entryWithWorker
+  },
+  devtool: "source-map",
+  resolve: {
+    extensions: ['.ts', '.js']
+  },
+  mode: "production",
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new UglifyJsPlugin({
+        include: /\.min\.js$/
+      })
     ]
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        options: {
+          configFile: 'tsconfig.browser.json'
+        }
+      }
+    ]
+  },
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist')
+  }
 }

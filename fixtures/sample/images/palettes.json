@@ -1,0 +1,422 @@
+[
+  {
+    "name": "1.jpg",
+    "palettes": {
+      "node": {
+        "Vibrant": {
+          "rgb": [
+            59,
+            213,
+            210
+          ],
+          "population": 10001
+        },
+        "LightVibrant": {
+          "rgb": [
+            212,
+            216,
+            116
+          ],
+          "population": 1302
+        },
+        "DarkVibrant": {
+          "rgb": [
+            59,
+            26,
+            13
+          ],
+          "population": 7310
+        },
+        "Muted": {
+          "rgb": [
+            158,
+            104,
+            94
+          ],
+          "population": 1216
+        },
+        "LightMuted": {
+          "rgb": [
+            203,
+            201,
+            204
+          ],
+          "population": 1744
+        },
+        "DarkMuted": {
+          "rgb": [
+            86,
+            57,
+            44
+          ],
+          "population": 1152
+        }
+      },
+      "browser": {
+        "Vibrant": {
+          "rgb": [
+            59,
+            213,
+            210
+          ],
+          "population": 10037
+        },
+        "LightVibrant": {
+          "rgb": [
+            212,
+            216,
+            115
+          ],
+          "population": 1373
+        },
+        "DarkVibrant": {
+          "rgb": [
+            140,
+            85,
+            36
+          ],
+          "population": 3092
+        },
+        "Muted": {
+          "rgb": [
+            158,
+            104,
+            94
+          ],
+          "population": 1167
+        },
+        "LightMuted": {
+          "rgb": [
+            203,
+            202,
+            204
+          ],
+          "population": 1764
+        },
+        "DarkMuted": {
+          "rgb": [
+            86,
+            57,
+            44
+          ],
+          "population": 1123
+        }
+      }
+    }
+  },
+  {
+    "name": "2.jpg",
+    "palettes": {
+      "node": {
+        "Vibrant": {
+          "rgb": [
+            249,
+            236,
+            17
+          ],
+          "population": 761
+        },
+        "LightVibrant": {
+          "rgb": [
+            232,
+            140,
+            160
+          ],
+          "population": 2
+        },
+        "DarkVibrant": {
+          "rgb": [
+            13,
+            19,
+            92
+          ],
+          "population": 10879
+        },
+        "Muted": {
+          "rgb": [
+            114,
+            120,
+            143
+          ],
+          "population": 1296
+        },
+        "LightMuted": {
+          "rgb": [
+            196,
+            192,
+            177
+          ],
+          "population": 818
+        },
+        "DarkMuted": {
+          "rgb": [
+            86,
+            84,
+            44
+          ],
+          "population": 3533
+        }
+      },
+      "browser": {
+        "Vibrant": {
+          "rgb": [
+            249,
+            236,
+            17
+          ],
+          "population": 769
+        },
+        "LightVibrant": {
+          "rgb": [
+            232,
+            144,
+            160
+          ],
+          "population": 2
+        },
+        "DarkVibrant": {
+          "rgb": [
+            14,
+            19,
+            92
+          ],
+          "population": 10939
+        },
+        "Muted": {
+          "rgb": [
+            114,
+            120,
+            143
+          ],
+          "population": 1318
+        },
+        "LightMuted": {
+          "rgb": [
+            196,
+            192,
+            178
+          ],
+          "population": 853
+        },
+        "DarkMuted": {
+          "rgb": [
+            87,
+            84,
+            44
+          ],
+          "population": 3530
+        }
+      }
+    }
+  },
+  {
+    "name": "3.jpg",
+    "palettes": {
+      "node": {
+        "Vibrant": {
+          "rgb": [
+            132,
+            63,
+            49
+          ],
+          "population": 10979
+        },
+        "LightVibrant": {
+          "rgb": [
+            214,
+            200,
+            169
+          ],
+          "population": 11803
+        },
+        "DarkVibrant": {
+          "rgb": [
+            39,
+            87,
+            70
+          ],
+          "population": 16483
+        },
+        "Muted": {
+          "rgb": [
+            160,
+            152,
+            123
+          ],
+          "population": 10640
+        },
+        "LightMuted": {
+          "rgb": [
+            225,
+            221,
+            194
+          ],
+          "population": 19195
+        },
+        "DarkMuted": {
+          "rgb": [
+            34,
+            68,
+            68
+          ],
+          "population": 23
+        }
+      },
+      "browser": {
+        "Vibrant": {
+          "rgb": [
+            151,
+            62,
+            45
+          ],
+          "population": 11338
+        },
+        "LightVibrant": {
+          "rgb": [
+            252,
+            225,
+            200
+          ],
+          "population": 3094
+        },
+        "DarkVibrant": {
+          "rgb": [
+            6,
+            69,
+            51
+          ],
+          "population": 16446
+        },
+        "Muted": {
+          "rgb": [
+            101,
+            136,
+            113
+          ],
+          "population": 27612
+        },
+        "LightMuted": {
+          "rgb": [
+            212,
+            211,
+            181
+          ],
+          "population": 2960
+        },
+        "DarkMuted": {
+          "rgb": [
+            60,
+            132,
+            124
+          ],
+          "population": 2
+        }
+      }
+    }
+  },
+  {
+    "name": "4.jpg",
+    "palettes": {
+      "node": {
+        "Vibrant": {
+          "rgb": [
+            199,
+            32,
+            162
+          ],
+          "population": 17
+        },
+        "LightVibrant": {
+          "rgb": [
+            243,
+            220,
+            109
+          ],
+          "population": 25
+        },
+        "DarkVibrant": {
+          "rgb": [
+            161,
+            17,
+            29
+          ],
+          "population": 360
+        },
+        "Muted": {
+          "rgb": [
+            132,
+            145,
+            116
+          ],
+          "population": 3
+        },
+        "LightMuted": {
+          "rgb": [
+            141.37974683544303,
+            119.10759493670888,
+            11.620253164556967
+          ],
+          "population": 0
+        },
+        "DarkMuted": {
+          "rgb": [
+            76,
+            84,
+            54
+          ],
+          "population": 3
+        }
+      },
+      "browser": {
+        "Vibrant": {
+          "rgb": [
+            54,
+            108,
+            217
+          ],
+          "population": 3
+        },
+        "LightVibrant": {
+          "rgb": [
+            243,
+            221,
+            111
+          ],
+          "population": 26
+        },
+        "DarkVibrant": {
+          "rgb": [
+            161,
+            17,
+            28
+          ],
+          "population": 360
+        },
+        "Muted": {
+          "rgb": [
+            132,
+            145,
+            116
+          ],
+          "population": 3
+        },
+        "LightMuted": {
+          "rgb": [
+            141.2307692307692,
+            119.65384615384616,
+            11.769230769230784
+          ],
+          "population": 0
+        },
+        "DarkMuted": {
+          "rgb": [
+            76,
+            84,
+            60
+          ],
+          "population": 3
+        }
+      }
+    }
+  }
+]

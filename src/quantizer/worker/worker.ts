@@ -1,33 +1,33 @@
 import quantize from '../mmcq'
 
 import {
-    WorkerRequest,
-    WorkerResponse,
-    WorkerErrorResponse
+  WorkerRequest,
+  WorkerResponse,
+  WorkerErrorResponse
 } from './common'
 
 self.onmessage = (event) => {
-    let data: WorkerRequest = event.data
+  let data: WorkerRequest = event.data
 
-    let { id, payload } = data
+  let { id, payload } = data
 
-    let response: WorkerResponse | WorkerErrorResponse
+  let response: WorkerResponse | WorkerErrorResponse
 
-    try {
-        let swatches = quantize(payload.pixels, payload.opts)
-        response = {
-            id,
-            type: 'return',
-            payload: swatches
-        }
+  try {
+    let swatches = quantize(payload.pixels, payload.opts)
+    response = {
+      id,
+      type: 'return',
+      payload: swatches
     }
-    catch (e) {
-        response = {
-            id,
-            type: 'error',
-            payload: (<Error>e).message
-        }
+  }
+  catch (e) {
+    response = {
+      id,
+      type: 'error',
+      payload: (<Error>e).message
     }
-    (<any>self).postMessage(response)
+  }
+  (<any>self).postMessage(response)
 }
 
