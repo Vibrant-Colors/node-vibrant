@@ -21,6 +21,8 @@ module.exports = function (config) {
       'karma-mocha-reporter'
     ],
 
+    browserNoActivityTimeout: 30000,
+
     detectBrowsers: {
       usePhantomJS: false,
       postDetection: function (browserList) {
