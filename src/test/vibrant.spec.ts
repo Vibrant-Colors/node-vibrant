@@ -1,6 +1,5 @@
 /* eslint-env mocha */
 import {
-  REFERENCE_PALETTE,
   TEST_PORT,
   SAMPLES
 } from './common/data'
@@ -21,17 +20,8 @@ import Vibrant = require('../')
 describe('Palette Extraction', () => {
   describe('process samples', () =>
     SAMPLES.forEach((sample) => {
-      it(`${sample.fileName} (callback)`, testVibrant(Vibrant, sample))
-      it(`${sample.fileName} (Promise)`, testVibrantAsPromised(Vibrant, sample))
-    })
-  )
-
-  describe('process samples (no filters)', () =>
-    SAMPLES.forEach((sample) => {
-      const builderCallback = (builder: Builder) => builder.clearFilters()
-
-      it(`${sample.fileName} (callback)`, testVibrant(Vibrant, sample, 'filePath', builderCallback, REFERENCE_PALETTE))
-      it(`${sample.fileName} (Promise)`, testVibrantAsPromised(Vibrant, sample, 'filePath', builderCallback, REFERENCE_PALETTE))
+      it(`${sample.name} (callback)`, testVibrant(Vibrant, sample, 'filePath', 'node'))
+      it(`${sample.name} (Promise)`, testVibrantAsPromised(Vibrant, sample, 'filePath', 'node'))
     })
   )
 
@@ -46,8 +36,8 @@ describe('Palette Extraction', () => {
     after((done) => server.close(done))
 
     SAMPLES.forEach((sample) => {
-      it(`${sample.url} (callback)`, testVibrant(Vibrant, sample))
-      it(`${sample.url} (Promise)`, testVibrantAsPromised(Vibrant, sample))
+      it(`${sample.url} (callback)`, testVibrant(Vibrant, sample, 'url', 'node'))
+      it(`${sample.url} (Promise)`, testVibrantAsPromised(Vibrant, sample, 'url', 'node'))
     })
   })
 })

@@ -2,11 +2,7 @@ import { Filter } from './typing'
 import { rgbToHsl, rgbToHex } from './util'
 import filter = require('lodash/filter')
 
-export interface Vec3 extends Array<number> {
-  0: number,
-  1: number,
-  2: number
-}
+export type Vec3 = [number, number, number] 
 
 export interface Palette {
   Vibrant?: Swatch,

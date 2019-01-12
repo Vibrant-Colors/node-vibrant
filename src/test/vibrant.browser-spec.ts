@@ -35,8 +35,8 @@ describe('Vibrant', () => {
   })
   describe('Palette Extraction', () => {
     SAMPLES.forEach((example) => {
-      it(`${example.fileName} (callback)`, testVibrant(Vibrant, example, 'relativeUrl'))
-      it(`${example.fileName} (Promise)`, testVibrantAsPromised(Vibrant, example, 'relativeUrl'))
+      it(`${example.name} (callback)`, testVibrant(Vibrant, example, 'relativeUrl', 'browser'))
+      it(`${example.name} (Promise)`, testVibrantAsPromised(Vibrant, example, 'relativeUrl', 'browser'))
     })
   })
 
@@ -44,7 +44,7 @@ describe('Vibrant', () => {
     let loc = window.location
     let BrowserImage: ImageClass = Vibrant.DefaultOpts.ImageClass
     const CROS_URL = 'https://avatars3.githubusercontent.com/u/922715?v=3&s=460'
-    const RELATIVE_URL = 'base/data/1.jpg'
+    const RELATIVE_URL = SAMPLES[0].relativeUrl
     const SAME_ORIGIN_URL = `${loc.protocol}//${loc.host}/${RELATIVE_URL}`
 
     it('should set crossOrigin flag for images form foreign origin', () =>

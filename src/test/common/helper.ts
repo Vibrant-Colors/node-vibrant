@@ -7,13 +7,7 @@ import { Palette, Swatch } from '../../color'
 import util = require('../../util')
 import _ = require('lodash')
 import {
-  REFERENCE_PALETTE,
-  REFERENCE_PALETTE_WITH_FILTER,
-  TARGETS,
-  TEST_PORT,
-  SAMPLES,
-  Sample,
-  SamplePathKey
+  TestSample, SamplePathKey
 } from './data'
 
 import { table, getBorderCharacters } from 'table'
@@ -23,39 +17,28 @@ const TABLE_OPTS = {
   border: getBorderCharacters('void')
 }
 
-const TABLE_HEADER = ['Swatch', 'Actual'].concat(...TARGETS.map((t) => [t, 'Status']))
 
-
-
-const displayColorDiffTable = (p: string, diff: string[][]) => {
-  console.debug(`Palette Diffrence of ${p}`)
-  diff.unshift(TABLE_HEADER)
-  console.debug(table(diff, TABLE_OPTS))
+const displayColorDiffTable = (diff: string[][]) => {
+  console.log(table(diff, TABLE_OPTS))
 }
 
-const assertPalette = (references: any, sample: Sample, palette?: Palette) => {
+const assertPalette = (reference: Palette, palette: Palette) => {
   expect(palette, 'palette should be returned').not.to.be.null
 
   let failCount = 0
-  let testWithTarget = (name: string, actual: Swatch, target: string) => {
-    let key = sample.i.toString()
-    let expected = references[target][key][name]
+  const compare = (name: string, expected: Swatch, actual: Swatch) => {
     let result = {
-      target,
-      expected: expected != null ? expected : 'null',
       status: 'N/A',
       diff: -1
     }
 
     if (expected === null) {
       if (actual !== null) {
-        console.warn(`WARN: ${name} color form '${target}' was not expected. Got ${actual.getHex()}`)
+        console.warn(`WARN: ${name} color was not expected. Got ${actual.getHex()}`)
       }
-      // expect(actual, `${name} color form '${target}' was not expected`).to.be.null
     } else {
-      expect(actual, `${name} color from '${target}' was expected`).not.to.be.null
-      let actualHex = actual.getHex()
-      let diff = util.hexDiff(actualHex, expected)
+      expect(actual, `${name} color was expected`).not.to.be.null
+      let diff = util.rgbDiff(actual.rgb, expected.rgb)
       result.diff = diff
       result.status = util.getColorDiffStatus(diff)
       if (diff > util.DELTAE94_DIFF_STATUS.SIMILAR) { failCount++ }
@@ -64,49 +47,53 @@ const assertPalette = (references: any, sample: Sample, palette?: Palette) => {
     return result
   }
 
-  let diffTable = []
-  for (let name in palette) {
-    var left
-    let actual = palette[name]
-    let colorDiff = [name, (left = (actual != null ? actual.getHex() : undefined)) != null ? left : 'null']
-    for (let target of TARGETS) {
-      let r = testWithTarget(name, actual, target)
-      colorDiff.push(r.expected)
-      colorDiff.push(`${r.status}(${r.diff.toPrecision(2)})`)
-    }
-    diffTable.push(colorDiff)
+  const names = Object.keys(palette)
+  const nameRow = [''].concat(names)
+  const actualRow = ['Actual']
+  const expectedRow = ['Expected']
+  const scoreRow = ['Score']
+  for (const name of names) {
+    const actual = palette[name]
+    const expected = reference[name]
+    actualRow.push(actual ? actual.hex : null)
+    expectedRow.push(expected ? util.rgbToHex(...expected.rgb) : null)
+    const r = compare(name, expected, actual)
+    scoreRow.push(`${r.status}(${r.diff.toPrecision(2)})`)
   }
 
-  displayColorDiffTable(sample.filePath, diffTable)
+  // Display diff table only when necessary
+  if (failCount > 0) {
+    displayColorDiffTable([nameRow, actualRow, expectedRow, scoreRow])
+  }
 
   expect(failCount, `${failCount} colors are too diffrent from reference palettes`)
     .to.equal(0)
 }
 
-const paletteCallback = (references: any, sample: Sample, done: MochaDone) =>
+const paletteCallback = (references: any, sample: TestSample, done: MochaDone) =>
   (err: Error, palette?: Palette) => {
     setTimeout(() => {
 
       expect(err, `should not throw error '${err}'`).to.be.null
-      assertPalette(references, sample, palette)
+      assertPalette(references, palette)
 
-      done();
+      done()
     })
   }
 
-export const testVibrant = (Vibrant: VibrantStatic, sample: Sample, pathKey: SamplePathKey = 'filePath', builderCallback: (b: Builder) => Builder = null, references: any = REFERENCE_PALETTE_WITH_FILTER) => {
+export const testVibrant = (Vibrant: VibrantStatic, sample: TestSample, pathKey: SamplePathKey, env: 'node' | 'browser', builderCallback: (b: Builder) => Builder = null) => {
   return (done: MochaDone) => {
     let builder = Vibrant.from(sample[pathKey])
       .quality(1)
 
     if (typeof builderCallback === 'function') builder = builderCallback(builder)
 
-    builder.getPalette(paletteCallback(references, sample, done))
+    builder.getPalette(paletteCallback(sample.palettes[env], sample, done))
   }
 }
 
 
-export const testVibrantAsPromised = (Vibrant: VibrantStatic, sample: Sample, pathKey: SamplePathKey = 'filePath', builderCallback: (b: Builder) => Builder = null, references: any = REFERENCE_PALETTE_WITH_FILTER) => {
+export const testVibrantAsPromised = (Vibrant: VibrantStatic, sample: TestSample, pathKey: SamplePathKey, env: 'node' | 'browser', builderCallback: (b: Builder) => Builder = null) => {
   return () => {
     let builder = Vibrant.from(sample[pathKey])
       .quality(1)
@@ -114,6 +101,6 @@ export const testVibrantAsPromised = (Vibrant: VibrantStatic, sample: Sample, pa
     if (typeof builderCallback === 'function') builder = builderCallback(builder)
 
     return builder.getPalette()
-      .then(palette => assertPalette(references, sample, palette))
+      .then(palette => assertPalette(sample.palettes[env], palette))
   }
 }

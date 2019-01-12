@@ -41,7 +41,7 @@ module.exports = function (config) {
     // list of files / patterns to load in the browser
     files: [
       'src/test/index.browser-spec.ts',
-      { pattern: 'data/**/*.jpg', watched: false, included: false, served: true }
+      { pattern: 'fixtures/sample/images/**/*.jpg', watched: false, included: false, served: true }
     ],
 
     // list of files to exclude
