@@ -11,8 +11,6 @@ before_script:
 jobs:
   include:
     - stage: build
-      script: npm run build:node
-      script: npm run build:browser
+      script: npm run build
     - stage: test
-      script: npm run test:node
-      script: npm run test:browser
+      script: npm run test
