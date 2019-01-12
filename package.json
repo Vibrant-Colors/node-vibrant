@@ -51,8 +51,7 @@
     "test:browser": "npm run --prefix fixtures/browser test",
     "sample:inspect": "npm run --prefix fixtures/sample start",
     "sample:update": "npm run --prefix fixtures/sample update",
-    "prepublishOnly": "npm run lint && npm run clean && npm run build",
-    "postinstall": "npm run clean && npm run build"
+    "prepublishOnly": "npm run lint && npm run clean && npm run build"
   },
   "standardx": {
     "parser": "typescript-eslint-parser",
