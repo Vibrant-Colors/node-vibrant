@@ -7,7 +7,7 @@ const PipelineWorker = require('worker-loader?publicPath=/dist/!./pipeline/index
 Vibrant.use(new WorkerPipeline(PipelineWorker))
 
 // Vibrant.Worker.register('quantize', MMCQWorker)
-
+;
 ((ns: any) => {
     ns.Vibrant = Vibrant
     // Vibrant.Quantizer.WebWorker = WebWorker
