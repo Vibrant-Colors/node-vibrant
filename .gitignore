@@ -90,3 +90,5 @@ dist/
 yarn\.lock
 
 package-lock.json
+
+palettes.current.json

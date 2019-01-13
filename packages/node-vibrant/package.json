@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "description": "Extract prominent colors from an image. Supports both node and browser environment.",
   "main": "lib/index.js",
-  "browser": "lib/browser.js",
+  "browser": "lib/bundle.worker.js",
   "types": "lib/index.d.ts",
   "directories": {
     "example": "examples"

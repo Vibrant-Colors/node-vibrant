@@ -4,7 +4,9 @@
 		"setup-dev": "npx lerna bootstrap --ignore-scripts",
 		"lint": "run-s -c lint:*",
 		"lint:dev": "standardx \"packages/*/src/**/!(*spec).ts\"",
-		"lint:test": "standardx --env mocha \"packages/*/src/**/*spec.ts\""
+		"lint:test": "standardx --env mocha \"packages/*/src/**/*spec.ts\"",
+		"sample:inspect": "npm run --prefix fixtures/sample start",
+    "sample:update": "npm run --prefix fixtures/sample update"
 	},
 	"devDependencies": {
 		"eslint-plugin-typescript": "^0.14.0",
@@ -20,5 +22,6 @@
 			"typescript"
 		]
 	},
-	"name": "node-vibrant"
+	"private": true,
+	"name": "node-vibrant-monorepo"
 }
