@@ -50,11 +50,13 @@ export default class BrowserImage extends ImageBase {
     let src: string = null
     if (typeof image === "string") {
       img = document.createElement("img")
-      src = img.src = image
+      src = image
 
       if (!isRelativeUrl(src) && !isSameOrigin(window.location.href, src)) {
         img.crossOrigin = "anonymous"
       }
+
+      img.src = src
     } else if (image instanceof HTMLImageElement) {
       img = image
       src = image.src
