@@ -3,8 +3,6 @@
   "version": "3.0.0",
   "description": "Core vibrant classes",
   "scripts": {
-    "build:bootstrap": "tsc -p tsconfig.bootstrap.json",
-    "build:module": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "main": "lib/index.js",

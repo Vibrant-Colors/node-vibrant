@@ -1,17 +1,23 @@
 {
 	"scripts": {
-		"build:module": "lerna run build:module",
+		"clean:tsc": "lerna exec -- rimraf lib",
+		"move:tsc": "lerna exec -- node ../../scripts/tsc/move.js",
+		"compile:tsc": "tsc",
+		"build:tsc": "npm run clean:tsc && npm run compile:tsc && npm run move:tsc && rimraf .build",
 		"setup-dev": "npx lerna bootstrap --ignore-scripts",
 		"lint": "run-s -c lint:*",
 		"lint:dev": "standardx \"packages/*/src/**/!(*spec).ts\"",
 		"lint:test": "standardx --env mocha \"packages/*/src/**/*spec.ts\"",
 		"sample:inspect": "npm run --prefix fixtures/sample start",
-    "sample:update": "npm run --prefix fixtures/sample update"
+		"sample:update": "npm run --prefix fixtures/sample update"
 	},
 	"devDependencies": {
+		"@types/node": "^10.12.18",
 		"eslint-plugin-typescript": "^0.14.0",
+		"fs-extra": "^7.0.1",
 		"lerna": "^3.10.5",
 		"npm-run-all": "^4.1.5",
+		"rimraf": "^2.6.3",
 		"standardx": "^3.0.1",
 		"typescript": "3.2.2",
 		"typescript-eslint-parser": "^21.0.2"

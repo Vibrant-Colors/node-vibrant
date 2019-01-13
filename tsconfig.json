@@ -1,0 +1,63 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "node-vibrant": [
+        "packages/node-vibrant/src/index.ts"
+      ],
+      "@vibrant/*": [
+        "packages/vibrant-*/src"
+      ],
+      "node-vibrant/lib/*": [
+        "packages/node-vibrant/src/*"
+      ],
+      "@vibrant/color/lib/*": [
+        "packages/vibrant-color/src/*"
+      ],
+      "@vibrant/core/lib/*": [
+        "packages/vibrant-core/src/*"
+      ],
+      "@vibrant/generator/lib/*": [
+        "packages/vibrant-generator/src/*"
+      ],
+      "@vibrant/generator-default/lib/*": [
+        "packages/vibrant-generator-default/src/*"
+      ],
+      "@vibrant/image/lib/*": [
+        "packages/vibrant-image/src/*"
+      ],
+      "@vibrant/image-browser/lib/*": [
+        "packages/vibrant-image-browser/src/*"
+      ],
+      "@vibrant/image-node/lib/*": [
+        "packages/vibrant-image-node/src/*"
+      ],
+      "@vibrant/quantizer/lib/*": [
+        "packages/vibrant-quantizer/src/*"
+      ],
+      "@vibrant/quantizer-mmcq/lib/*": [
+        "packages/vibrant-quantizer-mmcq/src/*"
+      ],
+      "@vibrant/types/lib/*": [
+        "packages/vibrant-types/src/*"
+      ],
+      "@vibrant/worker/lib/*": [
+        "packages/vibrant-worker/src/*"
+      ],
+    },
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "outDir": ".build",
+    "module": "commonjs",
+    "target": "es5",
+    "declaration": true,
+    "sourceMap": true,
+    "noImplicitAny": true
+  },
+  "include": [
+    "packages/*/src",
+    "packages/*/__tests__"
+  ]
+}
