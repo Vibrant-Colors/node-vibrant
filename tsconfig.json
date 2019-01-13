@@ -44,6 +44,9 @@
       "@vibrant/worker/lib/*": [
         "packages/vibrant-worker/src/*"
       ],
+      "fixtures/*": [
+        "fixtures/*"
+      ]
     },
     "lib": [
       "dom",
