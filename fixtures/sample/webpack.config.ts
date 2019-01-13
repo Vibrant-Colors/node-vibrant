@@ -9,7 +9,7 @@ const SAMPLE_FOLDER = path.join(__dirname, './images')
 
 const manager = new SampleManager(SAMPLE_FOLDER)
 
-module.exports = manager.getContext() 
+module.exports = manager.getContext()
   .then(context => {
     return {
       entry: {
@@ -19,6 +19,10 @@ module.exports = manager.getContext()
       devtool: 'inline-module-source-map',
       module: {
         rules: [
+          {
+            test: /\.worker.ts$/,
+            loader: 'worker-loader'
+          },
           {
             test: /\.tsx?$/,
             use: [
@@ -52,7 +56,7 @@ module.exports = manager.getContext()
       ],
       devServer: {
         contentBase: path.resolve('images'),
-        after: manager.buildMiddleware() 
+        after: manager.buildMiddleware()
       }
     }
   })
