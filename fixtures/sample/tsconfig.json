@@ -1,16 +1,7 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "../../",
-    "module": "commonjs",
-    "target": "es5",
     "jsx": "react",
-    "noImplicitAny": true,
-    "sourceMap": true,
-    "lib": [
-      "dom",
-      "es5",
-      "es2015.core",
-      "es2015.promise"
-    ]
+    "declaration": false
   }
 }

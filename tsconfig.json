@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "node-vibrant": [
-        "packages/node-vibrant/src/index.ts"
+        "packages/node-vibrant/src"
       ],
       "@vibrant/*": [
         "packages/vibrant-*/src"

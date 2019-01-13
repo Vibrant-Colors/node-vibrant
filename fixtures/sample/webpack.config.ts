@@ -41,7 +41,9 @@ module.exports = manager.getContext()
           '.css'
         ],
         plugins: [
-          new TsconfigPathsPlugin()
+          new TsconfigPathsPlugin({
+            configFile: path.join(__dirname, 'tsconfig.json')
+          })
         ]
       },
       plugins: [

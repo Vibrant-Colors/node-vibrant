@@ -1,4 +1,7 @@
-import Vibrant = require('node-vibrant')
+// Explicitly import worker bundle entry due to development setup
+import Vibrant = require('node-vibrant/src/bundle-worker')
+// In production, one should use:
+// import Vibrant = require('node-vibrant')
 import * as React from 'react'
 import { render } from 'react-dom'
 import { Palette, Swatch } from '@vibrant/color'

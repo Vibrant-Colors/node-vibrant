@@ -58,7 +58,7 @@ export class SampleManager {
   constructor(public readonly sampleFolder: string) {
 
   }
-  async getCurrent(): Bluebird<Sample[]> {
+  async getCurrent(): Promise<Sample[]> {
     if (!this._current) {
       this._current = await Bluebird.map(listSampleFiles(this.sampleFolder),
         (name: string) => {
@@ -73,7 +73,7 @@ export class SampleManager {
     }
     return this._current
   }
-  async getSnapshot(): Bluebird<Sample[] | null> {
+  async getSnapshot(): Promise<Sample[] | null> {
     if (!this._snapshot) {
       try {
         const file = path.join(this.sampleFolder, 'palettes.json')
@@ -87,7 +87,7 @@ export class SampleManager {
     return this._snapshot
   }
   // Cool down timer
-  private async _doSaveSnapshot(): Bluebird<boolean> {
+  private async _doSaveSnapshot(): Promise<boolean> {
     if (!this._current) {
       console.warn('No snapshot to be saved. (premature exit?)')
       return false
@@ -106,10 +106,10 @@ export class SampleManager {
     }
   }
   private _saveTimer = new Cooldown(1000, () => this._doSaveSnapshot())
-  async saveSnapshot(): Bluebird<boolean> {
+  async saveSnapshot(): Promise<boolean> {
     return this._saveTimer.done()
   }
-  async getContext(): Bluebird<SampleContext> {
+  async getContext(): Promise<SampleContext> {
     return Bluebird.props({
       current: this.getCurrent(),
       snapshot: this.getSnapshot()
