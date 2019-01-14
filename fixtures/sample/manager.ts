@@ -1,3 +1,4 @@
+/* tslint:disable:no-floating-promises await-promise */
 import path = require('path')
 import Bluebird = require('bluebird')
 import { Application } from 'express'
@@ -9,21 +10,21 @@ const readFileAsync = Bluebird.promisify<string, string, string>(readFile)
 const writeFileAsync = Bluebird.promisify<void, string, string, string>(writeFile)
 
 import Vibrant = require('node-vibrant')
-import { Sample, SampleContext } from './types';
+import { Sample, SampleContext } from './types'
 
-async function listSampleFiles(folder: string) {
-  return (<string[]>await readdirAsync(folder))
+async function listSampleFiles (folder: string) {
+  return (await readdirAsync(folder) as string[])
     .filter(f => /.jpg/i.test(f))
 }
 
 class Cooldown<T> {
   private _promise: Promise<T> | null
   _timer: any
-  _resolve: (value?: {} | PromiseLike<{}>) => void;
-  _reject: (reason?: any) => void;
-  constructor(public readonly delay: number, public readonly task: () => T | PromiseLike<T>) {
+  _resolve: (value?: {} | PromiseLike<{}>) => void
+  _reject: (reason?: any) => void
+  constructor (public readonly delay: number, public readonly task: () => T | PromiseLike<T>) {
   }
-  done() {
+  done () {
     // Lazy initialize
     if (!this._promise) this.reset()
     // Reset timer
@@ -37,7 +38,7 @@ class Cooldown<T> {
 
     return this._promise
   }
-  reset() {
+  reset () {
     if (this._promise) {
       this._reject('User cancelled')
       this._promise = null
@@ -51,14 +52,13 @@ class Cooldown<T> {
   }
 }
 
-
 export class SampleManager {
   private _current: Sample[] | null
   private _snapshot: Sample[] | null
-  constructor(public readonly sampleFolder: string) {
+  constructor (public readonly sampleFolder: string) {
 
   }
-  async getCurrent(): Promise<Sample[]> {
+  async getCurrent (): Promise<Sample[]> {
     if (!this._current) {
       this._current = await Bluebird.map(listSampleFiles(this.sampleFolder),
         (name: string) => {
@@ -73,7 +73,7 @@ export class SampleManager {
     }
     return this._current
   }
-  async getSnapshot(): Promise<Sample[] | null> {
+  async getSnapshot (): Promise<Sample[] | null> {
     if (!this._snapshot) {
       try {
         const file = path.join(this.sampleFolder, 'palettes.json')
@@ -87,7 +87,7 @@ export class SampleManager {
     return this._snapshot
   }
   // Cool down timer
-  private async _doSaveSnapshot(): Promise<boolean> {
+  private async _doSaveSnapshot (): Promise<boolean> {
     if (!this._current) {
       console.warn('No snapshot to be saved. (premature exit?)')
       return false
@@ -106,16 +106,16 @@ export class SampleManager {
     }
   }
   private _saveTimer = new Cooldown(1000, () => this._doSaveSnapshot())
-  async saveSnapshot(): Promise<boolean> {
+  async saveSnapshot (): Promise<boolean> {
     return this._saveTimer.done()
   }
-  async getContext(): Promise<SampleContext> {
+  async getContext (): Promise<SampleContext> {
     return Bluebird.props({
       current: this.getCurrent(),
       snapshot: this.getSnapshot()
     })
   }
-  buildMiddleware() {
+  buildMiddleware () {
     return (app: Application) => {
       app.use(bodyParser.json())
       app.post('/palettes', (req, res) => {
@@ -127,7 +127,7 @@ export class SampleManager {
         } else {
           console.log(`Received browser palette for '${name}'`)
 
-          const sample = this._current!.find(s => s.name === name)
+          const sample = this._current.find(s => s.name === name)
           if (!sample) {
             console.error(`No such sample named '${name}`)
             res.statusCode = 400

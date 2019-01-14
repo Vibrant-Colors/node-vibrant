@@ -12,7 +12,7 @@ const SAMPLE_FOLDER = path.join(__dirname, './images')
 
 const manager = new SampleManager(SAMPLE_FOLDER)
 
-const tsconfigFilePath = path.join(__dirname, 'tsconfig.json');
+const tsconfigFilePath = path.join(__dirname, 'tsconfig.json')
 module.exports = manager.getContext()
   .then(context => {
     return {
