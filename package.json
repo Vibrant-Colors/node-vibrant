@@ -14,9 +14,7 @@
 		"bootstrap:fixtures": "run-p -c bootstrap:fixtures/*",
 		"bootstrap:fixtures/sample": "yarn --cwd=fixtures/sample install",
 		"bootstrap:fixtures/browser": "yarn --cwd=fixtures/browser install",
-		"lint": "run-s -c lint:*",
-		"lint:dev": "standardx \"packages/*/src/**/!(*spec).ts\"",
-		"lint:test": "standardx --env mocha \"packages/*/src/**/*spec.ts\"",
+		"lint": "tslint --project tsconfig.json",
 		"test": "run-p -c test:*",
 		"test:browser": "yarn --cwd=fixtures/browser run test",
 		"test:node": "mocha --require ts-node/register --require tsconfig-paths/register packages/*/__tests__/**/*.spec.ts",
@@ -29,24 +27,17 @@
 		"@types/node": "^10.12.18",
 		"@types/table": "^4.0.5",
 		"chai": "^4.2.0",
-		"eslint-plugin-typescript": "^0.14.0",
 		"fs-extra": "^7.0.1",
 		"lerna": "^3.10.5",
 		"mocha": "^5.2.0",
 		"npm-run-all": "^4.1.5",
 		"rimraf": "^2.6.3",
-		"standardx": "^3.0.1",
 		"table": "^5.2.0",
 		"ts-node": "^7.0.1",
 		"tsconfig-paths": "^3.7.0",
-		"typescript": "3.2.2",
-		"typescript-eslint-parser": "^21.0.2"
-	},
-	"standardx": {
-		"parser": "typescript-eslint-parser",
-		"plugins": [
-			"typescript"
-		]
+		"tslint": "^5.12.1",
+		"tslint-config-standard": "^8.0.1",
+		"typescript": "3.2.2"
 	},
 	"private": true,
 	"name": "node-vibrant-monorepo"

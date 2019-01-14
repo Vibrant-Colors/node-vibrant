@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 const TEST_PORT = 3444
 
 import {

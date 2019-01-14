@@ -3,19 +3,18 @@ import { expect } from 'chai'
 
 import Builder from '@vibrant/core/lib/builder'
 
-import omit = require('lodash/omit')
-
 describe('builder', () => {
   it('modifies Vibrant options', () => {
+    // tslint:disable-next-line:no-empty
     const NOT_A_FILTER = () => { }
     let v = new Builder('NOT_A_PATH')
       .maxColorCount(23)
       .quality(7)
-      .useImageClass(<any>'NOT_AN_IMAGE')
-      .useGenerator(<any>'NOT_A_GENERATOR')
-      .useQuantizer(<any>'NOT_A_QUANTIZER')
+      .useImageClass('NOT_AN_IMAGE' as any)
+      .useGenerator('NOT_A_GENERATOR' as any)
+      .useQuantizer('NOT_A_QUANTIZER' as any)
       .clearFilters()
-      .addFilter(<any>NOT_A_FILTER)
+      .addFilter(NOT_A_FILTER as any)
       .build()
     const expected = {
       colorCount: 23,
@@ -28,7 +27,6 @@ describe('builder', () => {
       ],
       filters: [NOT_A_FILTER]
     }
-
 
     expect(v.opts).to.deep.equal(expected)
   })

@@ -16,7 +16,7 @@ export interface TestSample extends Sample {
 
 export type SamplePathKey = Exclude<keyof TestSample, 'palettes'>
 
-export function loadTestSamples(
+export function loadTestSamples (
   port: number = 80,
   relativeBase: string = 'base/fixtures/sample/images'
 ): TestSample[] {

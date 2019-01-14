@@ -1,6 +1,4 @@
-/* eslint-env mocha, browser */
-/* eslint-disable no-unused-expressions */
-
+/* tslint:disable:no-unused-expression */
 import {
   loadTestSamples
 } from 'fixtures/sample/loader'
@@ -12,7 +10,7 @@ import {
 
 import Vibrant = require('node-vibrant')
 
-const expect: Chai.ExpectStatic = (<any>window).chai.expect
+const expect: Chai.ExpectStatic = (window as any).chai.expect
 
 const SAMPLES = loadTestSamples()
 

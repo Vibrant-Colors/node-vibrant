@@ -4,15 +4,15 @@ import {
   ImageSource,
   ImageCallback,
   ImageBase
-} from "@vibrant/image"
-import * as Url from "url"
+} from '@vibrant/image'
+import * as Url from 'url'
 
-function isRelativeUrl(url: string): boolean {
+function isRelativeUrl (url: string): boolean {
   let u = Url.parse(url)
   return u.protocol === null && u.host === null && u.port === null
 }
 
-function isSameOrigin(a: string, b: string): boolean {
+function isSameOrigin (a: string, b: string): boolean {
   let ua = Url.parse(a)
   let ub = Url.parse(b)
 
@@ -30,13 +30,13 @@ export default class BrowserImage extends ImageBase {
   private _context: CanvasRenderingContext2D
   private _width: number
   private _height: number
-  private _initCanvas(): void {
+  private _initCanvas (): void {
     let img = this.image
-    let canvas = (this._canvas = document.createElement("canvas"))
-    let context = (this._context = canvas.getContext("2d"))
+    let canvas = (this._canvas = document.createElement('canvas'))
+    let context = (this._context = canvas.getContext('2d'))
 
-    canvas.className = "@vibrant/canvas"
-    canvas.style.display = "none"
+    canvas.className = '@vibrant/canvas'
+    canvas.style.display = 'none'
 
     this._width = canvas.width = img.width
     this._height = canvas.height = img.height
@@ -45,15 +45,15 @@ export default class BrowserImage extends ImageBase {
 
     document.body.appendChild(canvas)
   }
-  load(image: ImageSource): Promise<ImageBase> {
+  load (image: ImageSource): Promise<ImageBase> {
     let img: HTMLImageElement = null
     let src: string = null
-    if (typeof image === "string") {
-      img = document.createElement("img")
+    if (typeof image === 'string') {
+      img = document.createElement('img')
       src = image
 
       if (!isRelativeUrl(src) && !isSameOrigin(window.location.href, src)) {
-        img.crossOrigin = "anonymous"
+        img.crossOrigin = 'anonymous'
       }
 
       img.src = src
@@ -82,19 +82,19 @@ export default class BrowserImage extends ImageBase {
       }
     })
   }
-  clear(): void {
+  clear (): void {
     this._context.clearRect(0, 0, this._width, this._height)
   }
-  update(imageData: VibrantImageData): void {
-    this._context.putImageData(<ImageData>imageData, 0, 0)
+  update (imageData: VibrantImageData): void {
+    this._context.putImageData(imageData as ImageData, 0, 0)
   }
-  getWidth(): number {
+  getWidth (): number {
     return this._width
   }
-  getHeight(): number {
+  getHeight (): number {
     return this._height
   }
-  resize(targetWidth: number, targetHeight: number, ratio: number): void {
+  resize (targetWidth: number, targetHeight: number, ratio: number): void {
     let { _canvas: canvas, _context: context, image: img } = this
 
     this._width = canvas.width = targetWidth
@@ -103,13 +103,13 @@ export default class BrowserImage extends ImageBase {
     context.scale(ratio, ratio)
     context.drawImage(img, 0, 0)
   }
-  getPixelCount(): number {
+  getPixelCount (): number {
     return this._width * this._height
   }
-  getImageData(): ImageData {
+  getImageData (): ImageData {
     return this._context.getImageData(0, 0, this._width, this._height)
   }
-  remove(): void {
+  remove (): void {
     if (this._canvas && this._canvas.parentNode) {
       this._canvas.parentNode.removeChild(this._canvas)
     }

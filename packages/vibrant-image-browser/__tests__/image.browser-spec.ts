@@ -1,12 +1,9 @@
-/* eslint-env mocha, browser */
-/* eslint-disable no-unused-expressions */
-
 import {
   loadTestSamples
 } from 'fixtures/sample/loader'
 
-const expect: Chai.ExpectStatic = (<any>window).chai.expect
-const Vibrant: any = (<any>window).Vibrant
+const expect: Chai.ExpectStatic = (window as any).chai.expect
+const Vibrant: any = (window as any).Vibrant
 
 const SAMPLES = loadTestSamples()
 
@@ -21,7 +18,7 @@ describe('Browser Image', () => {
   it('should set crossOrigin flag for images form foreign origin', () =>
     new BrowserImage().load(CROS_URL)
       .then((m) => {
-        expect((<any>m).image.crossOrigin, `${CROS_URL} should have crossOrigin === 'anonymous'`)
+        expect((m as any).image.crossOrigin, `${CROS_URL} should have crossOrigin === 'anonymous'`)
           .to.equal('anonymous')
         expect(m.getImageData()).to.be.an.instanceOf(ImageData)
       })
@@ -30,7 +27,7 @@ describe('Browser Image', () => {
   it('should not set crossOrigin flag for images from same origin (relative URL)', () =>
     new BrowserImage().load(RELATIVE_URL)
       .then((m) => {
-        expect((<any>m).image.crossOrigin, `${RELATIVE_URL} should not have crossOrigin set`)
+        expect((m as any).image.crossOrigin, `${RELATIVE_URL} should not have crossOrigin set`)
           .not.to.equal('anonymous')
       })
   )
@@ -38,7 +35,7 @@ describe('Browser Image', () => {
   it('should not set crossOrigin flag for images from same origin (absolute URL)', () =>
     new BrowserImage().load(SAME_ORIGIN_URL)
       .then((m) => {
-        expect((<any>m).image.crossOrigin, `${SAME_ORIGIN_URL} should not have crossOrigin set`)
+        expect((m as any).image.crossOrigin, `${SAME_ORIGIN_URL} should not have crossOrigin set`)
           .not.to.equal('anonymous')
       })
   )
@@ -57,6 +54,7 @@ describe('Browser Image', () => {
 
     img.onload = () => {
       let m1 = new BrowserImage()
+      // tslint:disable-next-line:no-floating-promises
       m1.load(img)
         .then(img => done())
     }

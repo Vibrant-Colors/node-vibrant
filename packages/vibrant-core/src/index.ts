@@ -1,22 +1,22 @@
-import { Options, buildProcessOptions } from "./options"
-import { Callback } from "@vibrant/types"
-import { Image, ImageSource } from "@vibrant/image"
+import { Options, buildProcessOptions } from './options'
+import { Callback } from '@vibrant/types'
+import { Image, ImageSource } from '@vibrant/image'
 
-import { Filter, Palette, Swatch } from "@vibrant/color"
+import { Filter, Palette, Swatch } from '@vibrant/color'
 
-import defaults = require("lodash/defaults")
+import defaults = require('lodash/defaults')
 
-import Builder from "./builder"
-import { Pipeline, ProcessOptions, ProcessResult } from "./pipeline"
+import Builder from './builder'
+import { Pipeline, ProcessOptions, ProcessResult } from './pipeline'
 
 export interface VibrantStatic {
-  from(src: ImageSource): Builder
+  from (src: ImageSource): Builder
 }
 
 export default class Vibrant {
   private _result: ProcessResult
   private static _pipeline: Pipeline
-  static use(pipeline: Pipeline) {
+  static use (pipeline: Pipeline) {
     this._pipeline = pipeline
   }
   static DefaultOpts: Partial<Options> = {
@@ -26,19 +26,19 @@ export default class Vibrant {
     filters: []
   }
 
-  static from(src: ImageSource): Builder {
+  static from (src: ImageSource): Builder {
     return new Builder(src)
   }
 
-  get result() {
+  get result () {
     return this._result
   }
 
   opts: Options
-  constructor(private _src: ImageSource, opts?: Partial<Options>) {
-    this.opts = <Options>defaults({}, opts, Vibrant.DefaultOpts)
+  constructor (private _src: ImageSource, opts?: Partial<Options>) {
+    this.opts = defaults({}, opts, Vibrant.DefaultOpts) as Options
   }
-  private _process(
+  private _process (
     image: Image,
     opts?: Partial<ProcessOptions>
   ): Promise<ProcessResult> {
@@ -50,22 +50,22 @@ export default class Vibrant {
 
     return Vibrant._pipeline.process(image.getImageData(), processOpts)
   }
-  palette(): Palette {
+  palette (): Palette {
     return this.swatches()
   }
-  swatches(): Palette {
+  swatches (): Palette {
     throw new Error(
-      "Method deprecated. Use `Vibrant.result.palettes[name]` instead"
+      'Method deprecated. Use `Vibrant.result.palettes[name]` instead'
     )
   }
 
-  getPalette(name: string, cb?: Callback<Palette>): Promise<Palette>
-  getPalette(cb?: Callback<Palette>): Promise<Palette>
-  getPalette(): Promise<Palette> {
-    const arg0 = arguments[0],
-      arg1 = arguments[1]
-    const name = typeof arg0 === "string" ? arg0 : "default"
-    const cb = typeof arg0 === "string" ? arg1 : arg0
+  getPalette (name: string, cb?: Callback<Palette>): Promise<Palette>
+  getPalette (cb?: Callback<Palette>): Promise<Palette>
+  getPalette (): Promise<Palette> {
+    const arg0 = arguments[0]
+    const arg1 = arguments[1]
+    const name = typeof arg0 === 'string' ? arg0 : 'default'
+    const cb = typeof arg0 === 'string' ? arg1 : arg0
     let image = new this.opts.ImageClass()
     return image
       .load(this._src)
@@ -89,15 +89,15 @@ export default class Vibrant {
         return Promise.reject(err)
       })
   }
-  getPalettes(
+  getPalettes (
     names: string[],
     cb?: Callback<Palette>
   ): Promise<{ [name: string]: Palette }>
-  getPalettes(cb?: Callback<Palette>): Promise<{ [name: string]: Palette }>
-  getPalettes(): Promise<{ [name: string]: Palette }> {
-    const arg0 = arguments[0],
-      arg1 = arguments[1]
-    const names = Array.isArray(arg0) ? arg0 : ["*"]
+  getPalettes (cb?: Callback<Palette>): Promise<{ [name: string]: Palette }>
+  getPalettes (): Promise<{ [name: string]: Palette }> {
+    const arg0 = arguments[0]
+    const arg1 = arguments[1]
+    const names = Array.isArray(arg0) ? arg0 : ['*']
     const cb = Array.isArray(arg0) ? arg1 : arg0
     let image = new this.opts.ImageClass()
     return image

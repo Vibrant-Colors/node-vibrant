@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+/* tslint:disable:no-unused-expression */
 import { expect } from 'chai'
 import { VibrantStatic } from '@vibrant/core'
 import Builder from '@vibrant/core/lib/builder'
@@ -12,11 +12,9 @@ import {
 
 import { table, getBorderCharacters } from 'table'
 
-
 const TABLE_OPTS = {
   border: getBorderCharacters('void')
 }
-
 
 const displayColorDiffTable = (diff: string[][]) => {
   console.log(table(diff, TABLE_OPTS))
@@ -70,7 +68,7 @@ const assertPalette = (reference: Palette, palette: Palette) => {
     .to.equal(0)
 }
 
-const paletteCallback = (references: any, sample: TestSample, done: MochaDone) =>
+const paletteCallback = (references: any, sample: TestSample, done: Mocha.Done) =>
   (err: Error, palette?: Palette) => {
     setTimeout(() => {
 
@@ -82,16 +80,16 @@ const paletteCallback = (references: any, sample: TestSample, done: MochaDone) =
   }
 
 export const testVibrant = (Vibrant: VibrantStatic, sample: TestSample, pathKey: SamplePathKey, env: 'node' | 'browser', builderCallback: (b: Builder) => Builder = null) => {
-  return (done: MochaDone) => {
+  return (done: Mocha.Done) => {
     let builder = Vibrant.from(sample[pathKey])
       .quality(1)
 
     if (typeof builderCallback === 'function') builder = builderCallback(builder)
 
+    // tslint:disable-next-line:no-floating-promises
     builder.getPalette(paletteCallback(sample.palettes[env], sample, done))
   }
 }
-
 
 export const testVibrantAsPromised = (Vibrant: VibrantStatic, sample: TestSample, pathKey: SamplePathKey, env: 'node' | 'browser', builderCallback: (b: Builder) => Builder = null) => {
   return () => {
