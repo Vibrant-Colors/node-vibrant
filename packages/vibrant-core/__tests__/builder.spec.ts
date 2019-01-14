@@ -22,7 +22,10 @@ describe('builder', () => {
       quality: 7,
       ImageClass: 'NOT_AN_IMAGE',
       quantizer: 'NOT_A_QUANTIZER',
-      generator: 'NOT_A_GENERATOR',
+      generators: [
+        'default',
+        'NOT_A_GENERATOR'
+      ],
       filters: [NOT_A_FILTER]
     }
 
