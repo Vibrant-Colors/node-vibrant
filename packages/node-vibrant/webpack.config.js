@@ -29,7 +29,7 @@ module.exports = {
       {
         test: /\.worker.ts$/,
         loader: 'worker-loader',
-        options: { publicPath: '/dist/' }
+        options: { inline: true }
       },
       {
         test: /\.tsx?$/,

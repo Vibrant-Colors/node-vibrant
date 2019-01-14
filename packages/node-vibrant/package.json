@@ -37,17 +37,8 @@
     "worker-loader": "^2.0.0"
   },
   "scripts": {
-    "clean": "npm run clean:browser && npm run clean:node",
     "clean:browser": "rimraf dist",
-    "clean:node": "rimraf lib",
-    "build": "npm run build:browser && npm run build:node",
-    "build:browser": "webpack --config webpack.config.js",
-    "build:node": "tsc",
-    "pretest": "npm run clean && npm run build",
-    "test": "npm run test:node && npm run test:browser",
-    "test:node": "mocha lib/test/**/*.spec.js",
-    "test:browser": "karma start karma.conf.js",
-    "prepublishOnly": "npm run clean && npm run build"
+    "build:browser": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",

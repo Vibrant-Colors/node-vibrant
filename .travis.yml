@@ -16,8 +16,13 @@ before_script:
   - sleep 3 # give xvfb some time to start
 jobs:
   include:
-    - stage: build
+    - stage: "Builds"
       script: yarn run build:tsc
-    - stage: test
+      name: "Node.js Build"
+    - script: yarn run build:browser
+      name: "Browser Build"
+    - stage: "Tests"
       script: yarn run test:node
+      name: "Node.js Tests"
     - script: yarn run test:browser
+      name: "Browser Tests"
