@@ -5,7 +5,7 @@
 		"move:tsc": "lerna exec -- node ../../scripts/tsc/move.js",
 		"compile:tsc": "tsc",
 		"build:tsc": "npm-run-all clean:tsc compile:tsc move:tsc clean:tsc-tmp",
-		"bootstrap": "run-s --npm-path=yarn bootstrap:lerna bootstrap:fixtures",
+		"bootstrap": "run-s bootstrap:lerna bootstrap:fixtures",
 		"bootstrap:lerna": "lerna bootstrap",
 		"bootstrap:fixtures": "run-p -c bootstrap:fixtures/*",
 		"bootstrap:fixtures/sample": "yarn --cwd=fixtures/sample install",

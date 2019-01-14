@@ -8,7 +8,6 @@ module.exports = function (config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '../../',
 
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['detectBrowsers', 'mocha', 'chai'],
@@ -27,11 +26,12 @@ module.exports = function (config) {
 
     detectBrowsers: {
       usePhantomJS: false,
+      preferHeadless: true,
       postDetection: function (browserList) {
         let results = [];
 
-        if (browserList.indexOf('Chrome') > -1) {
-          results.push('Chrome');
+        if (browserList.indexOf('ChromeHeadless') > -1) {
+          results.push('ChromeHeadless');
         }
 
         if (browserList.indexOf('Firefox') > -1) {
@@ -77,11 +77,8 @@ module.exports = function (config) {
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_DEBUG,
 
-
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: false,
-
-
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
