@@ -1,8 +1,10 @@
 /* eslint-env mocha */
+const TEST_PORT = 3444
+
 import {
-  TEST_PORT,
-  SAMPLES
-} from './common/data'
+  loadTestSamples
+} from 'fixtures/sample/loader'
+
 import {
   testVibrant,
   testVibrantAsPromised
@@ -15,6 +17,8 @@ import {
 import http = require('http')
 
 import Vibrant = require('node-vibrant')
+
+const SAMPLES = loadTestSamples(TEST_PORT)
 
 describe('Palette Extraction', () => {
   describe('process samples', () =>

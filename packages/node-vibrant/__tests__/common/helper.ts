@@ -8,7 +8,7 @@ import util = require('@vibrant/color/lib/converter')
 import _ = require('lodash')
 import {
   TestSample, SamplePathKey
-} from './data'
+} from 'fixtures/sample/loader'
 
 import { table, getBorderCharacters } from 'table'
 
