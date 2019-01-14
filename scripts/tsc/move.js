@@ -87,4 +87,4 @@ var moveDir = function (from_dir, to_dir) {
 }
 
 // Move compiled files to lib folder
-moveDir(join(cwd, '../../.build/', pkgJSON.name.replace(/^@vibrant\//, 'vibrant-'), 'src'), join(cwd, 'lib'))
+moveDir(join(cwd, '../../.build/packages', pkgJSON.name.replace(/^@vibrant\//, 'vibrant-'), 'src'), join(cwd, 'lib'))

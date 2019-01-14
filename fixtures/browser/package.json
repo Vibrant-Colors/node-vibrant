@@ -5,7 +5,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pretest": "npm install",
     "test": "karma start karma.conf.js"
   },
   "author": {
