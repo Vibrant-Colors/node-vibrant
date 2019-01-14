@@ -10,7 +10,7 @@ import {
 
 import {
   createSampleServer
-} from './common/server'
+} from 'fixtures/sample/server'
 
 import http = require('http')
 
