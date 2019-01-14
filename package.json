@@ -6,7 +6,7 @@
 		"move:tsc": "lerna exec -- node ../../scripts/tsc/move.js",
 		"compile:tsc": "tsc",
 		"compile:browser": "lerna run build:browser",
-		"build": "run-s -c build:*",
+		"build": "run-p -c build:*",
 		"build:tsc": "npm-run-all clean:tsc compile:tsc move:tsc clean:tsc-tmp",
 		"build:browser": "npm-run-all clean:browser compile:browser",
 		"bootstrap": "run-s bootstrap:lerna bootstrap:fixtures",

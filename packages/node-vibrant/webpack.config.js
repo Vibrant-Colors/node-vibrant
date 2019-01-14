@@ -4,6 +4,9 @@ const webpack = require("webpack")
 const entry = './src/bundle.ts'
 const entryWithWorker = './src/bundle-worker.ts'
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const tsconfigFilePath = path.join(__dirname, 'tsconfig.browser.json');
+
 module.exports = {
   entry: {
     'vibrant': entry,
@@ -13,7 +16,12 @@ module.exports = {
   },
   devtool: "source-map",
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: tsconfigFilePath
+      })
+    ]
   },
   mode: "production",
   optimization: {
@@ -36,7 +44,7 @@ module.exports = {
         loader: 'ts-loader',
         options: {
           onlyCompileBundledFiles: true,
-          configFile: 'tsconfig.browser.json'
+          configFile: tsconfigFilePath
         }
       }
     ]

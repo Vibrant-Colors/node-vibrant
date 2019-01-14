@@ -1,3 +1,6 @@
+// This webpack config requires this to run:
+require('tsconfig-paths/register')
+
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -9,6 +12,7 @@ const SAMPLE_FOLDER = path.join(__dirname, './images')
 
 const manager = new SampleManager(SAMPLE_FOLDER)
 
+const tsconfigFilePath = path.join(__dirname, 'tsconfig.json');
 module.exports = manager.getContext()
   .then(context => {
     return {
@@ -25,11 +29,10 @@ module.exports = manager.getContext()
           },
           {
             test: /\.tsx?$/,
-            use: [
-              {
-                loader: 'ts-loader',
-              }
-            ]
+            loader: 'ts-loader',
+            options: {
+              configFile: tsconfigFilePath
+            }
           }
         ]
       },
@@ -42,7 +45,7 @@ module.exports = manager.getContext()
         ],
         plugins: [
           new TsconfigPathsPlugin({
-            configFile: path.join(__dirname, 'tsconfig.json')
+            configFile: tsconfigFilePath
           })
         ]
       },
