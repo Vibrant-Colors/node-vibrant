@@ -8,6 +8,8 @@
 		"lint": "run-s -c lint:*",
 		"lint:dev": "standardx \"packages/*/src/**/!(*spec).ts\"",
 		"lint:test": "standardx --env mocha \"packages/*/src/**/*spec.ts\"",
+		"test": "run-p -c test:*",
+		"test:browser": "npm run --prefix fixtures/browser test",
 		"test:node": "mocha --require ts-node/register --require tsconfig-paths/register packages/*/__tests__/**/*.spec.ts",
 		"sample:inspect": "npm run --prefix fixtures/sample start",
 		"sample:update": "npm run --prefix fixtures/sample update"
