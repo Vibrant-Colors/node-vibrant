@@ -17,7 +17,9 @@ before_script:
 jobs:
   include:
     - stage: "Builds"
-      script: yarn run build:tsc
+      script: yarn run lint 
+      name: "Lint"
+    - script: yarn run build:tsc
       name: "Node.js Build"
     - script: yarn run build:browser
       name: "Browser Build"
