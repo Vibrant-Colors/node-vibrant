@@ -5,16 +5,17 @@ import {
   ImageCallback,
   ImageBase
 } from '@vibrant/image'
-import * as Url from 'url'
 
 function isRelativeUrl (url: string): boolean {
-  let u = Url.parse(url)
-  return !u.protocol && !u.host && !u.port
+  let u = new URL(url, location.href)
+  return u.protocol === location.protocol &&
+    u.host === location.host &&
+    u.port === location.port
 }
 
 function isSameOrigin (a: string, b: string): boolean {
-  let ua = Url.parse(a)
-  let ub = Url.parse(b)
+  let ua = new URL(a)
+  let ub = new URL(b)
 
   // https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
   return (
