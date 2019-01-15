@@ -1,5 +1,4 @@
 import path = require('path')
-import _ = require('lodash')
 import { Sample } from './types'
 
 export interface TestSample extends Sample {
@@ -21,7 +20,7 @@ export function loadTestSamples (
   relativeBase: string = 'base/fixtures/sample/images'
 ): TestSample[] {
   const urlBase = 'http://localhost' + (port === 80 ? '' : `:${port}`)
-  return _.map(SNAPSHOT, (s) => _.assign(s, {
+  return SNAPSHOT.map((s) => Object.assign(s, {
     filePath: path.join(__dirname, 'images', s.name),
     url: `${urlBase}/${s.name}`,
     relativeUrl: `${relativeBase}/${s.name}`
