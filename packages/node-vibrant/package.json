@@ -34,12 +34,14 @@
     "typescript": "^3.2.2",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.28.2",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
     "worker-loader": "^2.0.0"
   },
   "scripts": {
     "clean:browser": "rimraf dist",
-    "build:browser": "webpack --config webpack.config.js"
+    "build:browser": "webpack --config webpack.config.js",
+    "build:analyze": "webpack --config webpack.config.js --env.analyze"
   },
   "repository": {
     "type": "git",
