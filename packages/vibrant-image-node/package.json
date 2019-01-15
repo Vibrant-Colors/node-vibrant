@@ -7,8 +7,15 @@
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "akfish",
+    "email": "akfish@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/akfish/node-vibrant/issues"
+  },
+  "homepage": "https://github.com/akfish/node-vibrant",
+  "license": "MIT",
   "dependencies": {
     "@vibrant/image": "^3.0.0",
     "jimp": "^0.6.0"

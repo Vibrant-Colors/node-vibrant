@@ -7,8 +7,15 @@
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "akfish",
+    "email": "akfish@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/akfish/node-vibrant/issues"
+  },
+  "homepage": "https://github.com/akfish/node-vibrant",
+  "license": "MIT",
   "devDependencies": {
     "typescript": "^3.2.2"
   },
