@@ -93,9 +93,9 @@ function _findColorVariation (palette: Palette, swatches: Array<Swatch>, maxPopu
   targetSaturation: number,
   minSaturation: number,
   maxSaturation: number,
-  opts: DefaultGeneratorOptions): Swatch {
+  opts: DefaultGeneratorOptions): Swatch | null {
 
-  let max: Swatch = null
+  let max: Swatch | null = null
   let maxValue = 0
 
   swatches.forEach((swatch) => {
@@ -119,7 +119,14 @@ function _findColorVariation (palette: Palette, swatches: Array<Swatch>, maxPopu
 }
 
 function _generateVariationColors (swatches: Array<Swatch>, maxPopulation: number, opts: DefaultGeneratorOptions): Palette {
-  let palette: Palette = {}
+  let palette: Palette = {
+    Vibrant: null,
+    DarkVibrant: null,
+    LightVibrant: null,
+    Muted: null,
+    DarkMuted: null,
+    LightMuted: null
+  }
   // mVibrantSwatch = findColor(TARGET_NORMAL_LUMA, MIN_NORMAL_LUMA, MAX_NORMAL_LUMA,
   //     TARGET_VIBRANT_SATURATION, MIN_VIBRANT_SATURATION, 1f)
   palette.Vibrant = _findColorVariation(palette, swatches, maxPopulation,
@@ -190,48 +197,48 @@ function _generateVariationColors (swatches: Array<Swatch>, maxPopulation: numbe
 }
 
 function _generateEmptySwatches (palette: Palette, maxPopulation: number, opts: DefaultGeneratorOptions): void {
-  if (palette.Vibrant === null && palette.DarkVibrant === null && palette.LightVibrant === null) {
-    if (palette.DarkVibrant === null && palette.DarkMuted !== null) {
+  if (!palette.Vibrant && !palette.DarkVibrant && !palette.LightVibrant) {
+    if (!palette.DarkVibrant && palette.DarkMuted) {
       let [h, s, l] = palette.DarkMuted.getHsl()
       l = opts.targetDarkLuma
       palette.DarkVibrant = new Swatch(hslToRgb(h, s, l), 0)
     }
-    if (palette.LightVibrant === null && palette.LightMuted !== null) {
+    if (!palette.LightVibrant && palette.LightMuted) {
       let [h, s, l] = palette.LightMuted.getHsl()
       l = opts.targetDarkLuma
       palette.DarkVibrant = new Swatch(hslToRgb(h, s, l), 0)
     }
   }
-  if (palette.Vibrant === null && palette.DarkVibrant !== null) {
+  if (!palette.Vibrant && palette.DarkVibrant) {
     let [h, s, l] = palette.DarkVibrant.getHsl()
     l = opts.targetNormalLuma
     palette.Vibrant = new Swatch(hslToRgb(h, s, l), 0)
-  } else if (palette.Vibrant === null && palette.LightVibrant !== null) {
+  } else if (!palette.Vibrant && palette.LightVibrant) {
     let [h, s, l] = palette.LightVibrant.getHsl()
     l = opts.targetNormalLuma
     palette.Vibrant = new Swatch(hslToRgb(h, s, l), 0)
   }
-  if (palette.DarkVibrant === null && palette.Vibrant !== null) {
+  if (!palette.DarkVibrant && palette.Vibrant) {
     let [h, s, l] = palette.Vibrant.getHsl()
     l = opts.targetDarkLuma
     palette.DarkVibrant = new Swatch(hslToRgb(h, s, l), 0)
   }
-  if (palette.LightVibrant === null && palette.Vibrant !== null) {
+  if (!palette.LightVibrant && palette.Vibrant) {
     let [h, s, l] = palette.Vibrant.getHsl()
     l = opts.targetLightLuma
     palette.LightVibrant = new Swatch(hslToRgb(h, s, l), 0)
   }
-  if (palette.Muted === null && palette.Vibrant !== null) {
+  if (!palette.Muted && palette.Vibrant) {
     let [h, s, l] = palette.Vibrant.getHsl()
     l = opts.targetMutesSaturation
     palette.Muted = new Swatch(hslToRgb(h, s, l), 0)
   }
-  if (palette.DarkMuted === null && palette.DarkVibrant !== null) {
+  if (!palette.DarkMuted && palette.DarkVibrant) {
     let [h, s, l] = palette.DarkVibrant.getHsl()
     l = opts.targetMutesSaturation
     palette.DarkMuted = new Swatch(hslToRgb(h, s, l), 0)
   }
-  if (palette.LightMuted === null && palette.LightVibrant !== null) {
+  if (!palette.LightMuted && palette.LightVibrant) {
     let [h, s, l] = palette.LightVibrant.getHsl()
     l = opts.targetMutesSaturation
     palette.LightMuted = new Swatch(hslToRgb(h, s, l), 0)

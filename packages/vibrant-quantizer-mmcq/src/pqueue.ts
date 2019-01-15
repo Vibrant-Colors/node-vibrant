@@ -30,7 +30,7 @@ export default class PQueue<T> {
     return this.contents[index]
   }
 
-  pop (): T {
+  pop () {
     this._sort()
     return this.contents.pop()
   }

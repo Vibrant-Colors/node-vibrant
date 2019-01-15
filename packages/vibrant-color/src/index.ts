@@ -7,13 +7,13 @@ export interface Filter {
 export type Vec3 = [number, number, number]
 
 export interface Palette {
-  Vibrant?: Swatch
-  Muted?: Swatch
-  DarkVibrant?: Swatch
-  DarkMuted?: Swatch
-  LightVibrant?: Swatch
-  LightMuted?: Swatch
-  [name: string]: Swatch | undefined
+  Vibrant: Swatch | null
+  Muted: Swatch | null
+  DarkVibrant: Swatch | null
+  DarkMuted: Swatch | null
+  LightVibrant: Swatch | null
+  LightMuted: Swatch | null
+  [name: string]: Swatch | null
 }
 
 export class Swatch {

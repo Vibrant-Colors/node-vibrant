@@ -59,7 +59,7 @@ const MMCQ = (pixels: Pixels, opts: QuantizerOptions): Array<Swatch> => {
 function generateSwatches (pq: PQueue<VBox>) {
   let swatches: Swatch[] = []
   while (pq.size()) {
-    let v = pq.pop()
+    let v = pq.pop()!
     let color = v.avg()
     let [r, g, b] = color
     swatches.push(new Swatch(color, v.count()))

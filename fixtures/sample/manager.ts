@@ -4,6 +4,7 @@ import Bluebird = require('bluebird')
 import { Application } from 'express'
 import { readdir, readFile, writeFile } from 'fs'
 import bodyParser = require('body-parser')
+import { defer, Defer } from '@vibrant/types'
 
 const readdirAsync = Bluebird.promisify(readdir)
 const readFileAsync = Bluebird.promisify<string, string, string>(readFile)
@@ -18,37 +19,32 @@ async function listSampleFiles (folder: string) {
 }
 
 class Cooldown<T> {
-  private _promise: Promise<T> | null
   _timer: any
-  _resolve: (value?: {} | PromiseLike<{}>) => void
-  _reject: (reason?: any) => void
+  _promise: Promise<T> | null = null
+  _barrier: Defer<void> | null = null
   constructor (public readonly delay: number, public readonly task: () => T | PromiseLike<T>) {
   }
   done () {
     // Lazy initialize
-    if (!this._promise) this.reset()
+    if (!this._barrier) this.reset()
     // Reset timer
     clearTimeout(this._timer)
     this._timer = setTimeout(() => {
+      this._barrier!.resolve()
+      this._barrier = null
       this._promise = null
-      this._resolve()
-      this._resolve = null
-      this._reject = null
     }, this.delay)
 
-    return this._promise
+    return this._promise!
   }
   reset () {
-    if (this._promise) {
-      this._reject('User cancelled')
+    if (this._barrier) {
+      this._barrier.reject('User cancelled')
+      this._barrier = null
       this._promise = null
-      this._resolve = null
-      this._reject = null
     }
-    this._promise = new Promise((resolve, reject) => {
-      this._resolve = resolve
-      this._reject = reject
-    }).then(() => Promise.resolve(this.task()))
+    this._barrier = defer<void>()
+    this._promise = this._barrier.promise.then(() => Promise.resolve(this.task()))
   }
 }
 
@@ -79,7 +75,7 @@ export class SampleManager {
         const file = path.join(this.sampleFolder, 'palettes.json')
         this._snapshot = JSON.parse(await readFileAsync(file, 'utf8'))
         // Fill absolute file path
-        this._snapshot.forEach(s => s.filePath = path.join(__dirname, 'images', s.name))
+        this._snapshot!.forEach(s => s.filePath = path.join(__dirname, 'images', s.name))
       } catch (e) {
         console.warn(`Failed to load snapshot: ${e}`)
       }
@@ -127,7 +123,7 @@ export class SampleManager {
         } else {
           console.log(`Received browser palette for '${name}'`)
 
-          const sample = this._current.find(s => s.name === name)
+          const sample = this._current!.find(s => s.name === name)
           if (!sample) {
             console.error(`No such sample named '${name}`)
             res.statusCode = 400

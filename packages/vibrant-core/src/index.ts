@@ -22,7 +22,6 @@ export default class Vibrant {
   static DefaultOpts: Partial<Options> = {
     colorCount: 64,
     quality: 5,
-    ImageClass: null,
     filters: []
   }
 

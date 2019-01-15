@@ -1,6 +1,6 @@
 import { Pipeline, ProcessOptions, ProcessResult } from '../index'
 import WorkerManager, { TaskWorkerClass } from '@vibrant/worker'
-import { Swatch } from '@vibrant/color'
+import { Swatch, Palette } from '@vibrant/color'
 import mapValues = require('lodash/mapValues')
 
 /**
@@ -13,15 +13,10 @@ export class WorkerPipeline implements Pipeline {
   }
   private _rehydrate (result: ProcessResult) {
     let { colors, palettes } = result
-    result.colors = colors.map((s) => clone(s))
+    result.colors = colors.map((s) => Swatch.clone(s))
 
-    result.palettes = mapValues(palettes, (p) => mapValues(p, (c) => clone(c)))
+    result.palettes = mapValues(palettes, (p) => mapValues(p, (c) => c ? Swatch.clone(c) : null) as Palette)
     return result
-    function clone (swatch: Swatch) {
-      return swatch
-        ? Swatch.clone(swatch)
-        : null
-    }
   }
   process (imageData: ImageData, opts: ProcessOptions): Promise<ProcessResult> {
     return this._manager.invokeWorker('pipeline', [imageData, opts], [imageData.data.buffer])

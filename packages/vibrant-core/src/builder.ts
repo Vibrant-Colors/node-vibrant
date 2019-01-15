@@ -36,13 +36,19 @@ export default class Builder {
   }
 
   addFilter (name: string): Builder {
-    this._opts.filters.push(name)
+    if (!this._opts.filters) {
+      this._opts.filters = [name]
+    } else {
+      this._opts.filters.push(name)
+    }
     return this
   }
 
   removeFilter (name: string): Builder {
-    let i = this._opts.filters.indexOf(name)
-    if (i > 0) this._opts.filters.splice(i)
+    if (this._opts.filters) {
+      let i = this._opts.filters.indexOf(name)
+      if (i > 0) this._opts.filters.splice(i)
+    }
     return this
   }
 

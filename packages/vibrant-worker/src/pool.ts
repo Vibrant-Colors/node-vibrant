@@ -1,7 +1,7 @@
 import omit = require('lodash/omit')
 import find = require('lodash/find')
 import {
-  DeferredPromise,
+  Defer,
   defer
 } from '@vibrant/types'
 import { TaskWorker, TaskWorkerClass } from './'
@@ -13,7 +13,7 @@ import {
 } from './common'
 
 interface Task<R> extends WorkerRequest {
-  deferred: DeferredPromise<R>
+  deferred: Defer<R>
 }
 
 // const WorkerClass: TaskWorkerClass = require('worker-loader?inline=true!./worker')
@@ -30,8 +30,8 @@ export default class WorkerPool {
 
   }
 
-  private _findIdleWorker (): TaskWorker {
-    let worker: TaskWorker
+  private _findIdleWorker (): TaskWorker | null {
+    let worker: TaskWorker | null
     // if no idle worker && worker count < max count, make new one
     if (this._workers.length === 0 || this._workers.length < MAX_WORKER_COUNT) {
       worker = new this.WorkerClass()
@@ -40,13 +40,13 @@ export default class WorkerPool {
       this._workers.push(worker)
       worker.onmessage = this._onMessage.bind(this, worker.id)
     } else {
-      worker = find(this._workers, 'idle')
+      worker = find(this._workers, 'idle') || null
     }
 
     return worker
   }
 
-  private _enqueue<R> (payload: any[], transferList: any[]): Promise<R> {
+  private _enqueue<R> (payload: any[], transferList?: any[]): Promise<R> {
     let d = defer<R>()
 
     // make task item
@@ -76,7 +76,7 @@ export default class WorkerPool {
     if (!worker) return
 
     // Dequeue task
-    let task = this._queue.shift()
+    let task = this._queue.shift()!
     this._executing[task.id] = task
 
     // Send payload
@@ -92,7 +92,7 @@ export default class WorkerPool {
     let { id } = data
     // Task is looked up by id
     let task = this._executing[id]
-    this._executing[id] = undefined
+    delete this._executing[id]
 
     // Resolve or reject deferred promise
     switch (data.type) {
@@ -108,7 +108,7 @@ export default class WorkerPool {
     // Try dequeue next task
     this._tryDequeue()
   }
-  invoke<R> (args: any[], transferList: any[]): Promise<R> {
+  invoke<R> (args: any[], transferList?: any[]): Promise<R> {
     return this._enqueue(args, transferList)
   }
 }

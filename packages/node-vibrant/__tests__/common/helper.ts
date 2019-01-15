@@ -24,7 +24,7 @@ const assertPalette = (reference: Palette, palette: Palette) => {
   expect(palette, 'palette should be returned').not.to.be.null
 
   let failCount = 0
-  const compare = (name: string, expected: Swatch, actual: Swatch) => {
+  const compare = (name: string, expected: Swatch | null, actual: Swatch | null) => {
     let result = {
       status: 'N/A',
       diff: -1
@@ -36,7 +36,7 @@ const assertPalette = (reference: Palette, palette: Palette) => {
       }
     } else {
       expect(actual, `${name} color was expected`).not.to.be.null
-      let diff = util.rgbDiff(actual.rgb, expected.rgb)
+      let diff = util.rgbDiff(actual!.rgb, expected.rgb)
       result.diff = diff
       result.status = util.getColorDiffStatus(diff)
       if (diff > util.DELTAE94_DIFF_STATUS.SIMILAR) { failCount++ }
@@ -53,8 +53,8 @@ const assertPalette = (reference: Palette, palette: Palette) => {
   for (const name of names) {
     const actual = palette[name]
     const expected = reference[name]
-    actualRow.push(actual ? actual.hex : null)
-    expectedRow.push(expected ? util.rgbToHex(...expected.rgb) : null)
+    actualRow.push(actual ? actual.hex : 'null')
+    expectedRow.push(expected ? util.rgbToHex(...expected.rgb) : 'null')
     const r = compare(name, expected, actual)
     scoreRow.push(`${r.status}(${r.diff.toPrecision(2)})`)
   }
@@ -69,7 +69,7 @@ const assertPalette = (reference: Palette, palette: Palette) => {
 }
 
 const paletteCallback = (references: any, sample: TestSample, done: Mocha.Done) =>
-  (err: Error, palette?: Palette) => {
+  (err: Error, palette: Palette) => {
     setTimeout(() => {
 
       expect(err, `should not throw error '${err}'`).to.be.undefined
@@ -79,7 +79,7 @@ const paletteCallback = (references: any, sample: TestSample, done: Mocha.Done) 
     })
   }
 
-export const testVibrant = (Vibrant: VibrantStatic, sample: TestSample, pathKey: SamplePathKey, env: 'node' | 'browser', builderCallback: (b: Builder) => Builder = null) => {
+export const testVibrant = (Vibrant: VibrantStatic, sample: TestSample, pathKey: SamplePathKey, env: 'node' | 'browser', builderCallback: ((b: Builder) => Builder) | null = null) => {
   return (done: Mocha.Done) => {
     let builder = Vibrant.from(sample[pathKey])
       .quality(1)
@@ -91,7 +91,7 @@ export const testVibrant = (Vibrant: VibrantStatic, sample: TestSample, pathKey:
   }
 }
 
-export const testVibrantAsPromised = (Vibrant: VibrantStatic, sample: TestSample, pathKey: SamplePathKey, env: 'node' | 'browser', builderCallback: (b: Builder) => Builder = null) => {
+export const testVibrantAsPromised = (Vibrant: VibrantStatic, sample: TestSample, pathKey: SamplePathKey, env: 'node' | 'browser', builderCallback: ((b: Builder) => Builder) | null = null) => {
   return () => {
     let builder = Vibrant.from(sample[pathKey])
       .quality(1)

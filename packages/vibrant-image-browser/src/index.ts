@@ -9,7 +9,7 @@ import * as Url from 'url'
 
 function isRelativeUrl (url: string): boolean {
   let u = Url.parse(url)
-  return u.protocol === null && u.host === null && u.port === null
+  return !u.protocol && !u.host && !u.port
 }
 
 function isSameOrigin (a: string, b: string): boolean {
@@ -31,9 +31,13 @@ export default class BrowserImage extends ImageBase {
   private _width: number
   private _height: number
   private _initCanvas (): void {
-    let img = this.image
-    let canvas = (this._canvas = document.createElement('canvas'))
-    let context = (this._context = canvas.getContext('2d'))
+    const img = this.image
+    const canvas = (this._canvas = document.createElement('canvas'))
+    const context = (canvas.getContext('2d'))
+
+    if (!context) throw new ReferenceError('Failed to create canvas context')
+
+    this._context = context
 
     canvas.className = '@vibrant/canvas'
     canvas.style.display = 'none'
@@ -46,8 +50,8 @@ export default class BrowserImage extends ImageBase {
     document.body.appendChild(canvas)
   }
   load (image: ImageSource): Promise<ImageBase> {
-    let img: HTMLImageElement = null
-    let src: string = null
+    let img: HTMLImageElement
+    let src: string
     if (typeof image === 'string') {
       img = document.createElement('img')
       src = image

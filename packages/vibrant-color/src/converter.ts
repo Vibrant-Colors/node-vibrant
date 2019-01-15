@@ -11,7 +11,9 @@ export const DELTAE94_DIFF_STATUS = {
 export function hexToRgb (hex: string): Vec3 {
   let m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
 
-  return m === null ? null : [m[1], m[2], m[3]].map((s) => parseInt(s, 16)) as Vec3
+  if (!m) throw new RangeError(`'${hex}' is not a valid hex color`)
+
+  return [m[1], m[2], m[3]].map((s) => parseInt(s, 16)) as Vec3
 }
 
 export function rgbToHex (r: number, g: number, b: number): string {
@@ -24,13 +26,10 @@ export function rgbToHsl (r: number, g: number, b: number): Vec3 {
   b /= 255
   let max = Math.max(r, g, b)
   let min = Math.min(r, g, b)
-  let h: number
-  let s: number
+  let h: number = 0
+  let s: number = 0
   let l = (max + min) / 2
-  if (max === min) {
-    h = s = 0
-  } else {
-
+  if (max !== min) {
     let d = max - min
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
     switch (max) {

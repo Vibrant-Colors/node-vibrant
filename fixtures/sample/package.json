@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@vibrant/color": "link:../../packages/vibrant-color",
+    "@vibrant/types": "link:../../packages/vibrant-types",
     "bluebird": "^3.5.3",
     "lodash": "^4.17.11",
     "node-vibrant": "link:../../packages/node-vibrant",
