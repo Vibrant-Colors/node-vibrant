@@ -1,9 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai'
 
-import Vibrant = require('../index')
-
-import omit = require('lodash/omit')
+import Vibrant = require('../')
 
 describe('builder', () => {
   it('modifies Vibrant options', () => {
@@ -26,8 +24,10 @@ describe('builder', () => {
       filters: [NOT_A_FILTER]
     }
 
-    expect(v.opts.combinedFilter, 'should have combined filter').to.be.a('function')
+    const { combinedFilter, ...opts } = v.opts
 
-    expect(omit(v.opts, 'combinedFilter')).to.deep.equal(expected)
+    expect(combinedFilter, 'should have combined filter').to.be.a('function')
+
+    expect(opts).to.deep.equal(expected)
   })
 })

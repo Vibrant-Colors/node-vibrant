@@ -1,9 +1,5 @@
 import { Swatch } from '../../color'
-import omit = require('lodash/omit')
-import find = require('lodash/find')
 import {
-  Quantizer,
-  Filter,
   Pixels,
   ComputedOptions
 } from '../../typing'
@@ -56,7 +52,7 @@ export default class WorkerPool {
       this._workers.push(worker)
       worker.onmessage = this._onMessage.bind(this, worker.id)
     } else {
-      worker = find(this._workers, 'idle')
+      worker = this._workers.find(worker => worker.idle)
     }
 
     return worker
@@ -97,15 +93,9 @@ export default class WorkerPool {
     this._executing[task.id] = task
 
     // Send payload
-    let request = <WorkerRequest>omit(task, 'deferred')
-    request.payload.opts = <ComputedOptions>omit(
-      request.payload.opts,
-      'ImageClass',
-      'combinedFilter',
-      'filters',
-      'generator',
-      'quantizer'
-    )
+    let { deferred, ...request } = task
+    let { ImageClass, combinedFilter, filters, generator, quantizer, ...payloadOpts } = request.payload.opts
+    request.payload.opts = payloadOpts as ComputedOptions
     worker.postMessage(request)
     worker.idle = false
   }

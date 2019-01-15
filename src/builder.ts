@@ -11,15 +11,13 @@ import {
 import { Palette } from './color'
 import Vibrant from './vibrant'
 
-import clone = require('lodash/clone')
-
 export default class Builder {
   private _src: ImageSource
   private _opts: Partial<Options>
-  constructor(src: ImageSource, opts: Partial<Options> = {}) {
+  constructor (src: ImageSource, opts: Partial<Options> = {}) {
     this._src = src
     this._opts = opts
-    this._opts.filters = clone(Vibrant.DefaultOpts.filters)
+    this._opts.filters = Vibrant.DefaultOpts.filters.slice(0)
   }
 
   maxColorCount(n: number): Builder {

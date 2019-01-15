@@ -2,21 +2,17 @@
 import { expect } from 'chai'
 import { VibrantStatic } from '../../typing'
 import Builder from '../../builder'
-import path = require('path')
 import { Palette, Swatch } from '../../color'
-import util = require('../../util')
-import _ = require('lodash')
 import {
   TestSample, SamplePathKey
 } from './data'
 
 import { table, getBorderCharacters } from 'table'
-
+import util = require('../../util')
 
 const TABLE_OPTS = {
   border: getBorderCharacters('void')
 }
-
 
 const displayColorDiffTable = (diff: string[][]) => {
   console.log(table(diff, TABLE_OPTS))
@@ -66,14 +62,13 @@ const assertPalette = (reference: Palette, palette: Palette) => {
     displayColorDiffTable([nameRow, actualRow, expectedRow, scoreRow])
   }
 
-  expect(failCount, `${failCount} colors are too diffrent from reference palettes`)
+  expect(failCount, `${failCount} colors are too different from reference palettes`)
     .to.equal(0)
 }
 
 const paletteCallback = (references: any, sample: TestSample, done: MochaDone) =>
   (err: Error, palette?: Palette) => {
     setTimeout(() => {
-
       expect(err, `should not throw error '${err}'`).to.be.null
       assertPalette(references, palette)
 
@@ -91,7 +86,6 @@ export const testVibrant = (Vibrant: VibrantStatic, sample: TestSample, pathKey:
     builder.getPalette(paletteCallback(sample.palettes[env], sample, done))
   }
 }
-
 
 export const testVibrantAsPromised = (Vibrant: VibrantStatic, sample: TestSample, pathKey: SamplePathKey, env: 'node' | 'browser', builderCallback: (b: Builder) => Builder = null) => {
   return () => {

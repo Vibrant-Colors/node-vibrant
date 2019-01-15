@@ -11,7 +11,6 @@ import {
 import {
   createSampleServer
 } from './common/server'
-import Builder from '../builder'
 
 import http = require('http')
 

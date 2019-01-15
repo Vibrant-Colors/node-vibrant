@@ -1,4 +1,4 @@
-import { Filter, ImageData, Options } from '../typing'
+import { Filter } from '../typing'
 export { default as Default } from './default'
 
 export function combineFilters (filters: Filter[]): Filter {

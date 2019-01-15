@@ -1,7 +1,6 @@
 import { Swatch, Palette } from '../color'
 import { Generator } from '../typing'
 import { hslToRgb } from '../util'
-import defaults = require('lodash/defaults')
 
 interface DefaultGeneratorOptions {
   targetDarkLuma: number,
@@ -235,7 +234,7 @@ function _generateEmptySwatches (palette: Palette, maxPopulation: number, opts: 
 }
 
 const DefaultGenerator: Generator = (swatches: Array<Swatch>, opts?: DefaultGeneratorOptions): Palette => {
-  opts = <DefaultGeneratorOptions>defaults({}, opts, DefaultOpts)
+  opts = Object.assign({}, DefaultOpts, opts)
   let maxPopulation = _findMaxPopulation(swatches)
 
   let palette = _generateVariationColors(swatches, maxPopulation, opts)

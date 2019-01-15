@@ -1,18 +1,17 @@
 /* eslint-env browser */
-import { Options, ImageData, ImageSource, ImageCallback } from '../typing'
+import { ImageData as NodeImageData, ImageSource } from '../typing'
 import { ImageBase } from './base'
-import * as Url from 'url'
 
 function isRelativeUrl (url: string): boolean {
-  let u = Url.parse(url)
-  return u.protocol === null &&
-    u.host === null &&
-    u.port === null
+  let u = new URL(url, location.href)
+  return u.protocol === location.protocol &&
+    u.host === location.host &&
+    u.port === location.port
 }
 
 function isSameOrigin (a: string, b: string): boolean {
-  let ua = Url.parse(a)
-  let ub = Url.parse(b)
+  let ua = new URL(a)
+  let ub = new URL(b)
 
   // https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
   return ua.protocol === ub.protocol &&
@@ -70,14 +69,14 @@ export default class BrowserImage extends ImageBase {
         onImageLoad()
       } else {
         img.onload = onImageLoad
-        img.onerror = (e) => reject(new Error(`Fail to load image: ${src}`))
+        img.onerror = () => reject(new Error(`Fail to load image: ${src}`))
       }
     })
   }
   clear (): void {
     this._context.clearRect(0, 0, this._width, this._height)
   }
-  update (imageData: ImageData): void {
+  update (imageData: NodeImageData): void {
     this._context.putImageData(<ImageData>imageData, 0, 0)
   }
   getWidth (): number {

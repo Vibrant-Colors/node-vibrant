@@ -6,6 +6,8 @@ import {
   WorkerErrorResponse
 } from './common'
 
+export declare var self: DedicatedWorkerGlobalScope
+
 self.onmessage = (event) => {
   let data: WorkerRequest = event.data
 
@@ -20,14 +22,12 @@ self.onmessage = (event) => {
       type: 'return',
       payload: swatches
     }
-  }
-  catch (e) {
+  } catch (e) {
     response = {
       id,
       type: 'error',
       payload: (<Error>e).message
     }
   }
-  (<any>self).postMessage(response)
+  self.postMessage(response)
 }
-

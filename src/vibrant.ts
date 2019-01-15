@@ -3,8 +3,7 @@ import {
   ImageSource,
   Options,
   ComputedOptions,
-  Callback,
-  Filter
+  Callback
 } from './typing'
 
 import { Palette, Swatch } from './color'
@@ -16,8 +15,6 @@ import * as Util from './util'
 import * as Quantizer from './quantizer'
 import * as Generator from './generator'
 import * as Filters from './filter'
-
-import defaults = require('lodash/defaults')
 
 class Vibrant {
   static Builder = Builder
@@ -41,8 +38,8 @@ class Vibrant {
 
   opts: ComputedOptions
   private _palette: Palette
-  constructor(private _src: ImageSource, opts?: Partial<Options>) {
-    this.opts = <ComputedOptions>defaults({}, opts, Vibrant.DefaultOpts)
+  constructor (private _src: ImageSource, opts?: Partial<Options>) {
+    this.opts = Object.assign({}, Vibrant.DefaultOpts, opts) as ComputedOptions
     this.opts.combinedFilter = Filters.combineFilters(this.opts.filters)
   }
   private _process(image: Image, opts: ComputedOptions): Promise<Palette> {

@@ -1,6 +1,4 @@
 import {
-  Quantizer,
-  Filter,
   Pixels,
   ComputedOptions
 } from '../typing'
