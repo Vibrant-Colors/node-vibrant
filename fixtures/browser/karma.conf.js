@@ -101,10 +101,14 @@ module.exports = function (config) {
       module: {
         rules: [
           {
+            test: /\.worker.ts$/,
+            loader: 'worker-loader'
+          },
+          {
             test: /\.(js|jsx|tsx|ts)$/,
             loader: 'ts-loader',
             options: {
-              configFile: tsconfigFilePath 
+              configFile: tsconfigFilePath
             },
             exclude: /node_modules/
           }
