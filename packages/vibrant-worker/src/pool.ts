@@ -1,5 +1,3 @@
-import omit = require('lodash/omit')
-import find = require('lodash/find')
 import {
   Defer,
   defer
@@ -30,8 +28,8 @@ export default class WorkerPool {
 
   }
 
-  private _findIdleWorker (): TaskWorker | null {
-    let worker: TaskWorker | null
+  private _findIdleWorker (): TaskWorker | undefined {
+    let worker: TaskWorker | undefined
     // if no idle worker && worker count < max count, make new one
     if (this._workers.length === 0 || this._workers.length < MAX_WORKER_COUNT) {
       worker = new this.WorkerClass()
@@ -40,7 +38,7 @@ export default class WorkerPool {
       this._workers.push(worker)
       worker.onmessage = this._onMessage.bind(this, worker.id)
     } else {
-      worker = find(this._workers, 'idle') || null
+      worker = this._workers.find(({ idle }) => idle)
     }
 
     return worker
@@ -81,7 +79,7 @@ export default class WorkerPool {
 
     // Send payload
     let transfers = task.transferList
-    let request = omit(task, 'deferred', 'transferList') as WorkerRequest
+    const { deferred, transferList, ...request } = task
     worker.postMessage(request, transfers)
     worker.idle = false
   }

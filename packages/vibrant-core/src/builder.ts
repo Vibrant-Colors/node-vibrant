@@ -1,5 +1,3 @@
-import defaultsDeep = require('lodash/defaultsDeep')
-
 import {
   Options
 } from './options'
@@ -16,13 +14,14 @@ import {
   Palette
 } from '@vibrant/color'
 import Vibrant from './'
+import { assignDeep } from './utils'
 
 export default class Builder {
   private _src: ImageSource
   private _opts: Partial<Options>
   constructor (src: ImageSource, opts: Partial<Options> = {}) {
     this._src = src
-    this._opts = defaultsDeep({}, opts, Vibrant.DefaultOpts)
+    this._opts = assignDeep({}, Vibrant.DefaultOpts, opts)
   }
 
   maxColorCount (n: number): Builder {

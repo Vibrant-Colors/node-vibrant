@@ -1,7 +1,6 @@
 import { Swatch, Palette } from '@vibrant/color'
 import { Generator } from '@vibrant/generator'
 import { hslToRgb } from '@vibrant/color/lib/converter'
-import defaults = require('lodash/defaults')
 
 interface DefaultGeneratorOptions {
   targetDarkLuma: number,
@@ -246,7 +245,7 @@ function _generateEmptySwatches (palette: Palette, maxPopulation: number, opts: 
 }
 
 const DefaultGenerator: Generator = (swatches: Array<Swatch>, opts?: DefaultGeneratorOptions): Palette => {
-  opts = defaults({}, opts, DefaultOpts)
+  opts = Object.assign({}, DefaultOpts, opts)
   let maxPopulation = _findMaxPopulation(swatches)
 
   let palette = _generateVariationColors(swatches, maxPopulation, opts)

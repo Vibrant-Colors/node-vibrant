@@ -4,10 +4,9 @@ import { Image, ImageSource } from '@vibrant/image'
 
 import { Filter, Palette, Swatch } from '@vibrant/color'
 
-import defaults = require('lodash/defaults')
-
 import Builder from './builder'
 import { Pipeline, ProcessOptions, ProcessResult } from './pipeline'
+import { assignDeep } from './utils'
 
 export interface VibrantStatic {
   from (src: ImageSource): Builder
@@ -35,7 +34,7 @@ export default class Vibrant {
 
   opts: Options
   constructor (private _src: ImageSource, opts?: Partial<Options>) {
-    this.opts = defaults({}, opts, Vibrant.DefaultOpts) as Options
+    this.opts = assignDeep({}, Vibrant.DefaultOpts, opts)
   }
   private _process (
     image: Image,

@@ -1,7 +1,7 @@
 import { Pipeline, ProcessOptions, ProcessResult } from '../index'
 import WorkerManager, { TaskWorkerClass } from '@vibrant/worker'
 import { Swatch, Palette } from '@vibrant/color'
-import mapValues = require('lodash/mapValues')
+import { mapValues } from '../../utils'
 
 /**
  * Client side (runs in UI thread)

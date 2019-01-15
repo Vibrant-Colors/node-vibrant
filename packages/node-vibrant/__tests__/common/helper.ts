@@ -5,7 +5,6 @@ import Builder from '@vibrant/core/lib/builder'
 import path = require('path')
 import { Palette, Swatch } from '@vibrant/color'
 import util = require('@vibrant/color/lib/converter')
-import _ = require('lodash')
 import {
   TestSample, SamplePathKey
 } from 'fixtures/sample/loader'

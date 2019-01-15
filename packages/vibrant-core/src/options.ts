@@ -3,7 +3,7 @@ import { Image, ImageClass, ImageSource, ImageOptions } from '@vibrant/image'
 import { Quantizer, QuantizerOptions } from '@vibrant/quantizer'
 import { Generator } from '@vibrant/generator'
 import { StageOptions, ProcessOptions } from './pipeline'
-import defaultsDeep = require('lodash/defaultsDeep')
+import { assignDeep } from './utils'
 
 export interface Options extends ImageOptions, QuantizerOptions {
   useWorker: boolean
@@ -20,11 +20,11 @@ export function buildProcessOptions (opts: Options, override?: Partial<ProcessOp
   let q = typeof quantizer === 'string'
     ? { name: quantizer, options: {} }
     : quantizer
-  q.options = defaultsDeep({}, q.options, commonQuantizerOpts)
+  q.options = assignDeep({}, commonQuantizerOpts, q.options)
 
-  return defaultsDeep({}, override, {
+  return assignDeep({}, {
     quantizer: q,
     generators,
     filters
-  })
+  }, override)
 }

@@ -17,11 +17,9 @@
   "homepage": "https://github.com/akfish/node-vibrant",
   "license": "MIT",
   "dependencies": {
-    "@vibrant/types": "^3.0.0",
-    "lodash": "^4.17.11"
+    "@vibrant/types": "^3.0.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.119",
     "typescript": "^3.2.2"
   },
   "publishConfig": {
