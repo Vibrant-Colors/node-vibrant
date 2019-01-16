@@ -3,6 +3,12 @@
 
 Extract prominent colors from an image.
 
+## ** NOTICE **
+
+This project is refactored into a monorepo in version 3.1.0 (see [develop](https://github.com/akfish/node-vibrant/tree/develop) branch, npm version `node-vibrant@3.1.0-alpha.1`).
+
+We will not merge new PRs to v3.0 anymore. 
+
 ## New WebWorker support in v3.0
 
 Quantization is the most time-consuming stage in `node-vibrant`. In v3.0, the quantization can be run in the WebWorker to avoid freezing the UI thread.
