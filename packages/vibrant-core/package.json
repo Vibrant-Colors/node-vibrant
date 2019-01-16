@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/core",
-  "version": "3.1.0-alpha.0",
+  "version": "3.1.0-alpha.1",
   "description": "Core vibrant classes",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,12 +17,12 @@
   "homepage": "https://github.com/akfish/node-vibrant",
   "license": "MIT",
   "dependencies": {
-    "@vibrant/color": "^3.0.0",
-    "@vibrant/generator": "^3.0.0",
-    "@vibrant/image": "^3.0.0",
-    "@vibrant/quantizer": "^3.0.0",
-    "@vibrant/types": "^3.0.0",
-    "@vibrant/worker": "^3.0.0"
+    "@vibrant/color": "^3.1.0-alpha.1",
+    "@vibrant/generator": "^3.1.0-alpha.1",
+    "@vibrant/image": "^3.1.0-alpha.1",
+    "@vibrant/quantizer": "^3.1.0-alpha.1",
+    "@vibrant/types": "^3.1.0-alpha.1",
+    "@vibrant/worker": "^3.1.0-alpha.1"
   },
   "devDependencies": {
     "typescript": "^3.2.2"

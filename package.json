@@ -1,5 +1,6 @@
 {
 	"scripts": {
+    "clean": "run-p -c clean:*",
 		"clean:tsc": "lerna exec -- rimraf lib",
 		"clean:tsc-tmp": "rimraf .build",
 		"clean:browser": "lerna exec -- rimraf dist",

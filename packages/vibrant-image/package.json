@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/image",
-  "version": "3.1.0-alpha.0",
+  "version": "3.1.0-alpha.1",
   "description": "Helpers and typings for writing a vibrant ImageClass",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,8 +17,8 @@
   "homepage": "https://github.com/akfish/node-vibrant",
   "license": "MIT",
   "dependencies": {
-    "@vibrant/color": "^3.0.0",
-    "@vibrant/types": "^3.0.0"
+    "@vibrant/color": "^3.1.0-alpha.1",
+    "@vibrant/types": "^3.1.0-alpha.1"
   },
   "devDependencies": {
     "@types/node": "^10.12.18",

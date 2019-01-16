@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/image-node",
-  "version": "3.1.0-alpha.0",
+  "version": "3.1.0-alpha.1",
   "description": "Node.js vibrant ImageClass implementation",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,7 +17,7 @@
   "homepage": "https://github.com/akfish/node-vibrant",
   "license": "MIT",
   "dependencies": {
-    "@vibrant/image": "^3.0.0",
+    "@vibrant/image": "^3.1.0-alpha.1",
     "jimp": "^0.6.0"
   },
   "devDependencies": {
