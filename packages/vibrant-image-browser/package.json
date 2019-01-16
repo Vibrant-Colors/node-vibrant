@@ -1,0 +1,29 @@
+{
+  "name": "@vibrant/image-browser",
+  "version": "3.1.0-alpha.1",
+  "description": "Browser vibrant ImageClass implementation",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "author": {
+    "name": "akfish",
+    "email": "akfish@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/akfish/node-vibrant/issues"
+  },
+  "homepage": "https://github.com/akfish/node-vibrant",
+  "license": "MIT",
+  "dependencies": {
+    "@vibrant/image": "^3.1.0-alpha.1"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "typescript": "^3.2.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

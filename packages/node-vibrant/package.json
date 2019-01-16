@@ -1,0 +1,57 @@
+{
+  "name": "node-vibrant",
+  "version": "3.1.0-alpha.1",
+  "description": "Extract prominent colors from an image. Supports both node and browser environment.",
+  "main": "lib/index.js",
+  "browser": "lib/bundle-worker.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "@types/node": "^10.12.18",
+    "@vibrant/core": "^3.1.0-alpha.1",
+    "@vibrant/generator-default": "^3.1.0-alpha.1",
+    "@vibrant/image-browser": "^3.1.0-alpha.1",
+    "@vibrant/image-node": "^3.1.0-alpha.1",
+    "@vibrant/quantizer-mmcq": "^3.1.0-alpha.1",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.2",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^5.3.2",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.2.2",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.28.2",
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-cli": "^3.1.2",
+    "worker-loader": "^2.0.0"
+  },
+  "scripts": {
+    "clean:browser": "rimraf dist",
+    "build:browser": "webpack --config webpack.config.js",
+    "build:analyze": "webpack --config webpack.config.js --env.analyze"
+  },
+  "bugs": {
+    "url": "https://github.com/akfish/node-vibrant/issues"
+  },
+  "homepage": "https://github.com/akfish/node-vibrant",
+  "keywords": [
+    "color",
+    "detection",
+    "varation",
+    "image",
+    "picture",
+    "canvas",
+    "vibrant",
+    "muted",
+    "colour"
+  ],
+  "author": {
+    "name": "akfish",
+    "email": "akfish@gmail.com"
+  },
+  "license": "MIT"
+}

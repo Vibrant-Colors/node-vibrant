@@ -1,0 +1,45 @@
+{
+  "name": "vibrant-fixture-sample",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "update": "cp ./images/palettes.current.json ./images/palettes.json"
+  },
+  "author": {
+    "name": "akfish",
+    "email": "akfish@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bluebird": "^3.5.25",
+    "@types/body-parser": "^1.17.0",
+    "@types/express": "^4.16.0",
+    "@types/finalhandler": "^0.0.33",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "@types/serve-static": "^1.13.2",
+    "body-parser": "^1.18.3",
+    "finalhandler": "^1.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "serve-static": "^1.13.2",
+    "ts-loader": "^5.3.2",
+    "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.7.0",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14",
+    "worker-loader": "^2.0.0"
+  },
+  "dependencies": {
+    "@vibrant/color": "link:../../packages/vibrant-color",
+    "@vibrant/types": "link:../../packages/vibrant-types",
+    "bluebird": "^3.5.3",
+    "node-vibrant": "link:../../packages/node-vibrant",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
+}
