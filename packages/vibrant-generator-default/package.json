@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/generator-default",
-  "version": "3.0.0",
+  "version": "3.1.0-0",
   "description": "Default generator that generates the original vibrant palette",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
