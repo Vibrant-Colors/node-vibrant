@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/image-node",
-  "version": "3.1.0-0",
+  "version": "3.1.0-alpha.0",
   "description": "Node.js vibrant ImageClass implementation",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

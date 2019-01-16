@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/core",
-  "version": "3.1.0-0",
+  "version": "3.1.0-alpha.0",
   "description": "Core vibrant classes",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

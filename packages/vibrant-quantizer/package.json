@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/quantizer",
-  "version": "3.1.0-0",
+  "version": "3.1.0-alpha.0",
   "description": "Helper and typings for writing a vibrant quantizer",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,9 +17,9 @@
   "homepage": "https://github.com/akfish/node-vibrant",
   "license": "MIT",
   "dependencies": {
-    "@vibrant/types": "^3.0.0",
     "@vibrant/color": "^3.0.0",
-    "@vibrant/image": "^3.0.0"
+    "@vibrant/image": "^3.0.0",
+    "@vibrant/types": "^3.0.0"
   },
   "devDependencies": {
     "typescript": "^3.2.2"

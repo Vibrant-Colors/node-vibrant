@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/color",
-  "version": "3.1.0-0",
+  "version": "3.1.0-alpha.0",
   "description": "Color utilities for vibrant",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +16,6 @@
   },
   "homepage": "https://github.com/akfish/node-vibrant",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "typescript": "^3.2.2"
   },

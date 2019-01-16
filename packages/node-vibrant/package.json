@@ -1,6 +1,6 @@
 {
   "name": "node-vibrant",
-  "version": "3.1.0-0",
+  "version": "3.1.0-alpha.0",
   "description": "Extract prominent colors from an image. Supports both node and browser environment.",
   "main": "lib/index.js",
   "browser": "lib/bundle-worker.js",
