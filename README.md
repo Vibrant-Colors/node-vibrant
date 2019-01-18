@@ -5,9 +5,9 @@ Extract prominent colors from an image.
 
 ## ** NOTICE **
 
-This project is refactored into a monorepo in version 3.1.0 (see [develop](https://github.com/akfish/node-vibrant/tree/develop) branch, npm version `node-vibrant@3.1.0-alpha.1`).
+This project is refactored into a monorepo in version 3.2.0 (see [develop](https://github.com/akfish/node-vibrant/tree/develop) branch, npm version `node-vibrant@3.2.0-alpha`).
 
-We will not merge new PRs to v3.0 anymore. 
+We will not merge new PRs to v3.1 anymore. 
 
 ## New WebWorker support in v3.0
 
