@@ -8,13 +8,13 @@ Extract prominent colors from an image.
 
 ## v3.1.0-0
 
-`node-vibrant` is now a monorepo. Building blocks of `node-vibrant` has been separated into multiple small packages under `@vibrant/*` scope. The goal is to make it more flexible, allowing alternative algorithms, additional image format support and etc to be implemented by 3rd party packages. 
+`node-vibrant` is now a monorepo. Building blocks of `node-vibrant` has been separated into multiple small packages under the `@vibrant/*` scope. The goal is to make it more flexible, allowing alternative algorithms, additional image format support and etc to be implemented by 3rd party packages. 
 
 The `node-vibrant` package still provides default experience out-of-box.
 
 ### Breaking Changes
 
-* `strickNullChecks` flag is now enabled.
+* The `strictNullChecks` flag is now enabled.
 * Prebuilt bundle will not be provided. You should use your own `webpack` workflow.
 
 ## Install
@@ -73,15 +73,15 @@ Add rules:
 }
 ```
 
-## Documentations
+## Documentation
 
 TODO
 
 ## Notes
 
 ### Result Consistency
-The results is consistent within each user's browser instance regardelss of visible region or display size of the image, unlike the original `vibrant.js` implementation.
+The results is consistent within each user's browser instance regardless of the visible region or display size of an image, unlike the original `vibrant.js` implementation.
 
-However, due to the very nature of HTML5 canvas element, image rendering is platform/machine-dependent. Thus the resulting swatches in browser environment varies and may not be the same as in node.js nor in another machine. See [Canvas Fingerprinting](https://en.wikipedia.org/wiki/Canvas_fingerprinting).
+However, due to the nature of the HTML5 canvas element, image rendering is platform/machine-dependent. The resulting swatches may vary between browsers, Node.js versions, and between machines. See [Canvas Fingerprinting](https://en.wikipedia.org/wiki/Canvas_fingerprinting).
 
-The test specs use CIE delta E 1994 color difference to measure inconsistencies across platforms. It compares the generated color on node.js, Chrome, Firefox and IE11. At `quality` == 1 (no downsampling) and no filters, the results are rather consistent. Color diffs between browsers are mostly not perceptible by human eyes. Downsampling _will_ cause perceptible inconsistent results across browsers due to differences in canvas implementations.
+The test specs use CIE delta E 1994 color difference to measure inconsistencies across platforms. It compares the generated color on Node.js, Chrome, Firefox and IE11. At `quality` == 1 (no downsampling) with no filters and the results are rather consistent. Color diffs between browsers are mostly not perceptible by the human eye. Downsampling _will_ cause perceptible inconsistent results across browsers due to differences in canvas implementations.
