@@ -1,4 +1,5 @@
 # node-vibrant
+[![Slack badge](https://img.shields.io/badge/slack-node_vibrant-blue.svg?logo=slack&style=plastic)](https://join.slack.com/t/node-vibrant/shared_invite/enQtNTI2Mzg2NDk5MzUxLTdkN2EwMWNkYjY0MjNiMmI2YzFjZWM3Njc3ZDJmOWVkMzBkNzYzMDBhZTBiMGI0MjAyMmJhNDc0YTNlNjA5ZGY)
 [![Build Status](https://travis-ci.org/akfish/node-vibrant.svg?branch=develop)](https://travis-ci.org/akfish/node-vibrant)
 
 Extract prominent colors from an image.
@@ -6,21 +7,10 @@ Extract prominent colors from an image.
 - Identical API for both node.js and browser environment (with web worker)
 - Support webpack
 
-## v3.1.0-0
-
-`node-vibrant` is now a monorepo. Building blocks of `node-vibrant` has been separated into multiple small packages under the `@vibrant/*` scope. The goal is to make it more flexible, allowing alternative algorithms, additional image format support and etc to be implemented by 3rd party packages. 
-
-The `node-vibrant` package still provides default experience out-of-box.
-
-### Breaking Changes
-
-* The `strictNullChecks` flag is now enabled.
-* Prebuilt bundle will not be provided. You should use your own `webpack` workflow.
-
 ## Install
 
 ```bash
-$ npm install node-vibrant@3.1.0-0
+$ npm install node-vibrant@3.2.0.alpha
 ```
 
 ## Usage
