@@ -8,6 +8,11 @@ export const DELTAE94_DIFF_STATUS = {
   SIMILAR: 50
 }
 
+/**
+ * Converts hex string to RGB
+ * @param hex - The hex value you with to get the RGB value of
+ * @returns an array in the order of `red, green, blue` numerical values
+ */
 export function hexToRgb (hex: string): Vec3 {
   let m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
 
@@ -16,10 +21,24 @@ export function hexToRgb (hex: string): Vec3 {
   return [m[1], m[2], m[3]].map((s) => parseInt(s, 16)) as Vec3
 }
 
+/**
+ * Given values for an RGB color convert to and return a valid HEX string
+ * @param r - Red value in RGB
+ * @param g - Green value in RGB
+ * @param b - Blue value in RGB
+ * @returns a valid hex string with pre-pending pound sign
+ */
 export function rgbToHex (r: number, g: number, b: number): string {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1, 7)
 }
 
+/**
+ * Given values for an RGB color convert to and return a valid HSL value
+ * @param r - Red value in RGB
+ * @param g - Green value in RGB
+ * @param b - Blue value in RGB
+ * @returns an array in the order of `hue, saturation, light` numerical values
+ */
 export function rgbToHsl (r: number, g: number, b: number): Vec3 {
   r /= 255
   g /= 255

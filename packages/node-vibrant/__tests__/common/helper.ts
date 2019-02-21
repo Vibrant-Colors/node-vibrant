@@ -31,7 +31,7 @@ const assertPalette = (reference: Palette, palette: Palette) => {
 
     if (expected === null) {
       if (actual !== null) {
-        console.warn(`WARN: ${name} color was not expected. Got ${actual.getHex()}`)
+        console.warn(`WARN: ${name} color was not expected. Got ${actual.hex}`)
       }
     } else {
       expect(actual, `${name} color was expected`).not.to.be.null

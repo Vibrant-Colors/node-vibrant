@@ -4,8 +4,14 @@ export interface Filter {
   (red: number, green: number, blue: number, alpha: number): boolean
 }
 
+/**
+ * 3d floating pointer vector
+ */
 export type Vec3 = [number, number, number]
 
+/**
+ * The layout for a node-vibrant Palette. Allows you to keep track of
+ */
 export interface Palette {
   Vibrant: Swatch | null
   Muted: Swatch | null
@@ -13,6 +19,7 @@ export interface Palette {
   DarkMuted: Swatch | null
   LightVibrant: Swatch | null
   LightMuted: Swatch | null
+  // ?
   [name: string]: Swatch | null
 }
 
@@ -27,6 +34,11 @@ export class Swatch {
       })
       : colors
   }
+
+  /**
+   * Make a value copy of a swatch based on a previous one. Returns a new Swatch instance
+   * @param {Swatch} swatch
+   */
   static clone (swatch: Swatch) {
     return new Swatch(swatch._rgb, swatch._population)
   }
@@ -35,18 +47,34 @@ export class Swatch {
   private _yiq: number
   private _population: number
   private _hex: string
+
+  /**
+   * The red value in the RGB value
+   */
   get r (): number {
     return this._rgb[0]
   }
+  /**
+   * The green value in the RGB value
+   */
   get g (): number {
     return this._rgb[1]
   }
+  /**
+   * The blue value in the RGB value
+   */
   get b (): number {
     return this._rgb[2]
   }
+  /**
+   * The color value as a rgb value
+   */
   get rgb (): Vec3 {
     return this._rgb
   }
+  /**
+   * The color value as a hsl value
+   */
   get hsl (): Vec3 {
     if (!this._hsl) {
       let [r, g, b] = this._rgb
@@ -54,7 +82,11 @@ export class Swatch {
     }
     return this._hsl
   }
-  get hex () {
+
+  /**
+   * The color value as a hex string
+   */
+  get hex (): string {
     if (!this._hex) {
       let [r, g, b] = this._rgb
       this._hex = rgbToHex(r, g, b)
@@ -65,25 +97,43 @@ export class Swatch {
     return this._population
   }
 
-  toJSON () {
+  /**
+   * Get the JSON object for the swatch
+   */
+  toJSON (): {rgb: Vec3, population: number} {
     return {
       rgb: this.rgb,
       population: this.population
     }
   }
 
+  /**
+   * Get the color value as a rgb value
+   * @deprecated Use property instead
+   */
   // TODO: deprecate internally, use property instead
   getRgb (): Vec3 {
     return this._rgb
   }
+  /**
+   * Get the color value as a hsl value
+   * @deprecated Use property instead
+   */
   // TODO: deprecate internally, use property instead
   getHsl (): Vec3 {
     return this.hsl
   }
+  /**
+   * @deprecated Use property instead
+   */
   // TODO: deprecate internally, use property instead
   getPopulation (): number {
     return this._population
   }
+  /**
+   * Get the color value as a hex string
+   * @deprecated Use property instead
+   */
   // TODO: deprecate internally, use property instead
   getHex (): string {
     return this.hex

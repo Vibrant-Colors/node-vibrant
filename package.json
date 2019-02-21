@@ -1,6 +1,6 @@
 {
 	"scripts": {
-    "clean": "run-p -c clean:*",
+		"clean": "run-p -c clean:*",
 		"clean:tsc": "lerna exec -- rimraf lib",
 		"clean:tsc-tmp": "rimraf .build",
 		"clean:browser": "lerna exec -- rimraf dist",
@@ -23,12 +23,12 @@
 		"test:node": "mocha --require ts-node/register --require tsconfig-paths/register packages/*/__tests__/**/*.spec.ts",
 		"sample:inspect": "yarn --cwd=fixtures/sample run start",
 		"sample:update": "yarn --cwd=fixtures/sample run update"
-  },
-  "pre-commit": [
-    "lint", 
-    "build",
-    "test"
-  ],
+	},
+	"pre-commit": [
+		"lint",
+		"build",
+		"test"
+	],
 	"devDependencies": {
 		"@types/chai": "^4.1.7",
 		"@types/mocha": "^5.2.5",
@@ -46,6 +46,7 @@
 		"tsconfig-paths": "^3.7.0",
 		"tslint": "^5.12.1",
 		"tslint-config-standard": "^8.0.1",
+		"typedoc": "^0.14.2",
 		"typescript": "3.2.2"
 	},
 	"private": true,
