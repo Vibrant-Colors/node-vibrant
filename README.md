@@ -1,4 +1,6 @@
 # node-vibrant
+![Vibrant Logo](logo.png?raw=true "Vibrant Logo")
+
 [![Slack badge](https://img.shields.io/badge/slack-node_vibrant-blue.svg?logo=slack&style=plastic)](https://join.slack.com/t/node-vibrant/shared_invite/enQtNTI2Mzg2NDk5MzUxLTdkN2EwMWNkYjY0MjNiMmI2YzFjZWM3Njc3ZDJmOWVkMzBkNzYzMDBhZTBiMGI0MjAyMmJhNDc0YTNlNjA5ZGY)
 [![Build Status](https://travis-ci.org/akfish/node-vibrant.svg?branch=develop)](https://travis-ci.org/akfish/node-vibrant)
 
