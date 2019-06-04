@@ -77,7 +77,7 @@ export default class BrowserImage extends ImageBase {
     this._context.clearRect(0, 0, this._width, this._height)
   }
   update (imageData: ImageData): void {
-    this._context.putImageData(<ImageData>imageData, 0, 0)
+    this._context.putImageData(imageData as any, 0, 0)
   }
   getWidth (): number {
     return this._width
