@@ -2,7 +2,7 @@ import { Filter } from './typing'
 import { rgbToHsl, rgbToHex } from './util'
 import filter = require('lodash/filter')
 
-export type Vec3 = [number, number, number] 
+export type Vec3 = [number, number, number]
 
 export interface Palette {
   Vibrant?: Swatch,
@@ -72,13 +72,13 @@ export class Swatch {
   private _bodyTextColor: string
 
   get titleTextColor() {
-    if (this._titleTextColor) {
+    if (!this._titleTextColor) {
       this._titleTextColor = this.getYiq() < 200 ? '#fff' : '#000'
     }
     return this._titleTextColor
   }
   get bodyTextColor() {
-    if (this._bodyTextColor) {
+    if (!this._bodyTextColor) {
       this._bodyTextColor = this.getYiq() < 150 ? '#fff' : '#000'
     }
     return this._bodyTextColor
