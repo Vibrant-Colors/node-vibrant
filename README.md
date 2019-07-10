@@ -13,7 +13,7 @@ Extract prominent colors from an image.
 ## Install
 
 ```bash
-$ npm install node-vibrant@3.2.0.alpha
+$ npm install node-vibrant@3.2.0-alpha
 ```
 
 ## Usage
