@@ -4,8 +4,6 @@ node_js:
 addons:
   firefox: "latest"
   chrome: "latest"
-before_script:
-  - export CHROME_BIN=chromium-browser
 jobs:
   include:
     - stage: build
