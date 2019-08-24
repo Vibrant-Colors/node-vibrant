@@ -29,7 +29,7 @@ export default class NodeImage extends ImageBase {
         r.on('data', (data: any) => { buf = Buffer.concat([buf, data]) })
         r.on('end', () => resolve(buf))
         r.on('error', (e: Error) => reject(e))
-      })
+      }).on('error', (e: Error) => reject(e))
     })
   }
   private _loadFromPath (src: string): Promise<ImageBase> {
