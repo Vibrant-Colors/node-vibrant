@@ -80,7 +80,7 @@ export default class WorkerPool {
     // Send payload
     let transfers = task.transferList
     const { deferred, transferList, ...request } = task
-    worker.postMessage(request, transfers)
+    worker.postMessage(request, transfers as any[])
     worker.idle = false
   }
   private _onMessage (workerId: number, event: MessageEvent) {
