@@ -3,6 +3,7 @@ node_js:
   - "11"
 addons:
   firefox: "latest"
+  chrome: "latest"
 before_script:
   - export CHROME_BIN=chromium-browser
 jobs:
