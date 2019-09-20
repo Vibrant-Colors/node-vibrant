@@ -18,10 +18,11 @@
   "license": "MIT",
   "dependencies": {
     "@vibrant/image": "^3.2.0-alpha",
-    "jimp": "^0.6.0"
+    "@jimp/custom": "0.8.4",
+    "@jimp/types": "0.8.4",
+    "@jimp/plugin-resize": "0.8.4"
   },
   "devDependencies": {
-    "@types/jimp": "^0.2.28",
     "@types/node": "^10.12.18",
     "typescript": "^3.2.2"
   },

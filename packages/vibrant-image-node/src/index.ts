@@ -5,9 +5,16 @@ import {
   ImageCallback,
   ImageBase
 } from '@vibrant/image'
-import Jimp = require('jimp')
 import * as http from 'http'
 import * as https from 'https'
+import configure from '@jimp/custom'
+import types from '@jimp/types'
+import resize from '@jimp/plugin-resize'
+
+const Jimp = configure({
+  types: [types],
+  plugins: [resize]
+})
 
 interface ProtocalHandler {
   get (url: string | any, cb?: (res: any) => void): any
@@ -27,7 +34,7 @@ const PROTOCOL_HANDLERS: ProtocalHandlerMap = {
 type NodeImageSource = string | Buffer
 
 export default class NodeImage extends ImageBase {
-  private _image: Jimp
+  private _image: typeof Jimp
   private _loadByProtocolHandler (
     handler: ProtocalHandler,
     src: string
