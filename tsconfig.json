@@ -58,7 +58,8 @@
     "declaration": true,
     "sourceMap": true,
     "noImplicitAny": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "moduleResolution": "node"
   },
   "include": [
     "packages/*/src",
