@@ -5,7 +5,7 @@ import {
   ImageCallback,
   ImageBase
 } from '@vibrant/image'
-import Jimp = require('jimp')
+import Jimp from 'jimp'
 import * as http from 'http'
 import * as https from 'https'
 
