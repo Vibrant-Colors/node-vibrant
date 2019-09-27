@@ -27,7 +27,7 @@ const PROTOCOL_HANDLERS: ProtocalHandlerMap = {
 type NodeImageSource = string | Buffer
 
 export default class NodeImage extends ImageBase {
-  private _image: Jimp
+  private _image: typeof Jimp
   private _loadByProtocolHandler (
     handler: ProtocalHandler,
     src: string
