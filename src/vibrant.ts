@@ -25,6 +25,7 @@ class Vibrant {
   static Generator = Generator
   static Filter = Filters
   static Util = Util
+  static Swatch = Swatch
 
   static DefaultOpts: Partial<Options> = {
     colorCount: 64,
