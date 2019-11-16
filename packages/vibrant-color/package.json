@@ -17,7 +17,7 @@
   "homepage": "https://github.com/akfish/node-vibrant",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^3.2.2"
+    "typescript": "^3.7.2"
   },
   "publishConfig": {
     "access": "public"

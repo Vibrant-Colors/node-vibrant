@@ -18,13 +18,13 @@
   "license": "MIT",
   "dependencies": {
     "@vibrant/image": "^3.2.0-alpha",
-    "@jimp/custom": "0.8.4",
-    "@jimp/types": "0.8.4",
-    "@jimp/plugin-resize": "0.8.4"
+    "@jimp/custom": "^0.8.6-canary.815.488.0",
+    "@jimp/types": "^0.8.6-canary.815.488.0",
+    "@jimp/plugin-resize": "^0.8.6-canary.815.488.0"
   },
   "devDependencies": {
     "@types/node": "^10.12.18",
-    "typescript": "^3.2.2"
+    "typescript": "^3.7.2"
   },
   "publishConfig": {
     "access": "public"
