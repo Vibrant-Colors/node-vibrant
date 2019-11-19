@@ -1,4 +1,4 @@
-import { Options, ImageData, ImageSource, ImageCallback } from '../typing'
+import { ImageData, ImageSource } from '../typing'
 import { ImageBase } from './base'
 import * as http from 'http'
 import * as https from 'https'
