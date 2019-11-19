@@ -26,7 +26,7 @@ describe('Palette Extraction', () => {
   )
 
   describe('process remote images (http)', function () {
-    let server: http.Server = null
+    let server: http.Server = null!
 
     before((done) => {
       server = createSampleServer()

@@ -56,7 +56,7 @@ export default class WorkerPool {
       this._workers.push(worker)
       worker.onmessage = this._onMessage.bind(this, worker.id)
     } else {
-      worker = find(this._workers, 'idle')
+      worker = find(this._workers, 'idle')!
     }
 
     return worker
@@ -94,7 +94,7 @@ export default class WorkerPool {
 
     // Dequeue task
     let task = this._queue.shift()
-    this._executing[task.id] = task
+    this._executing[task!.id] = task!
 
     // Send payload
     let request = <WorkerRequest>omit(task, 'deferred')
@@ -116,7 +116,7 @@ export default class WorkerPool {
     let { id } = data
     // Task is looked up by id
     let task = this._executing[id]
-    this._executing[id] = undefined
+    this._executing[id] = undefined!
 
     // Resolve or reject deferred promise
     switch (data.type) {

@@ -4,6 +4,8 @@
         "target": "es5",
         "noImplicitAny": true,
         "sourceMap": true,
+        "strictNullChecks": true,
+        "moduleResolution": "node",
         "lib": [
             "dom",
             "es5",

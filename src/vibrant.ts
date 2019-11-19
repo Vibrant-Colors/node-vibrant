@@ -31,7 +31,7 @@ class Vibrant {
     colorCount: 64,
     quality: 5,
     generator: Generator.Default,
-    ImageClass: null,
+    ImageClass: null!,
     quantizer: Quantizer.MMCQ,
     filters: [Filters.Default]
   }
@@ -44,7 +44,7 @@ class Vibrant {
   private _palette: Palette
   constructor(private _src: ImageSource, opts?: Partial<Options>) {
     this.opts = <ComputedOptions>defaults({}, opts, Vibrant.DefaultOpts)
-    this.opts.combinedFilter = Filters.combineFilters(this.opts.filters)
+    this.opts.combinedFilter = Filters.combineFilters(this.opts.filters)!
   }
   private _process(image: Image, opts: ComputedOptions): Promise<Palette> {
     let { quantizer, generator } = opts
@@ -54,7 +54,7 @@ class Vibrant {
     return image.applyFilter(opts.combinedFilter)
       .then((imageData) => quantizer(imageData.data, opts))
       .then((colors) => Swatch.applyFilter(colors, opts.combinedFilter))
-      .then((colors) => Promise.resolve(generator(colors)))
+      .then((colors) => Promise.resolve(generator!(colors)))
   }
 
   palette(): Palette {
@@ -76,7 +76,7 @@ class Vibrant {
         image.remove()
         throw err
       })
-    if (cb) result.then((palette) => cb(null, palette), (err) => cb(err))
+    if (cb) result.then((palette) => cb(null!, palette), (err) => cb(err))
     return result
   }
 }

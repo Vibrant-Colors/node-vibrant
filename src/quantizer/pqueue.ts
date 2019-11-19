@@ -32,7 +32,7 @@ export default class PQueue<T> {
 
   pop (): T {
     this._sort()
-    return this.contents.pop()
+    return this.contents.pop()!
   }
 
   size (): number {
