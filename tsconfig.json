@@ -57,6 +57,8 @@
     "target": "es5",
     "declaration": true,
     "sourceMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "strictNullChecks": true
   },
