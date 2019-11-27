@@ -29,10 +29,11 @@ export function defer<R>(): DeferredPromise<R> {
     resolve = _resolve
     reject = _reject
   })
+  // @ts-ignore
   return { resolve, reject, promise }
 }
 
-export function hexToRgb(hex: string): Vec3 {
+export function hexToRgb(hex: string): Vec3 | null {
   let m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
 
   return m === null ? null : <Vec3>[m[1], m[2], m[3]].map((s) => parseInt(s, 16))
@@ -68,8 +69,10 @@ export function rgbToHsl(r: number, g: number, b: number): Vec3 {
         break
     }
 
+    // @ts-ignore
     h /= 6
   }
+  // @ts-ignore
   return [h, s, l]
 }
 
@@ -189,7 +192,7 @@ export function hexDiff(hex1: string, hex2: string): number {
   let rgb1 = hexToRgb(hex1)
   let rgb2 = hexToRgb(hex2)
 
-  return rgbDiff(rgb1, rgb2)
+  return rgbDiff(rgb1!, rgb2!)
 }
 
 export function getColorDiffStatus(d: number): string {

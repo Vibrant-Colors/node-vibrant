@@ -55,9 +55,9 @@ const assertPalette = (reference: Palette, palette: Palette) => {
   for (const name of names) {
     const actual = palette[name]
     const expected = reference[name]
-    actualRow.push(actual ? actual.hex : null)
-    expectedRow.push(expected ? util.rgbToHex(...expected.rgb) : null)
-    const r = compare(name, expected, actual)
+    actualRow.push(actual ? actual.hex : null!)
+    expectedRow.push(expected ? util.rgbToHex(...expected.rgb) : null!)
+    const r = compare(name, expected!, actual!)
     scoreRow.push(`${r.status}(${r.diff.toPrecision(2)})`)
   }
 
@@ -70,19 +70,19 @@ const assertPalette = (reference: Palette, palette: Palette) => {
     .to.equal(0)
 }
 
-const paletteCallback = (references: any, sample: TestSample, done: MochaDone) =>
+const paletteCallback = (references: any, sample: TestSample, done: Mocha.Done) =>
   (err: Error, palette?: Palette) => {
     setTimeout(() => {
 
       expect(err, `should not throw error '${err}'`).to.be.null
-      assertPalette(references, palette)
+      assertPalette(references, palette!)
 
       done()
     })
   }
 
-export const testVibrant = (Vibrant: VibrantStatic, sample: TestSample, pathKey: SamplePathKey, env: 'node' | 'browser', builderCallback: (b: Builder) => Builder = null) => {
-  return (done: MochaDone) => {
+export const testVibrant = (Vibrant: VibrantStatic, sample: TestSample, pathKey: SamplePathKey, env: 'node' | 'browser', builderCallback: (b: Builder) => Builder = null!) => {
+  return (done: Mocha.Done) => {
     let builder = Vibrant.from(sample[pathKey])
       .quality(1)
 
@@ -93,7 +93,7 @@ export const testVibrant = (Vibrant: VibrantStatic, sample: TestSample, pathKey:
 }
 
 
-export const testVibrantAsPromised = (Vibrant: VibrantStatic, sample: TestSample, pathKey: SamplePathKey, env: 'node' | 'browser', builderCallback: (b: Builder) => Builder = null) => {
+export const testVibrantAsPromised = (Vibrant: VibrantStatic, sample: TestSample, pathKey: SamplePathKey, env: 'node' | 'browser', builderCallback: (b: Builder) => Builder = null!) => {
   return () => {
     let builder = Vibrant.from(sample[pathKey])
       .quality(1)

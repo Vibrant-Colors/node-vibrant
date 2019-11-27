@@ -29,7 +29,7 @@ export default class BrowserImage extends ImageBase {
   private _initCanvas (): void {
     let img = this.image
     let canvas = this._canvas = document.createElement('canvas')
-    let context = this._context = canvas.getContext('2d')
+    let context = this._context = canvas.getContext('2d')!
 
     canvas.className = 'vibrant-canvas'
     canvas.style.display = 'none'
@@ -37,13 +37,13 @@ export default class BrowserImage extends ImageBase {
     this._width = canvas.width = img.width
     this._height = canvas.height = img.height
 
-    context.drawImage(img, 0, 0)
+    context!.drawImage(img, 0, 0)
 
     document.body.appendChild(canvas)
   }
   load (image: ImageSource): Promise<ImageBase> {
-    let img: HTMLImageElement = null
-    let src: string = null
+    let img: HTMLImageElement | null = null
+    let src: string | null = null
     if (typeof image === 'string') {
       img = document.createElement('img')
       if (!isRelativeUrl(image) && !isSameOrigin(window.location.href, image)) {
@@ -64,12 +64,12 @@ export default class BrowserImage extends ImageBase {
         resolve(this)
       }
 
-      if (img.complete) {
+      if (img!.complete) {
         // Already loaded
         onImageLoad()
       } else {
-        img.onload = onImageLoad
-        img.onerror = (e) => reject(new Error(`Fail to load image: ${src}`))
+        img!.onload = onImageLoad
+        img!.onerror = (e) => reject(new Error(`Fail to load image: ${src}`))
       }
     })
   }

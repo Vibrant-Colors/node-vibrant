@@ -63,7 +63,7 @@ export default class VBox {
   hist: Uint32Array
 
   private _volume = -1
-  private _avg: Vec3
+  private _avg: Vec3 | null
   private _count = -1
 
   constructor (
@@ -178,12 +178,12 @@ export default class VBox {
     let bw = b2 - b1 + 1
 
     let maxw = Math.max(rw, gw, bw)
-    let accSum: Uint32Array = null
+    let accSum: Uint32Array | null = null
     let sum: number
     let total: number
     sum = total = 0
 
-    let maxd: 'r' | 'g' | 'b' = null
+    let maxd: 'r' | 'g' | 'b' | null = null
 
     if (maxw === rw) {
       maxd = 'r'
@@ -256,10 +256,10 @@ export default class VBox {
         d2 = Math.min(vbox.dimension[dim2], d2)
       }
 
-      while (!accSum[d2]) d2++
+      while (!accSum![d2]) d2++
 
       let c2 = reverseSum[d2]
-      while (!c2 && accSum[d2 - 1]) c2 = reverseSum[--d2]
+      while (!c2 && accSum![d2 - 1]) c2 = reverseSum[--d2]
 
       vbox1.dimension[dim2] = d2
       vbox2.dimension[dim1] = d2 + 1

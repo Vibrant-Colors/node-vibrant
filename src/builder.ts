@@ -33,13 +33,13 @@ export default class Builder {
   }
 
   addFilter(f: Filter): Builder {
-    this._opts.filters.push(f)
+    this._opts.filters!.push(f)
     return this
   }
 
   removeFilter(f: Filter): Builder {
-    let i = this._opts.filters.indexOf(f)
-    if (i > 0) this._opts.filters.splice(i)
+    let i = this._opts.filters!.indexOf(f)
+    if (i > 0) this._opts.filters!.splice(i)
     return this
   }
 

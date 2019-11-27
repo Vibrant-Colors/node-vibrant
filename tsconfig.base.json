@@ -4,6 +4,10 @@
         "target": "es5",
         "noImplicitAny": true,
         "sourceMap": true,
+        "strictNullChecks": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
         "lib": [
             "dom",
             "es5",
