@@ -18,9 +18,9 @@
   "license": "MIT",
   "dependencies": {
     "@vibrant/image": "^3.2.0-alpha",
-    "@jimp/custom": "^0.9.3",
-    "@jimp/types": "^0.9.3",
-    "@jimp/plugin-resize": "^0.9.3"
+    "@jimp/custom": "^0.16.1",
+    "@jimp/types": "^0.16.1",
+    "@jimp/plugin-resize": "^0.16.1"
   },
   "devDependencies": {
     "@types/node": "^10.12.18",
