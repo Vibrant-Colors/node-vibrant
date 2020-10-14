@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/quantizer-mmcq",
-  "version": "3.2.0-alpha",
+  "version": "3.2.1-alpha.1",
   "description": "MMCQ quantzier for vibrant",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,9 +17,9 @@
   "homepage": "https://github.com/akfish/node-vibrant",
   "license": "MIT",
   "dependencies": {
-    "@vibrant/color": "^3.2.0-alpha",
-    "@vibrant/image": "^3.2.0-alpha",
-    "@vibrant/quantizer": "^3.2.0-alpha"
+    "@vibrant/color": "^3.2.1-alpha.1",
+    "@vibrant/image": "^3.2.1-alpha.1",
+    "@vibrant/quantizer": "^3.2.1-alpha.1"
   },
   "devDependencies": {
     "typescript": "^3.7.2"

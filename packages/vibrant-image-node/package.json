@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/image-node",
-  "version": "3.2.0-alpha",
+  "version": "3.2.1-alpha.1",
   "description": "Node.js vibrant ImageClass implementation",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,10 +17,10 @@
   "homepage": "https://github.com/akfish/node-vibrant",
   "license": "MIT",
   "dependencies": {
-    "@vibrant/image": "^3.2.0-alpha",
     "@jimp/custom": "^0.16.1",
+    "@jimp/plugin-resize": "^0.16.1",
     "@jimp/types": "^0.16.1",
-    "@jimp/plugin-resize": "^0.16.1"
+    "@vibrant/image": "^3.2.1-alpha.1"
   },
   "devDependencies": {
     "@types/node": "^10.12.18",

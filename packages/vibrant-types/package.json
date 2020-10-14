@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/types",
-  "version": "3.2.0-alpha",
+  "version": "3.2.1-alpha.1",
   "description": "Common typings for vibrant",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
