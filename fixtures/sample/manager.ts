@@ -3,7 +3,7 @@ import path = require('path')
 import Bluebird = require('bluebird')
 import { Application } from 'express'
 import { readdir, readFile, writeFile } from 'fs'
-import bodyParser = require('body-parser')
+import { json as bodyParserJson } from 'body-parser'
 import { defer, Defer } from '@vibrant/types'
 
 const readdirAsync = Bluebird.promisify(readdir)
@@ -113,7 +113,7 @@ export class SampleManager {
   }
   buildMiddleware () {
     return (app: Application) => {
-      app.use(bodyParser.json())
+      app.use(bodyParserJson())
       app.post('/palettes', (req, res) => {
         const { name, palette } = req.body
         // TODO: better validation
