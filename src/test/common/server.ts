@@ -6,7 +6,7 @@ import serveStatic = require('serve-static')
 const staticFiles = serveStatic(path.join(__dirname, '../../../fixtures/sample/images/'))
 const serverHandler = (req: http.IncomingMessage, res: http.ServerResponse) => {
   let done = finalhandler(req, res)
-  return staticFiles(<any>req, <any>res, done)
+  return staticFiles(<any>req, <any>res, <any>done)
 }
 
 export const createSampleServer = () => http.createServer(serverHandler)
