@@ -87,10 +87,6 @@ lib/
 dist/
 .vscode/
 
-yarn\.lock
-
-package-lock.json
-
 palettes.current.json
 
 .build
