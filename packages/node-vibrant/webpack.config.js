@@ -38,11 +38,6 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          test: /\.worker.ts$/,
-          loader: 'worker-loader',
-          options: { inline: true }
-        },
-        {
           test: /\.tsx?$/,
           loader: 'ts-loader',
           options: {
