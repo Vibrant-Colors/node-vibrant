@@ -9,7 +9,7 @@
     "example": "examples"
   },
   "dependencies": {
-    "@types/node": "^10.12.18",
+    "@types/node": "^16.11.12",
     "@vibrant/core": "^3.2.1-alpha.1",
     "@vibrant/generator-default": "^3.2.1-alpha.1",
     "@vibrant/image-browser": "^3.2.1-alpha.1",
@@ -20,9 +20,9 @@
   "devDependencies": {
     "rimraf": "^2.6.2",
     "source-map-loader": "^0.2.4",
-    "ts-loader": "^5.3.2",
+    "ts-loader": "^8.3.0",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
-    "typescript": "^3.7.2",
+    "typescript": "^4.5.2",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.28.2",
     "webpack-bundle-analyzer": "^3.0.3",

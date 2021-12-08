@@ -65,5 +65,8 @@
   "include": [
     "packages/*/src",
     "packages/*/__tests__"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
