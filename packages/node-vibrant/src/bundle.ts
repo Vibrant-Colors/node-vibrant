@@ -1,6 +1,6 @@
-import Vibrant = require('./browser')
-import pipeline from './pipeline'
+import Vibrant = require("./browser");
+import pipeline from "./pipeline";
 
-Vibrant.use(pipeline)
+Vibrant.use(pipeline);
 
-export = Vibrant
+export = Vibrant;
