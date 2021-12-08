@@ -16,8 +16,8 @@
 		"bootstrap:fixtures/sample": "yarn --cwd=fixtures/sample install",
 		"bootstrap:fixtures/browser": "yarn --cwd=fixtures/browser install",
 		"lint": "run-p -c lint:*",
-		"lint:packages": "tslint --project tsconfig.json",
-		"lint:fixtures/sample": "tslint --project fixtures/sample/tsconfig.lint.json",
+		"lint:packages": "eslint ./packages",
+		"lint:fixtures/sample": "eslint ./fixtures",
 		"test": "run-p -c test:*",
 		"test:browser": "yarn --cwd=fixtures/browser run test",
 		"test:node": "mocha --require ts-node/register --require tsconfig-paths/register packages/*/__tests__/**/*.spec.ts",
@@ -47,14 +47,19 @@
 		"tsconfig-paths-webpack-plugin": "^3.2.0",
 		"tslint": "^5.12.1",
 		"tslint-config-standard": "^8.0.1",
-		"typedoc": "^0.14.2",
 		"typescript": "^4.5.2"
 	},
 	"private": true,
 	"name": "node-vibrant-monorepo",
 	"dependencies": {
 		"@babel/runtime": "^7.7.2",
-		"core-js": "3"
+		"@typescript-eslint/eslint-plugin": "^5.6.0",
+		"@typescript-eslint/parser": "^5.6.0",
+		"core-js": "3",
+		"eslint": "8",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"prettier": "^2.5.1"
 	},
 	"workspaces": [
 		"packages/*"
