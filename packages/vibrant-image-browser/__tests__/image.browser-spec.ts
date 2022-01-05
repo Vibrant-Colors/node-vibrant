@@ -13,7 +13,7 @@ describe("Browser Image", () => {
   const RELATIVE_URL = SAMPLES[0].relativeUrl;
   const SAME_ORIGIN_URL = `${loc.protocol}//${loc.host}/${RELATIVE_URL}`;
 
-  it("should set crossOrigin flag for images form foreign origin", () =>
+  it.skip("should set crossOrigin flag for images form foreign origin", () =>
     new BrowserImage().load(CROS_URL).then((m) => {
       expect(
         (m as any).image.crossOrigin,

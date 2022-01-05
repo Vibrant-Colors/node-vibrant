@@ -17,18 +17,14 @@
 		"bootstrap:fixtures/browser": "yarn --cwd=fixtures/browser install",
 		"lint": "run-p -c lint:*",
 		"lint:packages": "eslint ./packages",
-		"lint:fixtures/sample": "eslint ./fixtures",
+		"lint:fixtures": "eslint ./fixtures",
 		"test": "run-p -c test:*",
 		"test:browser": "yarn --cwd=fixtures/browser run test",
 		"test:node": "mocha --require ts-node/register --require tsconfig-paths/register packages/*/__tests__/**/*.spec.ts",
 		"sample:inspect": "yarn --cwd=fixtures/sample run start",
-		"sample:update": "yarn --cwd=fixtures/sample run update"
+		"sample:update": "yarn --cwd=fixtures/sample run update",
+		"prepare": "husky install"
 	},
-	"pre-commit": [
-		"lint",
-		"build",
-		"test"
-	],
 	"devDependencies": {
 		"@types/chai": "^4.1.7",
 		"@types/mocha": "^9.0.0",
@@ -39,7 +35,6 @@
 		"lerna": "^4.0.0",
 		"mocha": "^5.2.0",
 		"npm-run-all": "^4.1.5",
-		"pre-commit": "^1.2.2",
 		"rimraf": "^3.0.2",
 		"table": "^5.2.0",
 		"ts-node": "^10.4.0",
@@ -55,10 +50,11 @@
 		"@babel/runtime": "^7.7.2",
 		"@typescript-eslint/eslint-plugin": "^5.6.0",
 		"@typescript-eslint/parser": "^5.6.0",
-		"core-js": "3",
-		"eslint": "8",
+		"core-js": "^3.20.2",
+		"eslint": "^8.6.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-prettier": "^4.0.0",
+		"husky": "^7.0.4",
 		"prettier": "^2.5.1"
 	},
 	"workspaces": [
