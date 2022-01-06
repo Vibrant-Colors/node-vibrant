@@ -100,8 +100,7 @@ module.exports = function (config) {
         rules: [
           {
             test: /\.worker.ts$/,
-            loader: "worker-loader",
-            options: { inline: true },
+            loader: "worker-loader"
           },
           {
             test: /\.(js|jsx|tsx|ts)$/,
