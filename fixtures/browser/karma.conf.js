@@ -89,8 +89,6 @@ module.exports = function (config) {
 
     webpackMiddleware: {},
     webpack: {
-      devtool: "none",
-      mode: "none",
       optimization: {
         splitChunks: false,
         runtimeChunk: false,
@@ -98,10 +96,6 @@ module.exports = function (config) {
       },
       module: {
         rules: [
-          {
-            test: /\.worker.ts$/,
-            loader: "worker-loader"
-          },
           {
             test: /\.(js|jsx|tsx|ts)$/,
             loader: "ts-loader",
@@ -119,6 +113,9 @@ module.exports = function (config) {
             configFile: tsconfigFilePath,
           }),
         ],
+        fallback: {
+          path: require.resolve("path-browserify"),
+        },
       },
     },
   };
