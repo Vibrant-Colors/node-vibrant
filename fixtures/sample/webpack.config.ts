@@ -1,4 +1,6 @@
 // This webpack config requires this to run:
+import { Application } from "express";
+
 require("tsconfig-paths/register");
 
 const path = require("path");
@@ -19,13 +21,9 @@ module.exports = manager.getContext().then((context) => {
       main: "./index.tsx",
     },
     mode: "development",
-    devtool: "inline-module-source-map",
+    devtool: "inline-cheap-module-source-map",
     module: {
       rules: [
-        {
-          test: /\.worker.ts$/,
-          loader: "worker-loader",
-        },
         {
           test: /\.tsx?$/,
           loader: "ts-loader",
@@ -54,8 +52,11 @@ module.exports = manager.getContext().then((context) => {
       }),
     ],
     devServer: {
-      contentBase: path.resolve("images"),
-      after: manager.buildMiddleware(),
+      static: path.resolve("images"),
+      setupMiddlewares: (middlewares: any[]) => {
+        middlewares.push(manager.buildMiddleware());
+        return middlewares;
+      },
     },
   };
 });

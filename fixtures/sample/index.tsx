@@ -31,7 +31,7 @@ class SwatchView extends React.Component<SwatchProps, SwatchState> {
     }
 
     this.state = {
-      hex: this.props.color ? color.hex : "transparent",
+      hex: this.props.color ? color!.hex : "transparent",
     };
   }
   render() {
@@ -76,7 +76,7 @@ class PaletteView extends React.Component<PaletteProps> {
             <SwatchView
               key={name}
               name={name}
-              color={this.props.palette[name]}
+              color={this.props.palette[name]!}
             />
           ))}
         </div>

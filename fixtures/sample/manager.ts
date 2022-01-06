@@ -2,15 +2,13 @@
 import path = require("path");
 import Bluebird = require("bluebird");
 import { Application } from "express";
-import { readdir, readFile, writeFile } from "fs";
+import { promises } from "fs";
 import { json as bodyParserJson } from "body-parser";
 import { defer, Defer } from "@vibrant/types";
 
-const readdirAsync = Bluebird.promisify(readdir);
-const readFileAsync = Bluebird.promisify<string, string, string>(readFile);
-const writeFileAsync = Bluebird.promisify<void, string, string, string>(
-  writeFile
-);
+const readdirAsync = promises.readdir;
+const readFileAsync = promises.readFile;
+const writeFileAsync = promises.writeFile;
 
 import Vibrant = require("node-vibrant");
 import { Sample, SampleContext } from "./types";
@@ -124,7 +122,7 @@ export class SampleManager {
     });
   }
   buildMiddleware() {
-    return (app: Application) => {
+    return () => (app: Application) => {
       app.use(bodyParserJson());
       app.post("/palettes", (req, res) => {
         const { name, palette } = req.body;
