@@ -14,8 +14,7 @@
     "@vibrant/generator-default": "^3.2.1-alpha.1",
     "@vibrant/image-browser": "^3.2.1-alpha.1",
     "@vibrant/image-node": "^3.2.1-alpha.1",
-    "@vibrant/quantizer-mmcq": "^3.2.1-alpha.1",
-    "url": "^0.11.0"
+    "@vibrant/quantizer-mmcq": "^3.2.1-alpha.1"
   },
   "devDependencies": {
     "rimraf": "^2.6.2",
