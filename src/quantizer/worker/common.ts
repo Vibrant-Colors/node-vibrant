@@ -3,7 +3,7 @@ import {
   ComputedOptions
 } from '../../typing'
 
-import { Swatch } from '../../color'
+import { Vec3 } from '../../color'
 
 export interface WorkerRequest {
   id: number
@@ -16,7 +16,10 @@ export interface WorkerRequest {
 export interface WorkerResponse {
   id: number
   type: 'return'
-  payload: Swatch[]
+  payload: {
+    rgb: Vec3,
+    population: number
+  }[]
 }
 
 export interface WorkerErrorResponse {

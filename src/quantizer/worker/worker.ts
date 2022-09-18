@@ -18,7 +18,7 @@ self.onmessage = (event: MessageEvent) => {
     response = {
       id,
       type: 'return',
-      payload: swatches
+      payload: swatches.map(({ rgb, population }) => ({ rgb, population }))
     }
   }
   catch (e) {
