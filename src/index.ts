@@ -3,4 +3,4 @@ import NodeImage from './image/node'
 
 Vibrant.DefaultOpts.ImageClass = NodeImage
 
-export = Vibrant
+export { Vibrant }
