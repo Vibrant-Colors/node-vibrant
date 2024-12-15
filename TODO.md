@@ -1,5 +1,6 @@
 - [x] Migrate to Yarn 4
-- [ ] Migrate from Lerna to Nx + Nx Cloud
+- [x] Ignore above and migrate to PNPM 9
+- [x] Migrate to new Lerna
 - [ ] Migrate from Mocha/Chai to Vitest
 - [ ] Migrate from Webpack to Vite
 - [ ] Migrate to TypeScript 5

@@ -1,20 +1,16 @@
 {
+	"name": "node-vibrant-monorepo",
+	"private": true,
 	"scripts": {
 		"clean": "run-p -c clean:*",
 		"clean:tsc": "lerna exec -- rimraf lib",
 		"clean:tsc-tmp": "rimraf .build",
 		"clean:browser": "lerna exec -- rimraf dist",
-		"move:tsc": "lerna exec -- node ../../scripts/tsc/move.js",
 		"compile:tsc": "tsc",
 		"compile:browser": "lerna run build:browser",
 		"build": "run-p -c build:*",
 		"build:tsc": "npm-run-all clean:tsc compile:tsc move:tsc clean:tsc-tmp",
 		"build:browser": "npm-run-all clean:browser compile:browser",
-		"bootstrap": "run-s bootstrap:lerna bootstrap:fixtures",
-		"bootstrap:lerna": "lerna bootstrap",
-		"bootstrap:fixtures": "run-p -c bootstrap:fixtures/*",
-		"bootstrap:fixtures/sample": "yarn --cwd=fixtures/sample install",
-		"bootstrap:fixtures/browser": "yarn --cwd=fixtures/browser install",
 		"lint": "run-p -c lint:*",
 		"lint:packages": "eslint ./packages",
 		"lint:fixtures": "eslint ./fixtures",
@@ -22,20 +18,29 @@
 		"format:packages": "eslint ./packages --fix",
 		"format:fixtures": "eslint ./fixtures --fix",
 		"test": "run-p -c test:*",
-		"test:browser": "yarn --cwd=fixtures/browser run test",
+		"test:browser": "pnpm --dir=fixtures/browser run test",
 		"test:node": "mocha --require ts-node/register --require tsconfig-paths/register packages/*/__tests__/**/*.spec.ts",
-		"sample:inspect": "yarn --cwd=fixtures/sample run start",
-		"sample:update": "yarn --cwd=fixtures/sample run update",
+		"sample:inspect": "pnpm --dir=fixtures/sample run start",
+		"sample:update": "pnpm --dir=fixtures/sample run update",
 		"prepare": "husky install"
 	},
 	"devDependencies": {
+		"@babel/runtime": "^7.7.2",
+		"@typescript-eslint/eslint-plugin": "^5.6.0",
+		"@typescript-eslint/parser": "^5.6.0",
+		"core-js": "^3.20.2",
+		"eslint": "^8.6.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"husky": "^7.0.4",
+		"prettier": "^2.5.1",
 		"@types/chai": "^4.1.7",
 		"@types/mocha": "^9.0.0",
 		"@types/node": "^14.14.31",
 		"@types/table": "^4.0.5",
 		"chai": "^4.2.0",
 		"fs-extra": "^10.0.0",
-		"lerna": "^4.0.0",
+		"lerna": "^8.1.9",
 		"lint-staged": "^12.1.5",
 		"mocha": "^9.1.3",
 		"npm-run-all": "^4.1.5",
@@ -48,26 +53,9 @@
 		"tslint-config-standard": "^8.0.1",
 		"typescript": "^4.5.2"
 	},
-	"private": true,
-	"name": "node-vibrant-monorepo",
-	"dependencies": {
-		"@babel/runtime": "^7.7.2",
-		"@typescript-eslint/eslint-plugin": "^5.6.0",
-		"@typescript-eslint/parser": "^5.6.0",
-		"core-js": "^3.20.2",
-		"eslint": "^8.6.0",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-prettier": "^4.0.0",
-		"husky": "^7.0.4",
-		"prettier": "^2.5.1"
-	},
 	"lint-staged": {
 		"*.{ts,tsx}": [
 			"eslint --fix"
 		]
-	},
-	"workspaces": [
-		"packages/*"
-	],
-	"packageManager": "yarn@4.5.3"
+	}
 }
