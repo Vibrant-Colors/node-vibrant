@@ -3,7 +3,8 @@
 	"version": "3.2.1-alpha.1",
 	"description": "Core vibrant classes",
 	"scripts": {
-		"test": "vitest",
+		"test": "vitest run",
+		"test:watch": "vitest watch",
 		"build": "vite build"
 	},
 	"type": "module",

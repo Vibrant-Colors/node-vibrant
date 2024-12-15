@@ -25,7 +25,14 @@ beforeAll(async () => {
 
 afterAll(
   async () =>
-    await new Promise<void>((resolve) => server!.close(() => resolve()))
+    await new Promise<void>((resolve, reject) =>
+      server!.close((err) => {
+        if (err) {
+          return reject(err);
+        }
+        resolve();
+      })
+    )
 );
 
 describe("Palette Extraction", () => {

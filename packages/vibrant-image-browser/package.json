@@ -4,7 +4,8 @@
   "description": "Browser vibrant ImageClass implementation",
   "scripts": {
     "build": "vite build",
-    "test": "vitest"
+    "test": "vitest run",
+    "test:watch": "vitest watch"
   },
   "type": "module",
   "types": "dist/esm/index.d.ts",

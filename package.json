@@ -12,9 +12,7 @@
 		"format": "run-p -c format:*",
 		"format:packages": "eslint ./packages --fix",
 		"format:fixtures": "eslint ./fixtures --fix",
-		"test": "run-p -c test:*",
-		"test:browser": "pnpm --dir=fixtures/browser run test",
-		"test:node": "mocha --require ts-node/register --require tsconfig-paths/register packages/*/__tests__/**/*.spec.ts",
+		"test": "lerna run test",
 		"sample:inspect": "pnpm --dir=fixtures/sample run start",
 		"sample:update": "pnpm --dir=fixtures/sample run update",
 		"prepare": "husky install && playwright install chromium"

@@ -22,10 +22,13 @@ const startServer: BrowserCommand<never> = async ({}) => {
   return null;
 };
 
-const stopServer: BrowserCommand<never> = async ({}) => {
-  async () =>
-    await new Promise<void>((resolve) => server!.close(() => resolve()));
-};
+const stopServer: BrowserCommand<never> = async ({}) =>
+  new Promise<void>((resolve, reject) =>
+    server!.close((err) => {
+      if (err) return reject(err);
+      resolve();
+    })
+  );
 
 export default defineWorkspace([
   {
