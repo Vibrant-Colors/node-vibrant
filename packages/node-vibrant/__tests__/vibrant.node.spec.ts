@@ -1,4 +1,4 @@
-import { describe, it, beforeEach, afterEach } from "vitest";
+import { describe, it, beforeAll, afterAll } from "vitest";
 
 const TEST_PORT = 3444;
 
@@ -14,6 +14,20 @@ import Vibrant from "../src/node";
 
 const SAMPLES = loadTestSamples(TEST_PORT);
 
+let server: http.Server | null = null;
+
+beforeAll(async () => {
+  server = createSampleServer();
+  await new Promise<void>((resolve) =>
+    server.listen(TEST_PORT, () => resolve())
+  );
+});
+
+afterAll(
+  async () =>
+    await new Promise<void>((resolve) => server!.close(() => resolve()))
+);
+
 describe("Palette Extraction", () => {
   describe("process samples", () =>
     SAMPLES.forEach((sample) => {
@@ -28,20 +42,6 @@ describe("Palette Extraction", () => {
     }));
 
   describe("process remote images (http)", function () {
-    let server: http.Server | null = null;
-
-    beforeEach(async () => {
-      server = createSampleServer();
-      await new Promise<void>((resolve) =>
-        server.listen(TEST_PORT, () => resolve())
-      );
-    });
-
-    afterEach(
-      async () =>
-        await new Promise<void>((resolve) => server!.close(() => resolve()))
-    );
-
     SAMPLES.forEach((sample) => {
       it(
         `${sample.url} (callback)`,
