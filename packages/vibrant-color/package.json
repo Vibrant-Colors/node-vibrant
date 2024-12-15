@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/color",
-  "version": "3.2.1-alpha.1",
+  "version": "4.0.0-alpha.1",
   "description": "Color utilities for vibrant",
   "scripts": {
     "build": "vite build"
@@ -37,8 +37,8 @@
   "homepage": "https://github.com/akfish/node-vibrant",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.5.2",
     "@tanstack/config": "^0.14.2",
+    "typescript": "^4.5.2",
     "vite": "^6.0.3"
   },
   "publishConfig": {

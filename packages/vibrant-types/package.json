@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/types",
-  "version": "3.2.1-alpha.1",
+  "version": "4.0.0-alpha.1",
   "description": "Common typings for vibrant",
   "scripts": {
     "build": "vite build"
@@ -38,8 +38,8 @@
   "license": "MIT",
   "devDependencies": {
     "@tanstack/config": "^0.14.2",
-    "vite": "^6.0.3",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.2",
+    "vite": "^6.0.3"
   },
   "publishConfig": {
     "access": "public"
