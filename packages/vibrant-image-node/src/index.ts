@@ -1,12 +1,4 @@
-import {
-  ImageOptions,
-  ImageData,
-  ImageSource,
-  ImageCallback,
-  ImageBase,
-} from "@vibrant/image";
-import * as http from "http";
-import * as https from "https";
+import { ImageBase, ImageData, ImageSource } from "@vibrant/image";
 import configure from "@jimp/custom";
 import types from "@jimp/types";
 import resize from "@jimp/plugin-resize";
@@ -26,45 +18,46 @@ interface ProtocalHandlerMap {
 
 const URL_REGEX = /^(\w+):\/\/.*/i;
 
-const PROTOCOL_HANDLERS: ProtocalHandlerMap = {
-  http,
-  https,
-};
-
 type NodeImageSource = string | Buffer;
 
 export default class NodeImage extends ImageBase {
   private _image: InstanceType<typeof Jimp>;
-  private _loadByProtocolHandler(
-    handler: ProtocalHandler,
-    src: string
-  ): Promise<Buffer> {
-    return new Promise<Buffer>((resolve, reject) => {
-      handler
-        .get(src, (r: any) => {
-          let buf = Buffer.from("");
-          r.on("data", (data: any) => (buf = Buffer.concat([buf, data])));
-          r.on("end", () => resolve(buf));
-          r.on("error", (e: Error) => reject(e));
-        })
-        .on("error", (e: Error) => reject(e));
+
+  private async _loadByProtocolHandler(src: string): Promise<Buffer> {
+    const res = await fetch(src, {
+      method: "GET",
     });
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch ${src}`);
+    }
+
+    const stream = res.body.getReader();
+    const chunks: Uint8Array[] = [];
+    let done = false;
+    while (!done) {
+      const { value, done: doneValue } = await stream.read();
+      if (value) {
+        chunks.push(value);
+      }
+      done = doneValue;
+    }
+
+    return Buffer.concat(chunks);
   }
+
   private _loadFromPath(src: string): Promise<ImageBase> {
     const m = URL_REGEX.exec(src);
     if (m) {
       const protocol = m[1].toLocaleLowerCase();
-      const handler = PROTOCOL_HANDLERS[protocol];
-      if (!handler) {
-        return Promise.reject(new Error(`Unsupported protocol: ${protocol}`));
-      }
-      return this._loadByProtocolHandler(handler, src).then((buf) =>
+      return this._loadByProtocolHandler(src).then((buf) =>
         this._loadByJimp(buf)
       );
     } else {
       return this._loadByJimp(src);
     }
   }
+
   private _loadByJimp(src: NodeImageSource): Promise<ImageBase> {
     // NOTE: TypeScript doesn't support union type to overloads yet
     //       Use type assertion to bypass compiler error
@@ -73,6 +66,7 @@ export default class NodeImage extends ImageBase {
       return this;
     });
   }
+
   load(image: ImageSource): Promise<ImageBase> {
     if (typeof image === "string") {
       return this._loadFromPath(image);
@@ -84,26 +78,34 @@ export default class NodeImage extends ImageBase {
       );
     }
   }
+
   // tslint:disable-next-line:no-empty
   clear(): void {}
+
   // tslint:disable-next-line:no-empty
   update(imageData: ImageData): void {}
+
   getWidth(): number {
     return this._image.bitmap.width;
   }
+
   getHeight(): number {
     return this._image.bitmap.height;
   }
+
   resize(targetWidth: number, targetHeight: number, ratio: number): void {
     this._image.resize(targetWidth, targetHeight);
   }
+
   getPixelCount(): number {
     const bitmap = this._image.bitmap;
     return bitmap.width * bitmap.height;
   }
+
   getImageData(): ImageData {
     return this._image.bitmap;
   }
+
   // tslint:disable-next-line:no-empty
   remove(): void {}
 }
