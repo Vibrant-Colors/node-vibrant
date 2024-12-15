@@ -9,7 +9,7 @@
 		"compile:tsc": "tsc",
 		"compile:browser": "lerna run build:browser",
 		"build": "run-p -c build:*",
-		"build:tsc": "npm-run-all clean:tsc compile:tsc move:tsc clean:tsc-tmp",
+		"build:tsc": "npm-run-all clean:tsc compile:tsc clean:tsc-tmp",
 		"build:browser": "npm-run-all clean:browser compile:browser",
 		"lint": "run-p -c lint:*",
 		"lint:packages": "eslint ./packages",
