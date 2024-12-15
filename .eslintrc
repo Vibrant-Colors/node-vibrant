@@ -12,6 +12,12 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
+  "ignorePatterns": [
+    "node_modules/",
+    "dist/",
+    "build/",
+    "coverage/"
+  ],
   "rules": {
     // Temporary
     "@typescript-eslint/ban-types": "off",
