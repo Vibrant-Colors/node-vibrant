@@ -6,6 +6,8 @@
 - [ ] Migrate away from Bluebird
 - [ ] Migrate to TypeScript 5
 - [ ] Migrate to ESLint 9
-- [ ] Add GitHub Actions for CI
+- [ ] Remove TSLint
+- [ ] Improve Prettier usage
+- [ ] Migrate away from Travis to GitHub Actions for CI
 - [ ] Rename `main` branch to `mainline`
 - [ ] Fix demo website
