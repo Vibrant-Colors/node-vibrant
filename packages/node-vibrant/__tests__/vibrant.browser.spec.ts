@@ -3,7 +3,7 @@ import { loadTestSamples } from "../../../fixtures/sample/loader";
 
 import { testVibrant, testVibrantAsPromised } from "./common/helper";
 
-import Vibrant from "../src/bundle-worker";
+import Vibrant from "../src/worker";
 
 const SAMPLES = loadTestSamples();
 

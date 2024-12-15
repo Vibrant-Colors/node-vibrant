@@ -1,3 +1,5 @@
+import { describe, it, beforeEach, afterEach } from "vitest";
+
 const TEST_PORT = 3444;
 
 import { loadTestSamples } from "../../../fixtures/sample/loader";
@@ -8,7 +10,7 @@ import { createSampleServer } from "../../../fixtures/sample/server";
 
 import http from "http";
 
-import Vibrant from "../src";
+import Vibrant from "../src/node";
 
 const SAMPLES = loadTestSamples(TEST_PORT);
 
@@ -28,12 +30,17 @@ describe("Palette Extraction", () => {
   describe("process remote images (http)", function () {
     let server: http.Server | null = null;
 
-    before((done) => {
+    beforeEach(async () => {
       server = createSampleServer();
-      return server.listen(TEST_PORT, done);
+      await new Promise<void>((resolve) =>
+        server.listen(TEST_PORT, () => resolve())
+      );
     });
 
-    after((done) => server!.close(done));
+    afterEach(
+      async () =>
+        await new Promise<void>((resolve) => server!.close(() => resolve()))
+    );
 
     SAMPLES.forEach((sample) => {
       it(

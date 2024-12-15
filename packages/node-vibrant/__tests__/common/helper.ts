@@ -1,10 +1,9 @@
 /* tslint:disable:no-unused-expression */
 import { expect } from "vitest";
 import { VibrantStatic } from "@vibrant/core";
-import Builder from "@vibrant/core/lib/builder";
-import path from "path";
+import { Builder } from "@vibrant/core";
 import { Palette, Swatch } from "@vibrant/color";
-import * as util from "@vibrant/color/src/converter";
+import * as util from "@vibrant/color";
 import { TestSample, SamplePathKey } from "../../../../fixtures/sample/loader";
 
 import { table, getBorderCharacters } from "table";

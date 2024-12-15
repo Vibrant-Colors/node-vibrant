@@ -1,8 +1,8 @@
-import { Options, buildProcessOptions } from "./options";
+import { buildProcessOptions, Options } from "./options";
 import { Callback } from "@vibrant/types";
 import { Image, ImageSource } from "@vibrant/image";
 
-import { Filter, Palette, Swatch } from "@vibrant/color";
+import { Palette } from "@vibrant/color";
 
 import Builder from "./builder";
 import { Pipeline, ProcessOptions, ProcessResult } from "./pipeline";
@@ -15,9 +15,11 @@ export interface VibrantStatic {
 export default class Vibrant {
   private _result: ProcessResult;
   private static _pipeline: Pipeline;
+
   static use(pipeline: Pipeline) {
     this._pipeline = pipeline;
   }
+
   static DefaultOpts: Partial<Options> = {
     colorCount: 64,
     quality: 5,
@@ -33,9 +35,11 @@ export default class Vibrant {
   }
 
   opts: Options;
+
   constructor(private _src: ImageSource, opts?: Partial<Options>) {
     this.opts = assignDeep({}, Vibrant.DefaultOpts, opts);
   }
+
   private _process(
     image: Image,
     opts?: Partial<ProcessOptions>
@@ -48,9 +52,11 @@ export default class Vibrant {
 
     return Vibrant._pipeline.process(image.getImageData(), processOpts);
   }
+
   palette(): Palette {
     return this.swatches();
   }
+
   swatches(): Palette {
     throw new Error(
       "Method deprecated. Use `Vibrant.result.palettes[name]` instead"
@@ -87,6 +93,7 @@ export default class Vibrant {
         return Promise.reject(err);
       });
   }
+
   getPalettes(
     names: string[],
     cb?: Callback<Palette>
@@ -129,3 +136,4 @@ export default class Vibrant {
 export { BasicPipeline } from "./pipeline";
 export { WorkerPipeline } from "./pipeline/worker/client";
 export { runPipelineInWorker } from "./pipeline/worker/host";
+export { Builder };
