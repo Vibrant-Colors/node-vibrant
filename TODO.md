@@ -9,5 +9,7 @@
 - [ ] Remove TSLint
 - [ ] Improve Prettier usage
 - [ ] Migrate away from Travis to GitHub Actions for CI
+- [ ] Set up Sherif
+- [ ] Set up Knip
 - [ ] Rename `main` branch to `mainline`
 - [ ] Fix demo website
