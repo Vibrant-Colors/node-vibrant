@@ -4,6 +4,7 @@
 - [ ] Migrate from Mocha/Chai to Vitest
 - [ ] Migrate from Webpack to Vite
 - [ ] Migrate away from Bluebird
+- [ ] Remove TypeScript `path` usage throughout repo
 - [ ] Migrate to TypeScript 5
 - [ ] Migrate to ESLint 9
 - [ ] Remove TSLint
