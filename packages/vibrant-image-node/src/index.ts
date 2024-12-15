@@ -79,10 +79,8 @@ export default class NodeImage extends ImageBase {
     }
   }
 
-  // tslint:disable-next-line:no-empty
   clear(): void {}
 
-  // tslint:disable-next-line:no-empty
   update(imageData: ImageData): void {}
 
   getWidth(): number {
@@ -106,6 +104,5 @@ export default class NodeImage extends ImageBase {
     return this._image.bitmap;
   }
 
-  // tslint:disable-next-line:no-empty
   remove(): void {}
 }

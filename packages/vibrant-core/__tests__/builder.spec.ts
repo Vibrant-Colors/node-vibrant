@@ -4,7 +4,6 @@ import Builder from "../src/builder";
 
 describe("builder", () => {
   it("modifies Vibrant options", () => {
-    // tslint:disable-next-line:no-empty
     const NOT_A_FILTER = () => {};
     const v = new Builder("NOT_A_PATH")
       .maxColorCount(23)

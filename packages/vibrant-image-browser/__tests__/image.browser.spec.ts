@@ -50,8 +50,7 @@ describe.skip("Browser Image", () => {
     let resolve = () => {};
     const prom = new Promise<void>((r) => (resolve = r));
     img.onload = () => {
-      const m1 = new BrowserImage();
-      // tslint:disable-next-line:no-floating-promises
+      const tslintm1 = new BrowserImage();
       m1.load(img).then((img) => resolve());
     };
 

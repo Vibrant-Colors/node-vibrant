@@ -1,4 +1,3 @@
-/* tslint:disable:no-unused-expression */
 import { expect } from "vitest";
 import { VibrantStatic } from "@vibrant/core";
 import { Builder } from "@vibrant/core";

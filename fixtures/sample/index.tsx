@@ -122,7 +122,6 @@ class SampleView extends React.Component<SampleProps, SampleState> {
       );
   }
   componentDidMount() {
-    // tslint:disable-next-line:no-floating-promises
     Vibrant.from(this.state.url)
       .quality(1)
       .getPalette()

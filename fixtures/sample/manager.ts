@@ -1,6 +1,4 @@
-/* tslint:disable:no-floating-promises await-promise */
 import path from "path";
-import Bluebird from "bluebird";
 import { Application } from "express";
 import { promises } from "fs";
 import { json as bodyParserJson } from "body-parser";
@@ -59,15 +57,13 @@ export class SampleManager {
   constructor(public readonly sampleFolder: string) {}
   async getCurrent(): Promise<Sample[]> {
     if (!this._current) {
-      this._current = await Bluebird.map(
-        listSampleFiles(this.sampleFolder),
-        (name: string) => {
+      const files = await listSampleFiles(this.sampleFolder);
+      this._current = await Promise.all(
+        files.map(async (name: string) => {
           const filePath = path.join(__dirname, "images", name);
-          return Vibrant.from(filePath)
-            .quality(1)
-            .getPalette()
-            .then((node) => ({ name, palettes: { node }, filePath }));
-        }
+          const palette = await Vibrant.from(filePath).quality(1).getPalette();
+          return { name, palettes: { node: palette }, filePath };
+        })
       );
       this.saveSnapshot();
     }
@@ -116,10 +112,11 @@ export class SampleManager {
     return this._saveTimer.done();
   }
   async getContext(): Promise<SampleContext> {
-    return Bluebird.props({
-      current: this.getCurrent(),
-      snapshot: this.getSnapshot(),
-    });
+    const [current, snapshot] = await Promise.all([
+      this.getCurrent(),
+      this.getSnapshot(),
+    ]);
+    return { current, snapshot };
   }
   buildMiddleware() {
     return () => (app: Application) => {

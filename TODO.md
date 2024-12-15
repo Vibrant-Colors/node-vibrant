@@ -4,11 +4,12 @@
 - [x] Migrate from Webpack to Vite
 - [x] Remove TypeScript `path` usage throughout repo
 - [x] Migrate from Mocha/Chai to Vitest
-- [ ] Migrate away from Bluebird
+- [x] Migrate away from Bluebird
+- [x] Remove TSLint
+- [ ] Migrate to TypeScript ESLint 8
 - [ ] Migrate to TypeScript 5
 - [ ] Enable TypeScript strict mode
 - [ ] Migrate to ESLint 9
-- [ ] Remove TSLint
 - [ ] Improve Prettier usage
 - [ ] Migrate away from Travis to GitHub Actions for CI
 - [ ] Set up Sherif
