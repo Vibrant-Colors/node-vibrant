@@ -299,9 +299,15 @@ importers:
         specifier: ^3.2.1-alpha.1
         version: link:../vibrant-worker
     devDependencies:
+      '@tanstack/config':
+        specifier: ^0.14.2
+        version: 0.14.2(@types/node@16.9.1)(esbuild@0.24.0)(eslint@8.57.1)(rollup@4.28.1)(typescript@4.9.5)(vite@6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1))
       typescript:
         specifier: ^4.5.2
         version: 4.9.5
+      vite:
+        specifier: ^6.0.3
+        version: 6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1)
       vitest:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@16.9.1)(@vitest/browser@2.1.8)(jsdom@25.0.1)(msw@2.6.8(@types/node@16.9.1)(typescript@4.9.5))(terser@5.37.0)
@@ -7177,6 +7183,14 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
+  '@microsoft/api-extractor-model@7.29.4(@types/node@16.9.1)':
+    dependencies:
+      '@microsoft/tsdoc': 0.15.1
+      '@microsoft/tsdoc-config': 0.17.1
+      '@rushstack/node-core-library': 5.5.1(@types/node@16.9.1)
+    transitivePeerDependencies:
+      - '@types/node'
+
   '@microsoft/api-extractor@7.47.4(@types/node@14.18.63)':
     dependencies:
       '@microsoft/api-extractor-model': 7.29.4(@types/node@14.18.63)
@@ -7186,6 +7200,24 @@ snapshots:
       '@rushstack/rig-package': 0.5.3
       '@rushstack/terminal': 0.13.3(@types/node@14.18.63)
       '@rushstack/ts-command-line': 4.22.3(@types/node@14.18.63)
+      lodash: 4.17.21
+      minimatch: 3.0.5
+      resolve: 1.22.9
+      semver: 7.5.4
+      source-map: 0.6.1
+      typescript: 5.4.2
+    transitivePeerDependencies:
+      - '@types/node'
+
+  '@microsoft/api-extractor@7.47.4(@types/node@16.9.1)':
+    dependencies:
+      '@microsoft/api-extractor-model': 7.29.4(@types/node@16.9.1)
+      '@microsoft/tsdoc': 0.15.1
+      '@microsoft/tsdoc-config': 0.17.1
+      '@rushstack/node-core-library': 5.5.1(@types/node@16.9.1)
+      '@rushstack/rig-package': 0.5.3
+      '@rushstack/terminal': 0.13.3(@types/node@16.9.1)
+      '@rushstack/ts-command-line': 4.22.3(@types/node@16.9.1)
       lodash: 4.17.21
       minimatch: 3.0.5
       resolve: 1.22.9
@@ -7578,6 +7610,19 @@ snapshots:
     optionalDependencies:
       '@types/node': 14.18.63
 
+  '@rushstack/node-core-library@5.5.1(@types/node@16.9.1)':
+    dependencies:
+      ajv: 8.13.0
+      ajv-draft-04: 1.0.0(ajv@8.13.0)
+      ajv-formats: 3.0.1(ajv@8.13.0)
+      fs-extra: 7.0.1
+      import-lazy: 4.0.0
+      jju: 1.4.0
+      resolve: 1.22.9
+      semver: 7.5.4
+    optionalDependencies:
+      '@types/node': 16.9.1
+
   '@rushstack/rig-package@0.5.3':
     dependencies:
       resolve: 1.22.9
@@ -7590,9 +7635,25 @@ snapshots:
     optionalDependencies:
       '@types/node': 14.18.63
 
+  '@rushstack/terminal@0.13.3(@types/node@16.9.1)':
+    dependencies:
+      '@rushstack/node-core-library': 5.5.1(@types/node@16.9.1)
+      supports-color: 8.1.1
+    optionalDependencies:
+      '@types/node': 16.9.1
+
   '@rushstack/ts-command-line@4.22.3(@types/node@14.18.63)':
     dependencies:
       '@rushstack/terminal': 0.13.3(@types/node@14.18.63)
+      '@types/argparse': 1.0.38
+      argparse: 1.0.10
+      string-argv: 0.3.2
+    transitivePeerDependencies:
+      - '@types/node'
+
+  '@rushstack/ts-command-line@4.22.3(@types/node@16.9.1)':
+    dependencies:
+      '@rushstack/terminal': 0.13.3(@types/node@16.9.1)
       '@types/argparse': 1.0.38
       argparse: 1.0.10
       string-argv: 0.3.2
@@ -7679,6 +7740,41 @@ snapshots:
       vite-plugin-dts: 4.0.3(@types/node@14.18.63)(rollup@4.28.1)(typescript@4.9.5)(vite@6.0.3(@types/node@14.18.63)(terser@5.37.0)(yaml@2.6.1))
       vite-plugin-externalize-deps: 0.8.0(vite@6.0.3(@types/node@14.18.63)(terser@5.37.0)(yaml@2.6.1))
       vite-tsconfig-paths: 5.1.4(typescript@4.9.5)(vite@6.0.3(@types/node@14.18.63)(terser@5.37.0)(yaml@2.6.1))
+    transitivePeerDependencies:
+      - '@types/node'
+      - esbuild
+      - eslint
+      - rollup
+      - supports-color
+      - typescript
+      - vite
+
+  '@tanstack/config@0.14.2(@types/node@16.9.1)(esbuild@0.24.0)(eslint@8.57.1)(rollup@4.28.1)(typescript@4.9.5)(vite@6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1))':
+    dependencies:
+      '@commitlint/parse': 19.5.0
+      '@eslint/js': 9.17.0
+      '@stylistic/eslint-plugin-js': 2.12.1(eslint@8.57.1)
+      commander: 12.1.0
+      current-git-branch: 1.1.0
+      esbuild-register: 3.6.0(esbuild@0.24.0)
+      eslint-plugin-import-x: 4.5.0(eslint@8.57.1)(typescript@4.9.5)
+      eslint-plugin-n: 17.15.0(eslint@8.57.1)
+      globals: 15.13.0
+      interpret: 3.1.1
+      jsonfile: 6.1.0
+      liftoff: 5.0.0
+      minimist: 1.2.8
+      rollup-plugin-preserve-directives: 0.4.0(rollup@4.28.1)
+      semver: 7.6.3
+      simple-git: 3.27.0
+      typedoc: 0.27.5(typescript@4.9.5)
+      typedoc-plugin-frontmatter: 1.1.2(typedoc-plugin-markdown@4.3.2(typedoc@0.27.5(typescript@4.9.5)))
+      typedoc-plugin-markdown: 4.3.2(typedoc@0.27.5(typescript@4.9.5))
+      typescript-eslint: 8.18.0(eslint@8.57.1)(typescript@4.9.5)
+      v8flags: 4.0.1
+      vite-plugin-dts: 4.0.3(@types/node@16.9.1)(rollup@4.28.1)(typescript@4.9.5)(vite@6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1))
+      vite-plugin-externalize-deps: 0.8.0(vite@6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1))
+      vite-tsconfig-paths: 5.1.4(typescript@4.9.5)(vite@6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1))
     transitivePeerDependencies:
       - '@types/node'
       - esbuild
@@ -8072,11 +8168,11 @@ snapshots:
       - utf-8-validate
       - vite
 
-  '@vitest/browser@2.1.8(@types/node@16.9.1)(playwright@1.49.1)(typescript@4.9.5)(vite@5.4.11(@types/node@16.9.1)(terser@5.37.0))(vitest@2.1.8)':
+  '@vitest/browser@2.1.8(@types/node@16.9.1)(playwright@1.49.1)(typescript@4.9.5)(vite@6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1))(vitest@2.1.8)':
     dependencies:
       '@testing-library/dom': 10.4.0
       '@testing-library/user-event': 14.5.2(@testing-library/dom@10.4.0)
-      '@vitest/mocker': 2.1.8(msw@2.6.8(@types/node@16.9.1)(typescript@4.9.5))(vite@5.4.11(@types/node@16.9.1)(terser@5.37.0))
+      '@vitest/mocker': 2.1.8(msw@2.6.8(@types/node@16.9.1)(typescript@4.9.5))(vite@6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1))
       '@vitest/utils': 2.1.8
       magic-string: 0.30.15
       msw: 2.6.8(@types/node@16.9.1)(typescript@4.9.5)
@@ -8118,6 +8214,16 @@ snapshots:
     optionalDependencies:
       msw: 2.6.8(@types/node@16.9.1)(typescript@4.9.5)
       vite: 5.4.11(@types/node@16.9.1)(terser@5.37.0)
+
+  '@vitest/mocker@2.1.8(msw@2.6.8(@types/node@16.9.1)(typescript@4.9.5))(vite@6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1))':
+    dependencies:
+      '@vitest/spy': 2.1.8
+      estree-walker: 3.0.3
+      magic-string: 0.30.15
+    optionalDependencies:
+      msw: 2.6.8(@types/node@16.9.1)(typescript@4.9.5)
+      vite: 6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1)
+    optional: true
 
   '@vitest/pretty-format@2.1.8':
     dependencies:
@@ -13331,9 +13437,33 @@ snapshots:
       - rollup
       - supports-color
 
+  vite-plugin-dts@4.0.3(@types/node@16.9.1)(rollup@4.28.1)(typescript@4.9.5)(vite@6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1)):
+    dependencies:
+      '@microsoft/api-extractor': 7.47.4(@types/node@16.9.1)
+      '@rollup/pluginutils': 5.1.3(rollup@4.28.1)
+      '@volar/typescript': 2.4.11
+      '@vue/language-core': 2.0.29(typescript@4.9.5)
+      compare-versions: 6.1.1
+      debug: 4.4.0(supports-color@9.4.0)
+      kolorist: 1.8.0
+      local-pkg: 0.5.1
+      magic-string: 0.30.15
+      typescript: 4.9.5
+      vue-tsc: 2.0.29(typescript@4.9.5)
+    optionalDependencies:
+      vite: 6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1)
+    transitivePeerDependencies:
+      - '@types/node'
+      - rollup
+      - supports-color
+
   vite-plugin-externalize-deps@0.8.0(vite@6.0.3(@types/node@14.18.63)(terser@5.37.0)(yaml@2.6.1)):
     dependencies:
       vite: 6.0.3(@types/node@14.18.63)(terser@5.37.0)(yaml@2.6.1)
+
+  vite-plugin-externalize-deps@0.8.0(vite@6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1)):
+    dependencies:
+      vite: 6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1)
 
   vite-tsconfig-paths@5.1.4(typescript@4.9.5)(vite@6.0.3(@types/node@14.18.63)(terser@5.37.0)(yaml@2.6.1)):
     dependencies:
@@ -13342,6 +13472,17 @@ snapshots:
       tsconfck: 3.1.4(typescript@4.9.5)
     optionalDependencies:
       vite: 6.0.3(@types/node@14.18.63)(terser@5.37.0)(yaml@2.6.1)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+
+  vite-tsconfig-paths@5.1.4(typescript@4.9.5)(vite@6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1)):
+    dependencies:
+      debug: 4.4.0(supports-color@9.4.0)
+      globrex: 0.1.2
+      tsconfck: 3.1.4(typescript@4.9.5)
+    optionalDependencies:
+      vite: 6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -13373,6 +13514,17 @@ snapshots:
       rollup: 4.28.1
     optionalDependencies:
       '@types/node': 14.18.63
+      fsevents: 2.3.3
+      terser: 5.37.0
+      yaml: 2.6.1
+
+  vite@6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1):
+    dependencies:
+      esbuild: 0.24.0
+      postcss: 8.4.49
+      rollup: 4.28.1
+    optionalDependencies:
+      '@types/node': 16.9.1
       fsevents: 2.3.3
       terser: 5.37.0
       yaml: 2.6.1
@@ -13438,7 +13590,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 16.9.1
-      '@vitest/browser': 2.1.8(@types/node@16.9.1)(playwright@1.49.1)(typescript@4.9.5)(vite@5.4.11(@types/node@16.9.1)(terser@5.37.0))(vitest@2.1.8)
+      '@vitest/browser': 2.1.8(@types/node@16.9.1)(playwright@1.49.1)(typescript@4.9.5)(vite@6.0.3(@types/node@16.9.1)(terser@5.37.0)(yaml@2.6.1))(vitest@2.1.8)
       jsdom: 25.0.1
     transitivePeerDependencies:
       - less
