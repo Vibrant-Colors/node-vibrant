@@ -6,6 +6,7 @@
 - [x] Migrate from Mocha/Chai to Vitest
 - [x] Migrate away from Bluebird
 - [x] Remove TSLint
+- [x] Rename `master` branch to `main`
 - [ ] Migrate to TypeScript ESLint 8
 - [ ] Migrate to TypeScript 5
 - [ ] Enable TypeScript strict mode
@@ -14,5 +15,4 @@
 - [ ] Migrate away from Travis to GitHub Actions for CI
 - [ ] Set up Sherif
 - [ ] Set up Knip
-- [ ] Rename `main` branch to `mainline`
 - [ ] Fix demo website
