@@ -3,7 +3,7 @@
 - [x] Migrate to new Lerna
 - [x] Migrate from Webpack to Vite
 - [x] Remove TypeScript `path` usage throughout repo
-- [ ] Migrate from Mocha/Chai to Vitest
+- [x] Migrate from Mocha/Chai to Vitest
 - [ ] Migrate away from Bluebird
 - [ ] Migrate to TypeScript 5
 - [ ] Enable TypeScript strict mode
