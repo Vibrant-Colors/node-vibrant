@@ -1,4 +1,4 @@
-import runPipelineInWorker from "@vibrant/core/lib/pipeline/worker/host";
+import { runPipelineInWorker } from "@vibrant/core";
 import pipeline from "./";
 
 runPipelineInWorker(self, pipeline);

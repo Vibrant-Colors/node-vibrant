@@ -1,10 +1,10 @@
 - [x] Migrate to Yarn 4
 - [x] Ignore above and migrate to PNPM 9
 - [x] Migrate to new Lerna
+- [x] Migrate from Webpack to Vite
+- [x] Remove TypeScript `path` usage throughout repo
 - [ ] Migrate from Mocha/Chai to Vitest
-- [ ] Migrate from Webpack to Vite
 - [ ] Migrate away from Bluebird
-- [ ] Remove TypeScript `path` usage throughout repo
 - [ ] Migrate to TypeScript 5
 - [ ] Enable TypeScript strict mode
 - [ ] Migrate to ESLint 9

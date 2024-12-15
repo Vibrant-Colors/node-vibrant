@@ -9,12 +9,44 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
+        "types": "./dist/esm/node.d.ts",
+        "default": "./dist/esm/browser.js",
+        "node": "./dist/esm/node.js"
       },
       "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
+        "types": "./dist/cjs/node.d.cts",
+        "default": "./dist/cjs/browser.cjs",
+        "node": "./dist/cjs/node.cjs"
+      }
+    },
+    "./worker": {
+      "import": {
+        "types": "./dist/esm/worker.d.ts",
+        "default": "./dist/esm/worker.js"
+      },
+      "require": {
+        "types": "./dist/cjs/worker.d.cts",
+        "default": "./dist/cjs/worker.cjs"
+      }
+    },
+    "./browser": {
+      "import": {
+        "types": "./dist/esm/browser.d.ts",
+        "default": "./dist/esm/browser.js"
+      },
+      "require": {
+        "types": "./dist/cjs/browser.d.cts",
+        "default": "./dist/cjs/browser.cjs"
+      }
+    },
+    "./node": {
+      "import": {
+        "types": "./dist/esm/node.d.ts",
+        "default": "./dist/esm/node.js"
+      },
+      "require": {
+        "types": "./dist/cjs/node.d.cts",
+        "default": "./dist/cjs/node.cjs"
       }
     },
     "./package.json": "./package.json"

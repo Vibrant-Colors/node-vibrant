@@ -8,7 +8,7 @@ const config = defineConfig({
 export default mergeConfig(
   config,
   tanstackViteConfig({
-    entry: ["./src/index.ts", "./src/browser.ts", "./src/worker.ts"],
+    entry: ["./src/node.ts", "./src/browser.ts", "./src/worker.ts"],
     srcDir: "./src",
   })
 );

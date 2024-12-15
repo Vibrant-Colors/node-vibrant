@@ -126,4 +126,6 @@ export default class Vibrant {
   }
 }
 
+export { BasicPipeline } from "./pipeline";
 export { WorkerPipeline } from "./pipeline/worker/client";
+export { runPipelineInWorker } from "./pipeline/worker/host";
