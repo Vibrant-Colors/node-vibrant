@@ -6,7 +6,7 @@ export interface TestSample extends Sample {
   relativeUrl: string;
 }
 
-export const SNAPSHOT: Sample[] = require("fixtures/sample/images/palettes.json");
+export const SNAPSHOT: Sample[] = require("../sample/images/palettes.json");
 
 export interface TestSample extends Sample {
   url: string;
