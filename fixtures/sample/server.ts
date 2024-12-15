@@ -1,7 +1,7 @@
-import path = require("path");
-import http = require("http");
-import finalhandler = require("finalhandler");
-import serveStatic = require("serve-static");
+import * as path from "path";
+import * as http from "http";
+import finalhandler from "finalhandler";
+import serveStatic from "serve-static";
 
 const staticFiles = serveStatic(path.join(__dirname, "./images/"));
 const serverHandler = (req: http.IncomingMessage, res: http.ServerResponse) => {

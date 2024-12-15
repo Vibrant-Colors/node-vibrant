@@ -1,12 +1,19 @@
-import path = require("path");
+import path from "path";
 import { Sample } from "./types";
+import { fileURLToPath } from "node:url";
+import * as fs from "node:fs";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export interface TestSample extends Sample {
   url: string;
   relativeUrl: string;
 }
 
-export const SNAPSHOT: Sample[] = require("../sample/images/palettes.json");
+export const SNAPSHOT: Sample[] = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, "./images/palettes.json"), "utf-8")
+);
 
 export interface TestSample extends Sample {
   url: string;

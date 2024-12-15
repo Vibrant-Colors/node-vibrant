@@ -1,6 +1,6 @@
 /* tslint:disable:no-floating-promises await-promise */
-import path = require("path");
-import Bluebird = require("bluebird");
+import path from "path";
+import Bluebird from "bluebird";
 import { Application } from "express";
 import { promises } from "fs";
 import { json as bodyParserJson } from "body-parser";
@@ -10,7 +10,7 @@ const readdirAsync = promises.readdir;
 const readFileAsync = promises.readFile;
 const writeFileAsync = promises.writeFile;
 
-import Vibrant = require("node-vibrant");
+import Vibrant from "node-vibrant";
 import { Sample, SampleContext } from "./types";
 
 async function listSampleFiles(folder: string) {

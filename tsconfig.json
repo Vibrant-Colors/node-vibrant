@@ -53,8 +53,9 @@
       "es2015"
     ],
     "outDir": ".build",
-    "module": "commonjs",
-    "target": "es5",
+    "module": "esnext",
+    "target": "es2022",
+    "moduleResolution": "node",
     "declaration": true,
     "sourceMap": true,
     "esModuleInterop": true,

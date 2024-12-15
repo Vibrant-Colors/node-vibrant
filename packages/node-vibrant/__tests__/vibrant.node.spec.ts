@@ -1,14 +1,14 @@
 const TEST_PORT = 3444;
 
-import { loadTestSamples } from "fixtures/sample/loader";
+import { loadTestSamples } from "../../../fixtures/sample/loader";
 
 import { testVibrant, testVibrantAsPromised } from "./common/helper";
 
-import { createSampleServer } from "fixtures/sample/server";
+import { createSampleServer } from "../../../fixtures/sample/server";
 
-import http = require("http");
+import http from "http";
 
-import Vibrant = require("node-vibrant");
+import Vibrant from "../src";
 
 const SAMPLES = loadTestSamples(TEST_PORT);
 

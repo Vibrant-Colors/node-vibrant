@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-expression */
-import { expect } from "chai";
+import { expect } from "vitest";
 import { VibrantStatic } from "@vibrant/core";
 import Builder from "@vibrant/core/lib/builder";
-import path = require("path");
+import path from "path";
 import { Palette, Swatch } from "@vibrant/color";
-import util = require("@vibrant/color/lib/converter");
-import { TestSample, SamplePathKey } from "fixtures/sample/loader";
+import * as util from "@vibrant/color/src/converter";
+import { TestSample, SamplePathKey } from "../../../../fixtures/sample/loader";
 
 import { table, getBorderCharacters } from "table";
 
@@ -74,7 +74,7 @@ const assertPalette = (reference: Palette, palette: Palette) => {
 };
 
 const paletteCallback =
-  (references: any, sample: TestSample, done: Mocha.Done) =>
+  (references: any, sample: TestSample, done: () => void) =>
   (err: Error, palette: Palette) => {
     setTimeout(() => {
       expect(err, `should not throw error '${err}'`).to.be.undefined;
@@ -91,14 +91,19 @@ export const testVibrant = (
   env: "node" | "browser",
   builderCallback: ((b: Builder) => Builder) | null = null
 ) => {
-  return (done: Mocha.Done) => {
+  return async () => {
     let builder = Vibrant.from(sample[pathKey]).quality(1);
 
     if (typeof builderCallback === "function")
       builder = builderCallback(builder);
 
-    // tslint:disable-next-line:no-floating-promises
-    builder.getPalette(paletteCallback(sample.palettes[env], sample, done));
+    await new Promise<void>((resolve) => {
+      builder.getPalette(
+        paletteCallback(sample.palettes[env], sample, () => {
+          resolve();
+        })
+      );
+    });
   };
 };
 
@@ -109,14 +114,14 @@ export const testVibrantAsPromised = (
   env: "node" | "browser",
   builderCallback: ((b: Builder) => Builder) | null = null
 ) => {
-  return () => {
+  return async () => {
     let builder = Vibrant.from(sample[pathKey]).quality(1);
 
     if (typeof builderCallback === "function")
       builder = builderCallback(builder);
 
-    return builder
-      .getPalette()
-      .then((palette) => assertPalette(sample.palettes[env], palette));
+    const palette = await builder.getPalette();
+
+    assertPalette(sample.palettes[env], palette);
   };
 };

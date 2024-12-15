@@ -1,9 +1,9 @@
-/* tslint:disable:no-unused-expression */
-import { loadTestSamples } from "fixtures/sample/loader";
+import { describe, it } from "vitest";
+import { loadTestSamples } from "../../../fixtures/sample/loader";
 
 import { testVibrant, testVibrantAsPromised } from "./common/helper";
 
-import Vibrant = require("node-vibrant/lib/bundle-worker");
+import Vibrant from "../src/bundle-worker";
 
 const SAMPLES = loadTestSamples();
 
