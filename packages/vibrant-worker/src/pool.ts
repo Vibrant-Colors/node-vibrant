@@ -45,7 +45,7 @@ export default class WorkerPool {
       transferList,
       deferred: d,
     };
-    this._queue.push(task);
+    this._queue.push(task as never);
 
     // Try dequeue
     this._tryDequeue();
