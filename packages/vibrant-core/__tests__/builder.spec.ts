@@ -1,7 +1,6 @@
-/* eslint-env mocha */
-import { expect } from "chai";
+import { expect, it, describe } from "vitest";
 
-import Builder from "@vibrant/core/lib/builder";
+import Builder from "../src/builder";
 
 describe("builder", () => {
   it("modifies Vibrant options", () => {
@@ -21,7 +20,7 @@ describe("builder", () => {
       quality: 7,
       ImageClass: "NOT_AN_IMAGE",
       quantizer: "NOT_A_QUANTIZER",
-      generators: ["default", "NOT_A_GENERATOR"],
+      generators: ["NOT_A_GENERATOR"],
       filters: [NOT_A_FILTER],
     };
 

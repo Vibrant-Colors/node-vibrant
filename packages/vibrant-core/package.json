@@ -3,7 +3,7 @@
   "version": "3.2.1-alpha.1",
   "description": "Core vibrant classes",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -25,7 +25,8 @@
     "@vibrant/worker": "^3.2.1-alpha.1"
   },
   "devDependencies": {
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.2",
+    "vitest": "^2.1.8"
   },
   "publishConfig": {
     "access": "public"
