@@ -1,0 +1,8 @@
+- [x] Migrate to Yarn 4
+- [ ] Migrate from Lerna to Nx + Nx Cloud
+- [ ] Migrate from Mocha/Chai to Vitest
+- [ ] Migrate from Webpack to Vite
+- [ ] Migrate to TypeScript 5
+- [ ] Migrate to ESLint 9
+- [ ] Add GitHub Actions for CI
+- [ ] Rename `main` branch to `mainline`
