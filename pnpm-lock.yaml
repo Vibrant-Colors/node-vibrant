@@ -321,12 +321,18 @@ importers:
 
   packages/vibrant-generator-default:
     dependencies:
+      '@tanstack/config':
+        specifier: ^0.14.2
+        version: 0.14.2(@types/node@14.18.63)(esbuild@0.24.0)(eslint@8.57.1)(rollup@4.28.1)(typescript@4.9.5)(vite@6.0.3(@types/node@14.18.63)(terser@5.37.0)(yaml@2.6.1))
       '@vibrant/color':
         specifier: ^3.2.1-alpha.1
         version: link:../vibrant-color
       '@vibrant/generator':
         specifier: ^3.2.1-alpha.1
         version: link:../vibrant-generator
+      vite:
+        specifier: ^6.0.3
+        version: 6.0.3(@types/node@14.18.63)(terser@5.37.0)(yaml@2.6.1)
     devDependencies:
       typescript:
         specifier: ^4.5.2
