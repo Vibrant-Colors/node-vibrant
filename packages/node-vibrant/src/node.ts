@@ -1,8 +1,8 @@
-import Vibrant from "./config";
+import Vibrant from "./configs/config";
 import NodeImage from "@vibrant/image-node";
 import pipeline from "./pipeline";
 
 Vibrant.DefaultOpts.ImageClass = NodeImage;
 Vibrant.use(pipeline);
 
-export = Vibrant;
+export default Vibrant;

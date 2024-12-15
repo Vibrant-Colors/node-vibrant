@@ -1,3 +1,4 @@
+export * from "./converter";
 import { rgbToHsl, rgbToHex } from "./converter";
 
 export interface Filter {

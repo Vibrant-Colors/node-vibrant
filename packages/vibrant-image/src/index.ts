@@ -1,3 +1,5 @@
+export { Histogram } from "./histogram";
+export type { HistogramOptions } from "./histogram";
 import { Callback } from "@vibrant/types";
 import { Filter } from "@vibrant/color";
 

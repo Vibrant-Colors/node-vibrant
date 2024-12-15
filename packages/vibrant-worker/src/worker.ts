@@ -1,7 +1,7 @@
 import { Resolvable } from "@vibrant/types";
 import { WorkerRequest, WorkerResponse, WorkerErrorResponse } from "./common";
 
-export default function runInWorker<R>(
+export function runInWorker<R>(
   self: Window,
   fn: (...args: any[]) => Resolvable<R>
 ) {

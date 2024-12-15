@@ -1,5 +1,5 @@
-import Vibrant from "./browser";
-import { WorkerPipeline } from "@vibrant/core/src/pipeline/worker/client";
+import Vibrant from "./configs/browser";
+import { WorkerPipeline } from "@vibrant/core";
 
 import PipelineWorker from "./pipeline/index.worker?worker";
 

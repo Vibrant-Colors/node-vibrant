@@ -125,3 +125,5 @@ export default class Vibrant {
       });
   }
 }
+
+export { WorkerPipeline } from "./pipeline/worker/client";

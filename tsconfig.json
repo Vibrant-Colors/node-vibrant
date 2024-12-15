@@ -1,70 +1,27 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "node-vibrant": [
-        "packages/node-vibrant/src"
-      ],
-      "@vibrant/*": [
-        "packages/vibrant-*/src"
-      ],
-      "node-vibrant/lib/*": [
-        "packages/node-vibrant/src/*"
-      ],
-      "@vibrant/color/lib/*": [
-        "packages/vibrant-color/src/*"
-      ],
-      "@vibrant/core/lib/*": [
-        "packages/vibrant-core/src/*"
-      ],
-      "@vibrant/generator/lib/*": [
-        "packages/vibrant-generator/src/*"
-      ],
-      "@vibrant/generator-default/lib/*": [
-        "packages/vibrant-generator-default/src/*"
-      ],
-      "@vibrant/image/lib/*": [
-        "packages/vibrant-image/src/*"
-      ],
-      "@vibrant/image-browser/lib/*": [
-        "packages/vibrant-image-browser/src/*"
-      ],
-      "@vibrant/image-node/lib/*": [
-        "packages/vibrant-image-node/src/*"
-      ],
-      "@vibrant/quantizer/lib/*": [
-        "packages/vibrant-quantizer/src/*"
-      ],
-      "@vibrant/quantizer-mmcq/lib/*": [
-        "packages/vibrant-quantizer-mmcq/src/*"
-      ],
-      "@vibrant/types/lib/*": [
-        "packages/vibrant-types/src/*"
-      ],
-      "@vibrant/worker/lib/*": [
-        "packages/vibrant-worker/src/*"
-      ],
-      "fixtures/*": [
-        "fixtures/*"
-      ]
-    },
-    "lib": [
-      "dom",
-      "es2015"
-    ],
-    "outDir": ".build",
-    "module": "esnext",
-    "target": "es2022",
-    "moduleResolution": "node",
-    "declaration": true,
-    "sourceMap": true,
-    "esModuleInterop": true,
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true
+    "allowUnreachableCode": true, // TODO: Disable
+    "allowUnusedLabels": true, // TODO: Disable
+    "checkJs": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "module": "ES2022",
+    "moduleResolution": "Node",
+    "noEmit": true,
+    "noImplicitReturns": false, // TODO: Enable
+    "noUncheckedIndexedAccess": false, // TODO: Enable
+    "noUnusedLocals": false,
+    "noUnusedParameters": false, // TODO: Enable
+    "resolveJsonModule": true,
+    "skipLibCheck": false, // TODO: Enable
+    "strict": false, // TODO: Enable
+    "target": "ES2020"
   },
-  "include": [
-    "packages/*/src",
-    "packages/*/__tests__"
-  ]
+  "include": []
 }

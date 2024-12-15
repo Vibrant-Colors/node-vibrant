@@ -4,7 +4,7 @@ export interface HistogramOptions {
   sigBits: number;
 }
 
-export default class Histogram {
+export class Histogram {
   bmin: number;
   bmax: number;
   gmin: number;

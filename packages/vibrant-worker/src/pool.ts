@@ -1,7 +1,12 @@
 import { Defer, defer } from "@vibrant/types";
-import { TaskWorker, TaskWorkerClass } from "./";
 
-import { WorkerRequest, WorkerResponse, WorkerErrorResponse } from "./common";
+import {
+  WorkerRequest,
+  WorkerResponse,
+  WorkerErrorResponse,
+  TaskWorker,
+  TaskWorkerClass,
+} from "./common";
 
 interface Task<R> extends WorkerRequest {
   deferred: Defer<R>;

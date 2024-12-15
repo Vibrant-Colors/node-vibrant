@@ -1,4 +1,4 @@
-import runInWorker from "@vibrant/worker/lib/worker";
+import runInWorker from "@vibrant/worker";
 import { Pipeline } from "../index";
 
 export default function runPipelineInWorker(self: Window, pipeline: Pipeline) {

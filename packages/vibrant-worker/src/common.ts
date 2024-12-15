@@ -15,3 +15,12 @@ export interface WorkerErrorResponse {
   type: "error";
   payload: string;
 }
+
+export interface TaskWorker extends Worker {
+  id: number;
+  idle: boolean;
+}
+
+export interface TaskWorkerClass {
+  new (): TaskWorker;
+}

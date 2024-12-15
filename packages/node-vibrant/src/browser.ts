@@ -1,6 +1,6 @@
-import Vibrant from "./config";
-import BrowserImage from "@vibrant/image-browser";
+import Vibrant from "./configs/browser";
+import pipeline from "./pipeline";
 
-Vibrant.DefaultOpts.ImageClass = BrowserImage;
+Vibrant.use(pipeline);
 
-export = Vibrant;
+export default Vibrant;
