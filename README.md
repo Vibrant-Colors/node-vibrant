@@ -1,9 +1,16 @@
 # node-vibrant
 
-<img align="right" width="265" src="logo.png?raw=true">
+<a href="https://www.npmjs.com/package/node-vibrant" target="\_parent">
+  <img alt="" src="https://img.shields.io/npm/dm/node-vibrant.svg" />
+</a><a href="https://bundlephobia.com/package/node-vibrant@latest" target="\_parent">
+  <img alt="" src="https://badgen.net/bundlephobia/minzip/node-vibrant" />
+</a><a href="https://github.com/Vibrant-Colors/node-vibrant/discussions">
+  <img alt="Join the discussion on Github" src="https://img.shields.io/badge/Github%20Discussions%20%26%20Support-Chat%20now!-blue" />
+</a><a href="https://bestofjs.org/projects/node-vibrant"><img alt="Best of JS" src="https://img.shields.io/endpoint?url=https://bestofjs-serverless.now.sh/api/project-badge?fullName=Vibrant-Colors%2Fnode-vibrant%26since=daily" /></a><a href="https://github.com/Vibrant-Colors/node-vibrant/" target="\_parent">
+  <img alt="" src="https://img.shields.io/github/stars/Vibrant-Colors/node-vibrant.svg?style=social&label=Star" />
+</a>
 
-[![Slack badge](https://badgen.net/badge/slack/node-vibrant?icon=slack)](https://join.slack.com/t/node-vibrant/shared_invite/enQtNTI2Mzg2NDk5MzUxLTdkN2EwMWNkYjY0MjNiMmI2YzFjZWM3Njc3ZDJmOWVkMzBkNzYzMDBhZTBiMGI0MjAyMmJhNDc0YTNlNjA5ZGY)
-[![Build Status](https://badgen.net/travis/akfish/node-vibrant/develop?label=build)](https://travis-ci.org/akfish/node-vibrant)
+<img align="right" width="265" src="./media/logo.png?raw=true">
 
 Extract prominent colors from an image.
 
