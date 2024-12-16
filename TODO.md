@@ -13,6 +13,8 @@
 - [ ] Migrate to ESLint 9
 - [ ] Improve Prettier usage
 - [ ] Migrate away from Travis to GitHub Actions for CI
+- [ ] Autogenerate docs using TypeDoc
+- [ ] Consume TypeDocs docs from Astro Starlight docs site
 - [ ] Set up Sherif
 - [ ] Set up Knip
 - [ ] Fix demo website

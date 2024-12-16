@@ -7,26 +7,23 @@
 
 Extract prominent colors from an image.
 
-- Identical API for both node.js and browser environment (with web worker)
-- Supports webpack
+- Identical API for node.js, browser, and worker environments
 
 ## Install
 
 ```bash
-$ npm install node-vibrant@3.2.0-alpha
+$ npm install node-vibrant
 ```
 
 ## Usage
 
 ```typescript
-// ES5
-var Vibrant = require('node-vibrant')
-// ES6
-import * as Vibrant from 'node-vibrant'
-// Or
-const Vibrant = require('node-vibrant')
-// TypeScript
-import Vibrant = require('node-vibrant')
+// Node
+import Vibrant from 'node-vibrant/node'
+// Browser
+import Vibrant from 'node-vibrant/browser'
+// Web Worker
+import Vibrant from 'node-vibrant/worker'
 
 // Using builder
 Vibrant.from('path/to/image').getPalette((err, palette) => console.log(palette))
@@ -41,38 +38,14 @@ v.getPalette((err, palette) => console.log(palette))
 v.getPalette().then((palette) => console.log(palette))
 ```
 
-## Webpack configuration
-
-The default browser entry for `node-vibrant` has web worker support. You should make sure that `worker-loader` is installed:
-
-```bash
-$ npm install --save-dev worker-loader
-```
-
-Add rules:
-```js
-{
-  // ...
-  module: {
-    rules: [
-      {
-        test: /\.worker.js$/,
-        loader: 'worker-loader',
-        options: { /* ... */ }
-      },
-      // ...
-    ]
-  }
-}
-```
-
 ## Documentation
 
-TODO
+Documentation is currently in the works. Apologies for the inconvenience.
 
 ## Notes
 
 ### Result Consistency
+
 The results are consistent within each user's browser instance regardless of the visible region or display size of an image, unlike the original `vibrant.js` implementation.
 
 However, due to the nature of the HTML5 canvas element, image rendering is platform/machine-dependent. The resulting swatches may vary between browsers, Node.js versions, and between machines. See [Canvas Fingerprinting](https://en.wikipedia.org/wiki/Canvas_fingerprinting).

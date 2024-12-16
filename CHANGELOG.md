@@ -1,3 +1,13 @@
+# v4.0.0
+
+`node-vibrant`'s internal packaging is now vastly more stable and improved. We'll continue to ship the default package with the same API as before, but now you can also import individual modules for more control over your environment.
+
+## Breaking Changes
+
+- You now must import from `node-vibrant/browser`, `node-vibrant/node`, or `node-vibrant/worker` to get the correct environment-specific implementation
+- `Vibrant` class is now a default export
+- Node 18+ is now required
+- ES5 support is dropped
 
 # v3.2.0
 
