@@ -51,7 +51,7 @@
     },
     "./package.json": "./package.json"
   },
-  "sideEffects": false,
+  "sideEffects": true,
   "files": [
     "dist",
     "src"
