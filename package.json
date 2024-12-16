@@ -3,8 +3,6 @@
 	"private": true,
 	"packageManager": "pnpm@9.14.4",
 	"scripts": {
-		"clean": "run-p -c clean:*",
-		"clean:tsc": "lerna exec -- rimraf dist",
 		"compile:tsc": "tsc",
 		"build": "lerna run build",
 		"lint": "run-p -c lint:*",
@@ -14,11 +12,9 @@
 		"format:packages": "eslint ./packages --fix",
 		"format:fixtures": "eslint ./fixtures --fix",
 		"test": "run-p -c test:*",
-		"test:sherif": "sherif -i react -i react-dom",
+		"test:sherif": "sherif",
 		"test:lib": "lerna run test",
 		"test:knip": "knip",
-		"sample:inspect": "pnpm --dir=fixtures/sample run start",
-		"sample:update": "pnpm --dir=fixtures/sample run update",
 		"prepare": "husky install && playwright install chromium"
 	},
 	"devDependencies": {
