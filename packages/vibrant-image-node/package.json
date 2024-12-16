@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/image-node",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.2",
   "description": "Node.js vibrant ImageClass implementation",
   "scripts": {
     "build": "vite build"
