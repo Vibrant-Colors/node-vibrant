@@ -7,7 +7,7 @@ Extract prominent colors from an image.
 >
 > If you're looking for the latest version, please check the [v4 branch](https://github.com/Vibrant-Colors/node-vibrant/tree/v4) or the [join in on the discussion](https://github.com/Vibrant-Colors/node-vibrant/issues/149).
 > 
-    > No new development will be done for v3.
+> No new development will be done for v3.
 
 ## New WebWorker support in v3.0
 
