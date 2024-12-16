@@ -19,7 +19,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false, // TODO: Enable
     "resolveJsonModule": true,
-    "skipLibCheck": false, // TODO: Enable
+    "skipLibCheck": true,
     "strict": false, // TODO: Enable
     "target": "ES2020"
   },
