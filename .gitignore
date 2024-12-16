@@ -88,3 +88,6 @@ dist/
 .vscode/
 
 .build
+
+.nx/cache
+.nx/workspace-data
