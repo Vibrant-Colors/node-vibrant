@@ -3,22 +3,7 @@
   "version": "4.0.0-alpha.2",
   "description": "Extract prominent colors from an image. Supports both node and browser environment.",
   "type": "module",
-  "types": "dist/esm/index.d.ts",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
   "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/esm/node.d.ts",
-        "default": "./dist/esm/browser.js",
-        "node": "./dist/esm/node.js"
-      },
-      "require": {
-        "types": "./dist/cjs/node.d.cts",
-        "default": "./dist/cjs/browser.cjs",
-        "node": "./dist/cjs/node.cjs"
-      }
-    },
     "./worker": {
       "import": {
         "types": "./dist/esm/worker.d.ts",
