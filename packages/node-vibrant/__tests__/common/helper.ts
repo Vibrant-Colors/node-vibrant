@@ -1,9 +1,12 @@
 import { expect } from "vitest";
 import { VibrantStatic } from "@vibrant/core";
 import { Builder } from "@vibrant/core";
-import { Palette, Swatch } from "@vibrant/color";
+import type { Palette, Swatch } from "@vibrant/color";
 import * as util from "@vibrant/color";
-import { TestSample, SamplePathKey } from "../../../../fixtures/sample/loader";
+import type {
+  TestSample,
+  SamplePathKey,
+} from "../../../../fixtures/sample/loader";
 
 import { table, getBorderCharacters } from "table";
 
@@ -72,8 +75,7 @@ const assertPalette = (reference: Palette, palette: Palette) => {
 };
 
 const paletteCallback =
-  (references: any, sample: TestSample, done: () => void) =>
-  (err: Error, palette: Palette) => {
+  (references: any, done: () => void) => (err: Error, palette: Palette) => {
     setTimeout(() => {
       expect(err, `should not throw error '${err}'`).to.be.undefined;
       assertPalette(references, palette);
@@ -97,7 +99,7 @@ export const testVibrant = (
 
     await new Promise<void>((resolve) => {
       builder.getPalette(
-        paletteCallback(sample.palettes[env], sample, () => {
+        paletteCallback(sample.palettes[env], () => {
           resolve();
         })
       );

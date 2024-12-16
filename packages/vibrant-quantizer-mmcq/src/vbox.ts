@@ -1,6 +1,6 @@
 import { Vec3, Filter } from "@vibrant/color";
 import { Pixels, Histogram } from "@vibrant/image";
-export interface Dimension {
+interface Dimension {
   r1: number;
   r2: number;
   g1: number;

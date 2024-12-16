@@ -11,7 +11,7 @@ export interface TestSample extends Sample {
   relativeUrl: string;
 }
 
-export const SNAPSHOT: Sample[] = JSON.parse(
+const SNAPSHOT: Sample[] = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, "./images/palettes.json"), "utf-8")
 );
 

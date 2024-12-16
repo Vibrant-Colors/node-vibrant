@@ -7,8 +7,3 @@ export interface Sample {
     [env: string]: Palette;
   };
 }
-
-export interface SampleContext {
-  current: Sample[];
-  snapshot: Sample[] | null;
-}

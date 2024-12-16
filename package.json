@@ -16,6 +16,7 @@
 		"test": "run-p -c test:*",
 		"test:sherif": "sherif -i react -i react-dom",
 		"test:lib": "lerna run test",
+		"test:knip": "knip",
 		"sample:inspect": "pnpm --dir=fixtures/sample run start",
 		"sample:update": "pnpm --dir=fixtures/sample run update",
 		"prepare": "husky install && playwright install chromium"
@@ -29,12 +30,12 @@
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"husky": "^7.0.4",
+		"knip": "^5.41.0",
 		"lerna": "^8.1.9",
 		"lint-staged": "^12.1.5",
 		"npm-run-all": "^4.1.5",
 		"playwright": "^1.49.1",
 		"prettier": "^2.5.1",
-		"rimraf": "^3.0.2",
 		"sherif": "^1.1.1",
 		"table": "^5.2.0",
 		"typescript": "^4.5.2"

@@ -1,4 +1,4 @@
-export interface PQueueComparator<T> {
+interface PQueueComparator<T> {
   (a: T, b: T): number;
 }
 

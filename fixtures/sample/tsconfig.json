@@ -1,7 +1,5 @@
 {
   "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "jsx": "react",
-    "declaration": false
-  }
+  "include": ["loader.ts", "server.ts", "types.ts"]
 }
+

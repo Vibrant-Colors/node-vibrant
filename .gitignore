@@ -87,6 +87,4 @@ lib/
 dist/
 .vscode/
 
-palettes.current.json
-
 .build
