@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/image",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.3",
   "description": "Helpers and typings for writing a vibrant ImageClass",
   "scripts": {
     "build": "vite build"
@@ -37,8 +37,8 @@
   "homepage": "https://github.com/akfish/node-vibrant",
   "license": "MIT",
   "dependencies": {
-    "@vibrant/color": "^4.0.0-alpha.1",
-    "@vibrant/types": "^4.0.0-alpha.1"
+    "@vibrant/color": "^4.0.0-alpha.3",
+    "@vibrant/types": "^4.0.0-alpha.3"
   },
   "devDependencies": {
     "@tanstack/config": "^0.14.2",

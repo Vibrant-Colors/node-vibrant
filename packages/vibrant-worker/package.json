@@ -1,6 +1,6 @@
 {
   "name": "@vibrant/worker",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.3",
   "description": "Web worker utilities",
   "scripts": {
     "build": "vite build"
@@ -37,7 +37,7 @@
     "src"
   ],
   "dependencies": {
-    "@vibrant/types": "^4.0.0-alpha.1"
+    "@vibrant/types": "^4.0.0-alpha.3"
   },
   "devDependencies": {
     "@tanstack/config": "^0.14.2",
