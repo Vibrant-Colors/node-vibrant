@@ -76,7 +76,7 @@
   },
   "scripts": {
     "build": "vite build",
-    "test": "vitest run",
+    "test:lib": "vitest run",
     "test:watch": "vitest watch"
   },
   "bugs": {

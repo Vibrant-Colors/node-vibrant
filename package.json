@@ -13,7 +13,7 @@
 		"format:fixtures": "eslint ./fixtures --fix",
 		"test": "run-p -c test:*",
 		"test:sherif": "sherif",
-		"test:lib": "lerna run test",
+		"test:lib": "lerna run test:lib",
 		"test:knip": "knip",
 		"prepare": "husky install && playwright install chromium"
 	},
