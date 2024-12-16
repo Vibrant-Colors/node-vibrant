@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+    branches: [v4, alpha, beta]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  test-and-publish:
+    name: Test
+    if: github.repository == 'Vibrant-Colors/node-vibrant'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Tools
+        uses: tanstack/config/.github/setup@main
+      - name: Run Tests
+        run: pnpm run test

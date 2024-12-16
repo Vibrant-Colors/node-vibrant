@@ -1,0 +1,27 @@
+name: pr
+
+on:
+  pull_request:
+    paths-ignore:
+      - 'media/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Tools
+        uses: tanstack/config/.github/setup@main
+      - name: Run Checks
+        run: pnpm run test
