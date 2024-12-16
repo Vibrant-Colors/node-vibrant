@@ -45,7 +45,7 @@
     "example": "examples"
   },
   "dependencies": {
-    "@types/node": "^14.14.31",
+    "@types/node": "^18.15.3",
     "@vibrant/core": "^4.0.0-alpha.2",
     "@vibrant/generator-default": "^4.0.0-alpha.1",
     "@vibrant/image-browser": "^4.0.0-alpha.2",

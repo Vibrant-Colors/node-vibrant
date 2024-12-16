@@ -1,6 +1,7 @@
 {
 	"name": "node-vibrant-monorepo",
 	"private": true,
+	"packageManager": "pnpm@9.14.4",
 	"scripts": {
 		"clean": "run-p -c clean:*",
 		"clean:tsc": "lerna exec -- rimraf dist",
@@ -12,7 +13,9 @@
 		"format": "run-p -c format:*",
 		"format:packages": "eslint ./packages --fix",
 		"format:fixtures": "eslint ./fixtures --fix",
-		"test": "lerna run test",
+		"test": "run-p -c test:*",
+		"test:sherif": "sherif -i react -i react-dom",
+		"test:lib": "lerna run test",
 		"sample:inspect": "pnpm --dir=fixtures/sample run start",
 		"sample:update": "pnpm --dir=fixtures/sample run update",
 		"prepare": "husky install && playwright install chromium"
@@ -32,6 +35,7 @@
 		"playwright": "^1.49.1",
 		"prettier": "^2.5.1",
 		"rimraf": "^3.0.2",
+		"sherif": "^1.1.1",
 		"table": "^5.2.0",
 		"typescript": "^4.5.2"
 	},
