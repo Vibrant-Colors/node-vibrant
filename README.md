@@ -1,13 +1,13 @@
 # node-vibrant
-[![Build Status](https://travis-ci.org/akfish/node-vibrant.svg?branch=master)](https://travis-ci.org/akfish/node-vibrant)
 
 Extract prominent colors from an image.
 
-## ** NOTICE **
-
-This project is refactored into a monorepo in version 3.2.0 (see [develop](https://github.com/akfish/node-vibrant/tree/develop) branch, npm version `node-vibrant@3.2.0-alpha`).
-
-We will not merge new PRs to v3.1 related to new featuresets during this time. However, bug fixes and security vulnerability fixes are still highly encouraged. 
+> [!IMPORTANT]  
+> What you see here is the documentation for the legacy version 3.x. We're actively working on the new version 4.x, which will bring a lot of improvements and new features. 
+>
+> If you're looking for the latest version, please check the [v4 branch](https://github.com/Vibrant-Colors/node-vibrant/tree/v4) or the [join in on the discussion](https://github.com/Vibrant-Colors/node-vibrant/issues/149).
+> 
+    > No new development will be done for v3.
 
 ## New WebWorker support in v3.0
 
