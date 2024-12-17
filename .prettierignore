@@ -1,0 +1,7 @@
+**/.nx/cache
+**/build
+**/coverage
+**/dist
+**/docs
+pnpm-lock.yaml
+.yarn/
