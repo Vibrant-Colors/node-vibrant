@@ -1,6 +1,6 @@
-import { Swatch, Palette } from "@vibrant/color";
-import { Generator } from "@vibrant/generator";
-import { hslToRgb } from "@vibrant/color";
+import { Swatch , hslToRgb } from "@vibrant/color";
+import type { Generator } from "@vibrant/generator";
+import type { Palette } from "@vibrant/color";
 
 interface DefaultGeneratorOptions {
 	targetDarkLuma: number;
