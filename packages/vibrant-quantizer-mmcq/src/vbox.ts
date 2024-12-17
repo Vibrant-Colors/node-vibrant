@@ -13,7 +13,7 @@ interface Dimension {
 const SIGBITS = 5;
 const RSHIFT = 8 - SIGBITS;
 
-export default class VBox {
+export class VBox {
 	static build(pixels: Pixels): VBox {
 		const h = new Histogram(pixels, { sigBits: SIGBITS });
 		const { rmin, rmax, gmin, gmax, bmin, bmax } = h;

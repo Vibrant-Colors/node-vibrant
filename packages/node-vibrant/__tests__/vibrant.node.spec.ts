@@ -1,16 +1,14 @@
-import { describe, it, beforeAll, afterAll } from "vitest";
-
-const TEST_PORT = 3444;
+import { afterAll, beforeAll, describe, it } from "vitest";
 
 import { loadTestSamples } from "../../../fixtures/sample/loader";
 
-import { testVibrant, testVibrantAsPromised } from "./common/helper";
-
 import { createSampleServer } from "../../../fixtures/sample/server";
 
-import http from "http";
+import { Vibrant } from "../src/node";
+import { testVibrant, testVibrantAsPromised } from "./common/helper";
+import type http from "node:http";
 
-import Vibrant from "../src/node";
+const TEST_PORT = 3444;
 
 const SAMPLES = loadTestSamples(TEST_PORT);
 

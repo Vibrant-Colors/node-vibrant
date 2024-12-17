@@ -27,7 +27,7 @@ function isSameOrigin(a: string, b: string): boolean {
 	);
 }
 
-export default class BrowserImage extends ImageBase {
+export class BrowserImage extends ImageBase {
 	image: HTMLImageElement | undefined;
 	private _canvas: HTMLCanvasElement | undefined;
 	private _context: CanvasRenderingContext2D | undefined;

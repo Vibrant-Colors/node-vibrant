@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { loadTestSamples } from "../../../fixtures/sample/loader";
-import BrowserImage from "../src";
+import { BrowserImage } from "../src";
 
 const SAMPLES = loadTestSamples();
 

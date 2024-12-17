@@ -1,9 +1,9 @@
-import MMCQ from "@vibrant/quantizer-mmcq";
-import DefaultGenerator from "@vibrant/generator-default";
+import { MMCQ } from "@vibrant/quantizer-mmcq";
+import { DefaultGenerator } from "@vibrant/generator-default";
 
 import { BasicPipeline } from "@vibrant/core";
 
-const pipeline = new BasicPipeline().filter
+export const pipeline = new BasicPipeline().filter
 	.register(
 		"default",
 		(r: number, g: number, b: number, a: number) =>
@@ -11,5 +11,3 @@ const pipeline = new BasicPipeline().filter
 	)
 	.quantizer.register("mmcq", MMCQ)
 	.generator.register("default", DefaultGenerator);
-
-export default pipeline;

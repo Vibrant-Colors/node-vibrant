@@ -1,18 +1,19 @@
-import { buildProcessOptions, Options } from "./options";
-import { Callback } from "@vibrant/types";
-import { Image, ImageSource } from "@vibrant/image";
-
-import { Palette } from "@vibrant/color";
-
-import Builder from "./builder";
-import { Pipeline, ProcessOptions, ProcessResult } from "./pipeline";
+import { buildProcessOptions } from "./options";
+import { Builder } from "./builder";
 import { assignDeep } from "./utils";
+import type { Options } from "./options";
+import type { Callback } from "@vibrant/types";
+import type { Image, ImageSource } from "@vibrant/image";
+
+import type { Palette } from "@vibrant/color";
+
+import type { Pipeline, ProcessOptions, ProcessResult } from "./pipeline";
 
 export interface VibrantStatic {
 	from(src: ImageSource): Builder;
 }
 
-export default class Vibrant {
+export class Vibrant {
 	private _result: ProcessResult | undefined;
 	private static _pipeline: Pipeline;
 
@@ -73,12 +74,12 @@ export default class Vibrant {
 		const cb = typeof arg0 === "string" ? arg1 : arg0;
 		const image = new this.opts.ImageClass();
 		try {
-			let image1 = await image.load(this._src);
-			let result1: ProcessResult = await this._process(image1, {
+			const image1 = await image.load(this._src);
+			const result1: ProcessResult = await this._process(image1, {
 				generators: [name],
 			});
 			this._result = result1;
-			let res = result1.palettes[name];
+			const res = result1.palettes[name];
 			if (!res) {
 				throw new Error(`Palette with name ${name} not found`);
 			}
@@ -110,12 +111,12 @@ export default class Vibrant {
 		const cb = Array.isArray(arg0) ? arg1 : arg0;
 		const image = new this.opts.ImageClass();
 		try {
-			let image1 = await image.load(this._src);
-			let result1: ProcessResult = await this._process(image1, {
+			const image1 = await image.load(this._src);
+			const result1: ProcessResult = await this._process(image1, {
 				generators: names,
 			});
 			this._result = result1;
-			let res: any = result1.palettes;
+			const res: any = result1.palettes;
 			image.remove();
 			if (cb) {
 				cb(undefined, res);

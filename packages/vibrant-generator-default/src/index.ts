@@ -292,7 +292,7 @@ function _generateEmptySwatches(
 	}
 }
 
-const DefaultGenerator: Generator = ((
+export const DefaultGenerator: Generator = ((
 	swatches: Array<Swatch>,
 	opts?: DefaultGeneratorOptions,
 ): Palette => {
@@ -304,5 +304,3 @@ const DefaultGenerator: Generator = ((
 
 	return palette;
 }) as never;
-
-export default DefaultGenerator;

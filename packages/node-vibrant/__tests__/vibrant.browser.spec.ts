@@ -1,9 +1,9 @@
 import { commands } from "@vitest/browser/context";
 import { afterAll, beforeAll, describe, it } from "vitest";
 
+import { Vibrant } from "../src/worker";
 import { testVibrant, testVibrantAsPromised } from "./common/helper";
 
-import Vibrant from "../src/worker";
 import type { TestSample } from "../../../fixtures/sample/loader";
 
 beforeAll(async () => {
