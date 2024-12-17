@@ -9,8 +9,8 @@ export interface IndexedObject {
 }
 
 export class Defer<R> {
-  resolve: (thenableOrResult: R | Promise<R>) => void;
-  reject: (error: any) => void;
+  resolve!: (thenableOrResult: R | Promise<R>) => void;
+  reject!: (error: any) => void;
   promise: Promise<R>;
   constructor() {
     this.promise = new Promise<R>((_resolve, _reject) => {

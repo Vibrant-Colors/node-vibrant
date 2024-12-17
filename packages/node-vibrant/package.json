@@ -77,7 +77,7 @@
   "scripts": {
     "build": "vite build",
     "test:lib": "vitest run",
-    "test:watch": "vitest watch"
+    "test:lib:watch": "vitest watch"
   },
   "bugs": {
     "url": "https://github.com/akfish/node-vibrant/issues"

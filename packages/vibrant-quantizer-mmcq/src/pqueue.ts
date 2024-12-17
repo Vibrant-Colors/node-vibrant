@@ -27,7 +27,7 @@ export default class PQueue<T> {
   peek(index?: number): T {
     this._sort();
     index = typeof index === "number" ? index : this.contents.length - 1;
-    return this.contents[index];
+    return this.contents[index]!;
   }
 
   pop() {

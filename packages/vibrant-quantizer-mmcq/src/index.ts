@@ -14,6 +14,8 @@ function _splitBoxes(pq: PQueue<VBox>, target: number): void {
     if (vbox && vbox.count() > 0) {
       const [vbox1, vbox2] = vbox.split();
 
+      if (!vbox1) break;
+
       pq.push(vbox1);
       if (vbox2 && vbox2.count() > 0) pq.push(vbox2);
 
