@@ -8,19 +8,11 @@ const Jimp = configure({
 	plugins: [resize],
 });
 
-interface ProtocalHandler {
-	get(url: string | any, cb?: (res: any) => void): any;
-}
-
-interface ProtocalHandlerMap {
-	[protocolName: string]: ProtocalHandler;
-}
-
 const URL_REGEX = /^(\w+):\/\/.*/i;
 
 type NodeImageSource = string | Buffer;
 
-export default class NodeImage extends ImageBase {
+export class NodeImage extends ImageBase {
 	private _image: InstanceType<typeof Jimp> | undefined;
 
 	private _getImage() {

@@ -2,7 +2,7 @@ interface PQueueComparator<T> {
 	(a: T, b: T): number;
 }
 
-export default class PQueue<T> {
+export class PQueue<T> {
 	contents: T[];
 	private _sorted: boolean;
 	private _comparator: PQueueComparator<T>;

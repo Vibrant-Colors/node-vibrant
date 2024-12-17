@@ -26,11 +26,11 @@ $ npm install node-vibrant
 
 ```typescript
 // Node
-import Vibrant from "node-vibrant/node";
+import { Vibrant } from "node-vibrant/node";
 // Browser
-import Vibrant from "node-vibrant/browser";
+import { Vibrant } from "node-vibrant/browser";
 // Web Worker
-import Vibrant from "node-vibrant/worker";
+import { Vibrant } from "node-vibrant/worker";
 
 // Using builder
 Vibrant.from("path/to/image").getPalette((err, palette) =>

@@ -1,7 +1,7 @@
-import WorkerPool from "./pool";
-import { TaskWorkerClass } from "./common";
+import { WorkerPool } from "./pool";
+import type { TaskWorkerClass } from "./common";
 
-export default class WorkerManager {
+export class WorkerManager {
 	private _pools: { [name: string]: WorkerPool } = {};
 
 	register(name: string, WorkerClass: TaskWorkerClass) {

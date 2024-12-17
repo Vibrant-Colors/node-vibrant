@@ -1,7 +1,9 @@
-import { Pipeline, ProcessOptions, ProcessResult } from "../index";
-import WorkerManager, { TaskWorkerClass } from "@vibrant/worker";
-import { Swatch, Palette } from "@vibrant/color";
+import { WorkerManager } from "@vibrant/worker";
+import { Swatch } from "@vibrant/color";
 import { mapValues } from "../../utils";
+import type { TaskWorkerClass } from "@vibrant/worker";
+import type { Palette } from "@vibrant/color";
+import type { Pipeline, ProcessOptions, ProcessResult } from "../index";
 
 /**
  * Client side (runs in UI thread)

@@ -1,12 +1,13 @@
-import { Options } from "./options";
-import { Callback } from "@vibrant/types";
-import { ImageClass, ImageSource } from "@vibrant/image";
-
-import { Filter, Palette } from "@vibrant/color";
-import Vibrant from "./";
+import { Filter } from "@vibrant/color";
 import { assignDeep } from "./utils";
+import { Vibrant } from "./";
+import type { Callback } from "@vibrant/types";
+import type { ImageClass, ImageSource } from "@vibrant/image";
 
-export default class Builder {
+import type { Palette } from "@vibrant/color";
+import type { Options } from "./options";
+
+export class Builder {
 	private _src: ImageSource;
 	private _opts: Partial<Options>;
 	constructor(src: ImageSource, opts: Partial<Options> = {}) {

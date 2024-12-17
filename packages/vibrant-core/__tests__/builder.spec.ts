@@ -1,6 +1,6 @@
 import { expect, it, describe } from "vitest";
 
-import Builder from "../src/builder";
+import { Builder } from "../src/builder";
 
 describe("builder", () => {
 	it("modifies Vibrant options", () => {

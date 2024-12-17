@@ -1,8 +1,9 @@
-import { Quantizer, QuantizerOptions } from "@vibrant/quantizer";
-import { Pixels } from "@vibrant/image";
+import { Quantizer } from "@vibrant/quantizer";
 import { Filter, Swatch } from "@vibrant/color";
-import VBox from "./vbox";
-import PQueue from "./pqueue";
+import { VBox } from "./vbox";
+import { PQueue } from "./pqueue";
+import type { Pixels } from "@vibrant/image";
+import type { QuantizerOptions } from "@vibrant/quantizer";
 
 const fractByPopulations = 0.75;
 
@@ -31,7 +32,7 @@ function _splitBoxes(pq: PQueue<VBox>, target: number): void {
 	}
 }
 
-const MMCQ = (pixels: Pixels, opts: QuantizerOptions): Array<Swatch> => {
+export const MMCQ = (pixels: Pixels, opts: QuantizerOptions): Array<Swatch> => {
 	if (pixels.length === 0 || opts.colorCount < 2 || opts.colorCount > 256) {
 		throw new Error("Wrong MMCQ parameters");
 	}
@@ -68,5 +69,3 @@ function generateSwatches(pq: PQueue<VBox>) {
 	}
 	return swatches;
 }
-
-export default MMCQ;
