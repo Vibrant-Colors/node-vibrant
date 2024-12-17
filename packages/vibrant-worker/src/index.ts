@@ -18,7 +18,7 @@ export default class WorkerManager {
 
   invokeWorker<R>(name: string, args: any[], transferList?: any[]) {
     return this.hasWorker(name)
-      ? this.getWorker(name).invoke<R>(args, transferList)
+      ? this.getWorker(name)!.invoke<R>(args, transferList)
       : Promise.reject(`Worker '${name}' does not exist`);
   }
 }

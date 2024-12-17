@@ -23,7 +23,7 @@ export default class VBox {
   dimension: Dimension;
 
   private _volume = -1;
-  private _avg: Vec3 | null;
+  private _avg: Vec3 | null = null;
   private _count = -1;
 
   constructor(
@@ -63,7 +63,10 @@ export default class VBox {
         for (let g = g1; g <= g2; g++) {
           for (let b = b1; b <= b2; b++) {
             const index = getColorIndex(r, g, b);
-            c += hist[index];
+            if (!hist[index]) {
+              continue;
+            }
+            c += hist[index]!;
           }
         }
       }
@@ -94,6 +97,7 @@ export default class VBox {
           for (let b = b1; b <= b2; b++) {
             const index = getColorIndex(r, g, b);
             const h = hist[index];
+            if (!h) continue;
             ntot += h;
             rsum += h * (r + 0.5) * mult;
             gsum += h * (g + 0.5) * mult;
@@ -150,7 +154,8 @@ export default class VBox {
         for (let g = g1; g <= g2; g++) {
           for (let b = b1; b <= b2; b++) {
             const index = getColorIndex(r, g, b);
-            sum += hist[index];
+            if (!hist[index]) continue;
+            sum += hist[index]!;
           }
         }
         total += sum;
@@ -164,7 +169,8 @@ export default class VBox {
         for (let r = r1; r <= r2; r++) {
           for (let b = b1; b <= b2; b++) {
             const index = getColorIndex(r, g, b);
-            sum += hist[index];
+            if (!hist[index]) continue;
+            sum += hist[index]!;
           }
         }
         total += sum;
@@ -178,7 +184,8 @@ export default class VBox {
         for (let r = r1; r <= r2; r++) {
           for (let g = g1; g <= g2; g++) {
             const index = getColorIndex(r, g, b);
-            sum += hist[index];
+            if (!hist[index]) continue;
+            sum += hist[index]!;
           }
         }
         total += sum;
@@ -190,6 +197,7 @@ export default class VBox {
     const reverseSum = new Uint32Array(accSum.length);
     for (let i = 0; i < accSum.length; i++) {
       const d = accSum[i];
+      if (!d) continue;
       if (splitPoint < 0 && d > total / 2) splitPoint = i;
       reverseSum[i] = total - d;
     }
@@ -199,18 +207,19 @@ export default class VBox {
     function doCut(d: string): VBox[] {
       const dim1 = d + "1";
       const dim2 = d + "2";
-      const d1 = vbox.dimension[dim1];
-      let d2 = vbox.dimension[dim2];
+      const d1 = vbox.dimension[dim1]!;
+      let d2 = vbox.dimension[dim2]!;
       const vbox1 = vbox.clone();
       const vbox2 = vbox.clone();
       const left = splitPoint - d1;
       const right = d2 - splitPoint;
+
       if (left <= right) {
         d2 = Math.min(d2 - 1, ~~(splitPoint + right / 2));
         d2 = Math.max(0, d2);
       } else {
         d2 = Math.max(d1, ~~(splitPoint - 1 - left / 2));
-        d2 = Math.min(vbox.dimension[dim2], d2);
+        d2 = Math.min(vbox.dimension[dim2]!, d2);
       }
 
       while (!accSum![d2]) d2++;

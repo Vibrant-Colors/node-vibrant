@@ -86,6 +86,7 @@ export default class WorkerPool {
     const { id } = data;
     // Task is looked up by id
     const task = this._executing[id];
+    if (!task) return;
     delete this._executing[id];
 
     // Resolve or reject deferred promise
@@ -97,8 +98,12 @@ export default class WorkerPool {
         task.deferred.reject(new Error(data.payload));
         break;
     }
+
+    const worker = this._workers[workerId];
+    if (!worker) return;
+
     // Update worker status
-    this._workers[workerId].idle = true;
+    worker.idle = true;
     // Try dequeue next task
     this._tryDequeue();
   }
