@@ -7,6 +7,7 @@ export function mapValues<T, R>(
   for (const key in o) {
     if (o.hasOwnProperty(key)) {
       const v = o[key];
+      if (!v) continue;
       result[key] = mapper(v);
     }
   }

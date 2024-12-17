@@ -85,7 +85,7 @@ export class BasicPipeline implements Pipeline {
 
       return {
         name,
-        fn: stage.get(name),
+        fn: stage.get(name)!,
         options,
       };
     }
@@ -131,7 +131,7 @@ export class BasicPipeline implements Pipeline {
     // Map the values to the expected name
     return Promise.resolve(
       promiseArr.reduce((promises, promiseVal, i) => {
-        promises[generators[i].name] = promiseVal;
+        promises[generators[i]!.name] = promiseVal;
         return promises;
       }, {} as { [name: string]: Palette })
     );
