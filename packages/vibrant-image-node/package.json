@@ -1,6 +1,6 @@
 {
 	"name": "@vibrant/image-node",
-	"version": "4.0.0-alpha.3",
+	"version": "4.0.0-alpha.4",
 	"description": "Node.js vibrant ImageClass implementation",
 	"scripts": {
 		"build": "vite build",
@@ -41,7 +41,7 @@
 		"@jimp/custom": "^0.16.1",
 		"@jimp/plugin-resize": "^0.16.1",
 		"@jimp/types": "^0.16.1",
-		"@vibrant/image": "^4.0.0-alpha.3"
+		"@vibrant/image": "^4.0.0-alpha.4"
 	},
 	"devDependencies": {
 		"@tanstack/config": "^0.14.2",

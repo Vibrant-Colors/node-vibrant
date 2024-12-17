@@ -1,6 +1,6 @@
 {
 	"name": "@vibrant/core",
-	"version": "4.0.0-alpha.3",
+	"version": "4.0.0-alpha.4",
 	"description": "Core vibrant classes",
 	"scripts": {
 		"test:lib": "vitest run",
@@ -40,12 +40,12 @@
 	"homepage": "https://github.com/akfish/node-vibrant",
 	"license": "MIT",
 	"dependencies": {
-		"@vibrant/color": "^4.0.0-alpha.3",
-		"@vibrant/generator": "^4.0.0-alpha.3",
-		"@vibrant/image": "^4.0.0-alpha.3",
-		"@vibrant/quantizer": "^4.0.0-alpha.3",
-		"@vibrant/types": "^4.0.0-alpha.3",
-		"@vibrant/worker": "^4.0.0-alpha.3"
+		"@vibrant/color": "^4.0.0-alpha.4",
+		"@vibrant/generator": "^4.0.0-alpha.4",
+		"@vibrant/image": "^4.0.0-alpha.4",
+		"@vibrant/quantizer": "^4.0.0-alpha.4",
+		"@vibrant/types": "^4.0.0-alpha.4",
+		"@vibrant/worker": "^4.0.0-alpha.4"
 	},
 	"devDependencies": {
 		"@tanstack/config": "^0.14.2",

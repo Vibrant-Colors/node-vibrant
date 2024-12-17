@@ -1,6 +1,6 @@
 {
 	"name": "@vibrant/image-browser",
-	"version": "4.0.0-alpha.3",
+	"version": "4.0.0-alpha.4",
 	"description": "Browser vibrant ImageClass implementation",
 	"scripts": {
 		"build": "vite build",
@@ -40,7 +40,7 @@
 	"homepage": "https://github.com/akfish/node-vibrant",
 	"license": "MIT",
 	"dependencies": {
-		"@vibrant/image": "^4.0.0-alpha.3"
+		"@vibrant/image": "^4.0.0-alpha.4"
 	},
 	"devDependencies": {
 		"@tanstack/config": "^0.14.2",

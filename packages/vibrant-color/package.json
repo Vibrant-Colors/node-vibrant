@@ -1,6 +1,6 @@
 {
 	"name": "@vibrant/color",
-	"version": "4.0.0-alpha.3",
+	"version": "4.0.0-alpha.4",
 	"description": "Color utilities for vibrant",
 	"scripts": {
 		"build": "vite build",
