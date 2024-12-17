@@ -1,4 +1,4 @@
-import { Vec3 } from "./";
+import type { Vec3 } from "./";
 
 export const DELTAE94_DIFF_STATUS = {
 	NA: 0,

@@ -1,5 +1,6 @@
+import { rgbToHex, rgbToHsl } from "./converter";
+
 export * from "./converter";
-import { rgbToHsl, rgbToHex } from "./converter";
 
 export interface Filter {
 	(red: number, green: number, blue: number, alpha: number): boolean;

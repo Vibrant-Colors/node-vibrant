@@ -1,7 +1,7 @@
-import path from "path";
-import { Sample } from "./types";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 import * as fs from "node:fs";
+import type { Sample } from "./types";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

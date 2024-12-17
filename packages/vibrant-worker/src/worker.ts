@@ -1,5 +1,5 @@
-import { Resolvable } from "@vibrant/types";
-import { WorkerRequest, WorkerResponse, WorkerErrorResponse } from "./common";
+import type { Resolvable } from "@vibrant/types";
+import type { WorkerErrorResponse, WorkerRequest, WorkerResponse } from "./common";
 
 export function runInWorker<R>(
 	self: Window,

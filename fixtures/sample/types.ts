@@ -1,4 +1,4 @@
-import { Palette } from "@vibrant/color";
+import type { Palette } from "@vibrant/color";
 
 export interface Sample {
 	name: string;
