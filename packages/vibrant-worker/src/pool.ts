@@ -81,7 +81,7 @@ export class WorkerPool {
 		worker.idle = false;
 	}
 	private _onMessage(workerId: number, event: MessageEvent) {
-		const data: WorkerResponse<{}> | WorkerErrorResponse = event.data;
+		const data: WorkerResponse<{}> | WorkerErrorResponse | undefined = event.data;
 		if (!data) return;
 		// Worker should send result along with payload id
 		const { id } = data;
