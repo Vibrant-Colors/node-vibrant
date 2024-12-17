@@ -14,7 +14,8 @@
 		"test:eslint": "lerna run test:eslint",
 		"test:format": "pnpm run prettier --check",
 		"test:knip": "knip",
-		"prepare": "husky install && playwright install chromium"
+		"prepare": "husky install && playwright install chromium",
+		"do:publish": "lerna publish --no-private"
 	},
 	"devDependencies": {
 		"@tanstack/config": "^0.14.2",
