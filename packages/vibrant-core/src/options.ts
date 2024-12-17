@@ -6,33 +6,33 @@ import { StageOptions, ProcessOptions } from "./pipeline";
 import { assignDeep } from "./utils";
 
 export interface Options extends ImageOptions, QuantizerOptions {
-  useWorker: boolean;
-  ImageClass: ImageClass;
-  quantizer: string | StageOptions;
-  generators: (string | StageOptions)[];
-  filters: string[];
+	useWorker: boolean;
+	ImageClass: ImageClass;
+	quantizer: string | StageOptions;
+	generators: (string | StageOptions)[];
+	filters: string[];
 }
 
 export function buildProcessOptions(
-  opts: Options,
-  override?: Partial<ProcessOptions>
+	opts: Options,
+	override?: Partial<ProcessOptions>,
 ): ProcessOptions {
-  const { colorCount, quantizer, generators, filters } = opts;
-  // Merge with common quantizer options
-  const commonQuantizerOpts = { colorCount };
-  const q =
-    typeof quantizer === "string"
-      ? { name: quantizer, options: {} }
-      : quantizer;
-  q.options = assignDeep({}, commonQuantizerOpts, q.options);
+	const { colorCount, quantizer, generators, filters } = opts;
+	// Merge with common quantizer options
+	const commonQuantizerOpts = { colorCount };
+	const q =
+		typeof quantizer === "string"
+			? { name: quantizer, options: {} }
+			: quantizer;
+	q.options = assignDeep({}, commonQuantizerOpts, q.options);
 
-  return assignDeep(
-    {},
-    {
-      quantizer: q,
-      generators,
-      filters,
-    },
-    override
-  );
+	return assignDeep(
+		{},
+		{
+			quantizer: q,
+			generators,
+			filters,
+		},
+		override,
+	);
 }
