@@ -26,23 +26,26 @@ $ npm install node-vibrant
 
 ```typescript
 // Node
-import Vibrant from 'node-vibrant/node'
+import Vibrant from "node-vibrant/node";
 // Browser
-import Vibrant from 'node-vibrant/browser'
+import Vibrant from "node-vibrant/browser";
 // Web Worker
-import Vibrant from 'node-vibrant/worker'
+import Vibrant from "node-vibrant/worker";
 
 // Using builder
-Vibrant.from('path/to/image').getPalette((err, palette) => console.log(palette))
+Vibrant.from("path/to/image").getPalette((err, palette) =>
+	console.log(palette),
+);
 // Promise
-Vibrant.from('path/to/image').getPalette()
-  .then((palette) => console.log(palette))
+Vibrant.from("path/to/image")
+	.getPalette()
+	.then((palette) => console.log(palette));
 
 // Using constructor
-let v = new Vibrant('path/to/image', opts)
-v.getPalette((err, palette) => console.log(palette))
+let v = new Vibrant("path/to/image", opts);
+v.getPalette((err, palette) => console.log(palette));
 // Promise
-v.getPalette().then((palette) => console.log(palette))
+v.getPalette().then((palette) => console.log(palette));
 ```
 
 ## Documentation

@@ -1,52 +1,52 @@
 {
-  "name": "@vibrant/image",
-  "version": "4.0.0-alpha.3",
-  "description": "Helpers and typings for writing a vibrant ImageClass",
-  "scripts": {
-    "build": "vite build"
-  },
-  "type": "module",
-  "types": "dist/esm/index.d.ts",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      }
-    },
-    "./package.json": "./package.json"
-  },
-  "sideEffects": false,
-  "files": [
-    "dist",
-    "src"
-  ],
-  "author": {
-    "name": "akfish",
-    "email": "akfish@gmail.com"
-  },
-  "bugs": {
-    "url": "https://github.com/akfish/node-vibrant/issues"
-  },
-  "homepage": "https://github.com/akfish/node-vibrant",
-  "license": "MIT",
-  "dependencies": {
-    "@vibrant/color": "^4.0.0-alpha.3",
-    "@vibrant/types": "^4.0.0-alpha.3"
-  },
-  "devDependencies": {
-    "@tanstack/config": "^0.14.2",
-    "@types/node": "^18.15.3",
-    "typescript": "^4.5.2",
-    "vite": "^6.0.3"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "@vibrant/image",
+	"version": "4.0.0-alpha.3",
+	"description": "Helpers and typings for writing a vibrant ImageClass",
+	"scripts": {
+		"build": "vite build"
+	},
+	"type": "module",
+	"types": "dist/esm/index.d.ts",
+	"main": "dist/cjs/index.cjs",
+	"module": "dist/esm/index.js",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/esm/index.d.ts",
+				"default": "./dist/esm/index.js"
+			},
+			"require": {
+				"types": "./dist/cjs/index.d.cts",
+				"default": "./dist/cjs/index.cjs"
+			}
+		},
+		"./package.json": "./package.json"
+	},
+	"sideEffects": false,
+	"files": [
+		"dist",
+		"src"
+	],
+	"author": {
+		"name": "akfish",
+		"email": "akfish@gmail.com"
+	},
+	"bugs": {
+		"url": "https://github.com/akfish/node-vibrant/issues"
+	},
+	"homepage": "https://github.com/akfish/node-vibrant",
+	"license": "MIT",
+	"dependencies": {
+		"@vibrant/color": "^4.0.0-alpha.3",
+		"@vibrant/types": "^4.0.0-alpha.3"
+	},
+	"devDependencies": {
+		"@tanstack/config": "^0.14.2",
+		"@types/node": "^18.15.3",
+		"typescript": "^4.5.2",
+		"vite": "^6.0.3"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

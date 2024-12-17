@@ -1,5 +1,4 @@
 {
-  "extends": "../../tsconfig.json",
-  "include": ["loader.ts", "server.ts", "types.ts"]
+	"extends": "../../tsconfig.json",
+	"include": ["loader.ts", "server.ts", "types.ts"]
 }
-
