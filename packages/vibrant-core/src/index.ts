@@ -13,7 +13,7 @@ export interface VibrantStatic {
 }
 
 export default class Vibrant {
-  private _result: ProcessResult;
+  private _result: ProcessResult | undefined;
   private static _pipeline: Pipeline;
 
   static use(pipeline: Pipeline) {
@@ -44,8 +44,6 @@ export default class Vibrant {
     image: Image,
     opts?: Partial<ProcessOptions>
   ): Promise<ProcessResult> {
-    const { quantizer } = this.opts;
-
     image.scaleDown(this.opts);
 
     const processOpts = buildProcessOptions(this.opts, opts);
@@ -63,73 +61,70 @@ export default class Vibrant {
     );
   }
 
-  getPalette(name: string, cb?: Callback<Palette>): Promise<Palette>;
-  getPalette(cb?: Callback<Palette>): Promise<Palette>;
-  getPalette(): Promise<Palette> {
+  async getPalette(name: string, cb?: Callback<Palette>): Promise<Palette>;
+  async getPalette(cb?: Callback<Palette>): Promise<Palette>;
+  async getPalette(): Promise<Palette> {
     const arg0 = arguments[0];
     const arg1 = arguments[1];
     const name = typeof arg0 === "string" ? arg0 : "default";
     const cb = typeof arg0 === "string" ? arg1 : arg0;
     const image = new this.opts.ImageClass();
-    return image
-      .load(this._src)
-      .then((image) => this._process(image, { generators: [name] }))
-      .then((result) => {
-        this._result = result;
-        return result.palettes[name];
-      })
-      .then((res) => {
-        image.remove();
-        if (cb) {
-          cb(undefined, res);
-        }
-        return res;
-      })
-      .catch((err) => {
-        image.remove();
-        if (cb) {
-          cb(err);
-        }
-        return Promise.reject(err);
+    try {
+      let image1 = await image.load(this._src);
+      let result1: ProcessResult = await this._process(image1, {
+        generators: [name],
       });
+      this._result = result1;
+      let res = result1.palettes[name];
+      if (!res) {
+        throw new Error(`Palette with name ${name} not found`);
+      }
+      image.remove();
+      if (cb) {
+        cb(undefined, res);
+      }
+      return res;
+    } catch (err) {
+      image.remove();
+      if (cb) {
+        cb(err);
+      }
+      return Promise.reject(err);
+    }
   }
 
-  getPalettes(
+  async getPalettes(
     names: string[],
     cb?: Callback<Palette>
   ): Promise<{ [name: string]: Palette }>;
-  getPalettes(cb?: Callback<Palette>): Promise<{ [name: string]: Palette }>;
-  getPalettes(): Promise<{ [name: string]: Palette }> {
+  async getPalettes(
+    cb?: Callback<Palette>
+  ): Promise<{ [name: string]: Palette }>;
+  async getPalettes(): Promise<{ [name: string]: Palette }> {
     const arg0 = arguments[0];
     const arg1 = arguments[1];
     const names = Array.isArray(arg0) ? arg0 : ["*"];
     const cb = Array.isArray(arg0) ? arg1 : arg0;
     const image = new this.opts.ImageClass();
-    return image
-      .load(this._src)
-      .then((image) =>
-        this._process(image, {
-          generators: names,
-        })
-      )
-      .then((result) => {
-        this._result = result;
-        return result.palettes;
-      })
-      .then((res) => {
-        image.remove();
-        if (cb) {
-          cb(undefined, res);
-        }
-        return res;
-      })
-      .catch((err) => {
-        image.remove();
-        if (cb) {
-          cb(err);
-        }
-        return Promise.reject(err);
+    try {
+      let image1 = await image.load(this._src);
+      let result1: ProcessResult = await this._process(image1, {
+        generators: names,
       });
+      this._result = result1;
+      let res: any = result1.palettes;
+      image.remove();
+      if (cb) {
+        cb(undefined, res);
+      }
+      return res;
+    } catch (err) {
+      image.remove();
+      if (cb) {
+        cb(err);
+      }
+      return Promise.reject(err);
+    }
   }
 }
 
