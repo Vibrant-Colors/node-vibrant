@@ -1,11 +1,8 @@
-import {
-	ImageBase,
-	ImageCallback,
-	ImageOptions,
-} from "@vibrant/image";
+import { ImageBase, ImageCallback, ImageOptions } from "@vibrant/image";
 import type {
 	ImageSource,
-	ImageData as VibrantImageData} from "@vibrant/image";
+	ImageData as VibrantImageData,
+} from "@vibrant/image";
 
 function isRelativeUrl(url: string): boolean {
 	const u = new URL(url, location.href);
