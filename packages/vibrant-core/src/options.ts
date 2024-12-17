@@ -1,9 +1,11 @@
-import { Palette, Swatch, Filter } from "@vibrant/color";
-import { Image, ImageClass, ImageSource, ImageOptions } from "@vibrant/image";
-import { Quantizer, QuantizerOptions } from "@vibrant/quantizer";
+import { Filter, Palette, Swatch } from "@vibrant/color";
+import { Image, ImageSource } from "@vibrant/image";
+import { Quantizer } from "@vibrant/quantizer";
 import { Generator } from "@vibrant/generator";
-import { StageOptions, ProcessOptions } from "./pipeline";
 import { assignDeep } from "./utils";
+import type { ProcessOptions, StageOptions } from "./pipeline";
+import type { QuantizerOptions } from "@vibrant/quantizer";
+import type { ImageClass, ImageOptions } from "@vibrant/image";
 
 export interface Options extends ImageOptions, QuantizerOptions {
 	useWorker: boolean;

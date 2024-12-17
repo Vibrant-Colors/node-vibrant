@@ -1,5 +1,8 @@
-import { Vec3, Filter } from "@vibrant/color";
-import { Pixels, Histogram } from "@vibrant/image";
+import { Filter } from "@vibrant/color";
+import { Histogram } from "@vibrant/image";
+import type { Vec3} from "@vibrant/color";
+import type { Pixels} from "@vibrant/image";
+
 interface Dimension {
 	r1: number;
 	r2: number;
