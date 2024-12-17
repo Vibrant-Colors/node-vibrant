@@ -38,9 +38,9 @@
 	"homepage": "https://github.com/akfish/node-vibrant",
 	"license": "MIT",
 	"dependencies": {
-		"@jimp/custom": "^0.16.1",
-		"@jimp/plugin-resize": "^0.16.1",
-		"@jimp/types": "^0.16.1",
+		"@jimp/custom": "^0.22.12",
+		"@jimp/plugin-resize": "^0.22.12",
+		"@jimp/types": "^0.22.12",
 		"@vibrant/image": "^4.0.0-alpha.4"
 	},
 	"devDependencies": {
