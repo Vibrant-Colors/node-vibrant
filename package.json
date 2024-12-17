@@ -9,11 +9,11 @@
     "example": "examples"
   },
   "dependencies": {
+    "@jimp/custom": "^0.16.1",
+    "@jimp/plugin-resize": "^0.16.1",
+    "@jimp/types": "^0.16.1",
     "@types/lodash": "^4.14.53",
     "@types/node": "^10.11.7",
-    "@jimp/custom": "^0.16.1",
-    "@jimp/types": "^0.16.1",
-    "@jimp/plugin-resize": "^0.16.1",
     "lodash": "^4.17.20",
     "url": "^0.11.0"
   },
@@ -33,7 +33,7 @@
     "table": "^5.1.0",
     "ts-loader": "^5.2.1",
     "ts-node": "^7.0.1",
-    "typescript": "^3.6.3",
+    "typescript": "^5.7.2",
     "typescript-eslint-parser": "^21.0.2",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.20.2",
