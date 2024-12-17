@@ -1,6 +1,6 @@
-import { Pixels } from "@vibrant/image";
-import { Resolvable } from "@vibrant/types";
-import { Swatch } from "@vibrant/color";
+import type { Pixels } from "@vibrant/image";
+import type { Resolvable } from "@vibrant/types";
+import type { Swatch } from "@vibrant/color";
 
 export interface QuantizerOptions {
 	colorCount: number;

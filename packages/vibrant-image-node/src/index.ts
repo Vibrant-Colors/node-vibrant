@@ -1,7 +1,8 @@
-import { ImageBase, ImageData, ImageSource } from "@vibrant/image";
+import { ImageBase } from "@vibrant/image";
 import configure from "@jimp/custom";
 import types from "@jimp/types";
 import resize from "@jimp/plugin-resize";
+import type { ImageData, ImageSource } from "@vibrant/image";
 
 const Jimp = configure({
 	types: [types],
