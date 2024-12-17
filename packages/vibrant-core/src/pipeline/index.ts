@@ -1,7 +1,8 @@
-import { ImageData, applyFilters } from "@vibrant/image";
-import { Quantizer } from "@vibrant/quantizer";
-import { Generator } from "@vibrant/generator";
-import { Palette, Swatch, Filter } from "@vibrant/color";
+import { applyFilters } from "@vibrant/image";
+import type { ImageData} from "@vibrant/image";
+import type { Quantizer } from "@vibrant/quantizer";
+import type { Generator } from "@vibrant/generator";
+import type { Filter, Palette, Swatch } from "@vibrant/color";
 
 export class Stage<T> {
 	private _map: { [name: string]: T } = {};
