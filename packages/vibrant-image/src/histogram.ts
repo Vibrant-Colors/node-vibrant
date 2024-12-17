@@ -1,4 +1,4 @@
-import { Pixels } from "./index";
+import type { Pixels } from "./index";
 
 export interface HistogramOptions {
 	sigBits: number;

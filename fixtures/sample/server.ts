@@ -1,5 +1,5 @@
-import * as path from "path";
-import * as http from "http";
+import * as path from "node:path";
+import * as http from "node:http";
 import finalhandler from "finalhandler";
 import serveStatic from "serve-static";
 
