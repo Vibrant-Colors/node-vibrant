@@ -28,13 +28,46 @@ function isSameOrigin(a: string, b: string): boolean {
 }
 
 export default class BrowserImage extends ImageBase {
-  image: HTMLImageElement;
-  private _canvas: HTMLCanvasElement;
-  private _context: CanvasRenderingContext2D;
-  private _width: number;
-  private _height: number;
+  image: HTMLImageElement | undefined;
+  private _canvas: HTMLCanvasElement | undefined;
+  private _context: CanvasRenderingContext2D | undefined;
+  private _width: number | undefined;
+  private _height: number | undefined;
+
+  private _getCanvas() {
+    if (!this._canvas) {
+      throw new Error("Canvas is not initialized");
+    }
+
+    return this._canvas;
+  }
+  private _getContext() {
+    if (!this._context) {
+      throw new Error("Context is not initialized");
+    }
+
+    return this._context;
+  }
+  private _getWidth() {
+    if (!this._width) {
+      throw new Error("Width is not initialized");
+    }
+
+    return this._width;
+  }
+  private _getHeight() {
+    if (!this._height) {
+      throw new Error("Height is not initialized");
+    }
+
+    return this._height;
+  }
+
   private _initCanvas(): void {
     const img = this.image;
+    if (!img) {
+      throw new Error("Image is not initialized");
+    }
     const canvas = (this._canvas = document.createElement("canvas"));
     const context = canvas.getContext("2d");
 
@@ -52,7 +85,8 @@ export default class BrowserImage extends ImageBase {
 
     document.body.appendChild(canvas);
   }
-  load(image: ImageSource): Promise<ImageBase> {
+
+  load(image: ImageSource): Promise<this> {
     let img: HTMLImageElement;
     let src: string;
     if (typeof image === "string") {
@@ -74,7 +108,7 @@ export default class BrowserImage extends ImageBase {
     }
     this.image = img;
 
-    return new Promise<ImageBase>((resolve, reject) => {
+    return new Promise<this>((resolve, reject) => {
       const onImageLoad = () => {
         this._initCanvas();
         resolve(this);
@@ -85,37 +119,51 @@ export default class BrowserImage extends ImageBase {
         onImageLoad();
       } else {
         img.onload = onImageLoad;
-        img.onerror = (e) => reject(new Error(`Fail to load image: ${src}`));
+        img.onerror = (_e) => reject(new Error(`Fail to load image: ${src}`));
       }
     });
   }
+
   clear(): void {
-    this._context.clearRect(0, 0, this._width, this._height);
+    this._getContext().clearRect(0, 0, this._getWidth(), this._getHeight());
   }
+
   update(imageData: VibrantImageData): void {
-    this._context.putImageData(imageData as ImageData, 0, 0);
+    this._getContext().putImageData(imageData as ImageData, 0, 0);
   }
+
   getWidth(): number {
-    return this._width;
+    return this._getWidth();
   }
+
   getHeight(): number {
-    return this._height;
+    return this._getHeight();
   }
+
   resize(targetWidth: number, targetHeight: number, ratio: number): void {
-    const { _canvas: canvas, _context: context, image: img } = this;
+    if (!this.image) {
+      throw new Error("Image is not initialized");
+    }
+    this._width = this._getCanvas().width = targetWidth;
+    this._height = this._getCanvas().height = targetHeight;
 
-    this._width = canvas.width = targetWidth;
-    this._height = canvas.height = targetHeight;
-
-    context.scale(ratio, ratio);
-    context.drawImage(img, 0, 0);
+    this._getContext().scale(ratio, ratio);
+    this._getContext().drawImage(this.image, 0, 0);
   }
+
   getPixelCount(): number {
-    return this._width * this._height;
+    return this._getWidth() * this._getHeight();
   }
+
   getImageData(): ImageData {
-    return this._context.getImageData(0, 0, this._width, this._height);
+    return this._getContext().getImageData(
+      0,
+      0,
+      this._getWidth(),
+      this._getHeight()
+    );
   }
+
   remove(): void {
     if (this._canvas && this._canvas.parentNode) {
       this._canvas.parentNode.removeChild(this._canvas);
