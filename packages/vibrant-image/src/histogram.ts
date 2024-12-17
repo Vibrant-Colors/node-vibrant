@@ -45,10 +45,10 @@ export class Histogram {
     while (i < n) {
       const offset = i * 4;
       i++;
-      r = pixels[offset + 0];
-      g = pixels[offset + 1];
-      b = pixels[offset + 2];
-      a = pixels[offset + 3];
+      r = pixels[offset + 0]!;
+      g = pixels[offset + 1]!;
+      b = pixels[offset + 2]!;
+      a = pixels[offset + 3]!;
 
       // Ignored pixels' alpha is marked as 0 in filtering stage
       if (a === 0) continue;

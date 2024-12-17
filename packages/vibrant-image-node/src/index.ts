@@ -21,14 +21,21 @@ const URL_REGEX = /^(\w+):\/\/.*/i;
 type NodeImageSource = string | Buffer;
 
 export default class NodeImage extends ImageBase {
-  private _image: InstanceType<typeof Jimp>;
+  private _image: InstanceType<typeof Jimp> | undefined;
+
+  private _getImage() {
+    if (!this._image) {
+      throw new Error("Image not loaded");
+    }
+    return this._image;
+  }
 
   private async _loadByProtocolHandler(src: string): Promise<Buffer> {
     const res = await fetch(src, {
       method: "GET",
     });
 
-    if (!res.ok) {
+    if (!res.ok || !res.body) {
       throw new Error(`Failed to fetch ${src}`);
     }
 
@@ -49,7 +56,6 @@ export default class NodeImage extends ImageBase {
   private _loadFromPath(src: string): Promise<ImageBase> {
     const m = URL_REGEX.exec(src);
     if (m) {
-      const protocol = m[1].toLocaleLowerCase();
       return this._loadByProtocolHandler(src).then((buf) =>
         this._loadByJimp(buf)
       );
@@ -81,27 +87,27 @@ export default class NodeImage extends ImageBase {
 
   clear(): void {}
 
-  update(imageData: ImageData): void {}
+  update(_imageData: ImageData): void {}
 
   getWidth(): number {
-    return this._image.bitmap.width;
+    return this._getImage().bitmap.width;
   }
 
   getHeight(): number {
-    return this._image.bitmap.height;
+    return this._getImage().bitmap.height;
   }
 
-  resize(targetWidth: number, targetHeight: number, ratio: number): void {
-    this._image.resize(targetWidth, targetHeight);
+  resize(targetWidth: number, targetHeight: number, _ratio: number): void {
+    this._getImage().resize(targetWidth, targetHeight);
   }
 
   getPixelCount(): number {
-    const bitmap = this._image.bitmap;
+    const bitmap = this._getImage().bitmap;
     return bitmap.width * bitmap.height;
   }
 
   getImageData(): ImageData {
-    return this._image.bitmap;
+    return this._getImage().bitmap;
   }
 
   remove(): void {}

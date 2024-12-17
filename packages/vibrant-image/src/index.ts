@@ -79,13 +79,13 @@ export function applyFilters(imageData: ImageData, filters: Filter[]) {
     let a;
     for (let i = 0; i < n; i++) {
       offset = i * 4;
-      r = pixels[offset + 0];
-      g = pixels[offset + 1];
-      b = pixels[offset + 2];
-      a = pixels[offset + 3];
+      r = pixels[offset + 0]!;
+      g = pixels[offset + 1]!;
+      b = pixels[offset + 2]!;
+      a = pixels[offset + 3]!;
       // Mark ignored color
       for (let j = 0; j < filters.length; j++) {
-        if (!filters[j](r, g, b, a)) {
+        if (!filters[j]?.(r, g, b, a)) {
           pixels[offset + 3] = 0;
           break;
         }
