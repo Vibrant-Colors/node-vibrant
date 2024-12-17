@@ -3,7 +3,8 @@
 	"version": "4.0.0-alpha.3",
 	"description": "Color utilities for vibrant",
 	"scripts": {
-		"build": "vite build"
+		"build": "vite build",
+		"test:eslint": "eslint ./src"
 	},
 	"type": "module",
 	"types": "dist/esm/index.d.ts",

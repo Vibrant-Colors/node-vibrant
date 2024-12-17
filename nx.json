@@ -10,6 +10,10 @@
 			"cache": true,
 			"dependsOn": ["^build"],
 			"outputs": ["{projectRoot}/dist"]
+		},
+		"test:eslint": {
+			"cache": true,
+			"dependsOn": ["^build"]
 		}
 	}
 }
