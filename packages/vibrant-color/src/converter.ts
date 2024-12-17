@@ -18,6 +18,9 @@ export function hexToRgb(hex: string): Vec3 {
 
   if (!m) throw new RangeError(`'${hex}' is not a valid hex color`);
 
+  if (!m[1] || !m[2] || !m[3])
+    throw new RangeError(`'${hex}' is not a valid hex color`);
+
   return [m[1], m[2], m[3]].map((s) => parseInt(s, 16)) as Vec3;
 }
 

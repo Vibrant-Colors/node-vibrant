@@ -29,7 +29,7 @@ export class Swatch {
     return filters.length > 0
       ? colors.filter(({ r, g, b }) => {
           for (let j = 0; j < filters.length; j++) {
-            if (!filters[j](r, g, b, 255)) return false;
+            if (!filters[j]?.(r, g, b, 255)) return false;
           }
           return true;
         })
@@ -43,11 +43,11 @@ export class Swatch {
   static clone(swatch: Swatch) {
     return new Swatch(swatch._rgb, swatch._population);
   }
-  private _hsl: Vec3;
   private _rgb: Vec3;
-  private _yiq: number;
   private _population: number;
-  private _hex: string;
+  private _hsl: Vec3 | undefined;
+  private _yiq: number | undefined;
+  private _hex: string | undefined;
 
   /**
    * The red value in the RGB value
@@ -148,8 +148,8 @@ export class Swatch {
     return this._yiq;
   }
 
-  private _titleTextColor: string;
-  private _bodyTextColor: string;
+  private _titleTextColor: string | undefined;
+  private _bodyTextColor: string | undefined;
 
   get titleTextColor() {
     if (!this._titleTextColor) {
