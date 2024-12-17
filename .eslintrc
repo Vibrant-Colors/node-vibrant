@@ -9,8 +9,7 @@
   },
   "plugins": ["@typescript-eslint"],
   "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
   "ignorePatterns": [
     "node_modules/",
