@@ -72,6 +72,7 @@ function _createComparisonValue(
     for (let i = 0; i < values.length; i += 2) {
       const value = values[i];
       const weight = values[i + 1];
+      if (!value || !weight) continue;
       sum += value * weight;
       weightSum += weight;
     }
@@ -240,7 +241,7 @@ function _generateVariationColors(
 
 function _generateEmptySwatches(
   palette: Palette,
-  maxPopulation: number,
+  _maxPopulation: number,
   opts: DefaultGeneratorOptions
 ): void {
   if (!palette.Vibrant && !palette.DarkVibrant && !palette.LightVibrant) {
@@ -291,7 +292,7 @@ function _generateEmptySwatches(
   }
 }
 
-const DefaultGenerator: Generator = (
+const DefaultGenerator: Generator = ((
   swatches: Array<Swatch>,
   opts?: DefaultGeneratorOptions
 ): Palette => {
@@ -302,6 +303,6 @@ const DefaultGenerator: Generator = (
   _generateEmptySwatches(palette, maxPopulation, opts);
 
   return palette;
-};
+}) as never;
 
 export default DefaultGenerator;
