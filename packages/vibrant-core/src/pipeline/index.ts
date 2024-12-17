@@ -1,5 +1,5 @@
 import { applyFilters } from "@vibrant/image";
-import type { ImageData} from "@vibrant/image";
+import type { ImageData } from "@vibrant/image";
 import type { Quantizer } from "@vibrant/quantizer";
 import type { Generator } from "@vibrant/generator";
 import type { Filter, Palette, Swatch } from "@vibrant/color";

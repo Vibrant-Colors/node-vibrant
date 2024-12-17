@@ -1,5 +1,5 @@
 /* eslint-disable prefer-const, @typescript-eslint/no-unnecessary-condition */
-import { Swatch , hslToRgb } from "@vibrant/color";
+import { Swatch, hslToRgb } from "@vibrant/color";
 import type { Generator } from "@vibrant/generator";
 import type { Palette } from "@vibrant/color";
 

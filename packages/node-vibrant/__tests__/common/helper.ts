@@ -1,13 +1,12 @@
 import { expect } from "vitest";
 import * as util from "@vibrant/color";
 import { getBorderCharacters, table } from "table";
-import type { Builder , VibrantStatic } from "@vibrant/core";
+import type { Builder, VibrantStatic } from "@vibrant/core";
 import type { Palette, Swatch } from "@vibrant/color";
 import type {
 	SamplePathKey,
 	TestSample,
 } from "../../../../fixtures/sample/loader";
-
 
 const TABLE_OPTS = {
 	border: getBorderCharacters("void"),
