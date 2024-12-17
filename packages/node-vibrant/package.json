@@ -54,9 +54,6 @@
 		"dist",
 		"src"
 	],
-	"directories": {
-		"example": "examples"
-	},
 	"dependencies": {
 		"@types/node": "^18.15.3",
 		"@vibrant/core": "^4.0.0-alpha.3",
@@ -77,8 +74,9 @@
 	"scripts": {
 		"build": "vite build",
 		"test:lib": "vitest run",
-		"test:lib:watch": "vitest watch"
-	},
+		"test:lib:watch": "vitest watch",
+        "test:eslint": "eslint ./src ./__tests__"
+    },
 	"bugs": {
 		"url": "https://github.com/akfish/node-vibrant/issues"
 	},

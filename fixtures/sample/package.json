@@ -4,9 +4,14 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
+	"type": "module",
 	"author": {
 		"name": "akfish",
 		"email": "akfish@gmail.com"
+	},
+	"scripts": {
+		"build": "tsc --noEmit",
+		"test:eslint": "eslint ./loader.ts ./server.ts ./types.ts"
 	},
 	"license": "MIT",
 	"devDependencies": {

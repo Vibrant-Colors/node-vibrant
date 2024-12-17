@@ -5,7 +5,8 @@
 	"scripts": {
 		"test:lib": "vitest run",
 		"test:lib:watch": "vitest watch",
-		"build": "vite build"
+		"build": "vite build",
+		"test:eslint": "eslint ./src ./__tests__"
 	},
 	"type": "module",
 	"types": "dist/esm/index.d.ts",
