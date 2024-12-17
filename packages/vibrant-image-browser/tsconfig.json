@@ -1,7 +1,4 @@
 {
 	"extends": "../../tsconfig.json",
-	"compilerOptions": {
-		"strict": true
-	},
 	"include": ["src", "__tests__", "vite.config.ts", "vitest.config.ts"]
 }

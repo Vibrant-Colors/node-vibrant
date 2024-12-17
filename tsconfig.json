@@ -20,7 +20,7 @@
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": false, // TODO: Enable
+    "strict": true,
     "target": "ES2020"
   },
   "include": []
