@@ -53,8 +53,8 @@ const assertPalette = (reference: Palette, palette: Palette) => {
 	const expectedRow = ["Expected"];
 	const scoreRow = ["Score"];
 	for (const name of names) {
-		const actual = palette[name];
-		const expected = reference[name];
+		const actual = palette[name]!;
+		const expected = reference[name]!;
 		actualRow.push(actual ? actual.hex : "null");
 		expectedRow.push(expected ? util.rgbToHex(...expected.rgb) : "null");
 		const r = compare(name, expected, actual);
@@ -73,10 +73,11 @@ const assertPalette = (reference: Palette, palette: Palette) => {
 };
 
 const paletteCallback =
-	(references: any, done: () => void) => (err: Error, palette: Palette) => {
+	(references: any, done: () => void) =>
+	(err: Error | undefined, palette: Palette | undefined) => {
 		setTimeout(() => {
 			expect(err, `should not throw error '${err}'`).to.be.undefined;
-			assertPalette(references, palette);
+			assertPalette(references, palette!);
 
 			done();
 		});
@@ -120,6 +121,6 @@ export const testVibrantAsPromised = (
 
 		const palette = await builder.getPalette();
 
-		assertPalette(sample.palettes[env], palette);
+		assertPalette(sample.palettes[env]!, palette);
 	};
 };

@@ -7,22 +7,22 @@ import http from "http";
 
 const TEST_PORT = 4555;
 
-const loadSamples: BrowserCommand<never> = ({}) => {
+const loadSamples: BrowserCommand<never[]> = ({}) => {
 	const SAMPLES = loadTestSamples(TEST_PORT);
 	return SAMPLES;
 };
 
 let server: http.Server | null = null;
 
-const startServer: BrowserCommand<never> = async ({}) => {
+const startServer: BrowserCommand<never[]> = async ({}) => {
 	server = createSampleServer();
 	await new Promise<void>((resolve) =>
-		server.listen(TEST_PORT, () => resolve()),
+		server!.listen(TEST_PORT, () => resolve()),
 	);
 	return null;
 };
 
-const stopServer: BrowserCommand<never> = async ({}) =>
+const stopServer: BrowserCommand<never[]> = async ({}) =>
 	new Promise<void>((resolve, reject) =>
 		server!.close((err) => {
 			if (err) return reject(err);

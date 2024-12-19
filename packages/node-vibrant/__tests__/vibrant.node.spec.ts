@@ -12,7 +12,7 @@ const TEST_PORT = 3444;
 
 const SAMPLES = loadTestSamples(TEST_PORT);
 
-let server: http.Server | null = null;
+let server!: http.Server;
 
 beforeAll(async () => {
 	server = createSampleServer();
