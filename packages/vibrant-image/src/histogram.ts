@@ -61,6 +61,7 @@ export class Histogram {
 			b = b >> rshift;
 
 			const index = getColorIndex(r, g, b);
+			if (hist[index] === undefined) hist[index] = 0;
 			hist[index] += 1;
 
 			if (r > rmax) rmax = r;
