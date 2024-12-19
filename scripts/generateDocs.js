@@ -8,7 +8,11 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const packages = [
 	{
 		name: "node-vibrant",
-		entryPoints: [resolve(__dirname, "../packages/node-vibrant/src/index.ts")],
+		entryPoints: [
+			resolve(__dirname, "../packages/node-vibrant/src/browser.ts"),
+			resolve(__dirname, "../packages/node-vibrant/src/node.ts"),
+			resolve(__dirname, "../packages/node-vibrant/src/worker.ts"),
+		],
 		tsconfig: resolve(__dirname, "../packages/node-vibrant/tsconfig.docs.json"),
 		outputDir: resolve(__dirname, "../docs/reference"),
 		exclude: [
@@ -60,11 +64,11 @@ const packages = [
 	{
 		name: "vibrant-generator-default",
 		entryPoints: [
-			resolve(__dirname, "../packages/vibrant-generator/src/index.ts"),
+			resolve(__dirname, "../packages/vibrant-generator-default/src/index.ts"),
 		],
 		tsconfig: resolve(
 			__dirname,
-			"../packages/vibrant-generator/tsconfig.docs.json",
+			"../packages/vibrant-generator-default/tsconfig.docs.json",
 		),
 		outputDir: resolve(
 			__dirname,
@@ -84,10 +88,12 @@ const packages = [
 	},
 	{
 		name: "vibrant-image-browser",
-		entryPoints: [resolve(__dirname, "../packages/vibrant-image/src/index.ts")],
+		entryPoints: [
+			resolve(__dirname, "../packages/vibrant-image-browser/src/index.ts"),
+		],
 		tsconfig: resolve(
 			__dirname,
-			"../packages/vibrant-image/tsconfig.docs.json",
+			"../packages/vibrant-image-browser/tsconfig.docs.json",
 		),
 		outputDir: resolve(
 			__dirname,
@@ -97,10 +103,12 @@ const packages = [
 	},
 	{
 		name: "vibrant-image-node",
-		entryPoints: [resolve(__dirname, "../packages/vibrant-image/src/index.ts")],
+		entryPoints: [
+			resolve(__dirname, "../packages/vibrant-image-node/src/index.ts"),
+		],
 		tsconfig: resolve(
 			__dirname,
-			"../packages/vibrant-image/tsconfig.docs.json",
+			"../packages/vibrant-image-node/tsconfig.docs.json",
 		),
 		outputDir: resolve(
 			__dirname,
@@ -130,11 +138,11 @@ const packages = [
 	{
 		name: "vibrant-quantizer-mmcq",
 		entryPoints: [
-			resolve(__dirname, "../packages/vibrant-quantizer/src/index.ts"),
+			resolve(__dirname, "../packages/vibrant-quantizer-mmcq/src/index.ts"),
 		],
 		tsconfig: resolve(
 			__dirname,
-			"../packages/vibrant-quantizer/tsconfig.docs.json",
+			"../packages/vibrant-quantizer-mmcq/tsconfig.docs.json",
 		),
 		outputDir: resolve(
 			__dirname,
