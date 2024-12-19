@@ -22,16 +22,16 @@ const assertPalette = (reference: Palette, palette: Palette) => {
 	let failCount = 0;
 	const compare = (
 		name: string,
-		expected: Swatch | null,
-		actual: Swatch | null,
+		expected: Swatch | undefined | null,
+		actual: Swatch | undefined | null,
 	) => {
 		const result = {
 			status: "N/A",
 			diff: -1,
 		};
 
-		if (expected === null) {
-			if (actual !== null) {
+		if (!expected) {
+			if (actual) {
 				console.warn(`WARN: ${name} color was not expected. Got ${actual.hex}`);
 			}
 		} else {
@@ -53,8 +53,8 @@ const assertPalette = (reference: Palette, palette: Palette) => {
 	const expectedRow = ["Expected"];
 	const scoreRow = ["Score"];
 	for (const name of names) {
-		const actual = palette[name]!;
-		const expected = reference[name]!;
+		const actual = palette[name];
+		const expected = reference[name];
 		actualRow.push(actual ? actual.hex : "null");
 		expectedRow.push(expected ? util.rgbToHex(...expected.rgb) : "null");
 		const r = compare(name, expected, actual);
