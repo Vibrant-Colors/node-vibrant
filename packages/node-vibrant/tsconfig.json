@@ -3,5 +3,11 @@
 	"compilerOptions": {
 		"types": ["vite/client", "@vitest/browser/providers/playwright"]
 	},
-	"include": ["src", "__tests__", "eslint.config.js", "vite.config.ts", "vitest.workspace.ts"]
+	"include": [
+		"src",
+		"__tests__",
+		"eslint.config.js",
+		"vite.config.ts",
+		"vitest.workspace.ts"
+	]
 }

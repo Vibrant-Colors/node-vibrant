@@ -1,4 +1,4 @@
 {
-  "extends": "./tsconfig.json",
-  "exclude": ["eslint.config.js", "vite.config.ts"]
+	"extends": "./tsconfig.json",
+	"exclude": ["eslint.config.js", "vite.config.ts"]
 }
