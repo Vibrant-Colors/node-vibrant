@@ -1,6 +1,6 @@
 {
 	"name": "node-vibrant",
-	"version": "4.0.0-alpha.4",
+	"version": "4.0.0-alpha.5",
 	"description": "Extract prominent colors from an image. Supports both node and browser environment.",
 	"type": "module",
 	"types": "dist/esm/throw.d.ts",
@@ -59,7 +59,7 @@
 		"@vibrant/core": "^4.0.0-alpha.4",
 		"@vibrant/generator-default": "^4.0.0-alpha.4",
 		"@vibrant/image-browser": "^4.0.0-alpha.4",
-		"@vibrant/image-node": "^4.0.0-alpha.4",
+		"@vibrant/image-node": "^4.0.0-alpha.5",
 		"@vibrant/quantizer-mmcq": "^4.0.0-alpha.4"
 	},
 	"devDependencies": {

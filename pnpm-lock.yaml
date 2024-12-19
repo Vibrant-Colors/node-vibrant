@@ -85,7 +85,7 @@ importers:
         specifier: ^4.0.0-alpha.4
         version: link:../vibrant-image-browser
       '@vibrant/image-node':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-alpha.5
         version: link:../vibrant-image-node
       '@vibrant/quantizer-mmcq':
         specifier: ^4.0.0-alpha.4
