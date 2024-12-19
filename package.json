@@ -15,8 +15,9 @@
 		"test:types": "lerna run test:types",
 		"test:eslint": "lerna run test:eslint",
 		"test:format": "pnpm run prettier --check",
-		"prepare": "playwright install chromium",
-		"do:publish": "lerna publish --no-private"
+		"docs:generate": "node scripts/generateDocs.js",
+		"do:publish": "lerna publish --no-private",
+		"prepare": "playwright install chromium"
 	},
 	"devDependencies": {
 		"@tanstack/config": "^0.14.2",
