@@ -1,4 +1,5 @@
 import { defineConfig, mergeConfig } from "vite";
+// @ts-ignore
 import { tanstackViteConfig } from "@tanstack/config/vite";
 
 const config = defineConfig({});
