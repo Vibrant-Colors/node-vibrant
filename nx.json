@@ -2,14 +2,18 @@
 	"$schema": "./node_modules/nx/schemas/nx-schema.json",
 	"defaultBase": "v4",
 	"targetDefaults": {
-		"test:lib": {
-			"cache": true,
-			"dependsOn": ["^build"]
-		},
 		"build": {
 			"cache": true,
 			"dependsOn": ["^build"],
 			"outputs": ["{projectRoot}/dist"]
+		},
+		"test:lib": {
+			"cache": true,
+			"dependsOn": ["^build"]
+		},
+		"test:types": {
+			"cache": true,
+			"dependsOn": ["^build"]
 		},
 		"test:eslint": {
 			"cache": true,
