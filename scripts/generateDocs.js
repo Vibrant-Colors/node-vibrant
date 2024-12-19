@@ -51,7 +51,10 @@ const packages = [
 			__dirname,
 			"../packages/vibrant-generator/tsconfig.docs.json",
 		),
-		outputDir: resolve(__dirname, "../docs/package/vibrant-generator/reference"),
+		outputDir: resolve(
+			__dirname,
+			"../docs/package/vibrant-generator/reference",
+		),
 		exclude: ["packages/vibrant-color/**/*", "packages/vibrant-types/**/*"],
 	},
 	{
@@ -63,7 +66,10 @@ const packages = [
 			__dirname,
 			"../packages/vibrant-generator/tsconfig.docs.json",
 		),
-		outputDir: resolve(__dirname, "../docs/package/vibrant-generator-default/reference"),
+		outputDir: resolve(
+			__dirname,
+			"../docs/package/vibrant-generator-default/reference",
+		),
 		exclude: ["packages/vibrant-color/**/*", "packages/vibrant-generator/**/*"],
 	},
 	{
@@ -83,7 +89,10 @@ const packages = [
 			__dirname,
 			"../packages/vibrant-image/tsconfig.docs.json",
 		),
-		outputDir: resolve(__dirname, "../docs/package/vibrant-image-browser/reference"),
+		outputDir: resolve(
+			__dirname,
+			"../docs/package/vibrant-image-browser/reference",
+		),
 		exclude: ["packages/vibrant-image/**/*"],
 	},
 	{
@@ -93,7 +102,10 @@ const packages = [
 			__dirname,
 			"../packages/vibrant-image/tsconfig.docs.json",
 		),
-		outputDir: resolve(__dirname, "../docs/package/vibrant-image-node/reference"),
+		outputDir: resolve(
+			__dirname,
+			"../docs/package/vibrant-image-node/reference",
+		),
 		exclude: ["packages/vibrant-image/**/*"],
 	},
 	{
@@ -105,7 +117,10 @@ const packages = [
 			__dirname,
 			"../packages/vibrant-quantizer/tsconfig.docs.json",
 		),
-		outputDir: resolve(__dirname, "../docs/package/vibrant-quantizer/reference"),
+		outputDir: resolve(
+			__dirname,
+			"../docs/package/vibrant-quantizer/reference",
+		),
 		exclude: [
 			"packages/vibrant-color/**/*",
 			"packages/vibrant-image/**/*",
@@ -121,7 +136,10 @@ const packages = [
 			__dirname,
 			"../packages/vibrant-quantizer/tsconfig.docs.json",
 		),
-		outputDir: resolve(__dirname, "../docs/package/vibrant-quantizer-mmcq/reference"),
+		outputDir: resolve(
+			__dirname,
+			"../docs/package/vibrant-quantizer-mmcq/reference",
+		),
 		exclude: [
 			"packages/vibrant-color/**/*",
 			"packages/vibrant-image/**/*",

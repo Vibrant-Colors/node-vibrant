@@ -1,4 +1,9 @@
 {
-  "extends": "./tsconfig.json",
-  "exclude": ["__tests__", "eslint.config.js", "vite.config.ts", "vitest.workspace.ts"]
+	"extends": "./tsconfig.json",
+	"exclude": [
+		"__tests__",
+		"eslint.config.js",
+		"vite.config.ts",
+		"vitest.workspace.ts"
+	]
 }
