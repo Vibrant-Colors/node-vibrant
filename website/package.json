@@ -12,7 +12,9 @@
   "dependencies": {
     "@astrojs/react": "^4.1.2",
     "@astrojs/starlight": "^0.30.3",
+    "@vibrant/color": "*",
     "astro": "^5.0.2",
+    "node-vibrant": "*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sharp": "^0.32.5"

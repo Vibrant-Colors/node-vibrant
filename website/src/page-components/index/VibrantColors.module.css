@@ -1,0 +1,18 @@
+.colors {
+  display: flex;
+  padding: 2rem 0rem;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+.swatch {
+  all: unset;
+  background-color: var(--bg-color);
+  color: var(--color);
+  flex-grow: 1;
+  border-radius: 12px;
+  padding: 14px 20px;
+}
