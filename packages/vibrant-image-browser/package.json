@@ -34,7 +34,7 @@
 		"@tanstack/config": "^0.15.0",
 		"@types/node": "^18.15.3",
 		"jsdom": "^25.0.1",
-		"vite": "^6.0.3",
+		"vite": "^6.0.5",
 		"vitest": "^2.1.8"
 	},
 	"type": "module",
