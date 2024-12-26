@@ -1,6 +1,6 @@
 {
 	"$schema": "./node_modules/nx/schemas/nx-schema.json",
-	"defaultBase": "v4",
+	"defaultBase": "main",
 	"targetDefaults": {
 		"build": {
 			"cache": true,

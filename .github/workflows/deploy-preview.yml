@@ -3,7 +3,7 @@ name: Deploy Preview
 on:
   push:
     branches:
-      - v4
+      - main
 
 permissions: {}
 

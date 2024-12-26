@@ -2,7 +2,7 @@ name: ci
 
 on:
   push:
-    branches: [v4, alpha, beta]
+    branches: [main, alpha, beta]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
