@@ -18,10 +18,7 @@ describe("Palette Extraction", async () => {
 	const SAMPLES = await commands.loadSamples();
 
 	SAMPLES.forEach((example) => {
-		it(
-			`${example.name}`,
-			testVibrant(Vibrant, example, "url", "browser"),
-		);
+		it(`${example.name}`, testVibrant(Vibrant, example, "url", "browser"));
 	});
 });
 

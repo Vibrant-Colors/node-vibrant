@@ -36,18 +36,12 @@ afterAll(
 describe("Palette Extraction", () => {
 	describe("process samples", () =>
 		SAMPLES.forEach((sample) => {
-			it(
-				`${sample.name}`,
-				testVibrant(Vibrant, sample, "filePath", "node"),
-			);
+			it(`${sample.name}`, testVibrant(Vibrant, sample, "filePath", "node"));
 		}));
 
 	describe("process remote images (http)", function () {
 		SAMPLES.forEach((sample) => {
-			it(
-				`${sample.url}`,
-				testVibrant(Vibrant, sample, "url", "node"),
-			);
+			it(`${sample.url}`, testVibrant(Vibrant, sample, "url", "node"));
 		});
 	});
 });
