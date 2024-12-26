@@ -141,6 +141,9 @@ export function rgbToCIELab(r: number, g: number, b: number): Vec3 {
 	return xyzToCIELab(x, y, z);
 }
 
+/**
+ * Computes CIE delta E 1994 diff between `lab1` and `lab2`. The 2 colors are in CIE-Lab color space. Used in tests to compare 2 colors' perceptual similarity.
+ */
 export function deltaE94(lab1: Vec3, lab2: Vec3): number {
 	const WEIGHT_L = 1;
 	const WEIGHT_C = 1;
@@ -174,12 +177,18 @@ export function deltaE94(lab1: Vec3, lab2: Vec3): number {
 	return Math.sqrt(xDL * xDL + xDC * xDC + xDH * xDH);
 }
 
+/**
+ * Compute CIE delta E 1994 diff between `rgb1` and `rgb2`.
+ */
 export function rgbDiff(rgb1: Vec3, rgb2: Vec3): number {
 	const lab1 = rgbToCIELab.apply(undefined, rgb1);
 	const lab2 = rgbToCIELab.apply(undefined, rgb2);
 	return deltaE94(lab1, lab2);
 }
 
+/**
+ * Compute CIE delta E 1994 diff between `hex1` and `hex2`.
+ */
 export function hexDiff(hex1: string, hex2: string): number {
 	const rgb1 = hexToRgb(hex1);
 	const rgb2 = hexToRgb(hex2);
@@ -187,6 +196,17 @@ export function hexDiff(hex1: string, hex2: string): number {
 	return rgbDiff(rgb1, rgb2);
 }
 
+/**
+ * Gets a string to describe the meaning of the color diff. Used in tests.
+ *
+ * Delta E  | Perception                             | Returns
+ * -------- | -------------------------------------- | -----------
+ * <= 1.0   | Not perceptible by human eyes.         | `"Perfect"`
+ * 1 - 2    | Perceptible through close observation. | `"Close"`
+ * 2 - 10   | Perceptible at a glance.               | `"Good"`
+ * 11 - 49  | Colors are more similar than opposite  | `"Similar"`
+ * 50 - 100 | Colors are exact opposite              | `Wrong`
+ */
 export function getColorDiffStatus(d: number): string {
 	if (d < DELTAE94_DIFF_STATUS.NA) {
 		return "N/A";

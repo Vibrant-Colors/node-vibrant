@@ -3,7 +3,7 @@ import { Swatch, hslToRgb } from "@vibrant/color";
 import type { Generator } from "@vibrant/generator";
 import type { Palette } from "@vibrant/color";
 
-interface DefaultGeneratorOptions {
+export interface GeneratorOptions {
 	targetDarkLuma: number;
 	maxDarkLuma: number;
 	minLightLuma: number;
@@ -20,7 +20,7 @@ interface DefaultGeneratorOptions {
 	weightPopulation: number;
 }
 
-const DefaultOpts: DefaultGeneratorOptions = {
+export const DefaultOpts: GeneratorOptions = {
 	targetDarkLuma: 0.26,
 	maxDarkLuma: 0.45,
 	minLightLuma: 0.55,
@@ -65,7 +65,7 @@ function _createComparisonValue(
 	targetLuma: number,
 	population: number,
 	maxPopulation: number,
-	opts: DefaultGeneratorOptions,
+	opts: GeneratorOptions,
 ): number {
 	function weightedMean(...values: number[]) {
 		let sum = 0;
@@ -105,7 +105,7 @@ function _findColorVariation(
 	targetSaturation: number,
 	minSaturation: number,
 	maxSaturation: number,
-	opts: DefaultGeneratorOptions,
+	opts: GeneratorOptions,
 ): Swatch | null {
 	let max: Swatch | null = null;
 	let maxValue = 0;
@@ -143,7 +143,7 @@ function _findColorVariation(
 function _generateVariationColors(
 	swatches: Array<Swatch>,
 	maxPopulation: number,
-	opts: DefaultGeneratorOptions,
+	opts: GeneratorOptions,
 ): Palette {
 	const palette: Palette = {
 		Vibrant: null,
@@ -243,7 +243,7 @@ function _generateVariationColors(
 function _generateEmptySwatches(
 	palette: Palette,
 	_maxPopulation: number,
-	opts: DefaultGeneratorOptions,
+	opts: GeneratorOptions,
 ): void {
 	if (!palette.Vibrant && !palette.DarkVibrant && !palette.LightVibrant) {
 		if (!palette.DarkVibrant && palette.DarkMuted) {
@@ -295,7 +295,7 @@ function _generateEmptySwatches(
 
 export const DefaultGenerator: Generator = ((
 	swatches: Array<Swatch>,
-	opts?: DefaultGeneratorOptions,
+	opts?: GeneratorOptions,
 ): Palette => {
 	opts = Object.assign({}, DefaultOpts, opts);
 	const maxPopulation = _findMaxPopulation(swatches);

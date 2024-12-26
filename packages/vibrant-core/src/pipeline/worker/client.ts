@@ -6,6 +6,7 @@ import type { Palette } from "@vibrant/color";
 import type { Pipeline, ProcessOptions, ProcessResult } from "../index";
 
 /**
+ * @private
  * Client side (runs in UI thread)
  */
 export class WorkerPipeline implements Pipeline {

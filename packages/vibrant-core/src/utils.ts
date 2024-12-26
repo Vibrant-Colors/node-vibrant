@@ -1,3 +1,6 @@
+/**
+ * @private
+ */
 export function mapValues<T, R>(
 	o: { [key: string]: T },
 	mapper: (v: T) => R,
@@ -16,6 +19,7 @@ export function mapValues<T, R>(
 }
 
 /**
+ * @private
  * Overwrite values or properties on objects and lists recursively.
  * A shallow copy will be created for each array value.
  */

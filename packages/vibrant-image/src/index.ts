@@ -3,6 +3,10 @@ import type { Filter } from "@vibrant/color";
 export { Histogram } from "./histogram";
 export type { HistogramOptions } from "./histogram";
 
+/**
+ * HTMLImageElement - browser only
+ * Buffer - Node.js only
+ */
 export type ImageSource = string | HTMLImageElement | Buffer;
 
 export type Pixels = Uint8ClampedArray | Buffer;
@@ -13,7 +17,15 @@ export interface ImageData {
 }
 
 export interface ImageOptions {
+	/**
+	 * Scale down factor used in downsampling stage. 1 means no downsampling. If `maxDimension` is set, this value will not be used.
+	 * @default 5
+	 */
 	quality: number;
+	/**
+	 * The max size of the image's longer side used in downsampling stage. This field will override `quality`.
+	 * @default undefined
+	 */
 	maxDimension: number;
 }
 
@@ -66,6 +78,9 @@ export abstract class ImageBase implements Image {
 	}
 }
 
+/**
+ * @private
+ */
 export function applyFilters(imageData: ImageData, filters: Filter[]) {
 	if (filters.length > 0) {
 		const pixels = imageData.data;
