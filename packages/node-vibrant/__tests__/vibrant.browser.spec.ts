@@ -1,7 +1,7 @@
 import { commands } from "@vitest/browser/context";
 import { afterAll, beforeAll, describe, it } from "vitest";
 
-import { Vibrant } from "../src/worker";
+import { Vibrant } from "../src/browser";
 import { testVibrant } from "./common/helper";
 
 import type { TestSample } from "../../../fixtures/sample/loader";
