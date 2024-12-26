@@ -2,6 +2,18 @@
 	"name": "@vibrant/types",
 	"version": "4.0.0-alpha.4",
 	"description": "Common typings for vibrant",
+	"author": "crutchcorn",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Vibrant-Colors/node-vibrant.git",
+		"directory": "packages/vibrant-types"
+	},
+	"homepage": "https://vibrant.dev",
+	"funding": {
+		"type": "github",
+		"url": "https://github.com/sponsors/crutchcorn"
+	},
 	"scripts": {
 		"build": "vite build",
 		"test:eslint": "eslint ./src",
@@ -11,6 +23,10 @@
 		"test:types:ts54": "node ../../node_modules/typescript54/lib/tsc.js",
 		"test:types:ts55": "node ../../node_modules/typescript55/lib/tsc.js",
 		"test:types:ts56": "tsc"
+	},
+	"devDependencies": {
+		"@tanstack/config": "^0.15.0",
+		"vite": "^6.0.3"
 	},
 	"type": "module",
 	"types": "dist/esm/index.d.ts",
@@ -34,19 +50,6 @@
 		"dist",
 		"src"
 	],
-	"author": {
-		"name": "akfish",
-		"email": "akfish@gmail.com"
-	},
-	"bugs": {
-		"url": "https://github.com/akfish/node-vibrant/issues"
-	},
-	"homepage": "https://github.com/akfish/node-vibrant",
-	"license": "MIT",
-	"devDependencies": {
-		"@tanstack/config": "^0.15.0",
-		"vite": "^6.0.3"
-	},
 	"publishConfig": {
 		"access": "public"
 	}
