@@ -74,10 +74,10 @@ export class Builder {
 		return new Vibrant(this._src, this._opts);
 	}
 
-	getPalette(cb?: Callback<Palette>): Promise<Palette> {
-		return this.build().getPalette(cb);
-	}
-	getSwatches(cb?: Callback<Palette>): Promise<Palette> {
-		return this.build().getPalette(cb);
+	/**
+	 * Builds a `Vibrant` instance as configured and calls its `getPalette` method.
+	 */
+	getPalette(): Promise<Palette> {
+		return this.build().getPalette();
 	}
 }

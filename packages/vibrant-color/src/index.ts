@@ -109,38 +109,6 @@ export class Swatch {
 		};
 	}
 
-	/**
-	 * Get the color value as a rgb value
-	 * @deprecated Use property instead
-	 */
-	// TODO: deprecate internally, use property instead
-	getRgb(): Vec3 {
-		return this._rgb;
-	}
-	/**
-	 * Get the color value as a hsl value
-	 * @deprecated Use property instead
-	 */
-	// TODO: deprecate internally, use property instead
-	getHsl(): Vec3 {
-		return this.hsl;
-	}
-	/**
-	 * @deprecated Use property instead
-	 */
-	// TODO: deprecate internally, use property instead
-	getPopulation(): number {
-		return this._population;
-	}
-	/**
-	 * Get the color value as a hex string
-	 * @deprecated Use property instead
-	 */
-	// TODO: deprecate internally, use property instead
-	getHex(): string {
-		return this.hex;
-	}
-
 	private getYiq(): number {
 		if (!this._yiq) {
 			const rgb = this._rgb;
@@ -163,13 +131,6 @@ export class Swatch {
 			this._bodyTextColor = this.getYiq() < 150 ? "#fff" : "#000";
 		}
 		return this._bodyTextColor;
-	}
-	getTitleTextColor(): string {
-		return this.titleTextColor;
-	}
-
-	getBodyTextColor(): string {
-		return this.bodyTextColor;
 	}
 
 	constructor(rgb: Vec3, population: number) {

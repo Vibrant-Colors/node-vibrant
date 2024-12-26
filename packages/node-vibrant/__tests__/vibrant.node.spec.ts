@@ -5,7 +5,7 @@ import { loadTestSamples } from "../../../fixtures/sample/loader";
 import { createSampleServer } from "../../../fixtures/sample/server";
 
 import { Vibrant } from "../src/node";
-import { testVibrant, testVibrantAsPromised } from "./common/helper";
+import { testVibrant } from "./common/helper";
 import type http from "node:http";
 
 const TEST_PORT = 3444;
@@ -37,24 +37,16 @@ describe("Palette Extraction", () => {
 	describe("process samples", () =>
 		SAMPLES.forEach((sample) => {
 			it(
-				`${sample.name} (callback)`,
+				`${sample.name}`,
 				testVibrant(Vibrant, sample, "filePath", "node"),
-			);
-			it(
-				`${sample.name} (Promise)`,
-				testVibrantAsPromised(Vibrant, sample, "filePath", "node"),
 			);
 		}));
 
 	describe("process remote images (http)", function () {
 		SAMPLES.forEach((sample) => {
 			it(
-				`${sample.url} (callback)`,
+				`${sample.url}`,
 				testVibrant(Vibrant, sample, "url", "node"),
-			);
-			it(
-				`${sample.url} (Promise)`,
-				testVibrantAsPromised(Vibrant, sample, "url", "node"),
 			);
 		});
 	});
