@@ -39,3 +39,8 @@
     clip: rect(0,0,0,0);
     border: 0;
 }
+
+.embed {
+	width: 100% !important;
+	height: 400px !important;
+}
