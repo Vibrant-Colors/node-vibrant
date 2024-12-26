@@ -38,10 +38,7 @@ const packages = [
 			__dirname,
 			"../packages/vibrant-generator/tsconfig.docs.json",
 		),
-		outputDir: resolve(
-			__dirname,
-			"../docs/reference/vibrant-generator",
-		),
+		outputDir: resolve(__dirname, "../docs/reference/vibrant-generator"),
 		exclude: ["packages/vibrant-color/**/*", "packages/vibrant-types/**/*"],
 	},
 	{
@@ -78,10 +75,7 @@ const packages = [
 			__dirname,
 			"../packages/vibrant-image-browser/tsconfig.docs.json",
 		),
-		outputDir: resolve(
-			__dirname,
-			"../docs/reference/vibrant-image-browser",
-		),
+		outputDir: resolve(__dirname, "../docs/reference/vibrant-image-browser"),
 		exclude: ["packages/vibrant-image/**/*"],
 	},
 	{
@@ -93,10 +87,7 @@ const packages = [
 			__dirname,
 			"../packages/vibrant-image-node/tsconfig.docs.json",
 		),
-		outputDir: resolve(
-			__dirname,
-			"../docs/reference/vibrant-image-node",
-		),
+		outputDir: resolve(__dirname, "../docs/reference/vibrant-image-node"),
 		exclude: ["packages/vibrant-image/**/*"],
 	},
 	{
@@ -108,10 +99,7 @@ const packages = [
 			__dirname,
 			"../packages/vibrant-quantizer/tsconfig.docs.json",
 		),
-		outputDir: resolve(
-			__dirname,
-			"../docs/reference/vibrant-quantizer",
-		),
+		outputDir: resolve(__dirname, "../docs/reference/vibrant-quantizer"),
 		exclude: [
 			"packages/vibrant-color/**/*",
 			"packages/vibrant-image/**/*",
@@ -127,10 +115,7 @@ const packages = [
 			__dirname,
 			"../packages/vibrant-quantizer-mmcq/tsconfig.docs.json",
 		),
-		outputDir: resolve(
-			__dirname,
-			"../docs/reference/vibrant-quantizer-mmcq",
-		),
+		outputDir: resolve(__dirname, "../docs/reference/vibrant-quantizer-mmcq"),
 		exclude: [
 			"packages/vibrant-color/**/*",
 			"packages/vibrant-image/**/*",
