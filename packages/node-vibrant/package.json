@@ -63,8 +63,9 @@
 		"@vibrant/quantizer-mmcq": "^4.0.0-alpha.4"
 	},
 	"devDependencies": {
-		"@tanstack/config": "^0.14.2",
+		"@tanstack/config": "0.14.2",
 		"@vibrant/color": "^4.0.0-alpha.4",
+		"@vibrant/image": "^4.0.0-alpha.4",
 		"@vitest/browser": "^2.1.8",
 		"playwright": "^1.49.1",
 		"vite": "^6.0.3",

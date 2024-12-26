@@ -20,12 +20,13 @@
 		"prepare": "playwright install chromium"
 	},
 	"devDependencies": {
-		"@tanstack/config": "^0.14.2",
+		"@tanstack/config": "0.14.2",
 		"@types/node": "^18.15.3",
 		"@types/table": "^4.0.5",
 		"eslint": "^9.17.0",
 		"knip": "^5.41.0",
 		"lerna": "^8.1.9",
+		"nx": "^20.3.0",
 		"playwright": "^1.49.1",
 		"prettier": "^3.4.2",
 		"sherif": "^1.1.1",
