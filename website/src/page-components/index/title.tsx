@@ -46,7 +46,7 @@ export const Title = ({ title }: TitleProps) => {
 					textAnchor="middle"
 					fontSize="9rem"
 					fontWeight="800"
-					fill="#2A3751"
+					fill="var(--sl-color-text)"
 				>
 					{title}
 				</text>
