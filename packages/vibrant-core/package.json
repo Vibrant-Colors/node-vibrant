@@ -54,7 +54,7 @@
 		"@vibrant/worker": "^4.0.0-alpha.4"
 	},
 	"devDependencies": {
-		"@tanstack/config": "^0.14.2",
+		"@tanstack/config": "0.14.2",
 		"vite": "^6.0.3",
 		"vitest": "^2.1.8"
 	},
