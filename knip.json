@@ -1,4 +1,5 @@
 {
 	"$schema": "https://unpkg.com/knip@5/schema.json",
-	"ignoreDependencies": ["nx"]
+	"ignoreDependencies": ["nx", "sharp"],
+	"ignore": ["website/src/components/**"]
 }
