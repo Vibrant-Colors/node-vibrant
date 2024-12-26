@@ -1,4 +1,4 @@
-import { ImageBase, ImageCallback, ImageOptions } from "@vibrant/image";
+import { ImageBase } from "@vibrant/image";
 import type {
 	ImageSource,
 	ImageData as VibrantImageData,

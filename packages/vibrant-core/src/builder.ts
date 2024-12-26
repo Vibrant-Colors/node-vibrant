@@ -1,7 +1,5 @@
-import { Filter } from "@vibrant/color";
 import { assignDeep } from "./utils";
 import { Vibrant } from "./";
-import type { Callback } from "@vibrant/types";
 import type { ImageClass, ImageSource } from "@vibrant/image";
 
 import type { Palette } from "@vibrant/color";

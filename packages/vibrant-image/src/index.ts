@@ -1,10 +1,7 @@
-import type { Callback } from "@vibrant/types";
 import type { Filter } from "@vibrant/color";
 
 export { Histogram } from "./histogram";
 export type { HistogramOptions } from "./histogram";
-
-export type ImageCallback = Callback<Image>;
 
 export type ImageSource = string | HTMLImageElement | Buffer;
 

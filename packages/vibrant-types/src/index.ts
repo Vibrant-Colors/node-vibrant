@@ -1,7 +1,3 @@
-export interface Callback<T> {
-	(err?: Error, result?: T): void;
-}
-
 export type Resolvable<T> = T | Promise<T>;
 
 export interface IndexedObject {
