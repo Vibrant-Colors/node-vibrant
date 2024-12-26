@@ -40,11 +40,12 @@ input[type="file"] {
 }
 
 .buttonContainer {
-  width: 80vw;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: flex-end;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .button {

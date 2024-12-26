@@ -1,0 +1,7 @@
+---
+import {Title} from "./title.js";
+// DO NOT CHANGE, THIS WAS PULLED FROM: https://github.com/withastro/starlight/blob/main/packages/starlight/components/PageTitle.astro
+const PAGE_TITLE_ID = "_top";
+---
+
+<Title id={PAGE_TITLE_ID} title={Astro.props.entry.data.title}></Title>
