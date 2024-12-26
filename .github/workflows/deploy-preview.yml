@@ -1,0 +1,35 @@
+name: Deploy Preview
+
+on:
+  push:
+    branches:
+      - v4
+
+permissions: {}
+
+jobs:
+  deploy-docs:
+    permissions:
+      contents: write #  to write to gh-pages branch (peaceiris/actions-gh-pages)
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install packages
+        run: pnpm install --frozen-lockfile --prefer-offline
+
+      - name: Build
+        run: pnpm run build:website
+
+      - name: Deploy docs
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: website/dist
