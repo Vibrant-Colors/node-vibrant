@@ -9,20 +9,23 @@ export default defineConfig({
 		react(),
 		starlight({
 			title: "Vibrant Colors",
+			logo: {
+				src: "./public/favicon.svg",
+				alt: "A color picker on two sides of a sunset",
+			},
 			social: {
-				github: "https://github.com/withastro/starlight",
+				github: "https://github.com/vibrant-colors/node-vibrant",
 			},
 			components: {
 				Head: "./src/components/head.astro",
-				Hero: "./src/components/hero.astro"
+				Hero: "./src/components/hero.astro",
+				SiteTitle: "./src/components/site-title.astro"
 			},
 			customCss: ["./src/styles/global.css"],
 			sidebar: [
 				{
 					label: "Guides",
-					items: [
-						{ label: "Getting Started", slug: "guides/get-started" },
-					],
+					items: [{ label: "Getting Started", slug: "guides/get-started" }],
 				},
 				{
 					label: "Reference",

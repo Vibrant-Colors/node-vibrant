@@ -1,12 +1,14 @@
 ---
-import type { Props } from '@astrojs/starlight/props';
-import Default from '@astrojs/starlight/components/PageTitle.astro';
+import type { Props } from "@astrojs/starlight/props";
+import Default from "@astrojs/starlight/components/PageTitle.astro";
 
-const isHomepage = Astro.props.id === '';
+const isHomepage = Astro.props.id === "";
 ---
 
 {
-	!isHomepage && (<Default {...Astro.props}>
+	!isHomepage && (
+	<Default {...Astro.props}>
 		<slot />
-	</Default>)
-}
+	</Default>
+		)
+	}

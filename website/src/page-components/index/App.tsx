@@ -1,10 +1,10 @@
 import { useState } from "react";
-import type { ChangeEvent } from "react";
+import { Title } from "../../components/title.tsx";
 import styles from "./App.module.css";
 import { Colors } from "./Colors";
 import { Images } from "./Images";
-import { Title } from "./title.tsx";
-import { ExamplesTitle } from "./examples-title.tsx";
+import { BlobTitle } from "./blob-title.tsx";
+import type { ChangeEvent } from "react";
 
 const App = () => {
 	const [image, setImage] = useState(Images.MountainLake);
@@ -17,7 +17,16 @@ const App = () => {
 
 	return (
 		<div>
-			<Title title={"Vibrant"} />
+			<div className={styles.buttonContainer}>
+				<a
+					href="./guides/get-started"
+					className={styles.button}
+				>
+					Get Vibrant
+				</a>
+			</div>
+
+			<BlobTitle title={"Vibrant"} />
 
 			<p>A Node.js and Browser compatible image color extraction library</p>
 
@@ -32,7 +41,7 @@ const App = () => {
 				</div>
 
 				<div className={`${styles.fullSize} ${styles.flex}`}>
-					<ExamplesTitle title={"Examples"} />
+					<Title title={"Examples"} />
 				</div>
 
 				<Colors file={Images.PeacockFeathers} />

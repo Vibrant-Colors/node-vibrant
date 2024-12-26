@@ -1,4 +1,6 @@
 .colors {
+  list-style: none;
+  margin: 0;
   display: flex;
   padding: 2rem 0rem;
   justify-content: center;

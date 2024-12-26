@@ -1,5 +1,5 @@
 ---
-title: Welcome to Starlight
+title: Node Vibrant Demo
 description: Get started building your docs site with Starlight.
 template: splash
 hero:
@@ -7,5 +7,30 @@ hero:
 ---
 
 import App from '../../page-components/index/App.tsx';
+import {Title} from '../../components/title.js';
 
 <App client:load/>
+
+<Title title={"Usage"}/>
+
+```shell
+npm i node-vibrant
+```
+
+```typescript
+// Node
+import { Vibrant } from "node-vibrant/node";
+// Browser
+import { Vibrant } from "node-vibrant/browser";
+// Web Worker
+import { Vibrant } from "node-vibrant/worker";
+
+// Using builder
+Vibrant.from("path/to/image")
+	.getPalette()
+	.then((palette) => console.log(palette));
+
+// Using constructor
+let v = new Vibrant("path/to/image", opts);
+v.getPalette().then((palette) => console.log(palette));
+```

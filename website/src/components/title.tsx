@@ -1,8 +1,8 @@
-interface ExamplesTitleProps {
+interface TitleProps {
   title: string;
 }
 
-export const ExamplesTitle = ({ title }: ExamplesTitleProps) => {
+export const Title = ({ title }: TitleProps) => {
   return (
     <div
       style={{
