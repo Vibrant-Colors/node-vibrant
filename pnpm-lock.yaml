@@ -85,26 +85,26 @@ importers:
         specifier: ^18.15.3
         version: 18.19.68
       '@vibrant/core':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-core
       '@vibrant/generator-default':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-generator-default
       '@vibrant/image-browser':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-image-browser
       '@vibrant/image-node':
-        specifier: ^4.0.0-alpha.5
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-image-node
       '@vibrant/quantizer-mmcq':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-quantizer-mmcq
     devDependencies:
       '@tanstack/config':
         specifier: ^0.15.0
         version: 0.15.0(@types/node@18.19.68)(esbuild@0.24.0)(eslint@9.17.0(jiti@2.4.1))(rollup@4.28.1)(typescript@5.6.3)(vite@6.0.3(@types/node@18.19.68)(jiti@2.4.1)(terser@5.37.0)(yaml@2.6.1))
       '@vibrant/color':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-color
       '@vitest/browser':
         specifier: ^2.1.8
@@ -131,19 +131,19 @@ importers:
   packages/vibrant-core:
     dependencies:
       '@vibrant/color':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-color
       '@vibrant/generator':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-generator
       '@vibrant/image':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-image
       '@vibrant/quantizer':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-quantizer
       '@vibrant/worker':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-worker
     devDependencies:
       '@tanstack/config':
@@ -159,10 +159,10 @@ importers:
   packages/vibrant-generator:
     dependencies:
       '@vibrant/color':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-color
       '@vibrant/types':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-types
     devDependencies:
       '@tanstack/config':
@@ -178,10 +178,10 @@ importers:
         specifier: ^0.15.0
         version: 0.15.0(@types/node@22.10.2)(esbuild@0.24.0)(eslint@9.17.0(jiti@2.4.1))(rollup@4.28.1)(typescript@5.6.3)(vite@6.0.3(@types/node@22.10.2)(jiti@2.4.1)(terser@5.37.0)(yaml@2.6.1))
       '@vibrant/color':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-color
       '@vibrant/generator':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-generator
       vite:
         specifier: ^6.0.3
@@ -190,7 +190,7 @@ importers:
   packages/vibrant-image:
     dependencies:
       '@vibrant/color':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-color
     devDependencies:
       '@tanstack/config':
@@ -206,7 +206,7 @@ importers:
   packages/vibrant-image-browser:
     dependencies:
       '@vibrant/image':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-image
     devDependencies:
       '@tanstack/config':
@@ -237,7 +237,7 @@ importers:
         specifier: ^0.22.12
         version: 0.22.12(@jimp/custom@0.22.12(encoding@0.1.13))
       '@vibrant/image':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-image
     devDependencies:
       '@tanstack/config':
@@ -253,13 +253,13 @@ importers:
   packages/vibrant-quantizer:
     dependencies:
       '@vibrant/color':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-color
       '@vibrant/image':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-image
       '@vibrant/types':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-types
     devDependencies:
       '@tanstack/config':
@@ -272,13 +272,13 @@ importers:
   packages/vibrant-quantizer-mmcq:
     dependencies:
       '@vibrant/color':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-color
       '@vibrant/image':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-image
       '@vibrant/quantizer':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-quantizer
     devDependencies:
       '@tanstack/config':
@@ -300,7 +300,7 @@ importers:
   packages/vibrant-worker:
     dependencies:
       '@vibrant/types':
-        specifier: ^4.0.0-alpha.4
+        specifier: ^4.0.0-beta.1
         version: link:../vibrant-types
     devDependencies:
       '@tanstack/config':

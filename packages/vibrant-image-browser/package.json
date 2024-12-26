@@ -1,6 +1,6 @@
 {
 	"name": "@vibrant/image-browser",
-	"version": "4.0.0-alpha.4",
+	"version": "4.0.0-beta.1",
 	"description": "Browser vibrant ImageClass implementation",
 	"author": "crutchcorn",
 	"license": "MIT",
@@ -28,7 +28,7 @@
 		"test:build": "publint --strict"
 	},
 	"dependencies": {
-		"@vibrant/image": "^4.0.0-alpha.4"
+		"@vibrant/image": "^4.0.0-beta.1"
 	},
 	"devDependencies": {
 		"@tanstack/config": "^0.15.0",

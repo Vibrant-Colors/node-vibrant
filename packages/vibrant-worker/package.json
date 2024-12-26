@@ -1,6 +1,6 @@
 {
 	"name": "@vibrant/worker",
-	"version": "4.0.0-alpha.4",
+	"version": "4.0.0-beta.1",
 	"description": "Web worker utilities",
 	"author": "crutchcorn",
 	"license": "MIT",
@@ -26,7 +26,7 @@
 		"test:build": "publint --strict"
 	},
 	"dependencies": {
-		"@vibrant/types": "^4.0.0-alpha.4"
+		"@vibrant/types": "^4.0.0-beta.1"
 	},
 	"devDependencies": {
 		"@tanstack/config": "^0.15.0",

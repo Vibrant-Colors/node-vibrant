@@ -1,6 +1,6 @@
 {
 	"name": "@vibrant/core",
-	"version": "4.0.0-alpha.4",
+	"version": "4.0.0-beta.1",
 	"description": "Core vibrant classes",
 	"author": "crutchcorn",
 	"license": "MIT",
@@ -28,11 +28,11 @@
 		"test:build": "publint --strict"
 	},
 	"dependencies": {
-		"@vibrant/color": "^4.0.0-alpha.4",
-		"@vibrant/generator": "^4.0.0-alpha.4",
-		"@vibrant/image": "^4.0.0-alpha.4",
-		"@vibrant/quantizer": "^4.0.0-alpha.4",
-		"@vibrant/worker": "^4.0.0-alpha.4"
+		"@vibrant/color": "^4.0.0-beta.1",
+		"@vibrant/generator": "^4.0.0-beta.1",
+		"@vibrant/image": "^4.0.0-beta.1",
+		"@vibrant/quantizer": "^4.0.0-beta.1",
+		"@vibrant/worker": "^4.0.0-beta.1"
 	},
 	"devDependencies": {
 		"@tanstack/config": "^0.15.0",

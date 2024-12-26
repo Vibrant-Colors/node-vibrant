@@ -1,6 +1,6 @@
 {
 	"name": "node-vibrant",
-	"version": "4.0.0-alpha.5",
+	"version": "4.0.0-beta.1",
 	"description": "Extract prominent colors from an image. Supports both node and browser environment.",
 	"license": "MIT",
 	"repository": {
@@ -40,15 +40,15 @@
 	},
 	"dependencies": {
 		"@types/node": "^18.15.3",
-		"@vibrant/core": "^4.0.0-alpha.4",
-		"@vibrant/generator-default": "^4.0.0-alpha.4",
-		"@vibrant/image-browser": "^4.0.0-alpha.4",
-		"@vibrant/image-node": "^4.0.0-alpha.5",
-		"@vibrant/quantizer-mmcq": "^4.0.0-alpha.4"
+		"@vibrant/core": "^4.0.0-beta.1",
+		"@vibrant/generator-default": "^4.0.0-beta.1",
+		"@vibrant/image-browser": "^4.0.0-beta.1",
+		"@vibrant/image-node": "^4.0.0-beta.1",
+		"@vibrant/quantizer-mmcq": "^4.0.0-beta.1"
 	},
 	"devDependencies": {
 		"@tanstack/config": "^0.15.0",
-		"@vibrant/color": "^4.0.0-alpha.4",
+		"@vibrant/color": "^4.0.0-beta.1",
 		"@vitest/browser": "^2.1.8",
 		"playwright": "^1.49.1",
 		"vite": "^6.0.3",

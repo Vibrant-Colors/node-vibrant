@@ -1,6 +1,6 @@
 {
 	"name": "@vibrant/quantizer-mmcq",
-	"version": "4.0.0-alpha.4",
+	"version": "4.0.0-beta.1",
 	"description": "MMCQ quantzier for vibrant",
 	"author": "crutchcorn",
 	"license": "MIT",
@@ -26,9 +26,9 @@
 		"test:build": "publint --strict"
 	},
 	"dependencies": {
-		"@vibrant/color": "^4.0.0-alpha.4",
-		"@vibrant/image": "^4.0.0-alpha.4",
-		"@vibrant/quantizer": "^4.0.0-alpha.4"
+		"@vibrant/color": "^4.0.0-beta.1",
+		"@vibrant/image": "^4.0.0-beta.1",
+		"@vibrant/quantizer": "^4.0.0-beta.1"
 	},
 	"devDependencies": {
 		"@tanstack/config": "^0.15.0",
