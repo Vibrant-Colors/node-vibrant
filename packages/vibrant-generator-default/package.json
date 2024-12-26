@@ -29,7 +29,7 @@
 		"@tanstack/config": "^0.15.0",
 		"@vibrant/color": "^4.0.0-beta.1",
 		"@vibrant/generator": "^4.0.0-beta.1",
-		"vite": "^6.0.3"
+		"vite": "^6.0.5"
 	},
 	"type": "module",
 	"types": "dist/esm/index.d.ts",
