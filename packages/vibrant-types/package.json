@@ -1,6 +1,6 @@
 {
 	"name": "@vibrant/types",
-	"version": "4.0.0-beta.1",
+	"version": "4.0.0",
 	"description": "Common typings for vibrant",
 	"author": "crutchcorn",
 	"license": "MIT",

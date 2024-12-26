@@ -64,14 +64,14 @@ importers:
     dependencies:
       node-vibrant:
         specifier: 4.0.0-beta.1
-        version: link:../../../packages/node-vibrant
+        version: 4.0.0-beta.1(encoding@0.1.13)(esbuild@0.24.2)(eslint@9.17.0(jiti@2.4.1))(jiti@2.4.1)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(yaml@2.6.1)
     devDependencies:
       typescript:
         specifier: ~5.6.2
         version: 5.6.3
       vite:
         specifier: ^6.0.5
-        version: 6.0.6(@types/node@22.10.2)(jiti@2.4.1)(terser@5.37.0)(yaml@2.6.1)
+        version: 6.0.6(@types/node@18.19.68)(jiti@2.4.1)(terser@5.37.0)(yaml@2.6.1)
 
   fixtures/sample:
     dependencies:
@@ -98,26 +98,26 @@ importers:
         specifier: ^18.15.3
         version: 18.19.68
       '@vibrant/core':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-core
       '@vibrant/generator-default':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-generator-default
       '@vibrant/image-browser':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-image-browser
       '@vibrant/image-node':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-image-node
       '@vibrant/quantizer-mmcq':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-quantizer-mmcq
     devDependencies:
       '@tanstack/config':
         specifier: ^0.15.0
         version: 0.15.0(@types/node@18.19.68)(esbuild@0.24.2)(eslint@9.17.0(jiti@2.4.1))(rollup@4.28.1)(typescript@5.6.3)(vite@6.0.6(@types/node@18.19.68)(jiti@2.4.1)(terser@5.37.0)(yaml@2.6.1))
       '@vibrant/color':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-color
       '@vitest/browser':
         specifier: ^2.1.8
@@ -144,19 +144,19 @@ importers:
   packages/vibrant-core:
     dependencies:
       '@vibrant/color':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-color
       '@vibrant/generator':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-generator
       '@vibrant/image':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-image
       '@vibrant/quantizer':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-quantizer
       '@vibrant/worker':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-worker
     devDependencies:
       '@tanstack/config':
@@ -172,10 +172,10 @@ importers:
   packages/vibrant-generator:
     dependencies:
       '@vibrant/color':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-color
       '@vibrant/types':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-types
     devDependencies:
       '@tanstack/config':
@@ -191,10 +191,10 @@ importers:
         specifier: ^0.15.0
         version: 0.15.0(@types/node@22.10.2)(esbuild@0.24.2)(eslint@9.17.0(jiti@2.4.1))(rollup@4.28.1)(typescript@5.6.3)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.1)(terser@5.37.0)(yaml@2.6.1))
       '@vibrant/color':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-color
       '@vibrant/generator':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-generator
       vite:
         specifier: ^6.0.5
@@ -203,7 +203,7 @@ importers:
   packages/vibrant-image:
     dependencies:
       '@vibrant/color':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-color
     devDependencies:
       '@tanstack/config':
@@ -219,7 +219,7 @@ importers:
   packages/vibrant-image-browser:
     dependencies:
       '@vibrant/image':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-image
     devDependencies:
       '@tanstack/config':
@@ -250,7 +250,7 @@ importers:
         specifier: ^0.22.12
         version: 0.22.12(@jimp/custom@0.22.12(encoding@0.1.13))
       '@vibrant/image':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-image
     devDependencies:
       '@tanstack/config':
@@ -266,13 +266,13 @@ importers:
   packages/vibrant-quantizer:
     dependencies:
       '@vibrant/color':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-color
       '@vibrant/image':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-image
       '@vibrant/types':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-types
     devDependencies:
       '@tanstack/config':
@@ -285,13 +285,13 @@ importers:
   packages/vibrant-quantizer-mmcq:
     dependencies:
       '@vibrant/color':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-color
       '@vibrant/image':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-image
       '@vibrant/quantizer':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-quantizer
     devDependencies:
       '@tanstack/config':
@@ -313,7 +313,7 @@ importers:
   packages/vibrant-worker:
     dependencies:
       '@vibrant/types':
-        specifier: ^4.0.0-beta.1
+        specifier: ^4.0.0
         version: link:../vibrant-types
     devDependencies:
       '@tanstack/config':
@@ -1735,6 +1735,39 @@ packages:
 
   '@ungap/structured-clone@1.2.1':
     resolution: {integrity: sha512-fEzPV3hSkSMltkw152tJKNARhOupqbH96MZWyRjNaYZOMIzbrTeQDG+MTc6Mr2pgzFQzFxAfmhGDNP5QK++2ZA==}
+
+  '@vibrant/color@4.0.0-beta.1':
+    resolution: {integrity: sha512-a+lyzuRbZAJM+1ElTrroNhSfO/X7Xi6hEShunrLsLD9d8YwXEF0pcIEthp26MhAdzXjKn2fiOfHRbj0lZ/2Drg==}
+
+  '@vibrant/core@4.0.0-beta.1':
+    resolution: {integrity: sha512-dOoP55PFAdby/bufqWffmbGDjWlVosGyvb7epeL8g5rw+MvuoEJPZadkoKNblEwfMqFUNuj80KMhFYYC6wFTzA==}
+
+  '@vibrant/generator-default@4.0.0-beta.1':
+    resolution: {integrity: sha512-2s2Rs2Hc5rUfIQtjaPBxYRW641bGU8UxxuRPifkfjrsgm8S4Vb7oihGf+/fvBi8/rT3BzgmwTR+79447AGbQgw==}
+
+  '@vibrant/generator@4.0.0-beta.1':
+    resolution: {integrity: sha512-nWu3MxHroNE0jZgOIVIRbdFT920xeA8twn1Vwwxx7ad5nKhNGlAOEXob0QD+KZCCLSKqtDSq+8RtyTuVEmyb9Q==}
+
+  '@vibrant/image-browser@4.0.0-beta.1':
+    resolution: {integrity: sha512-mZvtSSUzZLQ4I33GAFjjjp3yWoPF9nfy2+bCJhgRblsqnB5LHSKfF6+jK9mSe/Iq3egB5TQ2PHJZZH1o0U6ACw==}
+
+  '@vibrant/image-node@4.0.0-beta.1':
+    resolution: {integrity: sha512-TcFpc1SCNg/KJCj91EcFy1QBPHdYg6JmjUX3Q6/DQ6jZWqfMg+369Fubr9rkiLjP2sLXPPbw71gw1P8IOyWAkw==}
+
+  '@vibrant/image@4.0.0-beta.1':
+    resolution: {integrity: sha512-w92SZYKVDjEnQhnYs9sPPVYLiTuVHXg2fIp03/u3vM5coZvhpqFP+66nM04C8jV8dRDqKglwInxaCw5gsCFZkA==}
+
+  '@vibrant/quantizer-mmcq@4.0.0-beta.1':
+    resolution: {integrity: sha512-+rUbHtzELJhAIuXOFESp0Y1iixWC2J24eqcoet9NpvinQjOu8EdARu0AAA4dh8PaKpiZSImW5Wv8OqkddJK3gw==}
+
+  '@vibrant/quantizer@4.0.0-beta.1':
+    resolution: {integrity: sha512-B0+0FXjUK0tbx+ZrZU9nvXvs7YLB7IHYcCuHEfFAHw+mJ8vrd3Qez4wb2/sy15Umi3kn9o3nLcrBDlq4LRKCwA==}
+
+  '@vibrant/types@4.0.0-beta.1':
+    resolution: {integrity: sha512-ER59sG1riSb7sJgo8+BnJoKIsr1BZ8gFZbjVKuFqZvLmdp097xq4ypLZkDhkzO6OgpRt2n8D+2yr7bXFLl6/AQ==}
+
+  '@vibrant/worker@4.0.0-beta.1':
+    resolution: {integrity: sha512-MtdFcNZwDv8/haURMqpIy3oQQcYQVP3qLEHpHKRDovLOtYSBI/3YXpFVGUjVKtwJLkvfivWd1MYD0PJ72xvdjg==}
 
   '@vitejs/plugin-react@4.3.4':
     resolution: {integrity: sha512-SCCPBJtYLdE8PX/7ZQAs1QAZ8Jqwih+0VBLum1EGqmCCQal+MIUqLCzj3ZUy8ufbC0cAM4LRlSTm7IQJwWT4ug==}
@@ -4190,6 +4223,9 @@ packages:
 
   node-releases@2.0.19:
     resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==}
+
+  node-vibrant@4.0.0-beta.1:
+    resolution: {integrity: sha512-GUyISU5mZTZs00gVpbPIyLCaZHOoM1KhzBm03S6PfmgERMehQvOZ6nqcqAuHHh6BRQD1zX7rt5T/WM8cCQgIAQ==}
 
   nopt@7.2.1:
     resolution: {integrity: sha512-taM24ViiimT/XntxbPyJQzCG+p4EKOpgD3mxFwW38mGjVUrfERQOeY4EDHjdnptttfHuHQXFx+lTP08Q+mLa/w==}
@@ -7882,6 +7918,80 @@ snapshots:
 
   '@ungap/structured-clone@1.2.1': {}
 
+  '@vibrant/color@4.0.0-beta.1': {}
+
+  '@vibrant/core@4.0.0-beta.1':
+    dependencies:
+      '@vibrant/color': 4.0.0-beta.1
+      '@vibrant/generator': 4.0.0-beta.1
+      '@vibrant/image': 4.0.0-beta.1
+      '@vibrant/quantizer': 4.0.0-beta.1
+      '@vibrant/worker': 4.0.0-beta.1
+
+  '@vibrant/generator-default@4.0.0-beta.1(@types/node@18.19.68)(esbuild@0.24.2)(eslint@9.17.0(jiti@2.4.1))(jiti@2.4.1)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(yaml@2.6.1)':
+    dependencies:
+      '@tanstack/config': 0.15.0(@types/node@18.19.68)(esbuild@0.24.2)(eslint@9.17.0(jiti@2.4.1))(rollup@4.28.1)(typescript@5.6.3)(vite@6.0.6(@types/node@18.19.68)(jiti@2.4.1)(terser@5.37.0)(yaml@2.6.1))
+      '@vibrant/color': 4.0.0-beta.1
+      '@vibrant/generator': 4.0.0-beta.1
+      vite: 6.0.6(@types/node@18.19.68)(jiti@2.4.1)(terser@5.37.0)(yaml@2.6.1)
+    transitivePeerDependencies:
+      - '@types/node'
+      - esbuild
+      - eslint
+      - jiti
+      - less
+      - lightningcss
+      - rollup
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - tsx
+      - typescript
+      - yaml
+
+  '@vibrant/generator@4.0.0-beta.1':
+    dependencies:
+      '@vibrant/color': 4.0.0-beta.1
+      '@vibrant/types': 4.0.0-beta.1
+
+  '@vibrant/image-browser@4.0.0-beta.1':
+    dependencies:
+      '@vibrant/image': 4.0.0-beta.1
+
+  '@vibrant/image-node@4.0.0-beta.1(encoding@0.1.13)':
+    dependencies:
+      '@jimp/custom': 0.22.12(encoding@0.1.13)
+      '@jimp/plugin-resize': 0.22.12(@jimp/custom@0.22.12(encoding@0.1.13))
+      '@jimp/types': 0.22.12(@jimp/custom@0.22.12(encoding@0.1.13))
+      '@vibrant/image': 4.0.0-beta.1
+    transitivePeerDependencies:
+      - encoding
+
+  '@vibrant/image@4.0.0-beta.1':
+    dependencies:
+      '@vibrant/color': 4.0.0-beta.1
+
+  '@vibrant/quantizer-mmcq@4.0.0-beta.1':
+    dependencies:
+      '@vibrant/color': 4.0.0-beta.1
+      '@vibrant/image': 4.0.0-beta.1
+      '@vibrant/quantizer': 4.0.0-beta.1
+
+  '@vibrant/quantizer@4.0.0-beta.1':
+    dependencies:
+      '@vibrant/color': 4.0.0-beta.1
+      '@vibrant/image': 4.0.0-beta.1
+      '@vibrant/types': 4.0.0-beta.1
+
+  '@vibrant/types@4.0.0-beta.1': {}
+
+  '@vibrant/worker@4.0.0-beta.1':
+    dependencies:
+      '@vibrant/types': 4.0.0-beta.1
+
   '@vitejs/plugin-react@4.3.4(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.1)(terser@5.37.0)(yaml@2.6.1))':
     dependencies:
       '@babel/core': 7.26.0
@@ -11117,6 +11227,32 @@ snapshots:
   node-machine-id@1.1.12: {}
 
   node-releases@2.0.19: {}
+
+  node-vibrant@4.0.0-beta.1(encoding@0.1.13)(esbuild@0.24.2)(eslint@9.17.0(jiti@2.4.1))(jiti@2.4.1)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(yaml@2.6.1):
+    dependencies:
+      '@types/node': 18.19.68
+      '@vibrant/core': 4.0.0-beta.1
+      '@vibrant/generator-default': 4.0.0-beta.1(@types/node@18.19.68)(esbuild@0.24.2)(eslint@9.17.0(jiti@2.4.1))(jiti@2.4.1)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(yaml@2.6.1)
+      '@vibrant/image-browser': 4.0.0-beta.1
+      '@vibrant/image-node': 4.0.0-beta.1(encoding@0.1.13)
+      '@vibrant/quantizer-mmcq': 4.0.0-beta.1
+    transitivePeerDependencies:
+      - encoding
+      - esbuild
+      - eslint
+      - jiti
+      - less
+      - lightningcss
+      - rollup
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - tsx
+      - typescript
+      - yaml
 
   nopt@7.2.1:
     dependencies:

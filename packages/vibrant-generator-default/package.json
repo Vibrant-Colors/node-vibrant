@@ -1,6 +1,6 @@
 {
 	"name": "@vibrant/generator-default",
-	"version": "4.0.0-beta.1",
+	"version": "4.0.0",
 	"description": "Default generator that generates the original vibrant palette",
 	"author": "crutchcorn",
 	"license": "MIT",
@@ -27,8 +27,8 @@
 	},
 	"dependencies": {
 		"@tanstack/config": "^0.15.0",
-		"@vibrant/color": "^4.0.0-beta.1",
-		"@vibrant/generator": "^4.0.0-beta.1",
+		"@vibrant/color": "^4.0.0",
+		"@vibrant/generator": "^4.0.0",
 		"vite": "^6.0.5"
 	},
 	"type": "module",
