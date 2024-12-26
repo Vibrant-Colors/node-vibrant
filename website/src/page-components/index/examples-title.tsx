@@ -21,7 +21,7 @@ export const ExamplesTitle = ({ title }: ExamplesTitleProps) => {
         <hr
           style={{
             position: "absolute",
-            top: "calc(50% - calc(0.375rem / 2))",
+            top: "calc(50% + calc(0.375rem / 2))",
             zIndex: -1,
             left: "50%",
             transform: "translate(-50%, -50%)",
@@ -33,9 +33,9 @@ export const ExamplesTitle = ({ title }: ExamplesTitleProps) => {
           style={{
             width: "fit-content",
             margin: "0 auto",
-            background: "#fff",
+            background: "var(--sl-color-bg)",
             padding: "0 1rem",
-            color: "#2A3751",
+            color: "var(--sl-color-text)",
             fontSize: "2rem",
             fontWeight: "700",
             lineHeight: "2.5rem",
