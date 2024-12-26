@@ -17,7 +17,7 @@ By default it will extract the following types of colors from an image:
 
 These colors can then be used to adapt a user interface to the media content they're looking at:
 
-// TODO: Add mockup of music player and a news app with a cover image
+![A mockup of music player and a news app with a cover image](./assets/app_mockups.png)
 
 This library works with the same API regardless of if you're using it in Node.js or a modern browser.
 
