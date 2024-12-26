@@ -2,6 +2,9 @@ import { rgbToHex, rgbToHsl } from "./converter";
 
 export * from "./converter";
 
+/**
+ * @returns `true` if the color is to be kept.
+ */
 export interface Filter {
 	(red: number, green: number, blue: number, alpha: number): boolean;
 }
@@ -25,6 +28,9 @@ export interface Palette {
 	[name: string]: Swatch | null;
 }
 
+/**
+ * Represents a color swatch generated from an image's palette.
+ */
 export class Swatch {
 	static applyFilters(colors: Swatch[], filters: Filter[]): Swatch[] {
 		return filters.length > 0
@@ -95,6 +101,7 @@ export class Swatch {
 		}
 		return this._hex;
 	}
+
 	get population(): number {
 		return this._population;
 	}
@@ -120,12 +127,19 @@ export class Swatch {
 	private _titleTextColor: string | undefined;
 	private _bodyTextColor: string | undefined;
 
+	/**
+	 * Returns an appropriate color to use for any 'title' text which is displayed over this Swatch's color.
+	 */
 	get titleTextColor() {
 		if (!this._titleTextColor) {
 			this._titleTextColor = this.getYiq() < 200 ? "#fff" : "#000";
 		}
 		return this._titleTextColor;
 	}
+
+	/**
+	 * Returns an appropriate color to use for any 'body' text which is displayed over this Swatch's color.
+	 */
 	get bodyTextColor() {
 		if (!this._bodyTextColor) {
 			this._bodyTextColor = this.getYiq() < 150 ? "#fff" : "#000";
@@ -133,6 +147,11 @@ export class Swatch {
 		return this._bodyTextColor;
 	}
 
+	/**
+	 * Internal use.
+	 * @param rgb `[r, g, b]`
+	 * @param population Population of the color in an image
+	 */
 	constructor(rgb: Vec3, population: number) {
 		this._rgb = rgb;
 		this._population = population;

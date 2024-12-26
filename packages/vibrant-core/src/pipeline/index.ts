@@ -4,6 +4,9 @@ import type { Quantizer } from "@vibrant/quantizer";
 import type { Generator } from "@vibrant/generator";
 import type { Filter, Palette, Swatch } from "@vibrant/color";
 
+/**
+ * @private
+ */
 export class Stage<T> {
 	private _map: { [name: string]: T } = {};
 	constructor(protected pipeline: BasicPipeline) {}
@@ -22,40 +25,61 @@ export class Stage<T> {
 	}
 }
 
+/**
+ * @private
+ */
 export interface ProcessResult {
 	colors: Swatch[];
 	palettes: { [name: string]: Palette };
 }
 
+/**
+ * @private
+ */
 export interface StageOptions {
 	name: string;
 	options?: any;
 }
 
+/**
+ * @private
+ */
 export interface ProcessOptions {
 	filters: string[];
 	quantizer: string | StageOptions;
 	generators: (string | StageOptions)[];
 }
 
+/**
+ * @private
+ */
 interface StageTask<Q> {
 	name: string;
 	fn: Q;
 	options?: any;
 }
 
+/**
+ * @private
+ */
 interface ProcessTasks {
 	filters: StageTask<Filter>[];
 	quantizer: StageTask<Quantizer>;
 	generators: StageTask<Generator>[];
 }
 
+/**
+ * @private
+ */
 export interface Pipeline {
 	// quantizer: Stage<Quantizer>
 	// generator: Stage<Generator>
 	process(imageData: ImageData, opts: ProcessOptions): Promise<ProcessResult>;
 }
 
+/**
+ * @private
+ */
 export class BasicPipeline implements Pipeline {
 	private _buildProcessTasks({
 		filters,

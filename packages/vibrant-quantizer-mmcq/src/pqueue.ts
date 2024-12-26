@@ -2,6 +2,9 @@ interface PQueueComparator<T> {
 	(a: T, b: T): number;
 }
 
+/**
+ * @private
+ */
 export class PQueue<T> {
 	contents: T[];
 	private _sorted: boolean;

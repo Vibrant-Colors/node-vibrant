@@ -8,6 +8,9 @@ import type { Palette } from "@vibrant/color";
 
 import type { Pipeline, ProcessOptions, ProcessResult } from "./pipeline";
 
+/**
+ * Main class of `node-vibrant`.
+ */
 export class Vibrant {
 	private _result: ProcessResult | undefined;
 	private static _pipeline: Pipeline;
@@ -32,6 +35,11 @@ export class Vibrant {
 
 	opts: Options;
 
+	/**
+	 *
+	 * @param _src Path to image file (supports HTTP/HTTPs)
+	 * @param opts Options (optional)
+	 */
 	constructor(
 		private _src: ImageSource,
 		opts?: Partial<Options>,

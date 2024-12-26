@@ -16,6 +16,10 @@ interface Task<R> extends WorkerRequest {
 // const WorkerClass: TaskWorkerClass = require('worker-loader?inline=true!./worker')
 
 const MAX_WORKER_COUNT = 5;
+
+/**
+ * @private
+ */
 export class WorkerPool {
 	private _taskId = 0;
 

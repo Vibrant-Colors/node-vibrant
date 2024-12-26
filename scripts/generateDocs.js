@@ -7,23 +7,6 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 /** @type {import('@tanstack/config/typedoc').Package[]} */
 const packages = [
 	{
-		name: "node-vibrant",
-		entryPoints: [
-			resolve(__dirname, "../packages/node-vibrant/src/browser.ts"),
-			resolve(__dirname, "../packages/node-vibrant/src/node.ts"),
-			resolve(__dirname, "../packages/node-vibrant/src/worker.ts"),
-		],
-		tsconfig: resolve(__dirname, "../packages/node-vibrant/tsconfig.docs.json"),
-		outputDir: resolve(__dirname, "../docs/reference"),
-		exclude: [
-			"packages/vibrant-core/**/*",
-			"packages/vibrant-generator-default/**/*",
-			"packages/vibrant-image-browser/**/*",
-			"packages/vibrant-image-node/**/*",
-			"packages/vibrant-quantizer-mmcq/**/*",
-		],
-	},
-	{
 		name: "vibrant-color",
 		entryPoints: [resolve(__dirname, "../packages/vibrant-color/src/index.ts")],
 		tsconfig: resolve(
