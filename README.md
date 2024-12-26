@@ -59,7 +59,11 @@ This requires your bundler to handle `?worker` transforms [similar to how Vite d
 
 ## Documentation
 
-Documentation is currently in the works. Apologies for the inconvenience.
+Docs can be seen currently in the [`docs`](./docs) folder. It includes reference docs and step-by-step guides.
+
+We also have a few [`examples`](./examples) that you can reference for your needs.
+
+PRs welcomed to expand either of these!
 
 ## Notes
 
