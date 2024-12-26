@@ -13,11 +13,10 @@ export default defineConfig({
 				github: "https://github.com/withastro/starlight",
 			},
 			components: {
-				Hero: "./src/components/header.astro"
+				Head: "./src/components/head.astro",
+				Hero: "./src/components/hero.astro"
 			},
-			customCss: [
-				'./src/styles/global.css',
-			],
+			customCss: ["./src/styles/global.css"],
 			sidebar: [
 				{
 					label: "Guides",

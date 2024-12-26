@@ -331,9 +331,15 @@ importers:
       '@astrojs/starlight':
         specifier: ^0.30.3
         version: 0.30.3(astro@5.1.1(@types/node@22.10.2)(jiti@2.4.1)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(yaml@2.6.1))
+      '@vibrant/color':
+        specifier: workspace:4.0.0-alpha.4
+        version: link:../packages/vibrant-color
       astro:
         specifier: ^5.0.2
         version: 5.1.1(@types/node@22.10.2)(jiti@2.4.1)(rollup@4.28.1)(terser@5.37.0)(typescript@5.6.3)(yaml@2.6.1)
+      node-vibrant:
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../packages/node-vibrant
       react:
         specifier: ^19.0.0
         version: 19.0.0
