@@ -5,3 +5,4 @@
 **/docs
 pnpm-lock.yaml
 .yarn/
+.astro
