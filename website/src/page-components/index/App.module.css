@@ -48,7 +48,7 @@ input[type="file"] {
 }
 
 .button {
-  color: #FFF;
+  color: #FFF !important;
   text-decoration: none;
   align-self: center;
   border-radius: 5.5rem;

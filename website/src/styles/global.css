@@ -29,6 +29,11 @@
 	--sl-color-black: #ffffff;
 }
 
+:root {
+	--sl-color-bg-nav: var(--sl-color-bg) !important;
+	--sl-color-hairline-shade: transparent !important;
+}
+
 .srOnly {
     position: absolute;
     width: 1px;

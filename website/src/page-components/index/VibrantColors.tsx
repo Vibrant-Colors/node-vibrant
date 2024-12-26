@@ -1,10 +1,7 @@
-import {useEffect, useState, useCallback} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {Vibrant} from 'node-vibrant/browser';
-import type {Swatch, Vec3} from "@vibrant/color";
-import {rgbToHex} from "@vibrant/color";
 import styles from './VibrantColors.module.css';
-
-const defaultRgb = [0, 0, 0] as Vec3;
+import type {Swatch} from "@vibrant/color";
 
 interface VibrantColorsProps {
     img: string;
@@ -36,14 +33,14 @@ const VibrantColors = ({img}: VibrantColorsProps) => {
     useEffect(() => runVibrant(), [runVibrant])
 
     return (
-        <div className={styles.colors}>
-                <p className={styles.swatch} style={{"--bg-color": rgbToHex(...(colors.Vibrant?.rgb ?? defaultRgb)) ?? "", "--color": colors.Vibrant?.bodyTextColor} as React.CSSProperties}>Vibrant</p>
-                <p className={styles.swatch} style={{"--bg-color": rgbToHex(...(colors.DarkVibrant?.rgb ?? defaultRgb)) ?? "", "--color": colors.DarkVibrant?.bodyTextColor} as React.CSSProperties}>Dark Vibrant</p>
-                <p className={styles.swatch} style={{"--bg-color": rgbToHex(...(colors.LightVibrant?.rgb ?? defaultRgb)) ?? "", "--color": colors.LightVibrant?.bodyTextColor} as React.CSSProperties}>Light Vibrant</p>
-                <p className={styles.swatch} style={{"--bg-color": rgbToHex(...(colors.Muted?.rgb ?? defaultRgb)) ?? "", "--color": colors.Muted?.bodyTextColor} as React.CSSProperties}>Muted</p>
-                <p className={styles.swatch} style={{"--bg-color": rgbToHex(...(colors.DarkMuted?.rgb ?? defaultRgb)) ?? "", "--color": colors.DarkMuted?.bodyTextColor} as React.CSSProperties}>Dark Muted</p>
-                <p className={styles.swatch} style={{"--bg-color": rgbToHex(...(colors.LightMuted?.rgb ?? defaultRgb)) ?? "", "--color": colors.LightMuted?.bodyTextColor} as React.CSSProperties}>Light Muted</p>
-            </div>
+        <ul className={styles.colors} aria-label={"Colors for the associated image"}>
+            <li className={styles.swatch} style={{"--bg-color": colors.Vibrant?.hex ?? "#000", "--color": colors.Vibrant?.bodyTextColor} as React.CSSProperties}>Vibrant</li>
+            <li className={styles.swatch} style={{"--bg-color": colors.DarkVibrant?.hex ?? "#000", "--color": colors.DarkVibrant?.bodyTextColor} as React.CSSProperties}>Dark Vibrant</li>
+            <li className={styles.swatch} style={{"--bg-color": colors.LightVibrant?.hex ?? "#000", "--color": colors.LightVibrant?.bodyTextColor} as React.CSSProperties}>Light Vibrant</li>
+            <li className={styles.swatch} style={{"--bg-color": colors.Muted?.hex ?? "#000", "--color": colors.Muted?.bodyTextColor} as React.CSSProperties}>Muted</li>
+            <li className={styles.swatch} style={{"--bg-color": colors.DarkMuted?.hex ?? "#000", "--color": colors.DarkMuted?.bodyTextColor} as React.CSSProperties}>Dark Muted</li>
+            <li className={styles.swatch} style={{"--bg-color": colors.LightMuted?.hex ?? "#000", "--color": colors.LightMuted?.bodyTextColor} as React.CSSProperties}>Light Muted</li>
+        </ul>
     )
 }
 

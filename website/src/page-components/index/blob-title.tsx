@@ -1,8 +1,8 @@
-interface TitleProps {
+interface BlobTitleProps {
 	title: string;
 }
 
-export const Title = ({ title }: TitleProps) => {
+export const BlobTitle = ({ title }: BlobTitleProps) => {
 	const titleLength = title.length;
 	const svgWidth = titleLength * 85; // Adjust multiplier as needed
 	const svgHeight = 250;
