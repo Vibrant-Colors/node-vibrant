@@ -44,11 +44,10 @@
 	"homepage": "https://github.com/akfish/node-vibrant",
 	"license": "MIT",
 	"dependencies": {
-		"@vibrant/color": "^4.0.0-alpha.4",
-		"@vibrant/types": "^4.0.0-alpha.4"
+		"@vibrant/color": "^4.0.0-alpha.4"
 	},
 	"devDependencies": {
-		"@tanstack/config": "0.14.2",
+		"@tanstack/config": "^0.15.0",
 		"@types/node": "^18.15.3",
 		"vite": "^6.0.3"
 	},

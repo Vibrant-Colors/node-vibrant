@@ -1,17 +1,12 @@
 import { expect } from "vitest";
 import * as util from "@vibrant/color";
 import { getBorderCharacters, table } from "table";
-import type { Builder } from "@vibrant/core";
 import type { Palette, Swatch } from "@vibrant/color";
-import type { ImageSource } from "@vibrant/image";
+import type { Vibrant } from "@vibrant/core";
 import type {
 	SamplePathKey,
 	TestSample,
 } from "../../../../fixtures/sample/loader";
-
-export interface VibrantStatic {
-	from(src: ImageSource): Builder;
-}
 
 const TABLE_OPTS = {
 	border: getBorderCharacters("void"),
@@ -73,18 +68,18 @@ const assertPalette = (reference: Palette, palette: Palette) => {
 
 	expect(
 		failCount,
-		`${failCount} colors are too diffrent from reference palettes`,
+		`${failCount} colors are too different from reference palettes`,
 	).to.equal(0);
 };
 
 export const testVibrant = (
-	Vibrant: VibrantStatic,
+	VibrantClass: typeof Vibrant,
 	sample: TestSample,
 	pathKey: SamplePathKey,
-	env: "node" | "browser"
+	env: "node" | "browser",
 ) => {
 	return async () => {
-		let builder = Vibrant.from(sample[pathKey]).quality(1);
+		const builder = VibrantClass.from(sample[pathKey]).quality(1);
 
 		const palette = await builder.getPalette();
 
