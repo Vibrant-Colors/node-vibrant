@@ -2,7 +2,7 @@ import { commands } from "@vitest/browser/context";
 import { afterAll, beforeAll, describe, it } from "vitest";
 
 import { Vibrant } from "../src/worker";
-import { testVibrant, testVibrantAsPromised } from "./common/helper";
+import { testVibrant } from "./common/helper";
 
 import type { TestSample } from "../../../fixtures/sample/loader";
 
@@ -19,12 +19,8 @@ describe("Palette Extraction", async () => {
 
 	SAMPLES.forEach((example) => {
 		it(
-			`${example.name} (callback)`,
+			`${example.name}`,
 			testVibrant(Vibrant, example, "url", "browser"),
-		);
-		it(
-			`${example.name} (Promise)`,
-			testVibrantAsPromised(Vibrant, example, "url", "browser"),
 		);
 	});
 });

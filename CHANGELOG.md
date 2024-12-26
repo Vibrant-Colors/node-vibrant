@@ -8,6 +8,19 @@
 - `Vibrant` class is now a named export
 - Node 18+ is now required
 - ES5 support is dropped
+- `Vibrant.getPalette` no longer accepts a `name` or `callback` API
+  - Please migrate to the promise-based API to replace the `callback` API
+  - Please let us know if you were using the `name` API: https://github.com/Vibrant-Colors/node-vibrant/issues
+    - It was unclear how this was used in practice. We can reconsider adding it back if there's usecases I wasn't aware of
+- `Vibrant.getPalettes` no longer accepts a `names` or `callback` API
+  - Please migrate to the promise-based API to replace the `callback` API
+  - Please let us know if you were using the `names` API: https://github.com/Vibrant-Colors/node-vibrant/issues
+    - It was unclear how this was used in practice. We can reconsider adding it back if there's usecases I wasn't aware of
+- `Builder.getSwatches` alias was removed in favor of calling `Builder.getPalette`
+- Removed the deprecated `Builder.getHex` API, use the `Builder.hex` property instead
+- Removed the deprecated `Builder.getPopulation` API, use the `Builder.population` property instead
+- Removed the deprecated `Builder.getHsl` API, use the `Builder.hsl` property instead
+- Removed the deprecated `Builder.getRgb` API, use the `Builder.rgb` property instead
 
 # v3.2.0
 

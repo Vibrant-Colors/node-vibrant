@@ -1,12 +1,17 @@
 import { expect } from "vitest";
 import * as util from "@vibrant/color";
 import { getBorderCharacters, table } from "table";
-import type { Builder, VibrantStatic } from "@vibrant/core";
+import type { Builder } from "@vibrant/core";
 import type { Palette, Swatch } from "@vibrant/color";
+import type { ImageSource } from "@vibrant/image";
 import type {
 	SamplePathKey,
 	TestSample,
 } from "../../../../fixtures/sample/loader";
+
+export interface VibrantStatic {
+	from(src: ImageSource): Builder;
+}
 
 const TABLE_OPTS = {
 	border: getBorderCharacters("void"),
@@ -72,41 +77,7 @@ const assertPalette = (reference: Palette, palette: Palette) => {
 	).to.equal(0);
 };
 
-const paletteCallback =
-	(references: any, done: () => void) =>
-	(err: Error | undefined, palette: Palette | undefined) => {
-		setTimeout(() => {
-			expect(err, `should not throw error '${err}'`).to.be.undefined;
-			assertPalette(references, palette!);
-
-			done();
-		});
-	};
-
 export const testVibrant = (
-	Vibrant: VibrantStatic,
-	sample: TestSample,
-	pathKey: SamplePathKey,
-	env: "node" | "browser",
-	builderCallback: ((b: Builder) => Builder) | null = null,
-) => {
-	return async () => {
-		let builder = Vibrant.from(sample[pathKey]).quality(1);
-
-		if (typeof builderCallback === "function")
-			builder = builderCallback(builder);
-
-		await new Promise<void>((resolve) => {
-			builder.getPalette(
-				paletteCallback(sample.palettes[env], () => {
-					resolve();
-				}),
-			);
-		});
-	};
-};
-
-export const testVibrantAsPromised = (
 	Vibrant: VibrantStatic,
 	sample: TestSample,
 	pathKey: SamplePathKey,
