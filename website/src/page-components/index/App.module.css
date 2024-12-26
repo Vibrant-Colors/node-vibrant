@@ -1,64 +1,64 @@
 .app {
-  max-width: 80vw;
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  padding-bottom: 10px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 4rem;
+	max-width: 80vw;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	padding-bottom: 10px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-column-gap: 4rem;
 }
 
 @media screen and (max-width: 600px) {
-  .app > div {
-    grid-column: 1/3;
-  }
+	.app > div {
+		grid-column: 1/3;
+	}
 }
 
 .fullSize {
-  grid-column: 1/3;
+	grid-column: 1/3;
 }
 
 .heroImage {
-  height: 100%;
-  width: 100%;
-  max-width: 100%;
-  max-height: 200px;
-  border-radius: 32px;
-  object-fit: cover;
+	height: 100%;
+	width: 100%;
+	max-width: 100%;
+	max-height: 200px;
+	border-radius: 32px;
+	object-fit: cover;
 }
 
 .image {
-  display: flex;
-  max-width: 500px;
-  align-self: center;
-  justify-self: center;
+	display: flex;
+	max-width: 500px;
+	align-self: center;
+	justify-self: center;
 }
 
 input[type="file"] {
-  display: none;
+	display: none;
 }
 
 .buttonContainer {
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
 }
 
 .button {
-  color: #FFF !important;
-  text-decoration: none;
-  align-self: center;
-  border-radius: 5.5rem;
-  background: var(--Dark-Vibrant, #CF9D13);
-  padding: 1.5rem 6rem;
-  font-weight: 800;
+	color: #fff !important;
+	text-decoration: none;
+	align-self: center;
+	border-radius: 5.5rem;
+	background: var(--Dark-Vibrant, #cf9d13);
+	padding: 1.5rem 6rem;
+	font-weight: 800;
 }
 
 .flex {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
