@@ -2,6 +2,18 @@
 	"name": "@vibrant/worker",
 	"version": "4.0.0-alpha.4",
 	"description": "Web worker utilities",
+	"author": "crutchcorn",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Vibrant-Colors/node-vibrant.git",
+		"directory": "packages/vibrant-worker"
+	},
+	"homepage": "https://vibrant.dev",
+	"funding": {
+		"type": "github",
+		"url": "https://github.com/sponsors/crutchcorn"
+	},
 	"scripts": {
 		"build": "vite build",
 		"test:eslint": "eslint ./src",
@@ -12,15 +24,13 @@
 		"test:types:ts55": "node ../../node_modules/typescript55/lib/tsc.js",
 		"test:types:ts56": "tsc"
 	},
-	"author": {
-		"name": "akfish",
-		"email": "akfish@gmail.com"
+	"dependencies": {
+		"@vibrant/types": "^4.0.0-alpha.4"
 	},
-	"bugs": {
-		"url": "https://github.com/akfish/node-vibrant/issues"
+	"devDependencies": {
+		"@tanstack/config": "^0.15.0",
+		"vite": "^6.0.3"
 	},
-	"homepage": "https://github.com/akfish/node-vibrant",
-	"license": "MIT",
 	"type": "module",
 	"types": "dist/esm/index.d.ts",
 	"main": "dist/cjs/index.cjs",
@@ -43,13 +53,6 @@
 		"dist",
 		"src"
 	],
-	"dependencies": {
-		"@vibrant/types": "^4.0.0-alpha.4"
-	},
-	"devDependencies": {
-		"@tanstack/config": "^0.15.0",
-		"vite": "^6.0.3"
-	},
 	"publishConfig": {
 		"access": "public"
 	}

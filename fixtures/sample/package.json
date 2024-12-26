@@ -5,9 +5,17 @@
 	"description": "",
 	"main": "index.js",
 	"type": "module",
-	"author": {
-		"name": "akfish",
-		"email": "akfish@gmail.com"
+	"author": "crutchcorn",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Vibrant-Colors/node-vibrant.git",
+		"directory": "fixtures/sample"
+	},
+	"homepage": "https://vibrant.dev",
+	"funding": {
+		"type": "github",
+		"url": "https://github.com/sponsors/crutchcorn"
 	},
 	"scripts": {
 		"build": "tsc --noEmit",

@@ -2,6 +2,57 @@
 	"name": "node-vibrant",
 	"version": "4.0.0-alpha.5",
 	"description": "Extract prominent colors from an image. Supports both node and browser environment.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Vibrant-Colors/node-vibrant.git",
+		"directory": "packages/node-vibrant"
+	},
+	"author": "crutchcorn",
+	"homepage": "https://vibrant.dev",
+	"funding": {
+		"type": "github",
+		"url": "https://github.com/sponsors/crutchcorn"
+	},
+	"keywords": [
+		"color",
+		"detection",
+		"varation",
+		"image",
+		"picture",
+		"canvas",
+		"vibrant",
+		"muted",
+		"colour"
+	],
+	"scripts": {
+		"build": "vite build",
+		"test:lib": "vitest run",
+		"test:lib:watch": "vitest watch",
+		"test:eslint": "eslint ./src ./__tests__",
+		"test:types": "pnpm run \"/^test:types:ts[0-9]{2}$/\"",
+		"test:types:ts49": "node ../../node_modules/typescript49/lib/tsc.js",
+		"test:types:ts53": "node ../../node_modules/typescript53/lib/tsc.js",
+		"test:types:ts54": "node ../../node_modules/typescript54/lib/tsc.js",
+		"test:types:ts55": "node ../../node_modules/typescript55/lib/tsc.js",
+		"test:types:ts56": "tsc"
+	},
+	"dependencies": {
+		"@types/node": "^18.15.3",
+		"@vibrant/core": "^4.0.0-alpha.4",
+		"@vibrant/generator-default": "^4.0.0-alpha.4",
+		"@vibrant/image-browser": "^4.0.0-alpha.4",
+		"@vibrant/image-node": "^4.0.0-alpha.5",
+		"@vibrant/quantizer-mmcq": "^4.0.0-alpha.4"
+	},
+	"devDependencies": {
+		"@tanstack/config": "^0.15.0",
+		"@vibrant/color": "^4.0.0-alpha.4",
+		"@vitest/browser": "^2.1.8",
+		"playwright": "^1.49.1",
+		"vite": "^6.0.3",
+		"vitest": "^2.1.8"
+	},
 	"type": "module",
 	"types": "dist/esm/throw.d.ts",
 	"main": "dist/cjs/throw.cjs",
@@ -53,53 +104,5 @@
 	"files": [
 		"dist",
 		"src"
-	],
-	"dependencies": {
-		"@types/node": "^18.15.3",
-		"@vibrant/core": "^4.0.0-alpha.4",
-		"@vibrant/generator-default": "^4.0.0-alpha.4",
-		"@vibrant/image-browser": "^4.0.0-alpha.4",
-		"@vibrant/image-node": "^4.0.0-alpha.5",
-		"@vibrant/quantizer-mmcq": "^4.0.0-alpha.4"
-	},
-	"devDependencies": {
-		"@tanstack/config": "^0.15.0",
-		"@vibrant/color": "^4.0.0-alpha.4",
-		"@vitest/browser": "^2.1.8",
-		"playwright": "^1.49.1",
-		"vite": "^6.0.3",
-		"vitest": "^2.1.8"
-	},
-	"scripts": {
-		"build": "vite build",
-		"test:lib": "vitest run",
-		"test:lib:watch": "vitest watch",
-		"test:eslint": "eslint ./src ./__tests__",
-		"test:types": "pnpm run \"/^test:types:ts[0-9]{2}$/\"",
-		"test:types:ts49": "node ../../node_modules/typescript49/lib/tsc.js",
-		"test:types:ts53": "node ../../node_modules/typescript53/lib/tsc.js",
-		"test:types:ts54": "node ../../node_modules/typescript54/lib/tsc.js",
-		"test:types:ts55": "node ../../node_modules/typescript55/lib/tsc.js",
-		"test:types:ts56": "tsc"
-	},
-	"bugs": {
-		"url": "https://github.com/akfish/node-vibrant/issues"
-	},
-	"homepage": "https://github.com/akfish/node-vibrant",
-	"keywords": [
-		"color",
-		"detection",
-		"varation",
-		"image",
-		"picture",
-		"canvas",
-		"vibrant",
-		"muted",
-		"colour"
-	],
-	"author": {
-		"name": "akfish",
-		"email": "akfish@gmail.com"
-	},
-	"license": "MIT"
+	]
 }
