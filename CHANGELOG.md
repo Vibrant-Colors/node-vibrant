@@ -21,6 +21,7 @@
 - Removed the deprecated `Builder.getPopulation` API, use the `Builder.population` property instead
 - Removed the deprecated `Builder.getHsl` API, use the `Builder.hsl` property instead
 - Removed the deprecated `Builder.getRgb` API, use the `Builder.rgb` property instead
+- Workers are imported differently using the `?worker` import fix alias
 
 # v3.2.0
 
