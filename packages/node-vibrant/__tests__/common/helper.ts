@@ -81,14 +81,10 @@ export const testVibrant = (
 	Vibrant: VibrantStatic,
 	sample: TestSample,
 	pathKey: SamplePathKey,
-	env: "node" | "browser",
-	builderCallback: ((b: Builder) => Builder) | null = null,
+	env: "node" | "browser"
 ) => {
 	return async () => {
 		let builder = Vibrant.from(sample[pathKey]).quality(1);
-
-		if (typeof builderCallback === "function")
-			builder = builderCallback(builder);
 
 		const palette = await builder.getPalette();
 
