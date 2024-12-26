@@ -18,10 +18,7 @@ const App = () => {
 	return (
 		<div>
 			<div className={styles.buttonContainer}>
-				<a
-					href="./guides/get-started"
-					className={styles.button}
-				>
+				<a href="./guides/get-started" className={styles.button}>
 					Get Vibrant
 				</a>
 			</div>
@@ -40,7 +37,12 @@ const App = () => {
 					<input id="file-upload" type="file" onChange={onChange} />
 				</div>
 
-				<div className={`${styles.fullSize} ${styles.flex}`}>
+				<div
+					className={`${styles.fullSize} ${styles.flex}`}
+					style={{
+						padding: "6rem 0rem 4rem 0rem",
+					}}
+				>
 					<Title title={"Examples"} />
 				</div>
 

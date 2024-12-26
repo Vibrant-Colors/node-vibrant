@@ -19,7 +19,8 @@ export default defineConfig({
 			components: {
 				Head: "./src/components/head.astro",
 				Hero: "./src/components/hero.astro",
-				SiteTitle: "./src/components/site-title.astro"
+				SiteTitle: "./src/components/site-title.astro",
+				PageTitle: "./src/components/page-title.astro",
 			},
 			customCss: ["./src/styles/global.css"],
 			sidebar: [
