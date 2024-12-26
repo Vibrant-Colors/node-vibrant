@@ -13,6 +13,7 @@ export default mergeConfig(
 			"./src/node.ts",
 			"./src/browser.ts",
 			"./src/worker.ts",
+			"./src/worker.worker.ts",
 			"./src/throw.ts",
 		],
 		srcDir: "./src",
