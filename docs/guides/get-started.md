@@ -115,4 +115,4 @@ Vibrant.from("https://avatars.githubusercontent.com/Vibrant-Colors").getPalette(
   })
 ```
 
-<iframe src="https://stackblitz.com/github/Vibrant-Colors/node-vibrant/tree/v4/examples/js/simple?template=node&amp;ctl=1&amp;embed=1&amp;file=src%2Fmain.ts&amp;hideNavigation=1&amp;view=preview" title="Node Vibrant Browser Demo" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe class="embed" src="https://stackblitz.com/github/Vibrant-Colors/node-vibrant/tree/v4/examples/js/simple?template=node&amp;ctl=1&amp;embed=1&amp;file=src%2Fmain.ts&amp;hideNavigation=1&amp;view=preview" title="Node Vibrant Browser Demo" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>

@@ -93,7 +93,7 @@ getPalette(): Promise<Palette>
 
 #### Defined in
 
-[index.ts:71](https://github.com/Vibrant-Colors/node-vibrant/blob/main/packages/vibrant-core/src/index.ts#L71)
+[index.ts:61](https://github.com/Vibrant-Colors/node-vibrant/blob/main/packages/vibrant-core/src/index.ts#L61)
 
 ***
 
@@ -109,39 +109,7 @@ getPalettes(): Promise<{}>
 
 #### Defined in
 
-[index.ts:93](https://github.com/Vibrant-Colors/node-vibrant/blob/main/packages/vibrant-core/src/index.ts#L93)
-
-***
-
-### palette()
-
-```ts
-palette(): Palette
-```
-
-#### Returns
-
-`Palette`
-
-#### Defined in
-
-[index.ts:61](https://github.com/Vibrant-Colors/node-vibrant/blob/main/packages/vibrant-core/src/index.ts#L61)
-
-***
-
-### swatches()
-
-```ts
-swatches(): Palette
-```
-
-#### Returns
-
-`Palette`
-
-#### Defined in
-
-[index.ts:65](https://github.com/Vibrant-Colors/node-vibrant/blob/main/packages/vibrant-core/src/index.ts#L65)
+[index.ts:83](https://github.com/Vibrant-Colors/node-vibrant/blob/main/packages/vibrant-core/src/index.ts#L83)
 
 ***
 
