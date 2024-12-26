@@ -11,9 +11,11 @@ import type { Pipeline, ProcessOptions, ProcessResult } from "../index";
  */
 export class WorkerPipeline implements Pipeline {
 	private _manager = new WorkerManager();
+
 	constructor(protected PipelineWorker: TaskWorkerClass) {
 		this._manager.register("pipeline", PipelineWorker);
 	}
+
 	private _rehydrate(result: ProcessResult) {
 		const { colors, palettes } = result;
 		result.colors = colors.map((s) => Swatch.clone(s));
@@ -24,9 +26,16 @@ export class WorkerPipeline implements Pipeline {
 		);
 		return result;
 	}
-	process(imageData: ImageData, opts: ProcessOptions): Promise<ProcessResult> {
-		return this._manager
-			.invokeWorker("pipeline", [imageData, opts], [imageData.data.buffer])
-			.then((result) => this._rehydrate(result as ProcessResult));
+
+	async process(
+		imageData: ImageData,
+		opts: ProcessOptions,
+	): Promise<ProcessResult> {
+		const result = await this._manager.invokeWorker(
+			"pipeline",
+			[imageData, opts],
+			[imageData.data.buffer],
+		);
+		return this._rehydrate(result as ProcessResult);
 	}
 }

@@ -79,6 +79,16 @@
 				"default": "./dist/cjs/worker.cjs"
 			}
 		},
+		"./worker.worker": {
+			"import": {
+				"types": "./dist/esm/worker.worker.d.ts",
+				"default": "./dist/esm/worker.worker.js"
+			},
+			"require": {
+				"types": "./dist/cjs/worker.worker.d.cts",
+				"default": "./dist/cjs/worker.worker.cjs"
+			}
+		},
 		"./browser": {
 			"import": {
 				"types": "./dist/esm/browser.d.ts",

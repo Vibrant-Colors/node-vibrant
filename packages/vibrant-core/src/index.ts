@@ -58,16 +58,6 @@ export class Vibrant {
 		return Vibrant._pipeline.process(image.getImageData(), processOpts);
 	}
 
-	palette(): Palette {
-		return this.swatches();
-	}
-
-	swatches(): Palette {
-		throw new Error(
-			"Method deprecated. Use `Vibrant.result.palettes[name]` instead",
-		);
-	}
-
 	async getPalette(): Promise<Palette> {
 		const image = new this.opts.ImageClass();
 		try {

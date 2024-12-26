@@ -42,6 +42,21 @@ let v = new Vibrant("path/to/image", opts);
 v.getPalette().then((palette) => console.log(palette));
 ```
 
+### Worker Usage
+
+Quantization is the most time-consuming stage in `node-vibrant`. Luckily, the quantization can be run in the WebWorker to avoid freezing the UI thread.
+
+Here's how to use this feature:
+
+```typescript
+import { Vibrant, WorkerPipeline } from "node-vibrant/worker";
+import PipelineWorker from "node-vibrant/worker.worker?worker";
+
+Vibrant.use(new WorkerPipeline(PipelineWorker as never));
+```
+
+This requires your bundler to handle `?worker` transforms [similar to how Vite does](https://vite.dev/guide/features.html#import-with-query-suffixes)
+
 ## Documentation
 
 Documentation is currently in the works. Apologies for the inconvenience.
