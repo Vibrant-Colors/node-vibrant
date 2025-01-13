@@ -114,6 +114,10 @@
 	"sideEffects": true,
 	"files": [
 		"dist",
-		"src"
+		"src",
+		"browser",
+		"node",
+		"worker",
+		"worker.worker"
 	]
 }

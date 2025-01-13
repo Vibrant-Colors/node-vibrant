@@ -1,0 +1,25 @@
+{
+	"name": "node-vibrant-browser",
+	"version": "4.0.0",
+	"description": "",
+	"type": "module",
+	"module": "./../dist/esm/browser.js",
+	"main": "./../dist/cjs/browser.cjs",
+	"types":  "./../dist/cjs/browser.d.cts",
+	"exports": {
+		"./package.json": "./package.json",
+		".": {
+			"import": {
+				"types": "./../dist/esm/browser.d.ts",
+				"default": "./../dist/esm/browser.js"
+			},
+			"require": {
+				"types": "./../dist/cjs/browser.d.cts",
+				"default": "./../dist/cjs/browser.cjs"
+			}
+		}
+	},
+	"author": "crutchcorn",
+	"license": "MIT",
+	"sideEffects": true
+}
