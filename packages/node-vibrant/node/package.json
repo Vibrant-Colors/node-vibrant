@@ -1,0 +1,25 @@
+{
+	"name": "node-vibrant-node",
+	"version": "4.0.0",
+	"description": "",
+	"type": "module",
+	"module": "./../dist/esm/node.js",
+	"main": "./../dist/cjs/node.cjs",
+	"types":  "./../dist/cjs/node.d.cts",
+	"exports": {
+		"./package.json": "./package.json",
+		".": {
+			"import": {
+				"types": "./../dist/esm/node.d.ts",
+				"default": "./../dist/esm/node.js"
+			},
+			"require": {
+				"types": "./../dist/cjs/node.d.cts",
+				"default": "./../dist/cjs/node.cjs"
+			}
+		}
+	},
+	"author": "crutchcorn",
+	"license": "MIT",
+	"sideEffects": true
+}

@@ -1,0 +1,25 @@
+{
+	"name": "node-vibrant-worker-worker",
+	"version": "4.0.0",
+	"description": "",
+	"type": "module",
+	"module": "./../dist/esm/worker.worker.js",
+	"main": "./../dist/cjs/worker.worker.cjs",
+	"types":  "./../dist/cjs/worker.worker.d.cts",
+	"exports": {
+		"./package.json": "./package.json",
+		".": {
+			"import": {
+				"types": "./../dist/esm/worker.worker.d.ts",
+				"default": "./../dist/esm/worker.worker.js"
+			},
+			"require": {
+				"types": "./../dist/cjs/worker.worker.d.cts",
+				"default": "./../dist/cjs/worker.worker.cjs"
+			}
+		}
+	},
+	"author": "crutchcorn",
+	"license": "MIT",
+	"sideEffects": true
+}
