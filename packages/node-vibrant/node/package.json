@@ -1,11 +1,11 @@
 {
 	"name": "node-vibrant-node",
-	"version": "4.0.0",
+	"version": "4.0.1",
 	"description": "",
 	"type": "module",
 	"module": "./../dist/esm/node.js",
 	"main": "./../dist/cjs/node.cjs",
-	"types":  "./../dist/cjs/node.d.cts",
+	"types": "./../dist/cjs/node.d.cts",
 	"exports": {
 		"./package.json": "./package.json",
 		".": {

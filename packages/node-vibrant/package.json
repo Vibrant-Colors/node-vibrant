@@ -1,6 +1,6 @@
 {
 	"name": "node-vibrant",
-	"version": "4.0.0",
+	"version": "4.0.1",
 	"description": "Extract prominent colors from an image. Supports both node and browser environment.",
 	"license": "MIT",
 	"repository": {

@@ -1,11 +1,11 @@
 {
 	"name": "node-vibrant-worker-worker",
-	"version": "4.0.0",
+	"version": "4.0.1",
 	"description": "",
 	"type": "module",
 	"module": "./../dist/esm/worker.worker.js",
 	"main": "./../dist/cjs/worker.worker.cjs",
-	"types":  "./../dist/cjs/worker.worker.d.cts",
+	"types": "./../dist/cjs/worker.worker.d.cts",
 	"exports": {
 		"./package.json": "./package.json",
 		".": {

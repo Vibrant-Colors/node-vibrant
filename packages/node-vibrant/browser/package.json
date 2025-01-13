@@ -1,11 +1,11 @@
 {
 	"name": "node-vibrant-browser",
-	"version": "4.0.0",
+	"version": "4.0.1",
 	"description": "",
 	"type": "module",
 	"module": "./../dist/esm/browser.js",
 	"main": "./../dist/cjs/browser.cjs",
-	"types":  "./../dist/cjs/browser.d.cts",
+	"types": "./../dist/cjs/browser.d.cts",
 	"exports": {
 		"./package.json": "./package.json",
 		".": {
