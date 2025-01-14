@@ -53,7 +53,7 @@ const App = () => {
 
 				<div className={`${styles.fullSize} ${styles.flex}`}>
 					<label htmlFor="file-upload" className={styles.button}>
-						Upload your own or paste an image
+						Upload or paste an image
 					</label>
 					<input id="file-upload" type="file" onChange={onChange} />
 				</div>
