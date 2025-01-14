@@ -19,12 +19,11 @@ const App = () => {
 		if (!event.clipboardData) return;
 		const items = event.clipboardData.items;
 		for (const item of items) {
-			if (item.type.indexOf("image") !== -1) {
-				const blob = item.getAsFile();
-				const fileURL = URL.createObjectURL(blob!);
-				setImage(fileURL);
-				break;
-			}
+			if (item.type.indexOf("image") === -1) continue;
+			const blob = item.getAsFile();
+			const fileURL = URL.createObjectURL(blob!);
+			setImage(fileURL);
+			return;
 		}
 	};
 
