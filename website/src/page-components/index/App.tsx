@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Title } from "../../components/title.tsx";
 import styles from "./App.module.css";
 import { Colors } from "./Colors";
@@ -14,6 +14,27 @@ const App = () => {
 		const fileURL = URL.createObjectURL(event.target.files![0]);
 		setImage(fileURL);
 	};
+
+	const onPaste = (event: ClipboardEvent) => {
+		if (!event.clipboardData) return;
+		const items = event.clipboardData.items;
+		for (const item of items) {
+			if (item.type.indexOf("image") !== -1) {
+				const blob = item.getAsFile();
+				const fileURL = URL.createObjectURL(blob!);
+				setImage(fileURL);
+				break;
+			}
+		}
+	};
+
+	useEffect(() => {
+		const handlePaste = (event: ClipboardEvent) => onPaste(event);
+		window.addEventListener("paste", handlePaste);
+		return () => {
+			window.removeEventListener("paste", handlePaste);
+		};
+	}, []);
 
 	return (
 		<div>
@@ -32,7 +53,7 @@ const App = () => {
 
 				<div className={`${styles.fullSize} ${styles.flex}`}>
 					<label htmlFor="file-upload" className={styles.button}>
-						Upload your own
+						Upload your own or paste an image
 					</label>
 					<input id="file-upload" type="file" onChange={onChange} />
 				</div>
