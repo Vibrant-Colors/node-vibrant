@@ -28,7 +28,9 @@
 	"dependencies": {
 		"@tanstack/config": "^0.15.0",
 		"@vibrant/color": "^4.0.0",
-		"@vibrant/generator": "^4.0.0",
+		"@vibrant/generator": "^4.0.0"
+	},
+	"devDependencies": {
 		"vite": "^6.0.5"
 	},
 	"type": "module",
