@@ -1,6 +1,6 @@
 {
 	"name": "@vibrant/generator-default",
-	"version": "4.0.2",
+	"version": "4.0.3",
 	"description": "Default generator that generates the original vibrant palette",
 	"author": "crutchcorn",
 	"license": "MIT",

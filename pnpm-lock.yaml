@@ -101,7 +101,7 @@ importers:
         specifier: ^4.0.0
         version: link:../vibrant-core
       '@vibrant/generator-default':
-        specifier: ^4.0.2
+        specifier: ^4.0.3
         version: link:../vibrant-generator-default
       '@vibrant/image-browser':
         specifier: ^4.0.0
