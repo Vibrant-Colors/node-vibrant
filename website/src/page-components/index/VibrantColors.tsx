@@ -48,7 +48,10 @@ const VibrantColors = ({ img }: VibrantColorsProps) => {
 					} as React.CSSProperties
 				}
 			>
-				Vibrant
+				<div>
+					<p>Vibrant</p>
+					<p className={styles["swatch-hex"]}>{colors.Vibrant?.hex}</p>
+				</div>
 			</li>
 			<li
 				className={styles.swatch}
@@ -59,7 +62,10 @@ const VibrantColors = ({ img }: VibrantColorsProps) => {
 					} as React.CSSProperties
 				}
 			>
-				Dark Vibrant
+				<div>
+					<p>Dark Vibrant</p>
+					<p className={styles["swatch-hex"]}>{colors.DarkVibrant?.hex}</p>
+				</div>
 			</li>
 			<li
 				className={styles.swatch}
@@ -70,7 +76,10 @@ const VibrantColors = ({ img }: VibrantColorsProps) => {
 					} as React.CSSProperties
 				}
 			>
-				Light Vibrant
+				<div>
+					<p>Light Vibrant</p>
+					<p className={styles["swatch-hex"]}>{colors.LightVibrant?.hex}</p>
+				</div>
 			</li>
 			<li
 				className={styles.swatch}
@@ -81,7 +90,10 @@ const VibrantColors = ({ img }: VibrantColorsProps) => {
 					} as React.CSSProperties
 				}
 			>
-				Muted
+				<div>
+					<p>Muted</p>
+					<p className={styles["swatch-hex"]}>{colors.Muted?.hex}</p>
+				</div>
 			</li>
 			<li
 				className={styles.swatch}
@@ -92,7 +104,10 @@ const VibrantColors = ({ img }: VibrantColorsProps) => {
 					} as React.CSSProperties
 				}
 			>
-				Dark Muted
+				<div>
+					<p>Dark Muted</p>
+					<p className={styles["swatch-hex"]}>{colors.DarkMuted?.hex}</p>
+				</div>
 			</li>
 			<li
 				className={styles.swatch}
@@ -103,7 +118,10 @@ const VibrantColors = ({ img }: VibrantColorsProps) => {
 					} as React.CSSProperties
 				}
 			>
-				Light Muted
+				<div>
+					<p>Light Muted</p>
+					<p className={styles["swatch-hex"]}>{colors.LightMuted?.hex}</p>
+				</div>
 			</li>
 		</ul>
 	);

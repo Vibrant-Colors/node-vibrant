@@ -17,4 +17,21 @@
 	flex-grow: 1;
 	border-radius: 12px;
 	padding: 14px 20px;
+	cursor: pointer;
+	transition: transform 200ms ease-out;
+}
+
+.swatch:hover {
+	transform: scale(1.05);
+}
+
+.swatch > div {
+	all: unset;
+}
+
+.swatch-hex {
+	all: unset;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	opacity: 0.8;
 }
