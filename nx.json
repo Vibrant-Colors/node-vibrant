@@ -9,7 +9,7 @@
 		},
 		"test:lib": {
 			"cache": true,
-			"dependsOn": ["^build"]
+			"dependsOn": ["^build", "build"]
 		},
 		"test:build": {
 			"cache": true,
@@ -17,7 +17,7 @@
 		},
 		"test:types": {
 			"cache": true,
-			"dependsOn": ["^build"]
+			"dependsOn": ["^build", "build"]
 		},
 		"test:eslint": {
 			"cache": true,
