@@ -98,7 +98,7 @@ export class Vibrant {
 	}
 }
 
-export { BasicPipeline } from "./pipeline";
+export { BasicPipeline } from "./pipeline/index";
 export { WorkerPipeline } from "./pipeline/worker/client";
 export { runPipelineInWorker } from "./pipeline/worker/host";
 export { Builder };
