@@ -10,7 +10,7 @@
 	},
 	"devDependencies": {
 		"typescript": "~5.6.2",
-		"vite": "^6.0.5"
+		"vite": "^7.3.1"
 	},
 	"dependencies": {
 		"node-vibrant": "^4.0.0"

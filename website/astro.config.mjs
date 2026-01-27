@@ -13,9 +13,13 @@ export default defineConfig({
 				src: "./public/favicon.svg",
 				alt: "A color picker on two sides of a sunset",
 			},
-			social: {
-				github: "https://github.com/vibrant-colors/node-vibrant",
-			},
+			social: [
+				{
+					icon: "github",
+					label: "GitHub",
+					href: "https://github.com/vibrant-colors/node-vibrant",
+				},
+			],
 			components: {
 				Head: "./src/components/head.astro",
 				Hero: "./src/components/hero.astro",

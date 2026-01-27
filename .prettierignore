@@ -6,3 +6,5 @@
 pnpm-lock.yaml
 .yarn/
 .astro
+
+/.nx/workspace-data

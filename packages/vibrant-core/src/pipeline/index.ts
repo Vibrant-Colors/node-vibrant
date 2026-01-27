@@ -7,7 +7,7 @@ import type { Filter, Palette, Swatch } from "@vibrant/color";
 /**
  * @private
  */
-export class Stage<T> {
+class Stage<T> {
 	private _map: { [name: string]: T } = {};
 	constructor(protected pipeline: BasicPipeline) {}
 	names() {

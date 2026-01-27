@@ -3,7 +3,6 @@
 	"private": true,
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
 	"type": "module",
 	"author": "crutchcorn",
 	"license": "MIT",
@@ -21,7 +20,6 @@
 		"build": "tsc --noEmit",
 		"test:eslint": "eslint ./loader.ts ./server.ts ./types.ts"
 	},
-	"license": "MIT",
 	"devDependencies": {
 		"@types/finalhandler": "^1.1.1",
 		"@types/serve-static": "^1.13.2",

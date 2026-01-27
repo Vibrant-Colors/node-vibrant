@@ -1,9 +1,10 @@
-import { defineWorkspace } from "vitest/config";
-import { BrowserCommand } from "vitest/node";
+import { defineConfig } from "vitest/config";
+import { playwright } from "@vitest/browser-playwright";
 
 import { loadTestSamples } from "../../fixtures/sample/loader";
 import { createSampleServer } from "../../fixtures/sample/server";
-import http from "http";
+import type { BrowserCommand } from "vitest/node";
+import type http from "node:http";
 
 const TEST_PORT = 4555;
 
@@ -30,30 +31,32 @@ const stopServer: BrowserCommand<never[]> = async ({}) =>
 		}),
 	);
 
-export default defineWorkspace([
-	{
-		test: {
-			include: ["__tests__/**/*.node.{test,spec}.ts"],
-			name: "node",
-			environment: "node",
-		},
-	},
-	{
-		test: {
-			include: ["__tests__/**/*.browser.{test,spec}.ts"],
-			name: "browser",
-			browser: {
-				provider: "playwright",
-				enabled: true,
-				name: "chromium",
-				headless: true,
-				providerOptions: {},
-				commands: {
-					loadSamples,
-					stopServer,
-					startServer,
+export default defineConfig({
+	test: {
+		projects: [
+			{
+				test: {
+					include: ["__tests__/**/*.node.{test,spec}.ts"],
+					name: "node",
+					environment: "node",
 				},
 			},
-		},
+			{
+				test: {
+					include: ["__tests__/**/*.browser.{test,spec}.ts"],
+					name: "browser",
+					browser: {
+						provider: playwright(),
+						enabled: true,
+						instances: [{ browser: "chromium", headless: true }],
+						commands: {
+							loadSamples,
+							stopServer,
+							startServer,
+						},
+					},
+				},
+			},
+		],
 	},
-]);
+});

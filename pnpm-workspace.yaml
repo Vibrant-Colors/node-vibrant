@@ -1,5 +1,11 @@
 packages:
-  - "website"
-  - "packages/**"
-  - "fixtures/**"
-  - "examples/js/**"
+  - website
+  - packages/**
+  - fixtures/**
+  - examples/js/**
+
+onlyBuiltDependencies:
+  - esbuild
+  - nx
+  - sharp
+  - unrs-resolver

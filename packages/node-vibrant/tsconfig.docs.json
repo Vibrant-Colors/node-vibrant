@@ -4,6 +4,6 @@
 		"__tests__",
 		"eslint.config.js",
 		"vite.config.ts",
-		"vitest.workspace.ts"
+		"vitest.config.ts"
 	]
 }

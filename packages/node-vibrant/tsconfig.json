@@ -1,13 +1,13 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"types": ["vite/client", "@vitest/browser/providers/playwright"]
+		"types": ["vite/client"]
 	},
 	"include": [
 		"src",
 		"__tests__",
 		"eslint.config.js",
 		"vite.config.ts",
-		"vitest.workspace.ts"
+		"vitest.config.ts"
 	]
 }
