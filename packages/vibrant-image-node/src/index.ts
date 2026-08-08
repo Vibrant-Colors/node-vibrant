@@ -1,20 +1,14 @@
 import { ImageBase } from "@vibrant/image";
-import configure from "@jimp/custom";
-import types from "@jimp/types";
-import resize from "@jimp/plugin-resize";
+import { Jimp } from "jimp";
+import type { JimpInstance } from "jimp";
 import type { ImageData, ImageSource } from "@vibrant/image";
-
-const Jimp = configure({
-	types: [types],
-	plugins: [resize],
-});
 
 const URL_REGEX = /^(\w+):\/\/.*/i;
 
 type NodeImageSource = string | Buffer;
 
 export class NodeImage extends ImageBase {
-	private _image: InstanceType<typeof Jimp> | undefined;
+	private _image: JimpInstance | undefined;
 
 	private _getImage() {
 		if (!this._image) {
@@ -58,10 +52,11 @@ export class NodeImage extends ImageBase {
 	}
 
 	private _loadByJimp(src: NodeImageSource): Promise<ImageBase> {
-		// NOTE: TypeScript doesn't support union type to overloads yet
-		//       Use type assertion to bypass compiler error
-		return Jimp.read(src as Buffer).then((result) => {
-			this._image = result;
+		const read =
+			typeof src === "string" ? Jimp.read(src) : Jimp.fromBuffer(src);
+
+		return read.then((result) => {
+			this._image = result as JimpInstance;
 			return this;
 		});
 	}
@@ -93,7 +88,12 @@ export class NodeImage extends ImageBase {
 	}
 
 	resize(targetWidth: number, targetHeight: number, _ratio: number): void {
-		this._getImage().resize(targetWidth, targetHeight);
+		// ImageBase.scaleDown passes fractional dimensions. Jimp 0.x rounded them
+		// internally; keep that explicit so the resized bitmap is unchanged.
+		this._getImage().resize({
+			w: Math.round(targetWidth) || 1,
+			h: Math.round(targetHeight) || 1,
+		});
 	}
 
 	getPixelCount(): number {

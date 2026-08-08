@@ -25,10 +25,8 @@
 		"test:build": "publint --strict"
 	},
 	"dependencies": {
-		"@jimp/custom": "^0.22.12",
-		"@jimp/plugin-resize": "^0.22.12",
-		"@jimp/types": "^0.22.12",
-		"@vibrant/image": "^4.0.4"
+		"@vibrant/image": "^4.0.4",
+		"jimp": "^1.6.1"
 	},
 	"devDependencies": {
 		"@tanstack/vite-config": "^0.4.3",
