@@ -1,14 +1,34 @@
 import { ImageBase } from "@vibrant/image";
-import { Jimp } from "jimp";
-import type { JimpInstance } from "jimp";
+import { createJimp } from "@jimp/core";
+import bmp, { msBmp } from "@jimp/js-bmp";
+import gif from "@jimp/js-gif";
+import jpeg from "@jimp/js-jpeg";
+import png from "@jimp/js-png";
+import tiff from "@jimp/js-tiff";
+import * as resize from "@jimp/plugin-resize";
 import type { ImageData, ImageSource } from "@vibrant/image";
+
+// Only decoding and resizing are ever used, so the class is composed from those
+// pieces rather than importing the `jimp` bundle, which would add every other
+// plugin to the dependents of this package.
+const Jimp = createJimp({
+	formats: [bmp, msBmp, gif, jpeg, png, tiff],
+	plugins: [resize.methods],
+});
+
+// Taken from the loaders rather than written as InstanceType<typeof Jimp>. The
+// two are structurally different, because `write` resolves its extension and
+// mime generics differently on the class than on what the loaders return.
+type LoadedImage = Awaited<
+	ReturnType<typeof Jimp.read | typeof Jimp.fromBuffer>
+>;
 
 const URL_REGEX = /^(\w+):\/\/.*/i;
 
 type NodeImageSource = string | Buffer;
 
 export class NodeImage extends ImageBase {
-	private _image: JimpInstance | undefined;
+	private _image: LoadedImage | undefined;
 
 	private _getImage() {
 		if (!this._image) {
@@ -56,7 +76,7 @@ export class NodeImage extends ImageBase {
 			typeof src === "string" ? Jimp.read(src) : Jimp.fromBuffer(src);
 
 		return read.then((result) => {
-			this._image = result as JimpInstance;
+			this._image = result;
 			return this;
 		});
 	}
