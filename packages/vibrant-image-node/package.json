@@ -25,9 +25,13 @@
 		"test:build": "publint --strict"
 	},
 	"dependencies": {
-		"@jimp/custom": "^0.22.12",
-		"@jimp/plugin-resize": "^0.22.12",
-		"@jimp/types": "^0.22.12",
+		"@jimp/core": "^1.6.1",
+		"@jimp/js-bmp": "^1.6.1",
+		"@jimp/js-gif": "^1.6.1",
+		"@jimp/js-jpeg": "^1.6.1",
+		"@jimp/js-png": "^1.6.1",
+		"@jimp/js-tiff": "^1.6.1",
+		"@jimp/plugin-resize": "^1.6.1",
 		"@vibrant/image": "^4.0.4"
 	},
 	"devDependencies": {
