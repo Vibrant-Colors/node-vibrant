@@ -10,28 +10,124 @@
 	flex-wrap: wrap;
 }
 
+.colors > li {
+	flex-grow: 1;
+	list-style: none;
+}
+
 .swatch {
 	all: unset;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	width: 100%;
 	background-color: var(--bg-color);
 	color: var(--color);
-	flex-grow: 1;
 	border-radius: 12px;
 	padding: 14px 20px;
 	cursor: pointer;
 	transition: transform 200ms ease-out;
 }
 
-.swatch:hover {
+.swatch:hover:not(:disabled) {
 	transform: scale(1.05);
 }
 
-.swatch > div {
-	all: unset;
+.swatch:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+.swatch:disabled {
+	cursor: default;
+}
+
+.swatch-label {
+	font-weight: inherit;
+}
+
+.swatch-hex-row {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.35rem;
 }
 
 .swatch-hex {
-	all: unset;
 	font-size: 0.8rem;
 	text-transform: uppercase;
 	opacity: 0.8;
+}
+
+.copy-icon {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 0;
+	overflow: hidden;
+	opacity: 0;
+	transition:
+		width 150ms ease,
+		opacity 150ms ease;
+}
+
+.icon {
+	width: 0.85rem;
+	height: 0.85rem;
+	flex-shrink: 0;
+}
+
+.swatch:hover:not(:disabled):not([data-copied]) .copy-icon,
+.swatch[data-copied] .copy-icon {
+	width: 0.85rem;
+	opacity: 0.9;
+	overflow: visible;
+}
+
+.tooltip {
+	position: absolute;
+	top: calc(100% + 0.4rem);
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
+	background: rgba(0, 0, 0, 0.85);
+	color: #fff;
+	font-size: 0.65rem;
+	line-height: 1;
+	white-space: nowrap;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition:
+		opacity 150ms ease 0s,
+		visibility 150ms ease 0s;
+}
+
+.tooltip::after {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	border: 0.25rem solid transparent;
+	border-bottom-color: rgba(0, 0, 0, 0.85);
+}
+
+.swatch:hover:not(:disabled):not([data-copied]) .tooltip {
+	opacity: 1;
+	visibility: visible;
+	transition:
+		opacity 150ms ease 1s,
+		visibility 150ms ease 1s;
+}
+
+.swatch[data-copied] .tooltip {
+	opacity: 1;
+	visibility: visible;
+	transition-delay: 0s;
 }
