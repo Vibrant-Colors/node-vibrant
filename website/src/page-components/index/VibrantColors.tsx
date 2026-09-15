@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Vibrant } from "node-vibrant/browser";
+import { CheckIcon, CopyIcon } from "../../icons";
+import { useCopy } from "../../hooks/use-copy";
 import styles from "./VibrantColors.module.css";
 import type { Swatch } from "@vibrant/color";
 
@@ -7,14 +9,74 @@ interface VibrantColorsProps {
 	img: string;
 }
 
+const SWATCHES = [
+	{ key: "Vibrant", label: "Vibrant" },
+	{ key: "DarkVibrant", label: "Dark Vibrant" },
+	{ key: "LightVibrant", label: "Light Vibrant" },
+	{ key: "Muted", label: "Muted" },
+	{ key: "DarkMuted", label: "Dark Muted" },
+	{ key: "LightMuted", label: "Light Muted" },
+] as const;
+
+type PaletteColors = Record<(typeof SWATCHES)[number]["key"], Swatch | null>;
+
+interface ColorSwatchProps {
+	label: string;
+	swatch: Swatch | null;
+}
+
+const ColorSwatch = ({ label, swatch }: ColorSwatchProps) => {
+	const { copied, copy } = useCopy();
+	const hex = swatch?.hex;
+
+	const copyColor = () => {
+		if (!hex) return;
+		void copy(hex);
+	};
+
+	return (
+		<li>
+			<button
+				type="button"
+				className={styles.swatch}
+				style={
+					{
+						"--bg-color": hex ?? "#000",
+						"--color": swatch?.bodyTextColor,
+					} as React.CSSProperties
+				}
+				onClick={copyColor}
+				disabled={!hex}
+				aria-label={`Copy ${label} ${hex ?? ""}`}
+				data-copied={copied || undefined}
+			>
+				<span className={styles["swatch-label"]}>{label}</span>
+				<span className={styles["swatch-hex-row"]}>
+					<span className={styles["swatch-hex"]}>{hex}</span>
+					<span className={styles["copy-icon"]} aria-live="polite">
+						{copied ? (
+							<CheckIcon className={styles.icon} />
+						) : (
+							<CopyIcon className={styles.icon} />
+						)}
+						<span className={styles.tooltip} role="tooltip">
+							{copied ? "Copied!" : "Click to copy"}
+						</span>
+					</span>
+				</span>
+			</button>
+		</li>
+	);
+};
+
 const VibrantColors = ({ img }: VibrantColorsProps) => {
-	const [colors, setColors] = useState({
-		DarkMuted: null as Swatch | null,
-		DarkVibrant: null as Swatch | null,
-		LightMuted: null as Swatch | null,
-		LightVibrant: null as Swatch | null,
-		Muted: null as Swatch | null,
-		Vibrant: null as Swatch | null,
+	const [colors, setColors] = useState<PaletteColors>({
+		DarkMuted: null,
+		DarkVibrant: null,
+		LightMuted: null,
+		LightVibrant: null,
+		Muted: null,
+		Vibrant: null,
 	});
 
 	const runVibrant = useCallback(() => {
@@ -39,90 +101,9 @@ const VibrantColors = ({ img }: VibrantColorsProps) => {
 			className={styles.colors}
 			aria-label={"Colors for the associated image"}
 		>
-			<li
-				className={styles.swatch}
-				style={
-					{
-						"--bg-color": colors.Vibrant?.hex ?? "#000",
-						"--color": colors.Vibrant?.bodyTextColor,
-					} as React.CSSProperties
-				}
-			>
-				<div>
-					<p>Vibrant</p>
-					<p className={styles["swatch-hex"]}>{colors.Vibrant?.hex}</p>
-				</div>
-			</li>
-			<li
-				className={styles.swatch}
-				style={
-					{
-						"--bg-color": colors.DarkVibrant?.hex ?? "#000",
-						"--color": colors.DarkVibrant?.bodyTextColor,
-					} as React.CSSProperties
-				}
-			>
-				<div>
-					<p>Dark Vibrant</p>
-					<p className={styles["swatch-hex"]}>{colors.DarkVibrant?.hex}</p>
-				</div>
-			</li>
-			<li
-				className={styles.swatch}
-				style={
-					{
-						"--bg-color": colors.LightVibrant?.hex ?? "#000",
-						"--color": colors.LightVibrant?.bodyTextColor,
-					} as React.CSSProperties
-				}
-			>
-				<div>
-					<p>Light Vibrant</p>
-					<p className={styles["swatch-hex"]}>{colors.LightVibrant?.hex}</p>
-				</div>
-			</li>
-			<li
-				className={styles.swatch}
-				style={
-					{
-						"--bg-color": colors.Muted?.hex ?? "#000",
-						"--color": colors.Muted?.bodyTextColor,
-					} as React.CSSProperties
-				}
-			>
-				<div>
-					<p>Muted</p>
-					<p className={styles["swatch-hex"]}>{colors.Muted?.hex}</p>
-				</div>
-			</li>
-			<li
-				className={styles.swatch}
-				style={
-					{
-						"--bg-color": colors.DarkMuted?.hex ?? "#000",
-						"--color": colors.DarkMuted?.bodyTextColor,
-					} as React.CSSProperties
-				}
-			>
-				<div>
-					<p>Dark Muted</p>
-					<p className={styles["swatch-hex"]}>{colors.DarkMuted?.hex}</p>
-				</div>
-			</li>
-			<li
-				className={styles.swatch}
-				style={
-					{
-						"--bg-color": colors.LightMuted?.hex ?? "#000",
-						"--color": colors.LightMuted?.bodyTextColor,
-					} as React.CSSProperties
-				}
-			>
-				<div>
-					<p>Light Muted</p>
-					<p className={styles["swatch-hex"]}>{colors.LightMuted?.hex}</p>
-				</div>
-			</li>
+			{SWATCHES.map(({ key, label }) => (
+				<ColorSwatch key={key} label={label} swatch={colors[key]} />
+			))}
 		</ul>
 	);
 };
